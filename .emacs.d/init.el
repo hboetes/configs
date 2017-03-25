@@ -27,8 +27,6 @@
 (require 'package)
 (package-initialize)
 
-(setq paradox-github-token "00f9cfe5f597fd8d474c89792de9c28dd1345547")
-
 (icomplete-mode 1)
 
 (autoload 'log4j-mode "log4j-mode" "Major mode for viewing log files." t)
