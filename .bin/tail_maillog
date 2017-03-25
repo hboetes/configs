@@ -1,0 +1,8 @@
+#!/bin/sh
+tail -n0 -f /var/log/maillog | while read line; do
+    something=$(echo $line| awk '/postscreen.*NOQUEUE/ {print $10}' | sed -ne 's|\[\(.*\)\].*|\1|p')
+    if [ -n "$something" ]; then
+    	echo "Somebody completely forgot about $something"
+    	spamdb -t -a $something
+    fi
+done

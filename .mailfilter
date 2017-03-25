@@ -1,0 +1,122 @@
+# -*- sh -*-
+# This file should be saved as ~/.mailfilter
+# It is a configfile for maildrop
+
+logfile "$HOME/.Maildroplog"
+VERBOSE=9
+
+R='/mega/home/han/Mail'
+TRASHCAN='/dev/null'
+
+# Mail from cronjobs
+if (/^From: root@boetes.org \(Cron Daemon\)/)
+   {
+       to $R/cron
+   }
+
+# Mail from root in a dir
+if (/^From: root@/ || /^To: root/)
+    {
+            to $R/root
+    }
+
+# No sane way to unsubscribe, nearly daily mails
+if (/^From: tomtom@/)
+    {
+        to $R/zspam
+    }
+
+
+# Sure, whatever
+if (/^From: @interfax.net/)
+    {
+        to $R/zspam
+    }
+
+if (/^X-Spam-Flag: YES/)
+    {
+        to $R/zspam
+    }
+
+# Mail from fics chess-server
+if (/^From: FICS.*chess@freechess.org/)
+    to $R/chess
+
+# Mail from fics chess-server
+if (/^From: .*@.*xing.com/)
+    to $R/xing
+
+# who cares? Do I look like I use windows?
+if (/^Subject:.*virus/ || /^From:.*virus/ )
+    {
+        log '====> Message contained the word "virus" in the subject or from.'
+        to $R/zspam
+    }
+
+# who cares
+if (/^From:.*(mailer[-]?daemon|postmaster)@/)
+   {
+       if (/\.ru/:hb)
+           to $TRASHCAN
+
+       log '====> Message to mailer-daemon/postmaster'
+       to $R/postmaster
+   }
+
+# ugh. out of office/vacation autoreplies
+if ( /^Subject:.*out.*of.*office/ ||\
+     /^Subject:.*vacation/ )
+    {
+        log '====> Out of office/vacation Message.'
+        to $R/zspam
+    }
+
+# dump all kind of m$ crap (99.99% virusses)
+if (/^Content-Type:.*multipart/ && \
+    /^Content-Type:.*(audio\/x-|application).*name=.*\.(ad[ep]|asd|ba[st]|chm|cmd|cpl|crt|dll|eml|exe|hlp|hta|in[fs]|isp|jse?|lnk|md[betw]|ms[cipt]|nws|ocx|ops|pcd|p[ir]f|reg|sc[frt]|sh[bsm]|swf|url|zip|vb[esx]?|vxd|ws[cfh])/:b)
+    {
+        log '====> Message contained typical M$ attachement.'
+        to $R/zspam
+    }
+
+## Silently drop all asian language mail
+# http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/*checkout*/bogofilter/bogofilter/doc/bogofilter-faq.html#asian-spam
+UNREADABLE="(big5|ISO-2022-KR|euc-kr|gb2312|ks_c_5601-1987)"
+if ((/^Content-Type:.*charset="?$UNREADABLE/) ||\
+    (/^Content-Type:.*multipart/ &&\
+    /^Content-Type:.*charset="?$UNREADABLE/:b))
+    {
+        log '====> Message in unreadable encoding.'
+        to $R/zspam
+    }
+
+    # Drop all mails to bogus accounts.
+if (/^To:.*@boetes.org/ && ! /^To:.*han@boetes.org/)
+   {
+       log '====> message to non-existing account'
+       to $R/postmaster
+   }
+
+## remove spam.
+if (/^From:.*@yahoo.com/)
+    {
+        # Filter the free spam
+        xfilter 'sed -e /Yahoo\!/,\$d'
+    }
+
+
+# You don't want to miss you are CC-ed after all. You just don't
+# want them in your maildir.
+if ( /^(Cc|To).*(openbsd|misc|tech|bugs|gnats|source-changes)@/)
+    {
+        to $R/cc
+    }
+
+# Check for duplicates, but only remove duplicates not addressed
+# to me. CC's etc. are removed above.
+`reformail -D 8192 $R/zarchive/duplicate.cache`
+if ($RETURNCODE == 0)
+    to $R/duplicate
+
+# This line is for all the mail that passed the filter
+to $R/Maildir

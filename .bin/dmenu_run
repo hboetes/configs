@@ -1,0 +1,2 @@
+#!/bin/sh
+exe=$(grep -v '^#' ~/.config/i3/dmenu_progs | env LC_ALL=C dmenu -fn terminus-14) && exec $exe

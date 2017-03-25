@@ -1,0 +1,37 @@
+#!/bin/zsh
+
+# This simple script increases or decreases the volume of the card in
+# use.
+
+# TODO, tidy up this code. It's horrible.
+
+change_volume()
+{
+
+    # The headset is plugged in with remote control
+    if [ -L /dev/snd/by-id/usb-Logitech_Logitech_G933_Gaming_Wireless_Headset-00 ]; then
+        card=$(readlink -f /dev/snd/by-id/usb-Logitech_Logitech_G933_Gaming_Wireless_Headset-00)
+        id=${card[-1]}
+        amixer -c$id -q set PCM 3%$1
+        # Using the usb card
+    elif [ -L /dev/snd/by-id/usb-Creative_Technology_USB_Sound_Blaster_HD_000000te-00 ]; then
+        card=$(readlink -f /dev/snd/by-id/usb-Creative_Technology_USB_Sound_Blaster_HD_000000te-00)
+        id=${card[-1]}
+        amixer -c$id -q set PCM 3%$1
+        # Using just the laptop
+    else
+        amixer -c0 -q set Speaker 1%$1
+        amixer -c0 -q set Master 1%$1
+        amixer -c0 -q set PCM 3%$1
+    fi
+}
+
+case $1 in
+    +|-)
+        change_volume "$1"
+    ;;
+    *)
+        echo "*Shrug* :-/"
+        :
+    ;;
+esac

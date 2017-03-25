@@ -1,0 +1,4 @@
+Host *
+  ControlMaster auto
+  ControlPath ~/.ssh/%r@%h:%p
+  AddKeysToAgent yes

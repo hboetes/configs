@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=magnethandler
+Exec=/usr/bin/xterm -e /usr/bin/aria2c --bt-metadata-only --bt-save-metadata=true -d /home/han/downloads/.torrents %U
+MimeType=application/x-bittorrent;x-scheme-handler/magnet;

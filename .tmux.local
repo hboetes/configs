@@ -1,0 +1,7 @@
+# All new windows started at startup.
+new
+neww
+neww
+
+select-window -t 1
+set -g status-fg yellow

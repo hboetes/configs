@@ -1,0 +1,112 @@
+# $Id: settings,v 1.33 2009/08/17 09:10:22 han Exp $
+# There are much more complete settings files with descriptions and all
+# but I choose just to put in what I need. I use the mutt manual as a
+# reference most off the time:
+# Hit f1 or: http://mutt.org/doc/manual/
+
+# And if I want to see a complete examples I use:
+# http://www.spinnaker.de/mutt/muttrc-1.2i
+
+# Also check folderhooks for folder specific settings.
+
+set hostname="boetes.org"       #for all ya dutchies: http://moerstaal.nl
+set mbox_type="Maildir"         # Don't you love it :)
+#set mbox_type="imap"           # Don't you love it :)
+set tmpdir="~/.tmp"            #odd, mutt doesn't honour $TMP
+
+# Some looks
+
+set status_on_top
+unset collapse_unread   # Don't collapse threads with unread mails
+set ascii_chars         # This is for the thread markers
+unset beep              # shut up!
+unset mark_old          # Makes me feel guilty I did not yet read that msg
+set reverse_alias       # If there is an alias ... show that.
+#set wrapmargin="48"
+#set wraplength="80"
+# set smileys="((:|\\(|;|=)(-|=|-'|%)(\\)|:|\\=))"
+
+# set quote_regexp="^([ \t]*[|>:%}#])+" # This is default.
+set quote_regexp="^([ \t]*[>])+"        # But I hate that.
+
+
+# Moving around
+set pager_stop
+unset confirmappend
+unset wait_key
+
+# Composing stuff
+
+set edit_headers                # If you unset this sendhooks won't work
+# set autoedit                  # Edit headers in editor
+unmy_hdr reply-to:
+set honor_followup_to=no        # Read the list will ya
+
+set mime_forward=ask-no
+# unset forward_decode
+# set attach_split
+
+#set   pgp_verify_sig=no
+
+unset sig_dashes # My signature contains the dashes.
+# set signature=~/.signature # static signature
+
+# This set also takes care of the signature changing with  sgrotum.  It
+# it done with the editor. Right you  got  it.  Every  new  mail  a  new
+# signature. You can find this mother of all sig-generators at:
+#
+#   http://homepages.ihug.co.nz/~trmusson/sgrotum.html
+
+# set editor='sgrotum; editorwrapper +12'
+set editor='~/.mutt/mutt_editor'
+
+set envelope_from
+set hidden_host
+unset use_from
+
+set bounce_delivered #Postfix users may want to unset this
+
+# Hurry up
+
+#set wait_key=no        # Is this a bug or what?
+set abort_unmodified=yes
+set abort_nosubject=no
+set quit=yes
+set postpone=no
+set delete=yes
+set move=no
+set sendmail=/usr/local/sbin/sendmail
+
+set sendmail_wait=-1    # send mail in the background
+set timeout=60          # Check for new mail every 60 seconds
+
+set ispell="aspell -e -c"
+
+# The e-mail adressbook
+set alias_file=~/.mutt/aliases
+
+# The mime settings
+set mailcap_path=~/.mutt/mailcap
+
+auto_view text/html
+#alternative_order text/html text/plain text/enriched
+alternative_order text/plain text/enriched text
+
+set crypt_verify_sig=no
+set crypt_replyencrypt=no
+# set mbox_pane_width=20
+
+set smart_wrap
+set wrapmargin=10
+unset markers
+# set tilde
+
+# set display_filter='t-prot -acelmtS -Mmutt --spass -L$HOME/.mutt/mlfooters -A$HOME/.mutt/adfooters'
+#set display_filter='t-prot -cemt -Mmutt --pgp-short'
+set charset="utf-8"
+
+# charset-hook ^us-ascii$ utf-8
+# charset-hook ^iso-8859-1$ utf-8
+# unset strict_mime
+# set assumed_charset="utf-8"
+# set arrow_cursor

@@ -1,0 +1,35 @@
+#!/bin/zsh
+
+printh(){
+    if [ $1 -gt 1024 ]; then
+	printf $(( $1/1024 ))k
+    else
+	printf $1
+    fi
+}
+
+# init
+if=wlan0
+rx=$(< /sys/class/net/$if/statistics/rx_bytes)
+tx=$(< /sys/class/net/$if/statistics/tx_bytes)
+sleep=5
+
+while :; do
+    sleep $sleep
+    rxnew=$(< /sys/class/net/$if/statistics/rx_bytes)
+    txnew=$(< /sys/class/net/$if/statistics/tx_bytes)
+    rxdiff=$(( ($rxnew - $rx) / $sleep))
+    txdiff=$(( ($txnew - $tx) / $sleep))
+    rx=$rxnew
+    tx=$txnew
+    # layout=$(setxkbmap -query|sed -ne '3s|layout: *||p')
+    gpu=$(sensors thinkpad-isa-0000|awk '/GPU/ {print $2}')
+    # That will save me some crashes I think.
+    if [ "$gpu" -ge 110 ]; then
+	pkill chrome
+    fi
+    set -- $(df -h /mega)
+    # Finaly print all collected data
+    # echo "d: $(printh $rxdiff) u: $(printh $txdiff) | $layout | $11 | $(date)"
+    echo "t: $gpu d: $(printh $rxdiff) u: $(printh $txdiff) | $11 | $(date)"
+done

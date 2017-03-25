@@ -1,0 +1,27 @@
+#!/bin/sh
+
+chromeBin='/opt/google/chrome/chrome'
+alias chrome="$chromeBin --disable-audio-output-resampler --enable-lcd-text"
+
+pkill -SIGTERM --oldest -f $chromeBin
+
+echo
+echo -n "Waiting for chrome to die, otherwise it thinks it crashed."
+while pgrep -f $chromeBin > /dev/null 2>&1; do
+    echo -n '.'
+    sleep 0.1
+done
+echo
+
+if [ -L /dev/snd/by-id/usb-Logitech_Logitech_G933_Gaming_Wireless_Headset-00 ]; then
+    device="dmix:H,0"
+elif [ -L /dev/snd/by-id/usb-Creative_Technology_USB_Sound_Blaster_HD_000000te-00 ]; then
+    device="dmix:HD,0"
+else
+    device="" # dmix:Intel"
+    # FFS
+    # chrome &
+    # exit 0
+fi
+
+chrome --alsa-output-device=$device &

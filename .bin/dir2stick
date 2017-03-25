@@ -1,0 +1,76 @@
+#!/usr/local/bin/zsh
+
+# I use this script to convert all types of music files to .mp3
+# and upload them to my stick so I can listen music in my car.
+# I just hacked it up in an hour or so so don't expect it
+# to actually work.
+
+setopt shwordsplit braceexpand
+emulate sh
+NULLCMD=:
+wd=$PWD
+
+# alias normalize=normalize-audio
+
+for i in mplayer id3ed normalize lame; do
+    if ! which $i >& /dev/null; then
+	echo "$i is not installed. I need it. Go get it!"
+	end=true
+    fi
+done
+[ "$end" = true ] && exit 1
+
+PLAYERMNT=/mp3/stick
+# PLAYERMNT=/mega/home/han/Desktop/stick
+dotdot=${PWD%/*}
+dotdot=${dotdot##*/}
+TEMPDIR="$PLAYERMNT/.tmp/${dotdot}_${PWD##*/}"
+TARGET="$PLAYERMNT/${dotdot}_${PWD##*/}"
+export LC_ALL=utf8
+mkdir -p $TEMPDIR
+
+until df $PLAYERMNT >& /dev/null; do
+    echo -n "$PLAYERMNT not yet mounted. Press any key to try again."
+    read -sk1 nop
+done
+
+i=0
+convert=false
+for file in *.flac *.ogg *.mpc; do
+    [[ $file == '*.'* ]] && continue
+    i=$(($i + 1))
+    echo "Converting $file to wav format"
+    # using `outfile' prevents quoting problems.
+    mplayer -really-quiet -slave -vc null -vo null -ao pcm:fast:file=$TMPDIR/outfile$i "$file" >& /dev/null
+    normalize $TMPDIR/outfile$i
+    mv $TMPDIR/outfile$i "$TEMPDIR/${file%.*}.wav"
+    convert=true
+done
+
+cp *.mp3 $TEMPDIR
+
+cd $TEMPDIR
+
+if [ $convert = true ]; then
+    j=0
+    for file in *.wav; do
+	j=$(($j + 1))
+	(
+	    artistname=$(echo $file|sed -e 's|\(.*\) - .* - .* - .*|\1|')
+	    albumname=$(echo $file|sed -e 's|.* - \(.*\) - .* - .*|\1|')
+	    tracknumber=$(echo $file|sed -e 's|.* - .* - \(.*\) - .*|\1|')
+	    trackname=$(echo $file|sed -e 's|.* - .* - .* - \(.*\)\.wav|\1|')
+	    lame -V3 -b 192 "$file" "${file%.wav}.mp3"
+	    rm "$file"
+	    # Set decent tags for the display.
+	    id3ed -n "$artistname" -a "$albumname" -k "$tracknumber" -s "$trackname" "$_"
+	    # Since pioneer sorts files on timestamp -- yes really -- set a
+	    # timestamp which doesn't confuse the order.
+	    touch -t $(printf "010101%02i\n" $j) "${file%.wav}.mp3"
+	)&
+    done
+fi
+
+wait # for all conversion processes to have finished.
+cd $PLAYERMNT
+mv $TEMPDIR $TARGET

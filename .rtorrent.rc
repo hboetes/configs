@@ -1,0 +1,52 @@
+# rtorrent config
+min_peers = 40
+max_peers = 100
+min_peers_seed = 40
+max_peers_seed = 60
+# upload_rate = 1000
+directory = /mega/home/han/downloads
+session = /mega/home/han/downloads/.session
+schedule = watch_directory,5,5,load_start=/mega/home/han/downloads/.torrents/*.torrent
+schedule = untied_directory,5,5,stop_untied=
+schedule = low_diskspace,5,60,close_low_diskspace=100M
+upload_rate = 0
+ratio.enable = no
+ratio.min.set=120
+ratio.max.set=140
+ratio.upload.set=20M
+port_range = 6990-6999
+check_hash = no
+encryption = require
+dht = auto
+dht_port = 6881
+peer_exchange = yes
+method.set_key = event.download.finished,sync,"execute.nothrow=sync"
+
+# Sort the main view by ratio
+view.sort_current = main,greater=d.get_ratio=
+view.sort_new = main,less=d.get_ratio=
+view.sort = main
+
+# Sort the seeding view by the upload rate and only show torrents with peers
+view.sort_current = seeding,greater=d.get_up_rate=
+view.filter = seeding,"and=d.get_complete=,d.get_peers_connected="
+view.sort_new = seeding,less=d.get_up_rate=
+view.sort = seeding
+
+# Sort the leeching view by name
+view.sort_current = leeching,greater=d.get_name=
+view.sort_new = leeching,greater=d.get_name=
+view.sort = leeching
+
+# Filter the active view by connected peers
+view.sort_current = active,less=d.get_name=
+view.sort_new = leeching,less=d.get_name=
+view.filter = active,d.get_peers_connected=
+view.sort = active
+
+schedule = sort_main,11,5,view.sort=main
+schedule = sort_seeding,12,5,view.sort=seeding
+schedule = sort_leeching,13,5,view.sort=leeching
+schedule = sort_active,14,5,view.sort=active
+
+# scgi_port = 127.0.0.1:5000

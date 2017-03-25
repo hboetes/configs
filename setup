@@ -1,0 +1,17 @@
+# TODO, a lot!
+cd ~
+mkdir -p .config
+ln -s .configs/.config/htop .config
+ln -s .configs/.config/mc .config
+ln -s .configs/.config/terminator .config
+ln -s .configs/.config/i3 .config
+ln -s .configs/.config/i3blocks .config
+ln -s .configs/.colordiffrc
+ln -s .configs/.emacs.d
+ln -s .configs/.mg
+ln -s .configs/.w3m
+ln -s .configs/zsh.d/.zshenv
+ln -s .configs/.fonts
+ln -s .configs/.gitconfig
+
+sudo apt-get install w3m colordiff mg silversearcher-ag tmux zsh emacs-nox iotop htop redshift-gtk mpv htop diodon

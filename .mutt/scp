@@ -1,0 +1,45 @@
+#!/bin/sh
+# $Id: scp,v 1.18 2006/01/17 11:18:06 han Exp $
+
+# This little script helps me to send all my files to my website. It
+# also creates a tarball for easy downloading.
+
+TMP=${TMP:=/tmp}
+
+cd ~/.mutt
+rm -f *~ .*~
+
+# Yes the aliases file is not the one I am using. :)
+
+mv aliases $TMP
+mv alias aliases
+
+# Now the screenshots will be in the index.html but not in the tarball.
+
+#touch muttscreenshot.png
+#touch muttscreenshotII.png
+#touch muttscreenshotIII.png
+chmod 644 dot-mailfilter
+
+# Make a tarball.
+cd ..
+tar cfzL muttrc.tar.gz .mutt/*
+mv muttrc.tar.gz .mutt
+cd .mutt
+
+# Make the index.html file and add our mutt.
+~/nfs/software/makeindexhtml
+
+rm muttscreenshot*
+
+rsync --recursive -p -P --checksum . /var/www/virtual/homepage/configs/dot-mutt
+find /var/www/virtual/homepage/configs/dot-mutt -type d -name CVS |xargs rm -rf
+
+mv aliases alias
+mv $TMP/aliases .
+
+# I don't want the index files in my cvs
+find . -name index.html -exec rm {} \;
+
+rm muttrc.tar.gz
+chmod 600 dot-mailfilter

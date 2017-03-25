@@ -1,0 +1,12 @@
+#!/bin/sh
+sgrotum
+
+# sed -e only works with gnu-sed
+# sed -e 's/>>/> >/g;s/>>/> >/g;>\([^ ]\)/> \1/;s/> $/>/' $@
+
+# perl can do the same though.
+# perl -pi -e 's/>>/> >/g;s/>>/> >/g;s/>([^ ])/> $1/;s/> $/>/' $@
+
+#exec $EDITOR $@
+# exec Emacs $@
+Emacs "$@"

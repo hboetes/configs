@@ -1,0 +1,19 @@
+# $Id: sendhooks,v 1.5 2003/01/12 03:42:22 han Exp $
+# Change email address depending on the receipient.
+#
+#
+#send-hook '~t ^owirc@owirc\.com' 'my_hdr From: Chris Gushue <seymour@owirc.com>'
+#send-hook '~t ^owirc-dev@owirc\.com' 'my_hdr From: Chris Gushue <seymour@owirc.com>'
+#send-hook '~t ^mutt-users@mutt\.org' 'my_hdr From: Chris Gushue <chris+mutt@blackplasma.net>'
+
+# Most people don't want, or can't handle GPG encryption.
+#
+send-hook . unset pgp_autoencrypt
+
+# But these can.
+#
+# I did experiment if the pgp-hook is necesarry or not.  Well sometimes
+# it's practical and sometimes it just makes mutt ask more questions :)
+
+send-hook '~t jochem@jochem\.dyndns\.org$' 'set pgp_autoencrypt'
+#pgp-hook jochem@jochem\.dyndns\.org 0xC619A96D

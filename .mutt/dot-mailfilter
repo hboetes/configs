@@ -1,0 +1,252 @@
+# -*- sh -*-
+# This file should be saved as ~/.mailfilter
+# It is a configfile for maildrop
+
+# $Id: dot-mailfilter,v 1.41 2009/08/17 09:10:22 han Exp $
+
+logfile "$HOME/.Maildroplog"
+VERBOSE=9
+
+R='/home/han/Mail'
+TRASHCAN='/dev/null'
+
+# Mail from root in a dir
+if (/^From: root@/ || /^To: root/)
+    {
+	#`empty_message`
+	#if ($RETURNCODE == 1)
+	#    to $TRASHCAN
+	#else
+	    to $R/root
+    }
+
+# No sane way to unsubscribe, nearly daily mails
+if (/^From: tomtom@/)
+    {
+	to $R/zspam
+    }
+
+# Empty messages not from me are usually useless spam, and it won't be
+# filtered.
+#
+# LIJNTJES=`sed -e '1,/^$/ d'|wc -l`
+# if ($LIJNTJES == 0)
+#     to $R/empty
+#
+# Of course the previous version is not efficient at all. So I made
+# empty_message.c
+`empty_message`
+if ($RETURNCODE == 1)
+    {
+        log '====> Empty message.'
+	`/usr/local/bin/relaydb -b -f /var/db/relaydb`
+	to $R/zspam
+    }
+
+# Mail from fics chess-server
+if (/^From: FICS.*chess@freechess.org/)
+    to $R/chess
+
+# Always ok list. This is so funny. bmf understands anything. Except
+# for... hotmail email stuff :)
+if (/^From:.*(marisolletlet|vcubbens|joostteu|annekebuix|makoning69)@hotmail/)
+    to $R/Maildir
+
+# And some silly dutch russians :-)
+if (/^From:.*vcubbens@rambler.ru/)
+    to $R/Maildir
+
+if (/^From:.*leyla_ilona@mail.ru/)
+    to $R/Maildir
+
+if (/^From:.*jessicamarie530@gmail.com/)
+    to $R/Maildir
+
+if (/^From:.*errormsg@moerstaal.nl/)
+    to $R/Maildir
+
+if (/^From:.*@relatieplanet.nl/)
+    to $R/Maildir
+
+if (/<<< No Message Collected >>>/:b)
+    to $TRASHCAN
+
+# Troll-filter. Check hb (header&body) to filter out people replying to them as well.
+if (/(coolzone@it.dk|Rod Whitworth|mark@borkware.net|@reser.org|jaeger@morpheus.net|crux-contrib@lists.crux.nu|softbank.ne.jp)/:hb)
+    {
+        log '====> Message from or to Troll.'
+        to $TRASHCAN
+    }
+
+# if (/Content-Type: image\/gif;/:hb)
+#     {
+#         log '====> unfilterable spam with gif message.'
+# 	to $TRASHCAN
+#     }
+
+# who cares
+if (/^Subject:.*virus/ || /^From:.*virus/ )
+    {
+        log '====> Message contained the word "virus" in the subject or from.'
+        to $R/zspam
+    }
+
+# spamfilter from moerstaal.
+if (/^Subject:.*\[SPAM\?\]/:D)
+    {
+        log '====> Message detected as spam bij moerstaal-filters'
+	`/usr/local/bin/relaydb -b -f /var/db/relaydb`
+        to $R/zspam
+    }
+
+# who cares
+if (/^From:.*(mailer[-]?daemon|postmaster)@/)
+   {
+       if (/\.ru/:hb)
+	   to $TRASHCAN
+
+       log '====> Message to mailer-daemon/postmaster'
+       to $R/postmaster
+   }
+
+# ugh. out of office/vacation autoreplies
+if ( /^Subject:.*out.*of.*office/ ||\
+     /^Subject:.*vacation/ )
+    {
+        log '====> Out of office/vacation Message.'
+        to $R/zspam
+    }
+
+# dump all kind of m$ crap (99.99% virusses)
+if (/^Content-Type:.*multipart/ && \
+    /^Content-Type:.*(audio\/x-|application).*name=.*\.(ad[ep]|asd|ba[st]|chm|cmd|cpl|crt|dll|eml|exe|hlp|hta|in[fs]|isp|jse?|lnk|md[betw]|ms[cipt]|nws|ocx|ops|pcd|p[ir]f|reg|sc[frt]|sh[bsm]|swf|url|zip|vb[esx]?|vxd|ws[cfh])/:b)
+    {
+        log '====> Message contained typical M$ attachement.'
+        to $R/zspam
+    }
+
+# xs4all filters all of this crap.
+## Silently drop all asian language mail
+# http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/*checkout*/bogofilter/bogofilter/doc/bogofilter-faq.html#asian-spam
+UNREADABLE="(big5|ISO-2022-KR|euc-kr|gb2312|ks_c_5601-1987)"
+if ((/^Content-Type:.*charset="?$UNREADABLE/) ||\
+    (/^Content-Type:.*multipart/ &&\
+    /^Content-Type:.*charset="?$UNREADABLE/:b))
+    {
+        log '====> Message in unreadable encoding.'
+        to $R/zspam
+    }
+
+# Remove all gpg-nonsense. I mean... who cares.
+# xfilter "sed -e 's|^Content-Type: application/pgp;.*|Content-Type: text/plain; charset=us-ascii|'"
+
+# Spamassassin spam filtering
+# if ( $SIZE < 256000 )
+#     {
+# 	xfilter "/usr/local/bin/spamc -f -u _spamdaemon"
+#         if (/^X-Spam-Flag: YES/)
+#             {
+#                 log '====> Spam detected by spamassassin'
+# 		#report the message
+# 		`spamassassin -r`
+# 		`/usr/local/bin/relaydb -b -f /var/db/relaydb`
+#                 to $R/zspam
+#             }
+#     }
+
+# We're using MailScanner now so no need to send mail through SA, it's already done.
+if (/^X-Spam-Status: YES/)
+    {
+        log '====> Spam detected by spamassassin'
+	#report the message
+	`spamassassin -r`
+	`/usr/local/bin/relaydb -b -f /var/db/relaydb`
+        to $R/zspam
+    }
+
+
+# Drop all mails to bogus accounts.
+if (/^To:.*@boetes.org/ && ! /^To:.*han@boetes.org/)
+   {
+       log '====> message to non-existing account here'
+       to $R/postmaster
+   }
+
+`/usr/local/bin/relaydb -w -f /var/db/relaydb`
+
+## linux-kernel
+if (/^From:.*@yahoo.com/)
+    {
+        # Filter the free spam
+	xfilter 'sed -e /Yahoo\!/,\$d'
+    }
+
+## linux-kernel
+if (/^Sender: linux-kernel-owner@vger.kernel.org$/)
+    {
+        # Filter the entirely useless unsubscribe message.
+	xfilter 'sed -e /^-\$/,\$d'
+        to $R/linux-kernel
+    }
+
+## misc@openbsd.org
+if (/^Sender:.*misc.*@openbsd.org$/)
+    to $R/openbsd-misc
+
+## tech@openbsd.org
+if (/^Sender:.*tech.*@openbsd.org$/)
+    {
+	# if (/yahoo/:hb || /booter/:hb)
+	#     to $TRASHCAN
+	# else
+	    to $R/openbsd-tech
+    }
+## source-changes@openbsd.org
+if (/^Sender:.*source-changes.*@openbsd.org$/)
+    {
+	# I couldn't care less about translations. :-}
+	if (/From:.*jufi@cvs.openbsd.org/)
+	    to $TRASHCAN
+	else
+	    to $R/openbsd-source-changes
+    }
+## bugs@openbsd.org
+if (/^Sender:.*bugs.*@openbsd.org$/)
+    to $R/openbsd-bugs
+
+# You don't want to miss you are CC-ed after all. You just don't
+# want them in your maildir.
+if ( /^(Cc|To).*(openbsd|misc|tech|bugs|gnats|source-changes)@/)
+    {
+        to $R/cc
+    }
+
+# Some people who can't quit mailing me.
+if (/^From:.*deraadt@.*openbsd.org/)
+   {
+        to $TRASHCAN
+   }
+
+if (/^From:.*chefren@(pi.net|ii.nl)/)
+    {
+	to $TRASHCAN
+    }
+
+if (/^From:.*dgmk@online.nl/)
+    {
+	to $TRASHCAN
+    }
+
+if (/^From:.*hans@stare.cz/)
+    {
+	to $TRASHCAN
+    }
+
+# Check for duplicates, but only remove duplicates not addressed
+# to me. CC's etc. are removed above.
+`reformail -D 8192 $R/zarchive/duplicate.cache`
+if ($RETURNCODE == 0)
+    to $R/duplicate
+
+# This line is for all the mail that passed the filter
+to $R/Maildir

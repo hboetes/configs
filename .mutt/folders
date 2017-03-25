@@ -1,0 +1,28 @@
+# $Id: folders,v 1.38 2009/08/17 09:10:22 han Exp $
+#### Mail folders
+
+set folder=$HOME/Mail   # This is the default folder set
+set spoolfile=+Maildir
+set postponed=+postponed
+
+# Put all folders that can receive mail here. Now you can see if they contain
+# new mail
+
+mailboxes \
+        +Maildir \
+        +cc \
+        +duplicates \
+        +emacs-bugs \
+        +mg \
+        +posted \
+        +postmaster \
+        +root \
+        +xing \
+        +zspam
+
+
+# I want to save all messages I compose in this folder
+set record=$HOME/Mail/posted
+
+# except for messages to myself
+# fcc-hook ~than@mijncomputer\.nl$ /dev/null
