@@ -381,7 +381,7 @@
      ("melpa" . "http://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (puppet-mode go-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox crontab-mode)))
+    (auto-package-update puppet-mode go-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox crontab-mode)))
  '(paradox-automatically-star t)
  '(safe-local-variable-values (quote ((add-log-time-zone-rule . t))))
  '(send-mail-function (quote sendmail-send-it))
