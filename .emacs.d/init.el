@@ -1,3 +1,46 @@
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode nil)
+ '(colon-double-space t)
+ '(column-number-mode t)
+ '(custom-safe-themes
+   (quote
+    ("84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a81bc918eceaee124247648fc9682caddd713897d7fd1398856a5b61a592cb62" default)))
+ '(indent-tabs-mode nil)
+ '(indicate-buffer-boundaries (quote left))
+ '(indicate-empty-lines t)
+ '(line-number-mode 1)
+ '(package-archives
+   (quote
+    (("gnu" . "http://elpa.gnu.org/packages/")
+     ("melpa" . "http://melpa.org/packages/"))))
+ '(package-selected-packages
+   (quote
+    (smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode go-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox crontab-mode)))
+ '(paradox-automatically-star t)
+ '(safe-local-variable-values (quote ((add-log-time-zone-rule . t))))
+ '(send-mail-function (quote sendmail-send-it))
+ '(sentence-end-double-space t)
+ '(show-paren-mode t)
+ '(size-indication-mode t)
+ '(tidy-menu-lock nil)
+ '(tool-bar-mode nil)
+ '(transient-mark-mode 1)
+ '(w3m-fill-column 80)
+ '(w3m-home-page "http://boetes.org")
+ '(w3m-key-binding (quote info)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "monofur" :foundry "unknown" :slant normal :weight normal :height 151 :width normal))))
+ '(font-lock-comment-face ((t (:foreground "red")))))
+
+
 ;;(set-default 'truncate-lines t)
 
 ; (setq debug-on-error t)
@@ -360,44 +403,9 @@
 
 (global-set-key [insertchar]       'do-nothing)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(blink-cursor-mode nil)
- '(colon-double-space t)
- '(column-number-mode t)
- '(custom-safe-themes
-   (quote
-    ("a81bc918eceaee124247648fc9682caddd713897d7fd1398856a5b61a592cb62" default)))
- '(indent-tabs-mode nil)
- '(indicate-buffer-boundaries (quote left))
- '(indicate-empty-lines t)
- '(line-number-mode 1)
- '(package-archives
-   (quote
-    (("gnu" . "http://elpa.gnu.org/packages/")
-     ("melpa" . "http://melpa.org/packages/"))))
- '(package-selected-packages
-   (quote
-    (auto-package-update puppet-mode go-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox crontab-mode)))
- '(paradox-automatically-star t)
- '(safe-local-variable-values (quote ((add-log-time-zone-rule . t))))
- '(send-mail-function (quote sendmail-send-it))
- '(sentence-end-double-space t)
- '(show-paren-mode t)
- '(size-indication-mode t)
- '(tidy-menu-lock nil)
- '(tool-bar-mode nil)
- '(transient-mark-mode 1)
- '(w3m-fill-column 80)
- '(w3m-home-page "http://boetes.org")
- '(w3m-key-binding (quote info)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "monofur" :foundry "unknown" :slant normal :weight normal :height 151 :width normal))))
- '(font-lock-comment-face ((t (:foreground "red")))))
+;; These two lines are just examples
+(setq powerline-arrow-shape 'curve)
+(setq powerline-default-separator-dir '(right . left))
+;; These two lines you really need.
+(setq sml/theme 'powerline)
+(sml/setup)
