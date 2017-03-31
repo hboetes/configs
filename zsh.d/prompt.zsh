@@ -24,7 +24,12 @@ name2color()
     else
         sum=$RANDOM
     fi
-    ((color = sum % 7 + 31))
+    if [[ $TERM == *-256color ]]; then
+        ((color = sum % 256))
+        color="38;5;$color"
+    else
+        ((color = sum % 7 + 31))
+    fi
     echo "%{\e[${color}m%}$1%{\e[00m%}"
 }
 
