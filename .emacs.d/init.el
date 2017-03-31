@@ -32,14 +32,13 @@
  '(w3m-fill-column 80)
  '(w3m-home-page "http://boetes.org")
  '(w3m-key-binding (quote info))
- )
+ '(ws-butler-global-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "monofur" :foundry "unknown" :slant normal :weight normal :height 151 :width normal))))
- )
+ '(default ((t (:family "monofur" :foundry "unknown" :slant normal :weight normal :height 151 :width normal)))))
 
 (require 'package)
 (package-initialize)
