@@ -1,3 +1,3 @@
-ZDOTDIR=~/.configs/zsh.d
+export ZDOTDIR=~/.configs/zsh.d
 # Prevent loading /etc/zshrc etc.
 unsetopt GLOBAL_RCS
