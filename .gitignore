@@ -1,9 +1,5 @@
 .w3m/history
 .yafc/bookmarks
 .yafc/history
-.emacs.d/tramp
-.emacs.d/auto-save-list/
-.emacs.d/elpa
-.emacs.d/.last-package-update-day
 .w3m/w3m*
 .mutt/aliases

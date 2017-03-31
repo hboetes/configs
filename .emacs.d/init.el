@@ -8,7 +8,7 @@
  '(column-number-mode t)
  '(custom-safe-themes
    (quote
-    ("84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "a81bc918eceaee124247648fc9682caddd713897d7fd1398856a5b61a592cb62" default)))
+    ("84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "" default)))
  '(indent-tabs-mode nil)
  '(indicate-buffer-boundaries (quote left))
  '(indicate-empty-lines t)
@@ -19,7 +19,7 @@
      ("melpa" . "http://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode go-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox crontab-mode)))
+    (ws-butler smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox crontab-mode)))
  '(paradox-automatically-star t)
  '(safe-local-variable-values (quote ((add-log-time-zone-rule . t))))
  '(send-mail-function (quote sendmail-send-it))
@@ -31,14 +31,26 @@
  '(transient-mark-mode 1)
  '(w3m-fill-column 80)
  '(w3m-home-page "http://boetes.org")
- '(w3m-key-binding (quote info)))
+ '(w3m-key-binding (quote info))
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "monofur" :foundry "unknown" :slant normal :weight normal :height 151 :width normal))))
- '(font-lock-comment-face ((t (:foreground "red")))))
+ )
+
+(require 'package)
+(package-initialize)
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
+; install the missing packages
+(dolist (package package-selected-packages)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 
 ;;(set-default 'truncate-lines t)
@@ -62,21 +74,15 @@
 (setq load-path (append load-path '("~/.emacs.d/lisp/")))
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'Amelie t)
+ (load-theme 'Amelie t)
 
 (require 'paren)
 (show-paren-mode 1)
-
-(require 'package)
-(package-initialize)
 
 (icomplete-mode 1)
 
 (autoload 'log4j-mode "log4j-mode" "Major mode for viewing log files." t)
 (add-to-list 'auto-mode-alist '("\\.log\\'" . log4j-mode))
-
-(require 'edit-server)
-(edit-server-start)
 
 ;; Tramp `debugging' options
 ;;(setq debug-on-error 1
@@ -162,8 +168,7 @@
 (setq
  backup-directory-alist `((".*" . , emacs-tmp-dir))
  auto-save-file-name-transforms `((".*" , emacs-tmp-dir t))
- auto-save-list-file-prefix emacs-tmp-dir
- session-save-file (format "%s%s" emacs-tmp-dir "emacs-session"))
+ auto-save-list-file-prefix emacs-tmp-dir)
 
 ;; Spelling
 (setq-default ispell-program-name "aspell")
@@ -212,10 +217,6 @@
 (add-to-list 'auto-mode-alist '("/var/named/*" . dns-mode))
 (add-to-list 'auto-mode-alist '("/var/tmp/boetes*.org" . dns-mode))
 
-;; sessionmanagement for emacs
-(require 'session)
-(add-hook 'after-init-hook 'session-initialize)
-
 ;; post for email-editing with mutt
 (autoload 'post-mode "post.el" "Mode for editing
       email-messages" t)
@@ -251,13 +252,6 @@
 ;; mode for crontabs
 (autoload 'crontab-mode "crontab-mode.el" "crontab-mode" t)
 (add-to-list 'auto-mode-alist '("crontab\\." . crontab-mode))
-
-(require 'auto-recomp)
-
-
-;; And load nuke-whitespace when needed.
-(autoload 'nuke-trailing-whitespace "nuke-whitespace" nil t)
-(add-hook 'write-file-hooks 'nuke-trailing-whitespace)
 
 ;; no tabs by default. modes that really need tabs should enable
 ;; indent-tabs-mode explicitly. makefile-mode already does that, for
@@ -389,13 +383,6 @@
 (global-set-key "\C-c s" 'replace-string)
 (global-set-key "\C-c r" 'replace-regex)
 (global-set-key "\C-w" 'unix-werase-or-kill)
-
-(require 'pager)
-(global-set-key [next]             'pager-page-down)
-(global-set-key [prior]            'pager-page-up)
-(global-set-key (kbd "M-<up>")   'pager-row-up)
-(global-set-key [M-down] 'pager-row-down)
-
 (global-set-key (kbd "<C-right>")  'windmove-right)
 (global-set-key (kbd "<C-left>")   'windmove-left)
 (global-set-key (kbd "<C-up>")     'windmove-up)
@@ -404,8 +391,8 @@
 (global-set-key [insertchar]       'do-nothing)
 
 ;; These two lines are just examples
-(setq powerline-arrow-shape 'curve)
-(setq powerline-default-separator-dir '(right . left))
+(setq powerline-arrow-shape 'arrow)
+;(setq powerline-default-separator-dir '(right . left))
 ;; These two lines you really need.
 (setq sml/theme 'powerline)
 (sml/setup)
