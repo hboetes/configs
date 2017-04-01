@@ -43,8 +43,6 @@ export LANG=en_US.UTF-8
 export LC_COLLATE=C
 export LC_ALL
 
-# export RSYNC_RSH=ssh
-# export CVS_RSH=ssh
 # Only set this variable if running in X
 [ "$XAUTHORITY" ] && export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'
 
