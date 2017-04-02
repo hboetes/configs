@@ -67,7 +67,6 @@
 ;; SHUT UP!
 (setq inhibit-default-init 1
       inhibit-startup-message 1
-      ;; inhibit-startup-echo-area-message (user-login-name)
       initial-scratch-message "")
 (defun display-startup-echo-area-message () (message ""))
 
@@ -77,22 +76,10 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
  (load-theme 'Amelie t)
 
-(require 'paren)
-(show-paren-mode 1)
-
 (icomplete-mode 1)
 
 (autoload 'log4j-mode "log4j-mode" "Major mode for viewing log files." t)
 (add-to-list 'auto-mode-alist '("\\.log\\'" . log4j-mode))
-
-;; Tramp `debugging' options
-;;(setq debug-on-error 1
-;;      tramp-debug-buffer 1
-;;      tramp-verbose 10)
-;;
-;; other tramp-settings
-(setq tramp-default-method "sshx"
-      tramp-auto-save-directory "~/.tmp")
 
 ;; replace yes or no with y or n
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -171,6 +158,10 @@
  auto-save-file-name-transforms `((".*" , emacs-tmp-dir t))
  auto-save-list-file-prefix emacs-tmp-dir)
 
+(setq tramp-default-method "sshx"
+      tramp-auto-save-directory emacs-tmp-dir)
+
+
 ;; Spelling
 (setq-default ispell-program-name "aspell")
 ;; Most stuff I spellcheck is in German.
@@ -215,6 +206,7 @@
 
 ;; Automatically change serials in named zone files.
 (autoload 'dns-mode "dns-mode" "Major mode for viewing named zone files." t)
+(add-to-list 'auto-mode-alist '("/etc/bind/*" . dns-mode))
 (add-to-list 'auto-mode-alist '("/var/named/*" . dns-mode))
 (add-to-list 'auto-mode-alist '("/var/tmp/boetes*.org" . dns-mode))
 
