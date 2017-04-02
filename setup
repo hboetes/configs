@@ -14,5 +14,10 @@ ln -s .configs/zsh.d/.zshenv
 ln -s .configs/.fonts
 ln -s .configs/.gitconfig
 
+# Set up the right apps to open pgn and magnet links.
+xdg-desktop-menu install --mode user --novendor .configs/pgnhandler.desktop
+xdg-desktop-menu install --mode user --novendor .configs/magnethandler.desktop
+
 sudo apt-get install w3m colordiff mg silversearcher-ag tmux zsh emacs-nox iotop htop htop multitail
 sudo apt-get install i3wm rofi diodon redshift-gtk mpv
+sudo apt-get install syncthing
