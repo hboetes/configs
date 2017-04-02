@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=pgnhandler
+Exec=/usr/local/bin/scid %U
+MimeType=application/x-chess-pgn;application/vnd.chess-pgn;
