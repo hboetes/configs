@@ -27,7 +27,7 @@
  '(show-paren-mode t)
  '(size-indication-mode t)
  '(tidy-menu-lock nil)
- '(tool-bar-mode nil)
+ ;;'(tool-bar-mode nil)
  '(transient-mark-mode 1)
  '(w3m-fill-column 80)
  '(w3m-home-page "http://boetes.org")
