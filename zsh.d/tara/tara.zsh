@@ -54,3 +54,5 @@ mpv()
     # mpv --audio-device $device -vo null -af volume=-10:replaygain-album,equalizer=0:0:0:0:0:0:0:0:0:0 --msg-level all=no,statusline=v "$@"
     /usr/bin/mpv --audio-device $device "$@"
 }
+
+alias ksync='rsync --rsync-path=/opt/bin/rsync'
