@@ -56,3 +56,4 @@ mpv()
 }
 
 alias ksync='rsync --rsync-path=/opt/bin/rsync'
+alias wsync='\rsync -azv --no-perms --no-times --size-only'
