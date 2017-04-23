@@ -1,5 +1,8 @@
-alias vipw='EDITOR=sudoedit sudo vipw'
-alias visudo='VISUAL=sudoedit EDITOR=sudoedit sudo visudo'
+if ! id -u |\grep -q '^0$'; then
+    alias vipw='EDITOR=sudoedit sudo vipw'
+    alias visudo='VISUAL=sudoedit EDITOR=sudoedit sudo visudo'
+fi
+
 # alias rsync='rsync --no-whole-file -avzP'
 alias rsync='rsync -avzP'
 alias vsync='rsync --modify-window=1 -rtv --delete --no-p --no-g'
