@@ -125,7 +125,6 @@ separator=false
 # Date Time
 #
 [time]
-# command=date '+%Y-%m-%d %H:%M:%S'
 command=date '+%A %d %B %H:%M:%S'
 interval=5
 separator=false
