@@ -98,14 +98,12 @@ interval=5
 separator=false
 min_width=x 99.99%
 
-# Guess
 [temperature]
 label=☃
 min_width=xxxxx
 separator=false
 interval=10
 
-# guess
 [load_average]
 label=☏
 interval=10
@@ -116,9 +114,7 @@ min_width=  0.00
 #
 # The battery instance defaults to 0.
 [battery]
-# label=BAT
 label=⚡
-#instance=1
 interval=5
 separator=false
 
