@@ -33,12 +33,13 @@ manpath=($(cleanpath $manpath))
 
 export path manpath
 
-export TMP=~/.tmp
-export TMPDIR=$TMP
-[[ ! -d $TMP ]] && mkdir -m700 $TMP
-[[ ! -d $TMP/emacs$UID ]] && mkdir -m700 $TMP/emacs$UID
-[[ ! -d ~/.ssh ]] && mkdir -m700 ~/.ssh
-chmod go-rwx $TMP $TMP/emacs$UID ~/.ssh
+if [[ -w ~ ]]; then
+    export TMP=~/.tmp
+    export TMPDIR=$TMP
+    mkdir -p -m700 $TMP/emacs$UID
+    mkdir -p -m700 ~/.ssh
+    chmod -R go-rwx $TMP ~/.ssh
+fi
 
 local HOST=$(LC_ALL=C uname -n)
 # export NULLCMD=:
