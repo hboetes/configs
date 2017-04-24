@@ -1,3 +1,8 @@
+# Always load this file first.
+
+# This function helps checking features against versions.
+autoload -U is-at-least
+
 # Too bad I have to put this function over here.
 cleanpath()
 {
