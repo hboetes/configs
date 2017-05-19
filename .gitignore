@@ -3,4 +3,4 @@
 .yafc/history
 .w3m/w3m*
 .mutt/aliases
-/.configs/.config/i3/dmenu_progs
+.config/i3/dmenu_progs
