@@ -110,6 +110,8 @@ autodetect_codeset=
 clipboard_store=
 clipboard_paste=
 
+spell_language=en
+
 [Colors]
 base_color=
 xterm=
@@ -118,6 +120,8 @@ color_terminals=
 screen=
 
 screen-256color=
+
+xterm-256color=
 
 [Panels]
 show_mini_info=true
@@ -139,6 +143,8 @@ torben_fj_mode=false
 quick_search_mode=2
 
 select_flags=6
+
+panel_scroll_center=false
 
 [FindFile]
 file_case_sens=true

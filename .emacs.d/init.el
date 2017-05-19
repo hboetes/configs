@@ -316,14 +316,9 @@
   (interactive)
   (insert user-full-name " <" user-mail-address ">") )
 
-;; (defun dos2unix ()
-;;   "Not exactly but it's easier to remember"
-;;   (interactive)
-;;   (set-buffer-file-coding-system 'unix 't) )
 (defun dos2unix ()
   "Replace DOS eolns CR LF with Unix eolns CR"
   (interactive)
-  (goto-char (point-min))
   (while (search-forward "\r" nil t) (replace-match "")))
 
 (defun text-autoformat-region ()
