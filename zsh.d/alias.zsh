@@ -18,7 +18,7 @@ alias l='ls -lvha'
 alias t='l -rt'
 alias s='l -rS'
 
-alias df='df -h'
+alias df='df -h | grep -v \^tmpfs'
 alias cvsup='cvs -q up -PAd'
 alias c='cd; clear'
 

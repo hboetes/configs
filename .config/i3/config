@@ -160,6 +160,7 @@ for_window [class="^Transgui$"] border none
 for_window [class="^Emacs$"] border none
 for_window [class="^Vlc$"] border none
 for_window [class="^Vncviewer$"] border none
+for_window [class="^Googleearth-bin$"] border none
 for_window [class="XTerm"] floating enable, border none
 for_window [class="^Toplevel$" instance="^variations$"] floating enable
 
