@@ -40,4 +40,5 @@ apt-upgrade()
     sudo $aptgetter dist-upgrade
     sudo apt-get autoremove --purge
     apt-removerc
+    echo "debfoster?"
 }

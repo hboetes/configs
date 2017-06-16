@@ -2,7 +2,7 @@
   borderless = True
   dbus = False
   enabled_plugins =
-  font = monofur for Powerline 15
+  font = monofur for Powerline 16
   use_system_font = False
   focus = mouse
   suppress_multiple_term_dialog = True

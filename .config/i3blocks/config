@@ -82,12 +82,12 @@ separator=false
 # interval=10
 # separator=false
 
-[bandwidth]
-#instance=eth0
-label=✈
-interval=5
-min_width=In 999K OUT 999K
-separator=false
+# [bandwidth]
+# #instance=eth0
+# label=✈
+# interval=5
+# min_width=In 999K OUT 999K
+# separator=false
 # CPU usage
 #
 # The script may be called with -w and -c switches to specify thresholds,
