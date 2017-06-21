@@ -7,6 +7,8 @@ if command -v quilt >& /dev/null; then
     alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
 fi
 
+alias packages_by_size='dpkg-query -W --showformat='${Installed-Size;10}\t${Package}\n' | sort -k1,1n'
+
 orphaner()
 {
     set -- $(deborphan)
