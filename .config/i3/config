@@ -142,25 +142,11 @@ bar {
 
 workspace_auto_back_and_forth no
 
+hide_edge_borders smart
+for_window [class=".*"] border none
 # Make firefox download windows float.
 for_window [class="^Firefox$" instance="^Download$"] floating enable
 for_window [class="^Skype$"] floating enable
-for_window [class="^Google-chrom.*"] border none
-for_window [class="^Firefox.*"] border none
-for_window [class="^Iceweasel$"] border none
-for_window [class="^Icedove$"] border none
-for_window [class="^mpv$"] border none
-for_window [class="^Thunderbird$"] border none
-for_window [class="^Terminator$"] border none
-for_window [class="^x-terminal-emulator$"] border none
-for_window [class="^VirtualBox$"] border none
-for_window [class="^Remmina$"] border none
-for_window [class="^Sublime$"] border none
-for_window [class="^Transgui$"] border none
-for_window [class="^Emacs$"] border none
-for_window [class="^Vlc$"] border none
-for_window [class="^Vncviewer$"] border none
-for_window [class="^Googleearth-bin$"] border none
 for_window [class="XTerm"] floating enable, border none
 for_window [class="^Toplevel$" instance="^variations$"] floating enable
 
@@ -170,6 +156,7 @@ client.focused_inactive #333333 #6a675f #ffffff #484e50
 client.unfocused        #333333 #222222 #888888 #292d2e
 client.urgent           #3a342f #900000 #ffffff #900000
 
+mouse_warping output
 workspace_layout tabbed
 
 exec --no-startup-id vmware-user-suid-wrapper
