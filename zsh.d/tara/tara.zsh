@@ -56,4 +56,4 @@ mpv()
 }
 
 alias ksync='rsync --rsync-path=/opt/bin/rsync'
-alias wsync='\rsync -azvP --no-perms --no-times --size-only'
+alias wileysync='rsync -azvP --no-perms --delete-before /kluizenaar/music/misc/Android_music/ wileyfox:SDCard/Music'
