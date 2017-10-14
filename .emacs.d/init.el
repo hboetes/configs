@@ -19,7 +19,7 @@
      ("melpa" . "http://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (psession ws-butler smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox crontab-mode)))
+    (ethan-wspace psession smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox crontab-mode)))
  '(paradox-automatically-star t)
  '(safe-local-variable-values (quote ((add-log-time-zone-rule . t))))
  '(send-mail-function (quote sendmail-send-it))
@@ -27,7 +27,6 @@
  '(show-paren-mode t)
  '(size-indication-mode t)
  '(tidy-menu-lock nil)
- ;;'(tool-bar-mode nil)
  '(transient-mark-mode 1)
  '(w3m-fill-column 80)
  '(w3m-home-page "http://boetes.org")
@@ -145,9 +144,6 @@
 
 ;; If only it would work all the time.
 (setq-default save-place t)
-
-;; Add a final newline to files that don't have one -- without asking.
-(setq require-final-newline t)
 
 ;; Save all tempfiles in $TMPDIR/emacs$UID/, the same dir as the emacs
 ;; server uses. It's nice to have all mess in the same place.
