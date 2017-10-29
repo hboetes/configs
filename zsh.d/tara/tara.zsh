@@ -2,7 +2,12 @@ alias zzz='sync; sudo s2ram'
 alias dark='xset dpms force suspend'
 alias enqueue='ls $PWD/* >> /mp3/queue'
 
-alias split="mkdir -p tmp; shnsplit -d tmp -o flac -f *cue -t '%p - %a - %n - %t' *flac; rm -f tmp/*00*pregap*"
+split()
+{
+    mkdir -p tmp
+    shnsplit -d tmp -o flac -f *cue -t '%p - %a - %n - %t' *.(flac|ape)
+    rm -f tmp/*00*pregap* || :
+}
 
 # alias penguinradio='mplayer -really-quiet http://81.173.3.20/listen.pls'
 # alias fro_radio='mplayer -really-quiet http://www.fro.at:8008/fro-128.ogg'
