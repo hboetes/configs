@@ -12,7 +12,6 @@
  '(indent-tabs-mode nil)
  '(indicate-buffer-boundaries (quote left))
  '(indicate-empty-lines t)
- '(line-number-mode 1)
  '(package-archives
    (quote
     (("gnu" . "http://elpa.gnu.org/packages/")
@@ -27,7 +26,7 @@
  '(show-paren-mode t)
  '(size-indication-mode t)
  '(tidy-menu-lock nil)
- '(transient-mark-mode 1)
+ '(tool-bar-mode nil)
  '(w3m-fill-column 80)
  '(w3m-home-page "http://boetes.org")
  '(w3m-key-binding (quote info)))
@@ -36,7 +35,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "monofur" :foundry "unknown" :slant normal :weight normal :height 151 :width normal)))))
+ '(default ((t (:family "monofur for Powerline" :foundry "unknown" :slant normal :weight normal :height 150 :width normal)))))
 
 (require 'package)
 (package-initialize)
@@ -222,12 +221,6 @@
   "Major mode to edit muttrc files" t)
 (add-to-list 'auto-mode-alist '("\\.mutt" . muttrc-mode))
 
-;; ;; Load Auctex when a .tex file is loaded.
-;; (autoload 'tex-mode "tex-site.el" "auctex" t)
-;; (add-to-list 'auto-mode-alist '("\\.\\(tex\\|sty\\)" . tex-mode))
-;; (setq TeX-save-query nil) ; Don't nag about saving files, just do it.
-;; (setq TeX-newline-function (quote reindent-then-newline-and-indent))
-
 ;; Html helpermode
 (autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
 (setq auto-mode-alist (cons '("\\.html$" . html-helper-mode) auto-mode-alist))
@@ -380,7 +373,6 @@
 
 ;; These two lines are just examples
 (setq powerline-arrow-shape 'arrow)
-;(setq powerline-default-separator-dir '(right . left))
 ;; These two lines you really need.
 (setq sml/theme 'powerline)
 (sml/setup)
