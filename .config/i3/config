@@ -9,7 +9,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-ipc_socket ~/.tmp/i3/socket
+ipc_socket ~/.local/tmp/i3/socket
 
 set $mod Mod4
 
