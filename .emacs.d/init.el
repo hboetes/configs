@@ -384,3 +384,6 @@
 ;; These two lines you really need.
 (setq sml/theme 'powerline)
 (sml/setup)
+
+(require 'ethan-wspace)
+(global-ethan-wspace-mode 1)
