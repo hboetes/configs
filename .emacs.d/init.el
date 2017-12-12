@@ -18,7 +18,7 @@
      ("melpa" . "http://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (ethan-wspace psession smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox crontab-mode)))
+    (ethan-wspace mediawiki apache-mode psession smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox crontab-mode)))
  '(paradox-automatically-star t)
  '(safe-local-variable-values (quote ((add-log-time-zone-rule . t))))
  '(send-mail-function (quote sendmail-send-it))
@@ -34,7 +34,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "monofur for Powerline" :foundry "unknown" :slant normal :weight normal :height 150 :width normal)))))
+ '(default ((t (:family "monofur for Powerline" :foundry "unknown" :slant normal :weight normal :height 151 :width normal)))))
 
 (require 'package)
 (package-initialize)
@@ -42,7 +42,7 @@
 (unless package-archive-contents
   (package-refresh-contents))
 
-; install the missing packages
+;; install the missing packages
 (dolist (package package-selected-packages)
   (unless (package-installed-p package)
     (package-install package)))
@@ -52,7 +52,7 @@
 ;; Those \ at the end of long lines...
 ;;(set-default 'truncate-lines t)
 
-; (setq debug-on-error t)
+                                        ; (setq debug-on-error t)
 (setq backup-by-copying-when-linked t)
 
 ;; Options
@@ -70,7 +70,7 @@
 (setq load-path (append load-path '("~/.emacs.d/lisp/")))
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
- (load-theme 'Amelie t)
+(load-theme 'Amelie t)
 
 (icomplete-mode 1)
 
@@ -135,7 +135,7 @@
  indent-tabs-mode nil
  sentence-end-double-space nil
  term-mode-hook nil
-;; isearch-allow-scroll t
+ ;; isearch-allow-scroll t
  diff-switches "-u"
  vc-follow-symlinks 1)
 
@@ -305,6 +305,7 @@
 (defun dos2unix ()
   "Replace DOS eolns CR LF with Unix eolns CR"
   (interactive)
+  (goto-char (point-min))
   (while (search-forward "\r" nil t) (replace-match "")))
 
 (defun text-autoformat-region ()
@@ -374,6 +375,13 @@
 ;; These two lines you really need.
 (setq sml/theme 'powerline)
 (sml/setup)
+
+(autoload 'apache-mode "apache-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
+(add-to-list 'auto-mode-alist '("httpd\\.conf\\'"  . apache-mode))
+(add-to-list 'auto-mode-alist '("srm\\.conf\\'"    . apache-mode))
+(add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
+(add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
 
 (require 'ethan-wspace)
 (global-ethan-wspace-mode 1)
