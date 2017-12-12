@@ -56,3 +56,4 @@ local hostcolor=$(name2color $HOST)
 unfunction name2color
 
 prompt="$usercolor@$hostcolor %~ %(!|%{$fg[yellow]%}|%{$fg_bold[black]%})%(?..%{$fg[red]%})%#%{$fg_no_bold[default]%} "
+# 

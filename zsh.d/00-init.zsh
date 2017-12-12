@@ -19,6 +19,7 @@ path=(
     /usr/games
     /usr/X11R6/bin
     /usr/syno/{s,}bin/
+    ~/.local/bin
 )
 
 manpath=(
@@ -34,7 +35,7 @@ manpath=($(cleanpath $manpath))
 export path manpath
 
 if [[ -w ~ ]]; then
-    export TMP=~/.tmp
+    export TMP=~/.local/tmp
     export TMPDIR=$TMP
     mkdir -p -m700 $TMP/emacs$UID
     mkdir -p -m700 ~/.ssh

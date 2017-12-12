@@ -1,12 +1,19 @@
-[color]
-	branch = auto
- 	diff = auto
-	log = auto
-	interactive = auto
-	status = auto
-	pager = true
 [user]
-	email = han@boetes.org
+	email = hboetes@gmail.com
 	name = Han Boetes
 [push]
 	default = simple
+[color]
+	ui          = auto
+        branch      = auto
+        diff        = auto
+        log         = auto
+        interactive = auto
+        status      = auto
+        pager       = true
+[gc]
+	autoDetach = false
+[pager]
+	log  = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less

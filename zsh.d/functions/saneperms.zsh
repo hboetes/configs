@@ -1,5 +1,5 @@
 saneperms()
 {
-    find . -type d -exec chmod 0755 {} \;
-    find . -type f -exec chmod ${1:=0644} {} \;
+    find . -type d ! -perm 755 -exec chmod 0755 {} \;
+    find . -type f ! -perm ${1:=0644} -exec chmod ${1:=0644} {} \;
 }

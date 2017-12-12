@@ -8,7 +8,7 @@ alias vsync='rsync --modify-window=1 -rtv --delete --no-p --no-g'
 
 # My shells often last longer than the settings.
 alias r="rehash"
-alias rr="(cd ~/.configs && git pull); source $ZDOTDIR/.zshrc"
+alias rr="(cd ~/.configs && git pull) >& /dev/null; source $ZDOTDIR/.zshrc"
 alias mv='mv -i'
 alias cp='cp -i'
 alias p='cd -'
@@ -18,7 +18,7 @@ alias l='ls -lvha'
 alias t='l -rt'
 alias s='l -rS'
 
-alias df='df -h'
+alias df='df -h | grep -v \^tmpfs'
 alias cvsup='cvs -q up -PAd'
 alias c='cd; clear'
 

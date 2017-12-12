@@ -221,12 +221,6 @@
   "Major mode to edit muttrc files" t)
 (add-to-list 'auto-mode-alist '("\\.mutt" . muttrc-mode))
 
-;; ;; Load Auctex when a .tex file is loaded.
-;; (autoload 'tex-mode "tex-site.el" "auctex" t)
-;; (add-to-list 'auto-mode-alist '("\\.\\(tex\\|sty\\)" . tex-mode))
-;; (setq TeX-save-query nil) ; Don't nag about saving files, just do it.
-;; (setq TeX-newline-function (quote reindent-then-newline-and-indent))
-
 ;; Html helpermode
 (autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
 (setq auto-mode-alist (cons '("\\.html$" . html-helper-mode) auto-mode-alist))
@@ -310,11 +304,6 @@
   (interactive)
   (insert user-full-name " <" user-mail-address ">") )
 
-;; (defun dos2unix ()
-;;   "Not exactly but it's easier to remember"
-;;   (interactive)
-;;   (set-buffer-file-coding-system 'unix 't) )
-
 (defun dos2unix ()
   "Replace DOS eolns CR LF with Unix eolns CR"
   (interactive)
@@ -385,7 +374,6 @@
 
 ;; These two lines are just examples
 (setq powerline-arrow-shape 'arrow)
-;; (setq powerline-default-separator-dir '(right . left))
 ;; These two lines you really need.
 (setq sml/theme 'powerline)
 (sml/setup)
@@ -396,3 +384,6 @@
 (add-to-list 'auto-mode-alist '("srm\\.conf\\'"    . apache-mode))
 (add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
 (add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
+
+(require 'ethan-wspace)
+(global-ethan-wspace-mode 1)

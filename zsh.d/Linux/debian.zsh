@@ -7,6 +7,11 @@ if command -v quilt >& /dev/null; then
     alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
 fi
 
+packages_by_size()
+{
+    dpkg-query -W --showformat='${Installed-Size;10}\t${Package}\n' | sort -k1,1n
+}
+
 orphaner()
 {
     set -- $(deborphan)
@@ -40,4 +45,5 @@ apt-upgrade()
     sudo $aptgetter dist-upgrade
     sudo apt-get autoremove --purge
     apt-removerc
+    echo "debfoster?"
 }
