@@ -26,7 +26,6 @@
  '(show-paren-mode t)
  '(size-indication-mode t)
  '(tidy-menu-lock nil)
- '(tool-bar-mode nil)
  '(w3m-fill-column 80)
  '(w3m-home-page "http://boetes.org")
  '(w3m-key-binding (quote info)))
@@ -244,7 +243,6 @@
     (progn
       (scroll-bar-mode)
       (menu-bar-mode 1)
-      (tool-bar-mode -1)
       (tooltip-mode -1)
       (blink-cursor-mode 'nil)
       (setq
