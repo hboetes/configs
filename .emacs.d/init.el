@@ -19,7 +19,7 @@
      ("melpa" . "http://melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (ethan-wspace mediawiki apache-mode psession smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox crontab-mode)))
+    (ethan-wspace mediawiki apache-mode smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox crontab-mode)))
  '(paradox-automatically-star t)
  '(safe-local-variable-values (quote ((add-log-time-zone-rule . t))))
  '(send-mail-function (quote sendmail-send-it))
@@ -47,8 +47,6 @@
 (dolist (package package-selected-packages)
   (unless (package-installed-p package)
     (package-install package)))
-
-(psession-mode 1)
 
 ;; Those \ at the end of long lines...
 ;;(set-default 'truncate-lines t)
