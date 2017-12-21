@@ -27,6 +27,8 @@ apt-removerc()
 
 apt-upgrade()
 {
+    # Remove old unused kernels, except for the last one.
+    dpkg -l 'linux-image-4.*'|awk '/^(ii|rc)/ {print $2}' | sort -n -t- -k4 | sed -e "/$(uname -r)/,\$d" | head -n -1 | xargs -r apt-get -y autoremove --purge
     if command -v apt-metalink >& /dev/null; then
         local aptgetter=apt-metalink
     else
