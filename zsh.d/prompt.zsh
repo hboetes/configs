@@ -50,10 +50,8 @@ if [[ ${ZSH_VERSION%%.*} -lt 4 ]]; then
     return
 fi
 
-# local bl=$(echo -e "\xe2\x96\xb6 ")
 local usercolor=$(name2color $USER)
 local hostcolor=$(name2color $HOST)
 unfunction name2color
 
 prompt="$usercolor@$hostcolor %~ %(!|%{$fg[yellow]%}|%{$fg_bold[black]%})%(?..%{$fg[red]%})%#%{$fg_no_bold[default]%} "
-# 
