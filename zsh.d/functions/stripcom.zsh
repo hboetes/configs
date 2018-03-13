@@ -6,8 +6,8 @@ stripcom()
     {
         while read line ; do
             line=${line%%'#'*}
-            [ -z "$line" ] && continue
-            echo $line
+            [[ -z "$line" ]] && continue
+            print -r -- "$line"
         done
     } < $file
 }
