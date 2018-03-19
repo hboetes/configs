@@ -148,6 +148,7 @@ for_window [class=".*"] border none
 for_window [class="^Firefox$" instance="^Download$"] floating enable
 for_window [class="^Skype$"] floating enable
 for_window [class="XTerm"] floating enable, border none
+for_window [class="feh"] floating enable, border none
 for_window [class="^Toplevel$" instance="^variations$"] floating enable
 
 # class                 border  backgr. text    indicator
