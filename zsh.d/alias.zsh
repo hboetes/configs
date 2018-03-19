@@ -13,12 +13,12 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias p='cd -'
 
-alias ls='ls --color=auto'
+alias ls='ls --color=auto -N'
 alias l='ls -lvha'
 alias t='l -rt'
 alias s='l -rS'
 
-alias df='df -h | grep -v \^tmpfs'
+alias df='df -h | \grep -v \^tmpfs'
 alias cvsup='cvs -q up -PAd'
 alias c='cd; clear'
 
