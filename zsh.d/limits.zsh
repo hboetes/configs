@@ -1,4 +1,5 @@
 # Limits.
 # ulimit unlimited
 # limit stack 8192
-limit core 0 # unlimited
+# Disable core dumps
+limit | grep -q coredumpsize && limit core 0
