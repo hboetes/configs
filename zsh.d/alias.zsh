@@ -3,7 +3,7 @@ if ! id -u |\grep -q '^0$'; then
     alias visudo='VISUAL=sudoedit EDITOR=sudoedit sudo visudo'
 fi
 
-alias rsync='rsync -avzP'
+alias rsync='rsync -a --info=progress2 --partial'
 alias vsync='rsync --modify-window=1 -rtv --delete --no-p --no-g'
 
 # My shells often last longer than the settings.
