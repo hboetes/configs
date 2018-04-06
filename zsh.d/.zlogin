@@ -9,7 +9,8 @@ elif [ -z "$TMUX" ]; then
         rm -f $SSH_AUTH_SOCK
         ssh-agent -a $SSH_AUTH_SOCK > /dev/null 2>&1
     fi
-    if [[ $TERM != screen* ]]; then
+    # Don't join a tmux session if we're already in it or if none is running.
+    if [[ $TERM != screen* ]] && tmux list-sessions > /dev/null 2>&1; then
         # Give us a chance not to go into tmux.
         for ((i = 30; i >= 0; i--)); do
             if ((($i % 10) == 0)); then
