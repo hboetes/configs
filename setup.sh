@@ -3,6 +3,8 @@
 # You can run this script on a remote host like this:
 # ssh root@172.16.4.1 'bash -s' < puppet.sh
 
+cd ~
+
 for i in apt-get yum pkg_add prt-get apk; do
     command -v $i > /dev/null 2>&1 && installer=$i && break
 done
@@ -29,7 +31,7 @@ install_package() {
     done
 }
 
-[[ $installer == yum ]] && [[ ! -f /etc/yum.repos.d/epel.repo ]] && sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+[ "$installer" = "yum" ] && [ ! -f /etc/yum.repos.d/epel.repo ] && sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 case $installer in
     apk)
@@ -40,21 +42,21 @@ case $installer in
         ;;
 esac
 
-[[ -d .configs ]] || git clone https://github.com/hboetes/configs.git .configs
+[ -d .configs ] || git clone https://github.com/hboetes/configs.git .configs
 
 grep -q "^$USER:.*/bin/zsh$" /etc/passwd || chsh -s /bin/zsh
 
 mkdir -p .config
 
 for i in .configs/.config/{htop,mc,terminator}; do
-    [[ -h .config/${i##*/} ]] || ln -sf $i .config
+    [ -h .config/${i##*/} ] || ln -sf $i .config
 done
 
 for i in .configs/{.colordiffrc,.emacs.d,.mg,.w3m,zsh.d/.zshenv,.configs/.config/fontconfig,.gitconfig,.tmux.conf}; do
-    [[ -h ${i##*/} ]] || ln -sf $i
+    [ -h ${i##*/} ] || ln -sf $i
 done
 
-[[ -f .tmux.local ]] || cp .configs/.tmux.local .
+[ -f .tmux.local ] || cp .configs/.tmux.local .
 
 # Only install this stuff if X is installed.
 command -v X ||  exit 0
@@ -66,5 +68,5 @@ xdg-desktop-menu install --mode user --novendor .configs/pgnhandler.desktop
 xdg-desktop-menu install --mode user --novendor .configs/magnethandler.desktop
 
 for i in .configs/.config/{i3,i3blocks}; do
-    [[ -h .config/${i##*/} ]] || ln -sf $i .config
+    [ -h .config/${i##*/} ] || ln -sf $i .config
 done
