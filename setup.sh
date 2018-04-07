@@ -61,7 +61,7 @@ done
 # Only install this stuff if X is installed.
 command -v X ||  exit 0
 
-install_package i3wm rofi diodon redshift-gtk mpv
+install_package i3-wm rofi diodon redshift-gtk mpv
 
 # Set up the right apps to open pgn and magnet links.
 xdg-desktop-menu install --mode user --novendor .configs/pgnhandler.desktop
