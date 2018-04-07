@@ -1,4 +1,4 @@
-uname -v | \grep -Eq '(Debian|Ubuntu)' || return
+uname -v | \grep -Eq ' (Debian|Ubuntu|PVE) ' || return
 
 export DEBFULLNAME="Han Boetes"
 export DEBEMAIL="hboetes@gmail.com"
