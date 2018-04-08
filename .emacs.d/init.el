@@ -35,6 +35,7 @@
  '(default ((t (:family "monofur for Powerline" :foundry "unknown" :slant normal :weight normal :height 151 :width normal)))))
 
 (require 'package)
+(when (< emacs-major-version 26) (package-initialize))
 
 (unless package-archive-contents
   (package-refresh-contents))
