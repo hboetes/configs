@@ -16,7 +16,7 @@
    '(("gnu" . "http://elpa.gnu.org/packages/")
      ("melpa" . "http://melpa.org/packages/")))
  '(package-selected-packages
-   '(flycheck ethan-wspace mediawiki apache-mode smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox crontab-mode))
+   '(flycheck ethan-wspace mediawiki apache-mode smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox))
  '(paradox-automatically-star t)
  '(safe-local-variable-values '((add-log-time-zone-rule . t)))
  '(send-mail-function 'sendmail-send-it)
@@ -35,7 +35,6 @@
  '(default ((t (:family "monofur for Powerline" :foundry "unknown" :slant normal :weight normal :height 151 :width normal)))))
 
 (require 'package)
-(package-initialize)
 
 (unless package-archive-contents
   (package-refresh-contents))
