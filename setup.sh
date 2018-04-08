@@ -5,7 +5,7 @@
 
 cd ~
 
-for i in apt-get yum pkg_add prt-get apk; do
+for i in apt-get yum pkg_add prt-get apk pacman; do
     command -v $i > /dev/null 2>&1 && installer=$i && break
 done
 
@@ -13,25 +13,32 @@ case $installer in
     apk)
         install=add
         ;;
+    pacman)
+        install='-S --noconfirm'
+        ;;
     *)
         install="install -y"
         ;;
 esac
 
+if [ $(id -u) != 0 ]; then
+    sudo=sudo
+fi
+
 install_package() {
     for i in $*; do
         case $i in
             *:*)
-                command -v ${i%:*} > /dev/null || sudo $installer $install ${i#*:}
+                command -v ${i%:*} > /dev/null || $sudo $installer $install ${i#*:}
                 ;;
             *)
-                command -v $i > /dev/null || sudo $installer $install $i
+                command -v $i > /dev/null || $sudo $installer $install $i
                 ;;
         esac
     done
 }
 
-[ "$installer" = "yum" ] && [ ! -f /etc/yum.repos.d/epel.repo ] && sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+[ "$installer" = "yum" ] && [ ! -f /etc/yum.repos.d/epel.repo ] && $sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 case $installer in
     apk)
@@ -44,16 +51,16 @@ esac
 
 [ -d .configs ] || git clone https://github.com/hboetes/configs.git .configs
 
-grep -q "^$USER:.*/bin/zsh$" /etc/passwd || chsh -s /bin/zsh
+command -v zsh && grep -q "^$USER:.*/bin/zsh$" /etc/passwd || chsh -s /bin/zsh
 
 mkdir -p .config
 
-for i in .configs/.config/{htop,mc,terminator}; do
-    [ -h .config/${i##*/} ] || ln -sf $i .config
+for i in .configs/.config/{htop,mc,terminator,fontconfig}; do
+    [ -h .config/${i##*/} ] || ln -sf ../$i .config
 done
 
-for i in .configs/{.colordiffrc,.emacs.d,.mg,.w3m,zsh.d/.zshenv,.configs/.config/fontconfig,.gitconfig,.tmux.conf}; do
-    [ -h ${i##*/} ] || ln -sf $i
+for i in .configs/{.colordiffrc,.emacs.d,.mg,.w3m,zsh.d/.zshenv,.gitconfig,.tmux.conf}; do
+    [ -h ${i##*/} ] || ln -sf $i 
 done
 
 [ -f .tmux.local ] || cp .configs/.tmux.local .
