@@ -5,8 +5,13 @@
 
 cd ~
 
+installed()
+{
+    command -v $1 > /dev/null
+}
+
 for i in apt-get yum pkg_add prt-get apk pacman; do
-    command -v $i > /dev/null 2>&1 && installer=$i && break
+    installed $i && installer=$i && break
 done
 
 case $installer in
@@ -29,10 +34,10 @@ install_package() {
     for i in $*; do
         case $i in
             *:*)
-                command -v ${i%:*} > /dev/null || $sudo $installer $install ${i#*:}
+                installed ${i%:*} || $sudo $installer $install ${i#*:}
                 ;;
             *)
-                command -v $i > /dev/null || $sudo $installer $install $i
+                installed $i || $sudo $installer $install $i
                 ;;
         esac
     done
@@ -42,16 +47,16 @@ install_package() {
 
 case $installer in
     apk)
-        install_package zsh git mg htop tmux ag:the_silver_searcher
+        install_package zsh git mg htop tmux ag:the_silver_searcher rsync
         ;;
     *)
-        install_package zsh git mg htop tmux ag:the_silver_searcher w3m colordiff iotop
+        install_package zsh git mg htop tmux ag:the_silver_searcher rsync w3m colordiff iotop
         ;;
 esac
 
 [ -d .configs ] || git clone https://github.com/hboetes/configs.git .configs
 
-command -v zsh && grep -q "^$USER:.*/bin/zsh$" /etc/passwd || chsh -s /bin/zsh
+installed zsh && grep -q "^$USER:.*/bin/zsh$" /etc/passwd || chsh -s /bin/zsh
 
 mkdir -p .config
 
@@ -60,13 +65,13 @@ for i in .configs/.config/{htop,mc,terminator,fontconfig}; do
 done
 
 for i in .configs/{.colordiffrc,.emacs.d,.mg,.w3m,zsh.d/.zshenv,.gitconfig,.tmux.conf}; do
-    [ -h ${i##*/} ] || ln -sf $i 
+    [ -h ${i##*/} ] || ln -sf $i
 done
 
 [ -f .tmux.local ] || cp .configs/.tmux.local .
 
 # Only install this stuff if X is installed.
-command -v X ||  exit 0
+installed X ||  exit 0
 
 install_package i3wm rofi diodon redshift-gtk mpv
 
