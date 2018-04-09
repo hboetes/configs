@@ -60,11 +60,11 @@ installed zsh && grep -q "^$USER:.*/bin/zsh$" /etc/passwd || chsh -s /bin/zsh
 
 mkdir -p .config
 
-for i in .configs/.config/{htop,mc,terminator,fontconfig}; do
+for i in .configs/.config/htop .configs/.config/mc .configs/.config/terminator .configs/.config/fontconfig; do
     [ -h .config/${i##*/} ] || ln -sf ../$i .config
 done
 
-for i in .configs/{.colordiffrc,.emacs.d,.mg,.w3m,zsh.d/.zshenv,.gitconfig,.tmux.conf}; do
+for i in .configs/.colordiffrc .configs/.emacs.d .configs/.mg .configs/.w3m .configs/zsh.d/.zshenv .configs/.gitconfig .configs/.tmux.conf; do
     [ -h ${i##*/} ] || ln -sf $i
 done
 
@@ -79,6 +79,6 @@ install_package i3wm rofi diodon redshift-gtk mpv
 xdg-desktop-menu install --mode user --novendor .configs/pgnhandler.desktop
 xdg-desktop-menu install --mode user --novendor .configs/magnethandler.desktop
 
-for i in .configs/.config/{i3,i3blocks}; do
+for i in .configs/.config/i3 .configs/.config/i3blocks; do
     [ -h .config/${i##*/} ] || ln -sf $i .config
 done
