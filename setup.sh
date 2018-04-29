@@ -5,13 +5,18 @@
 
 cd ~
 
-for i in apt-get yum pkg_add prt-get apk; do
+for i in apt-get yum pkg_add prt-get apk pkg ; do
     command -v $i > /dev/null 2>&1 && installer=$i && break
 done
+
+sudo=$(which sudo >2 /dev/null )
 
 case $installer in
     apk)
         install=add
+        ;;
+    pkg)
+        install=install
         ;;
     *)
         install="install -y"
@@ -22,29 +27,29 @@ install_package() {
     for i in $*; do
         case $i in
             *:*)
-                command -v ${i%:*} > /dev/null || sudo $installer $install ${i#*:}
+                command -v ${i%:*} > /dev/null || $sudo $installer $install ${i#*:}
                 ;;
             *)
-                command -v $i > /dev/null || sudo $installer $install $i
+                command -v $i > /dev/null || $sudo $installer $install $i
                 ;;
         esac
     done
 }
 
-[ "$installer" = "yum" ] && [ ! -f /etc/yum.repos.d/epel.repo ] && sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+[ "$installer" = "yum" ] && [ ! -f /etc/yum.repos.d/epel.repo ] && $sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 case $installer in
     apk)
         install_package zsh git mg htop tmux ag:the_silver_searcher
         ;;
     *)
-        install_package zsh git mg htop tmux ag:the_silver_searcher w3m colordiff iotop
+        install_package zsh git mg htop tmux ag:the_silver_searcher w3m colordiff iotop coreutils
         ;;
 esac
 
 [ -d .configs ] || git clone https://github.com/hboetes/configs.git .configs
 
-grep -q "^$USER:.*/bin/zsh$" /etc/passwd || chsh -s /bin/zsh
+grep -q "^$USER:.*/bin/zsh$" /etc/passwd || chsh -s $(which zsh)
 
 mkdir -p .config
 
