@@ -12,7 +12,7 @@
 set hostname="boetes.org"       #for all ya dutchies: http://moerstaal.nl
 set mbox_type="Maildir"         # Don't you love it :)
 #set mbox_type="imap"           # Don't you love it :)
-set tmpdir="~/.tmp"            #odd, mutt doesn't honour $TMP
+set tmpdir="~/.local/tmp"            #odd, mutt doesn't honour $TMP
 
 # Some looks
 

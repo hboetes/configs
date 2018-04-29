@@ -5,8 +5,13 @@
 
 cd ~
 
-for i in apt-get yum pkg_add prt-get apk pkg ; do
-    command -v $i > /dev/null 2>&1 && installer=$i && break
+installed()
+{
+    command -v $1 > /dev/null
+}
+
+for i in apt-get yum pkg_add prt-get apk pacman; do
+    installed $i && installer=$i && break
 done
 
 sudo=$(which sudo >2 /dev/null )
@@ -18,19 +23,26 @@ case $installer in
     pkg)
         install=install
         ;;
+    pacman)
+        install='-S --noconfirm'
+        ;;
     *)
         install="install -y"
         ;;
 esac
 
+if [ $(id -u) != 0 ]; then
+    sudo=sudo
+fi
+
 install_package() {
     for i in $*; do
         case $i in
             *:*)
-                command -v ${i%:*} > /dev/null || $sudo $installer $install ${i#*:}
+                installed ${i%:*} || $sudo $installer $install ${i#*:}
                 ;;
             *)
-                command -v $i > /dev/null || $sudo $installer $install $i
+                installed $i || $sudo $installer $install $i
                 ;;
         esac
     done
@@ -49,22 +61,22 @@ esac
 
 [ -d .configs ] || git clone https://github.com/hboetes/configs.git .configs
 
-grep -q "^$USER:.*/bin/zsh$" /etc/passwd || chsh -s $(which zsh)
+installed zsh && grep -q "^$USER:.*/bin/zsh$" /etc/passwd || chsh -s $(which zsh)
 
 mkdir -p .config
 
-for i in .configs/.config/{htop,mc,terminator}; do
-    [ -h .config/${i##*/} ] || ln -sf $i .config
+for i in .configs/.config/htop .configs/.config/mc .configs/.config/terminator .configs/.config/fontconfig; do
+    [ -h .config/${i##*/} ] || ln -sf ../$i .config
 done
 
-for i in .configs/{.colordiffrc,.emacs.d,.mg,.w3m,zsh.d/.zshenv,.configs/.config/fontconfig,.gitconfig,.tmux.conf}; do
+for i in .configs/.colordiffrc .configs/.emacs.d .configs/.mg .configs/.w3m .configs/zsh.d/.zshenv .configs/.gitconfig .configs/.tmux.conf; do
     [ -h ${i##*/} ] || ln -sf $i
 done
 
 [ -f .tmux.local ] || cp .configs/.tmux.local .
 
 # Only install this stuff if X is installed.
-command -v X ||  exit 0
+installed X ||  exit 0
 
 install_package i3-wm rofi diodon redshift-gtk mpv
 
@@ -72,6 +84,6 @@ install_package i3-wm rofi diodon redshift-gtk mpv
 xdg-desktop-menu install --mode user --novendor .configs/pgnhandler.desktop
 xdg-desktop-menu install --mode user --novendor .configs/magnethandler.desktop
 
-for i in .configs/.config/{i3,i3blocks}; do
+for i in .configs/.config/i3 .configs/.config/i3blocks; do
     [ -h .config/${i##*/} ] || ln -sf $i .config
 done
