@@ -40,10 +40,10 @@ install_package() {
 
 case $installer in
     apk)
-        install_package zsh git mg htop tmux ag:the_silver_searcher
+        install_package zsh git mg htop tmux ag:the_silver_searcher rsync
         ;;
     *)
-        install_package zsh git mg htop tmux ag:the_silver_searcher w3m colordiff iotop coreutils
+        install_package zsh git mg htop tmux ag:the_silver_searcher w3m colordiff iotop coreutils rsync
         ;;
 esac
 
