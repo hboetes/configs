@@ -73,7 +73,7 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 # bindsym $mod+a focus parent
 
-bindsym $mod+l exec "i3lock -i ~/Pictures/locked.png"
+bindsym $mod+l exec "i3lock -e -f -i ~/.config/i3/safe.png"
 bindsym $mod+x exec "sleep 1; xset dpms force suspend"
 bindsym $mod+Prior  exec "volume +"
 bindsym $mod+Next   exec "volume -"
