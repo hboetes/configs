@@ -1,3 +1,3 @@
-# export CVSROOT=anoncvs@openbsd.cs.fau.de:/cvs
-export CVSROOT=anoncvs@ftp5.eu.openbsd.org:/cvs
+export CVSROOT=anoncvs@anoncvs.fr.openbsd.org:/cvs
+# export CVSROOT=anoncvs@files.venture37.com:/cvs
 export MANPATH=$MANPATH:/usr/ports/infrastructure/man

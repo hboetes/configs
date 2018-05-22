@@ -14,7 +14,7 @@ for i in apt-get yum pkg_add prt-get apk pacman; do
     installed $i && installer=$i && break
 done
 
-sudo=$(which sudo >2 /dev/null )
+sudo=$(which sudo 2> /dev/null )
 
 case $installer in
     apk)
