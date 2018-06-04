@@ -4,8 +4,8 @@ if [ "${TTY#/dev/ttyC}" != "$TTY" ]; then
     # export TERM=xterm
     export TMOUT=300
 elif [ -z "$TMUX" ]; then
-    export SSH_AUTH_SOCK="$HOME/.ssh/auth_socket"
     if ! pgrep -u $USER ssh-agent >& /dev/null; then
+        export SSH_AUTH_SOCK="$HOME/.ssh/auth_socket"
         rm -f $SSH_AUTH_SOCK
         ssh-agent -a $SSH_AUTH_SOCK > /dev/null 2>&1
     fi
