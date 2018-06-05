@@ -10,6 +10,8 @@ installed()
     command -v $1 > /dev/null
 }
 
+chown -R $(id -u):$(id -g) ~/.configs
+
 for i in apt-get yum pkg_add prt-get apk pacman; do
     installed $i && installer=$i && break
 done
