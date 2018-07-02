@@ -5,3 +5,6 @@
 .mutt/aliases
 .config/i3/dmenu_progs
 .bin/zeiterfassung
+.emacs.d/.cache/
+.fonts/.uuid
+*.diff
