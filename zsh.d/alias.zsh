@@ -38,3 +38,4 @@ alias genpasswd2='< /dev/urandom tr -dc "[:graph:]" | dd count=1 bs=12 2> /dev/n
 
 # To check which compiler was used to compile a binary.
 alias which_compiler='objdump --full-contents --section=.comment'
+alias mycli='LANG=C.UTF8 LC_ALL=C.UTF-8 mycli'
