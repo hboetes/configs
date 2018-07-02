@@ -38,12 +38,12 @@ apt-upgrade()
             SC=4
             ;;
     esac
-    dpkg -l "$SS" | awk '/^(ii|rc)/ {print $2}' | sort -n -t- -k$SC | sed -e "/$(uname -r)/,\$d" | head -n -1 | xargs -r sudo apt-get autoremove --purge
     if command -v apt-metalink >& /dev/null; then
         local aptgetter=apt-metalink
     else
-        local aptgetter=apt-get
+        local aptgetter=apt
     fi
+    dpkg -l "$SS" | awk '/^(ii|rc)/ {print $2}' | sort -n -t- -k$SC | sed -e "/$(uname -r)/,\$d" | head -n -1 | xargs -r sudo $aptgetter autoremove --purge
     local update=$(find /var/lib/apt/extended_states -mtime +0)
     if [[ ! -n $update ]]; then
         ls -l /var/lib/apt/extended_states
@@ -52,10 +52,10 @@ apt-upgrade()
         read nothing
         unset nothing
     fi
-    sudo apt-get update
+    sudo apt update
     sudo $aptgetter upgrade
     sudo $aptgetter dist-upgrade
-    sudo apt-get autoremove --purge
+    sudo $aptgetter autoremove --purge
     apt-removerc
     echo "debfoster?"
 }

@@ -225,9 +225,9 @@
 (add-to-list 'auto-mode-alist '("Pkgfile"    . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.doit"    . sh-mode))
 
-;; mode for crontabs
-(autoload 'crontab-mode "crontab-mode.el" "crontab-mode" t)
-(add-to-list 'auto-mode-alist '("crontab\\." . crontab-mode))
+;; ;; mode for crontabs
+;; (autoload 'crontab-mode "crontab-mode.el" "crontab-mode" t)
+;; (add-to-list 'auto-mode-alist '("crontab\\." . crontab-mode))
 
 ;; no tabs by default. modes that really need tabs should enable
 ;; indent-tabs-mode explicitly. makefile-mode already does that, for
