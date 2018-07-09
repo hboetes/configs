@@ -9,7 +9,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-ipc_socket ~/.local/tmp/i3/socket
+# ipc_socket ~/.local/tmp/i3/socket
 
 set $mod Mod4
 
@@ -160,4 +160,4 @@ client.urgent           #3a342f #900000 #ffffff #900000
 mouse_warping output
 workspace_layout tabbed
 
-exec --no-startup-id vmware-user-suid-wrapper
+# exec --no-startup-id vmware-user-suid-wrapper
