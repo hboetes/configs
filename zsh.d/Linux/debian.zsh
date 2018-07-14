@@ -27,7 +27,13 @@ apt-removerc()
 
 apt-upgrade()
 {
-    # Remove old unused kernels, except for the last one.
+    if command -v apt-metalink >& /dev/null; then
+        local aptgetter=apt-metalink
+    else
+        local aptgetter=apt
+    fi
+
+    # Remove old unused kernels, except for the latest one and the running one.
     case $(uname -r) in
         *pve)
             SS='pve-kernel-4.*pve'
@@ -38,12 +44,12 @@ apt-upgrade()
             SC=4
             ;;
     esac
-    if command -v apt-metalink >& /dev/null; then
-        local aptgetter=apt-metalink
-    else
-        local aptgetter=apt
+
+    remove_kernels=$(dpkg -l "$SS" | awk '/^(ii|rc)/ {print $2}' | sort -n -t- -k$SC | sed -e "/$(uname -r)/,\$d" | head -n -1)
+    if [[ ${=remove_kernels} != "" ]]; then
+        sudo $aptgetter autoremove --purge ${=remove_kernels}
     fi
-    dpkg -l "$SS" | awk '/^(ii|rc)/ {print $2}' | sort -n -t- -k$SC | sed -e "/$(uname -r)/,\$d" | head -n -1 | xargs -r sudo $aptgetter autoremove --purge
+
     local update=$(find /var/lib/apt/extended_states -mtime +0)
     if [[ ! -n $update ]]; then
         ls -l /var/lib/apt/extended_states
@@ -52,6 +58,7 @@ apt-upgrade()
         read nothing
         unset nothing
     fi
+
     sudo apt update
     sudo $aptgetter upgrade
     sudo $aptgetter dist-upgrade
