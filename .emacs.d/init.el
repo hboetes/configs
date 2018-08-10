@@ -48,13 +48,7 @@
   (unless (package-installed-p package)
     (package-install package)))
 
-;; Those \ at the end of long lines...
-;;(set-default 'truncate-lines t)
-
-                                        ; (setq debug-on-error t)
 (setq backup-by-copying-when-linked t)
-
-;; Options
 
 ;; Don't read system-init files and don't show the splash-screen
 ;; etc etc etc. In other words...
@@ -70,6 +64,7 @@
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (load-theme 'Amelie t)
+(set-face-inverse-video 'mode-line t)
 
 (icomplete-mode 1)
 
@@ -94,8 +89,6 @@
 ;; Show the column and line numbers
 (setq line-number-mode 1)
 (setq column-number-mode 1)
-
-;; (setq inhibit-field-text-motion 1)
 
 ;; emacs bugs mailinglist: C-h f now permanently loads ~2MB
 (setq help-C-source-directory nil)
@@ -228,10 +221,6 @@
 (add-to-list 'auto-mode-alist '("Pkgfile"    . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.doit"    . sh-mode))
 
-;; ;; mode for crontabs
-;; (autoload 'crontab-mode "crontab-mode.el" "crontab-mode" t)
-;; (add-to-list 'auto-mode-alist '("crontab\\." . crontab-mode))
-
 ;; no tabs by default. modes that really need tabs should enable
 ;; indent-tabs-mode explicitly. makefile-mode already does that, for
 ;; example.
@@ -250,15 +239,6 @@
     (set-face-foreground 'mode-line "black")
     (set-face-background 'mode-line "white")
     (menu-bar-mode -1)) )
-
-(set-face-background 'mode-line "yellow")
-
-(when (string-match "difool" (system-name))
-  (set-face-background 'mode-line "yellow"))
-(when (string-match "tara" (system-name))
-  (set-face-background 'mode-line "green"))
-
-(set-face-inverse-video 'mode-line t)
 
 ;; OpenBSD specific code.
 (if (eq system-type 'berkeley-unix)
@@ -384,7 +364,3 @@
 
 (require 'ethan-wspace)
 (global-ethan-wspace-mode 1)
-
-(when (and (daemonp) (locate-library "edit-server"))
-  (require 'edit-server)
-  (edit-server-start))
