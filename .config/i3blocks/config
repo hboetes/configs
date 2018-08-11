@@ -40,22 +40,22 @@ label=♪
 instance=Master
 # instance=PCM
 interval=5
-separator=false
+separator=true
 signal=10
 
 # Memory usage
 #
 # The type defaults to "mem" if the instance is not specified.
-# [memory]
-# label=M
-# separator=false
-# interval=30
+[memory]
+label=M
+separator=false
+interval=30
 
-# [memory]
-# label=S
-# instance=swap
-# separator=false
-# interval=30
+[memory]
+label=S
+instance=swap
+separator=true
+interval=30
 
 # Disk usage
 #
@@ -66,7 +66,7 @@ signal=10
 label=☂
 #instance=/mnt/data
 interval=60
-separator=false
+separator=true
 # Network interface monitoring
 #
 # If the instance is not specified, use the interface used for default route.
@@ -82,12 +82,12 @@ separator=false
 # interval=10
 # separator=false
 
-# [bandwidth]
-# #instance=eth0
-# label=✈
-# interval=5
-# min_width=In 999K OUT 999K
-# separator=false
+[bandwidth]
+instance=wlp3s0
+label=✈
+interval=5
+min_width=In 999K OUT 999K
+separator=true
 # CPU usage
 #
 # The script may be called with -w and -c switches to specify thresholds,
@@ -95,19 +95,19 @@ separator=false
 [cpu_usage]
 label=☭
 interval=5
-separator=false
+separator=true
 min_width=x 99.99%
 
 [temperature]
 label=☃
 min_width=xxxxx
-separator=false
+separator=true
 interval=10
 
 [load_average]
 label=☏
 interval=10
-separator=false
+separator=true
 min_width=  0.00
 
 # Battery indicator
@@ -116,11 +116,11 @@ min_width=  0.00
 [battery]
 label=⚡
 interval=5
-separator=false
+separator=true
 
 # Date Time
 #
 [time]
 command=date '+%A %d %B %H:%M:%S'
 interval=5
-separator=false
+separator=true
