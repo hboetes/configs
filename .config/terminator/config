@@ -1,9 +1,7 @@
 [global_config]
   borderless = True
   dbus = False
-  enabled_plugins =
-  font = monofur for Powerline 16
-  use_system_font = False
+  enabled_plugins = ""
   focus = mouse
   suppress_multiple_term_dialog = True
   tab_position = left
@@ -16,6 +14,15 @@
   previous_profile = <Primary><Alt>Down
   toggle_scrollbar = None
   zoom_in = <Primary>equal
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
 [profiles]
   [[default]]
     background_color = "#2a211c"
@@ -23,6 +30,7 @@
     copy_on_selection = True
     cursor_blink = False
     cursor_color = "#ffffff"
+    font = monofur for Powerline 16
     foreground_color = "#b8a898"
     icon_bell = False
     palette = "#000000:#cc0000:#1a921c:#f0e53a:#0066ff:#c5656b:#06989a:#d3d7cf:#555753:#ef2929:#9aff87:#fffb5c:#43a8ed:#ff818a:#34e2e2:#eeeeec"
@@ -30,3 +38,4 @@
     scrollback_infinite = True
     scrollbar_position = hidden
     show_titlebar = False
+    use_system_font = False
