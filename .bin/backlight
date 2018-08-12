@@ -1,0 +1,28 @@
+#!/bin/zsh
+
+current=$(</sys/class/backlight/intel_backlight/actual_brightness)
+max=$(</sys/class/backlight/intel_backlight/max_brightness)
+min=0
+out=/sys/class/backlight/intel_backlight/brightness
+
+change(){
+    echo $new > $out || echo "$0: permission denied, writing to $out"
+}
+
+case "$1" in
+    "-")
+        ((new = current - 1000))
+        if ((new >= min)); then
+            change
+        fi
+        ;;
+    "+")
+        ((new = current + 1000))
+        if ((new <= max)); then
+            change
+        fi
+        ;;
+    *)
+        echo "Which idiot is using this script?"
+        ;;
+esac
