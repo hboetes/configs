@@ -1,0 +1,47 @@
+#!/bin/zsh
+factor=10
+
+lockmeup()
+{
+    i3lock  -e -f -i "$1" &
+}
+
+mogrifyss()
+{
+    ss=$(mktemp).png
+    ((fdwn = 100/factor))
+    ((fup = 100*factor))
+
+    # Take a screenshot
+    scrot $ss
+
+    # Pixellate it $factor
+    mogrify -scale $fdwn% -scale $fup% $ss
+
+    # Lock screen displaying this image.
+    lockmeup $ss
+    sleep 1
+    rm $ss
+}
+
+safe()
+{
+    lockmeup ~/.config/i3/safe.png
+}
+
+flight()
+{
+    lockmeup ~/Wallpapers/1920x1080.png
+}
+
+case $(($RANDOM % 3)) in
+    0)
+        mogrifyss
+        ;;
+    1)
+        safe
+        ;;
+    2)
+        flight
+        ;;
+esac
