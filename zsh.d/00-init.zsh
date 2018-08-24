@@ -16,7 +16,7 @@ path=(
     /opt/{s,}bin
     /usr/{s,}bin
     /{s,}bin
-    /usr/games
+    /usr/{,local/}games
     /usr/X11R6/bin
     /usr/syno/{s,}bin/
     ~/.local/bin
@@ -57,3 +57,8 @@ unset WORDCHARS
 
 # Don't wanna know I got new mail :P
 unset mailpath MAILCHECK
+
+export GIT_AUTHOR_NAME="$(getent passwd $USER|awk -F : '{gsub(",",""); print $5}')"
+export GIT_AUTHOR_EMAIL="$USER@boetes.org"
+export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
