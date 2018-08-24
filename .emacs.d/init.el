@@ -7,29 +7,26 @@
  '(colon-double-space t)
  '(column-number-mode t)
  '(custom-safe-themes
-   (quote
-    ("84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "" default)))
+   '("84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "" default))
  '(indent-tabs-mode nil)
- '(indicate-buffer-boundaries (quote left))
+ '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)
  '(mode-require-final-newline nil)
  '(package-archives
-   (quote
-    (("gnu" . "http://elpa.gnu.org/packages/")
-     ("melpa" . "http://melpa.org/packages/"))))
+   '(("gnu" . "http://elpa.gnu.org/packages/")
+     ("melpa" . "http://melpa.org/packages/")))
  '(package-selected-packages
-   (quote
-    (edit-server flycheck ethan-wspace mediawiki apache-mode smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox)))
+   '(grandshell-theme edit-server flycheck ethan-wspace mediawiki apache-mode smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox))
  '(paradox-automatically-star t)
- '(safe-local-variable-values (quote ((add-log-time-zone-rule . t))))
- '(send-mail-function (quote sendmail-send-it))
+ '(safe-local-variable-values '((add-log-time-zone-rule . t)))
+ '(send-mail-function 'sendmail-send-it)
  '(sentence-end-double-space t)
  '(show-paren-mode t)
  '(size-indication-mode t)
  '(tidy-menu-lock nil)
  '(w3m-fill-column 80)
  '(w3m-home-page "http://boetes.org")
- '(w3m-key-binding (quote info)))
+ '(w3m-key-binding 'info))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -63,7 +60,7 @@
 (setq load-path (append load-path '("~/.emacs.d/lisp/")))
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'Amelie t)
+(load-theme 'grandshell t)
 (set-face-inverse-video 'mode-line t)
 
 (icomplete-mode 1)
