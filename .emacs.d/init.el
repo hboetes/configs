@@ -65,9 +65,6 @@
 
 (icomplete-mode 1)
 
-(autoload 'log4j-mode "log4j-mode" "Major mode for viewing log files." t)
-(add-to-list 'auto-mode-alist '("\\.log\\'" . log4j-mode))
-
 ;; replace yes or no with y or n
 (fset 'yes-or-no-p 'y-or-n-p)
 
