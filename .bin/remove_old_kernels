@@ -1,0 +1,21 @@
+#!/bin/zsh
+# Han Boetes <h.boetes@axis-simulation.com>
+# This script removes old kernels. The current and previous one will
+# be kept. It will also remove config files that go with those
+# kernels.
+# unattended-upgrades simply doesn't support this, no matter what they claim.
+
+case $(uname -r) in
+    *pve)
+        SS='pve-kernel-4.*pve'
+        SC=3
+        ;;
+    *)
+        SS='linux-image-4.*'
+        SC=3
+        ;;
+esac
+remove_kernels=$(dpkg -l "$SS" | awk '/^(ii|rc)/ {print $2}' | sort -V -t- -k$SC | sed -e "/$(uname -r)/,\$d" | head -n -1)
+if [[ ${=remove_kernels} != "" ]]; then
+    sudo apt autoremove --purge ${=remove_kernels}
+fi
