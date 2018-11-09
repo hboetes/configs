@@ -7,7 +7,7 @@
  '(colon-double-space t)
  '(column-number-mode t)
  '(custom-safe-themes
-   '("84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "" default))
+   '("b181ea0cc32303da7f9227361bb051bbb6c3105bb4f386ca22a06db319b08882" "ec5f697561eaf87b1d3b087dd28e61a2fc9860e4c862ea8e6b0b77bd4967d0ba" "c616e584f7268aa3b63d08045a912b50863a34e7ea83e35fcab8537b75741956" "cf284fac2a56d242ace50b6d2c438fcc6b4090137f1631e32bedf19495124600" "251348dcb797a6ea63bbfe3be4951728e085ac08eee83def071e4d2e3211acc3" "b59d7adea7873d58160d368d42828e7ac670340f11f36f67fa8071dbf957236a" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "" default))
  '(indent-tabs-mode nil)
  '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)
@@ -16,7 +16,7 @@
    '(("gnu" . "http://elpa.gnu.org/packages/")
      ("melpa" . "http://melpa.org/packages/")))
  '(package-selected-packages
-   '(grandshell-theme edit-server flycheck ethan-wspace mediawiki apache-mode smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox))
+   '(zenburn-theme airline-themes edit-server flycheck ethan-wspace mediawiki apache-mode smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox))
  '(paradox-automatically-star t)
  '(safe-local-variable-values '((add-log-time-zone-rule . t)))
  '(send-mail-function 'sendmail-send-it)
@@ -45,6 +45,32 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+(require 'ethan-wspace)
+(global-ethan-wspace-mode 1)
+
+;; Theme settings
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'zenburn t)
+
+(require 'airline-themes)
+(load-theme 'airline-kolor)
+
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+
+(setq powerline-utf-8-separator-left        #xe0b0
+      powerline-utf-8-separator-right       #xe0b2
+      airline-utf-glyph-separator-left      #xe0b0
+      airline-utf-glyph-separator-right     #xe0b2
+      airline-utf-glyph-subseparator-left   #xe0b1
+      airline-utf-glyph-subseparator-right  #xe0b3
+      airline-utf-glyph-branch              #xe0a0
+      airline-utf-glyph-readonly            #xe0a2
+      airline-utf-glyph-linenumber          #xe0a1)
+
+;; Lots of settings.
+
 (setq backup-by-copying-when-linked t)
 
 ;; Don't read system-init files and don't show the splash-screen
@@ -59,9 +85,6 @@
 
 (setq load-path (append load-path '("~/.emacs.d/lisp/")))
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'grandshell t)
-(set-face-inverse-video 'mode-line t)
 
 (icomplete-mode 1)
 
@@ -220,20 +243,6 @@
 ;; example.
 (setq-default indent-tabs-mode nil)
 
-;; If we're running X
-(if (eq window-system 'x)
-    (progn
-      (scroll-bar-mode)
-      (menu-bar-mode 1)
-      (tooltip-mode -1)
-      (blink-cursor-mode 'nil)
-      (setq
-       mouse-yank-at-point nil))
-  (progn
-    (set-face-foreground 'mode-line "black")
-    (set-face-background 'mode-line "white")
-    (menu-bar-mode -1)) )
-
 ;; OpenBSD specific code.
 (if (eq system-type 'berkeley-unix)
     (setq ls-lisp-use-insert-directory-program t
@@ -343,18 +352,9 @@
 
 (global-set-key [insertchar]       'do-nothing)
 
-;; These two lines are just examples
-(setq powerline-arrow-shape 'arrow)
-;; These two lines you really need.
-(setq sml/theme 'powerline)
-(sml/setup)
-
 (autoload 'apache-mode "apache-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
 (add-to-list 'auto-mode-alist '("httpd\\.conf\\'"  . apache-mode))
 (add-to-list 'auto-mode-alist '("srm\\.conf\\'"    . apache-mode))
 (add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
 (add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
-
-(require 'ethan-wspace)
-(global-ethan-wspace-mode 1)
