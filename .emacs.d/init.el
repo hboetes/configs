@@ -7,7 +7,7 @@
  '(colon-double-space t)
  '(column-number-mode t)
  '(custom-safe-themes
-   '("b181ea0cc32303da7f9227361bb051bbb6c3105bb4f386ca22a06db319b08882" "ec5f697561eaf87b1d3b087dd28e61a2fc9860e4c862ea8e6b0b77bd4967d0ba" "c616e584f7268aa3b63d08045a912b50863a34e7ea83e35fcab8537b75741956" "cf284fac2a56d242ace50b6d2c438fcc6b4090137f1631e32bedf19495124600" "251348dcb797a6ea63bbfe3be4951728e085ac08eee83def071e4d2e3211acc3" "b59d7adea7873d58160d368d42828e7ac670340f11f36f67fa8071dbf957236a" "84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" "" default))
+   '("c616e584f7268aa3b63d08045a912b50863a34e7ea83e35fcab8537b75741956" default))
  '(indent-tabs-mode nil)
  '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)
@@ -18,7 +18,9 @@
  '(package-selected-packages
    '(zenburn-theme airline-themes edit-server flycheck ethan-wspace mediawiki apache-mode smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox))
  '(paradox-automatically-star t)
- '(safe-local-variable-values '((add-log-time-zone-rule . t)))
+ '(safe-local-variable-values
+   '((epa-file-cache-passphrase-for-symmetric-encryption . 1)
+     (add-log-time-zone-rule . t)))
  '(send-mail-function 'sendmail-send-it)
  '(sentence-end-double-space t)
  '(show-paren-mode t)
@@ -33,6 +35,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "monofur for Powerline" :foundry "unknown" :slant normal :weight normal :height 151 :width normal)))))
+
+(menu-bar-mode -1)
 
 (require 'package)
 (unless package--initialized (package-initialize t))
@@ -50,14 +54,11 @@
 
 ;; Theme settings
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (load-theme 'zenburn t)
 
 (require 'airline-themes)
 (load-theme 'airline-kolor)
-
-(menu-bar-mode -1)
-(tool-bar-mode -1)
 
 (setq powerline-utf-8-separator-left        #xe0b0
       powerline-utf-8-separator-right       #xe0b2
@@ -70,7 +71,6 @@
       airline-utf-glyph-linenumber          #xe0a1)
 
 ;; Lots of settings.
-
 (setq backup-by-copying-when-linked t)
 
 ;; Don't read system-init files and don't show the splash-screen
@@ -82,17 +82,15 @@
       initial-scratch-message "")
 (defun display-startup-echo-area-message () (message ""))
 
-
 (setq load-path (append load-path '("~/.emacs.d/lisp/")))
-
 
 (icomplete-mode 1)
 
 ;; replace yes or no with y or n
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(setq scroll-conservatively 50
-      scroll-preserve-screen-position nil)
+;(setq scroll-conservatively 50
+;      scroll-preserve-screen-position nil)
 
 ;; Automatically invoke ``font-lock-mode'' for all major modes.
 ;; Set maximum syntax highlighting.
@@ -290,14 +288,14 @@
   (goto-char (point-min))
   (while (search-forward "\r" nil t) (replace-match "")))
 
-(defun text-autoformat-region ()
-  "Call Text::Autoformat interactively on region"
-  (interactive)
-  (shell-command-on-region
-   (region-beginning) (region-end)
-   "perl -MText::Autoformat -e \"{autoformat{all=>1, renumber=>0, justify=>'full',
-   left=>0, right=>72};}\""
-   (current-buffer) t) )
+;; (defun text-autoformat-region ()
+;;   "Call Text::Autoformat interactively on region"
+;;   (interactive)
+;;   (shell-command-on-region
+;;    (region-beginning) (region-end)
+;;    "perl -MText::Autoformat -e \"{autoformat{all=>1, renumber=>0, justify=>'full',
+;;    left=>0, right=>72};}\""
+;;    (current-buffer) t) )
 
 (defun recenter-to-first-line ()
   "Recenter to the first screenline."
