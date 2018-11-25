@@ -16,7 +16,7 @@
    '(("gnu" . "http://elpa.gnu.org/packages/")
      ("melpa" . "http://melpa.org/packages/")))
  '(package-selected-packages
-   '(zenburn-theme airline-themes edit-server flycheck ethan-wspace mediawiki apache-mode smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox))
+   '(airline-themes edit-server flycheck ethan-wspace mediawiki apache-mode smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox))
  '(paradox-automatically-star t)
  '(safe-local-variable-values
    '((epa-file-cache-passphrase-for-symmetric-encryption . 1)
@@ -54,8 +54,8 @@
 
 ;; Theme settings
 
-;(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'zenburn t)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'soft-charcoal t)
 
 (require 'airline-themes)
 (load-theme 'airline-kolor)
