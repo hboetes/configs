@@ -48,3 +48,6 @@ compdef _default \
 
 # Now that all completers are defined...
 rehash
+
+# Automatically rehash
+zstyle ':completion:*' rehash true
