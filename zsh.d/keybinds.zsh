@@ -31,3 +31,9 @@ bindkey '^I' complete-word # complete on tab, leave expansion to _expand
 
 # Unbind c-s and c-q
 stty -ixon
+
+# Enable Ctrl-x-e to edit command line
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
