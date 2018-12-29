@@ -73,7 +73,7 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 # bindsym $mod+a focus parent
 
-bindsym $mod+l exec "i3lock -e -f -i ~/.config/i3/safe.png"
+bindsym $mod+l exec "lockmeup"
 bindsym $mod+x exec "sleep 1; xset dpms force suspend"
 bindsym $mod+Prior  exec "volume +"
 bindsym $mod+Next   exec "volume -"
@@ -130,8 +130,10 @@ mode "resize" {
 bar {
         # status_command ~/.bin/myi3status
         # status_command i3status
+        # i3bar_command "/usr/bin/i3bar"
         status_command i3blocks
         position top
+        # tray_padding 1
         colors {
                 background #000000
                 statusline #aaaaaa
@@ -148,6 +150,7 @@ hide_edge_borders smart
 for_window [class=".*"] border none
 # Make firefox download windows float.
 for_window [class="^Firefox$" instance="^Download$"] floating enable
+for_window [class="^Wicd-client.py$"] floating enable
 for_window [class="^Skype$"] floating enable
 for_window [class="XTerm"] floating enable, border none
 for_window [class="feh"] floating enable, border none
