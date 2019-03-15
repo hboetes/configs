@@ -34,9 +34,12 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "monofur for Powerline" :foundry "unknown" :slant normal :weight normal :height 151 :width normal)))))
 
+;; Disable various bars
 (menu-bar-mode -1)
-(tool-bar-mode -1)
-(toggle-scroll-bar -1)
+(if (display-graphic-p)
+    (progn
+      (tool-bar-mode -1)
+      (scroll-bar-mode -1)))
 
 (require 'package)
 (unless package--initialized (package-initialize t))
@@ -361,7 +364,6 @@
 ;; ;(load-random-theme)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-;(load-theme 'soft-charcoal t)
 
 ; Theme for the toolbar:
 (require 'airline-themes)
@@ -378,7 +380,7 @@
       airline-utf-glyph-linenumber          #xe0a1)
 
 
-(load-theme 'base16-solarflare t)
+(load-theme 'ample t)
 (add-hook 'term-mode-hook #'eterm-256color-mode)
 
 ;; Incase you want to run a shell in emacs:
