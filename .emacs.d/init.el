@@ -6,8 +6,6 @@
  '(blink-cursor-mode nil)
  '(colon-double-space t)
  '(column-number-mode t)
- '(custom-safe-themes
-   '("87d46d0ad89557c616d04bef34afd191234992c4eb955ff3c60c6aa3afc2e5cc" "251348dcb797a6ea63bbfe3be4951728e085ac08eee83def071e4d2e3211acc3" "3eb93cd9a0da0f3e86b5d932ac0e3b5f0f50de7a0b805d4eb1f67782e9eb67a4" "158013ec40a6e2844dbda340dbabda6e179a53e0aea04a4d383d69c329fba6e6" "d83e34e28680f2ed99fe50fea79f441ca3fddd90167a72b796455e791c90dc49" "93268bf5365f22c685550a3cbb8c687a1211e827edc76ce7be3c4bd764054bad" "ed36f8e30f02520ec09be9d74fe2a49f99ce85a3dfdb3a182ccd5f182909f3ab" "6e0e6c8bb332e30421b825a9cb1d85744917e2f7f9cb8aec880dc5bb06f504fb" "c616e584f7268aa3b63d08045a912b50863a34e7ea83e35fcab8537b75741956" default))
  '(indent-tabs-mode nil)
  '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)
@@ -16,7 +14,7 @@
    '(("gnu" . "http://elpa.gnu.org/packages/")
      ("melpa" . "http://melpa.org/packages/")))
  '(package-selected-packages
-   '(airline-themes edit-server flycheck ethan-wspace mediawiki apache-mode smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox))
+   '(eterm-256color airline-themes edit-server flycheck ethan-wspace mediawiki apache-mode smart-mode-line-powerline-theme smart-mode-line auto-package-update puppet-mode pager php-mode nginx-mode yaml-mode async auto-complete paradox))
  '(paradox-automatically-star t)
  '(safe-local-variable-values
    '((epa-file-cache-passphrase-for-symmetric-encryption . 1)
@@ -38,6 +36,7 @@
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(toggle-scroll-bar -1)
 
 (require 'package)
 (unless package--initialized (package-initialize t))
@@ -242,7 +241,7 @@
   (interactive)
   (message "Hi! :-)") )
 
-(defun term-with-zsh-as-shell ()
+(defun zsh-shell ()
   "Start a term with zsh as shell"
   (interactive)
   (term "zsh"))
@@ -342,6 +341,9 @@
 (add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
 (add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
 
+;; Themes and stuff
+; Yes, all themes are safe.
+(setq custom-safe-themes t)
 ;; (defun load-random-theme ()
 ;;   "Load any random theme from the available ones."
 ;;   (interactive)
@@ -356,14 +358,14 @@
 ;;   (defvar theme-of-the-day (nth (random (length themes-list))
 ;;                                 themes-list))
 ;;   (load-theme (princ theme-of-the-day) t))
-;; (
-;; load-random-theme)
+;; ;(load-random-theme)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 ;(load-theme 'soft-charcoal t)
 
+; Theme for the toolbar:
 (require 'airline-themes)
-(load-theme 'airline-cool)
+(load-theme 'airline-badwolf t)
 
 (setq powerline-utf-8-separator-left        #xe0b0
       powerline-utf-8-separator-right       #xe0b2
@@ -376,5 +378,9 @@
       airline-utf-glyph-linenumber          #xe0a1)
 
 
+(load-theme 'base16-solarflare t)
+(add-hook 'term-mode-hook #'eterm-256color-mode)
 
-(load-theme 'base16-solarflare)
+;; Incase you want to run a shell in emacs:
+;(server-start)
+;(zsh-shell)
