@@ -147,7 +147,7 @@
 
 (setq tramp-default-method "sshx"
       tramp-auto-save-directory emacs-tmp-dir)
-
+(with-eval-after-load 'tramp (tramp-change-syntax 'simplified))
 
 ;; Spelling
 (setq-default ispell-program-name "aspell")
