@@ -71,7 +71,10 @@
 
 (setq load-path (append load-path '("~/.emacs.d/lisp/")))
 
-(icomplete-mode 1)
+;;(icomplete-mode 1)
+(setq load-path (append load-path '("~/.emacs.d/icicles/")))
+(require 'icicles)
+(icy-mode 1)
 
 ;; replace yes or no with y or n
 (fset 'yes-or-no-p 'y-or-n-p)
