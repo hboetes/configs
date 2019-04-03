@@ -53,9 +53,9 @@ apt-upgrade()
     local update=$(find /var/lib/apt/extended_states -mtime +0)
     if [[ ! -n $update ]]; then
         ls -l /var/lib/apt/extended_states
-        echo -n "Apt cache recently updated. Press ctrl-c to exit or enter to continue."
+        echo -n "Apt cache recently updated. Press ctrl-c to exit or the any key to continue."
         local nothing
-        read nothing
+        read -sk1 nothing
         unset nothing
     fi
 
