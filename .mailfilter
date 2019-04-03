@@ -33,6 +33,12 @@ if (/^From: @interfax.net/)
         to $R/zspam
     }
 
+# No unsubribe possible
+if (/^From: @online.net/)
+    {
+        to $R/zspam
+    }
+
 if (/^X-Spam-Flag: YES/)
     {
         to $R/zspam

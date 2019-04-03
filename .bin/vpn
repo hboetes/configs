@@ -1,0 +1,1 @@
+/usr/local/sbin/openvpn /etc/openvpn/openvpn.conf
