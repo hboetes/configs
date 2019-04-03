@@ -62,8 +62,9 @@ time=$(date +%s)
 # write current data if file does not exist. Do not exit, this will cause
 # problems if this file is sourced instead of executed as another process.
 if ! [[ -f "${path}" ]]; then
-  echo "${time} ${rx} ${tx}" > "${path}"
-  chmod 0666 "${path}"
+    echo "${time} ${rx} ${tx}" > "${path}"
+    # Nuts! XXX
+    chmod 0600 "${path}"
 fi
 
 # read previous state and update data storage
