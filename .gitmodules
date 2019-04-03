@@ -1,0 +1,3 @@
+[submodule ".emacs.d/icicles"]
+	path = .emacs.d/icicles
+	url = https://github.com/emacsmirror/icicles.git

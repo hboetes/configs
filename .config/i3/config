@@ -181,3 +181,4 @@ mouse_warping output
 workspace_layout tabbed
 
 # exec --no-startup-id vmware-user-suid-wrapper
+# exec echo “.config/i3/config: DESKTOP_AUTOSTART_ID $DESKTOP_AUTOSTART_ID, registering with org.gnome.SessionManager”
