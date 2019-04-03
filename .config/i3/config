@@ -37,6 +37,7 @@ floating_modifier $mod
 bindsym $mod+Return exec terminator
 bindsym $mod+semicolon exec ST
 bindsym $mod+a exec "terminator -e 'alsamixer -c 2'"
+bindsym $mod+b exec "emacs"
 
 # kill focused window
 bindsym $mod+Shift+Q kill
