@@ -233,8 +233,7 @@
 
 ;; OpenBSD specific code.
 (if (eq system-type 'berkeley-unix)
-    (setq ls-lisp-use-insert-directory-program t
-          insert-directory-program "gls"))
+    (setq insert-directory-program "gls"))
 
 ;; Functions
 (defun insert-date-at-this-point ()
