@@ -389,3 +389,7 @@
 ;; Incase you want to run a shell in emacs:
 ;(server-start)
 ;(zsh-shell)
+
+;; Byte compile anything that needs compiling. If it doesn't, run:
+;;   find ~/.emacs -name '*.elc' -delete
+(byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
