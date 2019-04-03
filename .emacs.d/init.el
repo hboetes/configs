@@ -137,7 +137,7 @@
  vc-follow-symlinks 1)
 
 ;; If only it would work all the time.
-(setq-default save-place t)
+(save-place-mode 1)
 
 ;; Save all tempfiles in $TMPDIR/emacs$UID/, the same dir as the emacs
 ;; server uses. It's nice to have all mess in the same place.
