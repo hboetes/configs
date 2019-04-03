@@ -7,5 +7,13 @@
 .bin/zeiterfassung
 .emacs.d/.cache/
 .emacs.d/elpa/
+.emacs.d/eshell/
+.emacs.d/icicles/
+.emacs.d/lisp/
+.emacs.d/places
+.emacs.d/themes/
+.emacs.d/tramp
 .fonts/.uuid
 *.diff
+.config/mc/panels.ini
+*.elc
