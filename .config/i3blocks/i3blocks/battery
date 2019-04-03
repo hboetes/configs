@@ -12,6 +12,13 @@
 # The color will gradually change for a percentage below 85%, and the urgency
 # (exit code 33) is set if there is less that 5% remaining.
 
+# Below this battery percentage I'd like to get notified.
+my $range = 30;
+# Below this I start nagging
+my $nag = 15;
+# Below this I want my system to go to sleep.
+my $sleep = 5;
+
 use strict;
 use warnings;
 use utf8;
@@ -22,12 +29,16 @@ my $percent;
 my $full_text;
 my $short_text;
 my $bat_number = $ENV{BLOCK_INSTANCE} || 0;
+my $rgb;
+my $exit = 0;
 
 # read the first line of the "acpi" command output
 # open (ACPI, "acpi -b | grep 'Battery $bat_number' |") or die;
 open (ACPI, "acpi -b|") or die;
 $acpi = <ACPI>;
 close(ACPI);
+# print $acpi;
+# $acpi = "Battery 0: Discharging, 39%, 03:02:26 remaining";
 
 # fail on unexpected output
 if ($acpi !~ /: (\w+), (\d+)%/) {
@@ -54,47 +65,35 @@ if ($acpi =~ /(\d\d:\d\d):/) {
 print "$full_text\n";
 print "$short_text\n";
 
-# consider color and urgent flag only on discharge
+sub redAndGreen {
+    my ($range, $percent) = @_;
+    if ($percent > $range) {
+        return "";
+    }
+    my $green = ($percent / $range) * 256;
+    my $red = ($range - $percent) / $range * 256;
+    $red = sprintf('%02x', $red);
+    $green = sprintf('%02x', $green);
+    return "#${red}${green}00";
+}
+
+$rgb = redAndGreen($range, $percent);
+print "$rgb\n";
+
 if ($status eq 'Discharging') {
-    if ($percent < 4) {
-        system("/usr/bin/sudo /usr/sbin/s2ram");
-    } elsif ($percent < 7) {
-        system("notify-send -t 500 -h 'string:bgcolor:#ff0000' -h 'string:fgcolor:#000000' 'battery at '$percent'%'; SHUTTING DOWN SOON.");
-        exit(33);
-    } elsif ($percent < 10) {
-        print "#FF0000\n";
-        system("notify-send -t 500 -h 'string:bgcolor:#ff0000' -h 'string:fgcolor:#000000' 'battery at '$percent'%'");
-    } elsif ($percent < 20) {
-        print "#FFAE00\n";
-        system("notify-send -t 500 -h 'string:bgcolor:#ffae00' -h 'string:fgcolor:#000000' 'battery at '$percent'%'");
-    } elsif ($percent < 30) {
-        print "#FFF600\n";
-        system("notify-send -t 500 -h 'string:bgcolor:#fff600' -h 'string:fgcolor:#000000' 'battery at '$percent'%'");
-    } elsif ($percent < 40) {
-        print "#A8FF00\n";
-        system("notify-send -t 500 -h 'string:bgcolor:#a8ff00' -h 'string:fgcolor:#000000' 'battery at '$percent'%'");
+    if ($percent < $range) {
+        system("notify-send -t 500 -h 'string:bgcolor:$rgb' -h 'string:fgcolor:#000000' 'battery at '$percent'%'");
     }
-}
 
-if ($status eq 'Charging') {
-    if ($percent > 80) {
-#        print "#FF0000\n";
-#        system("notify-send -t 500 -h 'string:bgcolor:#a8ff00' 'battery at '$percent'%'");
-#        exit (33);
-    } elsif ($percent < 40) {
-        print "#FF0000\n";
-    } elsif ($percent < 50) {
-        print "#FFFF00\n";
-    } elsif ($percent < 63) {
-        print "#C0FF00\n";
-    } elsif ($percent < 75) {
-        print "#80FF00\n";
+    if ($percent < $nag) {
+        $exit = 33
+    };
+
+    if ($percent < $sleep) {
+        system("/usr/bin/sudo /usr/sbin/pm-suspend");
     }
-}
 
-# if ($status eq 'Full') {
-#         system("notify-send -t 500 -h 'string:bgcolor:#ff0000' 'battery is FULL'");
-#         exit (33);
-# }
+    exit($exit);
+}
 
 exit(0);
