@@ -6,5 +6,6 @@
 .config/i3/dmenu_progs
 .bin/zeiterfassung
 .emacs.d/.cache/
+.emacs.d/elpa/
 .fonts/.uuid
 *.diff
