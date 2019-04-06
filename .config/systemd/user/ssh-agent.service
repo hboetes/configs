@@ -1,0 +1,11 @@
+# Don't forget to comment out `use-ssh-agent' from /etc/X11/Xsession.options.
+[Unit]
+Description=OpenSSH Agent
+
+[Service]
+Type=simple
+Environment=SSH_AUTH_SOCK="%t/ssh-agent.socket"
+ExecStart=/usr/bin/ssh-agent -D -a "${SSH_AUTH_SOCK}"
+
+[Install]
+WantedBy=default.target

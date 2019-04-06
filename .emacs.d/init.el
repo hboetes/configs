@@ -349,6 +349,8 @@
 ;; Themes and stuff
 ; Yes, all themes are safe.
 (setq custom-safe-themes t)
+(load-theme 'ample t)
+
 ;; (defun load-random-theme ()
 ;;   "Load any random theme from the available ones."
 ;;   (interactive)
@@ -382,7 +384,6 @@
       airline-utf-glyph-linenumber          #xe0a1)
 
 
-(load-theme 'ample t)
 (add-hook 'term-mode-hook #'eterm-256color-mode)
 
 ;; Incase you want to run a shell in emacs:

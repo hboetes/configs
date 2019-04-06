@@ -2449,7 +2449,7 @@ Example selectable menu-item element:
   :group 'Icicles-Completions-Display)
 
 (when (fboundp 'text-scale-decrease)    ; Emacs 23+
-  (defcustom icicle-Completions-text-scale-decrease 0.75
+  (defcustom icicle-Completions-text-scale-decrease 0.00
     "*Initial height decrease for text in buffer `*Completions*'.
 A value of 0.0 means the height is not decreased at all.
 This is used as the argument to function `text-scale-decrease'.
