@@ -500,7 +500,7 @@
   ;; find-tag-marker-ring, find-tag-other-window, goto-tag-location-function, snarf-tag-function,
   ;; tag-find-file-of-tag-noselect, tags-case-fold-search,
   ;; tags-lazy-completion-table, tags-table-files, visit-tags-table-buffer
-(eval-when-compile (require 'yow nil t)) ;; (no error if not found):
+;;(eval-when-compile (require 'yow nil t)) ;; (no error if not found):
   ;; apropos-zippy, yow-after-load-message, yow-file, yow-load-message
 
 ;; Commented out because `synonyms.el' soft-requires Icicles.
