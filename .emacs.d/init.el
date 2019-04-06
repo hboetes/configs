@@ -54,8 +54,6 @@
 (require 'ethan-wspace)
 (global-ethan-wspace-mode 1)
 
-;; Theme settings
-
 ;; Lots of settings.
 (setq backup-by-copying-when-linked t)
 
