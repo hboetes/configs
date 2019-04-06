@@ -9,6 +9,7 @@
 .emacs.d/elpa/
 .emacs.d/eshell/
 .emacs.d/lisp/
+.emacs.d/image-dired/
 .emacs.d/places
 .emacs.d/themes/
 .emacs.d/tramp
