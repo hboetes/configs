@@ -23,7 +23,6 @@
  '(sentence-end-double-space t)
  '(show-paren-mode t)
  '(size-indication-mode t)
- '(tidy-menu-lock nil)
  '(w3m-fill-column 80)
  '(w3m-home-page "https://google.com")
  '(w3m-key-binding 'info))
@@ -78,9 +77,6 @@
 
 ;; replace yes or no with y or n
 (fset 'yes-or-no-p 'y-or-n-p)
-
-;(setq scroll-conservatively 50
-;      scroll-preserve-screen-position nil)
 
 ;; Automatically invoke ``font-lock-mode'' for all major modes.
 ;; Set maximum syntax highlighting.
