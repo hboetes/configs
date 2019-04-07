@@ -14,8 +14,7 @@
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(eterm-256color ample-theme airline-themes flycheck ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async paradox))
- '(paradox-automatically-star t)
+   '(yaml-mode eterm-256color ample-theme airline-themes flycheck ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
  '(safe-local-variable-values
    '((epa-file-cache-passphrase-for-symmetric-encryption . 1)
      (add-log-time-zone-rule . t)))
@@ -53,6 +52,9 @@
 
 (require 'ethan-wspace)
 (global-ethan-wspace-mode 1)
+
+(autoload 'dired-async-mode "dired-async.el" nil t)
+(dired-async-mode 1)
 
 ;; Lots of settings.
 (setq backup-by-copying-when-linked t)
