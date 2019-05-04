@@ -10,6 +10,7 @@
  '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)
  '(mode-require-final-newline nil)
+ '(mouse-autoselect-window t)
  '(package-archives
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
@@ -30,14 +31,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "monofur for Powerline" :foundry "unknown" :slant normal :weight normal :height 151 :width normal)))))
+ '(default ((t (:family "monofur for Powerline" :foundry "unknown" :slant normal :weight normal :height 190 :width normal)))))
 
 ;; Disable various bars
 (menu-bar-mode -1)
-(if (display-graphic-p)
-    (progn
-      (tool-bar-mode -1)
-      (scroll-bar-mode -1)))
+;; (if (display-graphic-p)
+;;     (progn
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+;;))
 
 (require 'package)
 (unless package--initialized (package-initialize t))
@@ -146,7 +148,7 @@
 
 (setq tramp-default-method "sshx"
       tramp-auto-save-directory emacs-tmp-dir)
-(with-eval-after-load 'tramp (tramp-change-syntax 'simplified))
+;; (with-eval-after-load 'tramp (tramp-change-syntax 'simplified))
 
 ;; Spelling
 (setq-default ispell-program-name "aspell")
@@ -382,10 +384,10 @@
 
 (add-hook 'term-mode-hook #'eterm-256color-mode)
 
-;; Incase you want to run a shell in emacs:
-;(server-start)
-;(zsh-shell)
-
 ;; Byte compile anything that needs compiling. If it doesn't, run:
 ;;   find ~/.emacs -name '*.elc' -delete
 (byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
+
+;(server-start)
+;; Incase you want to run a shell in emacs:
+;(zsh-shell)
