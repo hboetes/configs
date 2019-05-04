@@ -1,2 +1,7 @@
-#!/bin/sh
-exec emacs "$@"
+#!/usr/local/bin/zsh
+if [[ $INSIDE_EMACS ]]; then
+    emacsclient --socket-name $TMPDIR/emacs$UID/server "$@"
+else
+    emacsclient -nw -c "$@"
+fi
+# emacs -nw "$@"
