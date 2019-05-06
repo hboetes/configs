@@ -23,6 +23,7 @@
  '(sentence-end-double-space t)
  '(show-paren-mode t)
  '(size-indication-mode t)
+ '(tramp-syntax 'simplified nil (tramp))
  '(w3m-fill-column 80)
  '(w3m-home-page "https://google.com")
  '(w3m-key-binding 'info))
@@ -148,7 +149,6 @@
 
 (setq tramp-default-method "sshx"
       tramp-auto-save-directory emacs-tmp-dir)
-;; (with-eval-after-load 'tramp (tramp-change-syntax 'simplified))
 
 ;; Spelling
 (setq-default ispell-program-name "aspell")
