@@ -3,8 +3,17 @@
 # in console mode [I appears
 opts=''
 
-if pgrep -f 'emacs.*--daemon'; then
-        emacsclient ${opts:=-c} --socket-name $XDG_RUNTIME_DIR/emacs/server "$@"
+case $(uname) in
+    OpenBSD)
+        ESOCK=$TMPDIR/emacs$(id -u)/server
+        ;;
+    Linux)
+        ESOCK=$XDG_RUNTIME_DIR/emacs/server
+        ;;
+esac
+
+if pgrep -f 'emacs .*--daemon' >& /dev/null; then
+    emacsclient ${opts:=-c} --socket-name $ESOCK "$@"
 else
     emacs $opts "$@"
 fi
