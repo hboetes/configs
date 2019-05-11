@@ -3,12 +3,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(blink-cursor-mode nil)
  '(colon-double-space t)
  '(column-number-mode t)
  '(indent-tabs-mode nil)
  '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)
+ '(line-number-mode 1)
+ '(menu-bar-mode nil)
  '(mode-require-final-newline nil)
  '(mouse-autoselect-window t)
  '(package-archives
@@ -23,7 +24,9 @@
  '(sentence-end-double-space t)
  '(show-paren-mode t)
  '(size-indication-mode t)
+ '(tool-bar-mode nil)
  '(tramp-syntax 'simplified nil (tramp))
+ '(transient-mark-mode 1)
  '(w3m-fill-column 80)
  '(w3m-home-page "https://google.com")
  '(w3m-key-binding 'info))
@@ -32,7 +35,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "monofur for Powerline" :foundry "unknown" :slant normal :weight normal :height 190 :width normal)))))
+ '(default ((t (:family "monofur for Powerline" :foundry "unci" :slant normal :weight normal :height 158 :width normal)))))
 
 ;; Disable various bars
 (menu-bar-mode -1)
