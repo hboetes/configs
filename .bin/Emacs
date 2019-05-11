@@ -1,7 +1,10 @@
-#!/usr/local/bin/zsh
-if [[ $INSIDE_EMACS ]]; then
-    emacsclient --socket-name $TMPDIR/emacs$UID/server "$@"
+#!/bin/zsh
+
+# in console mode [I appears
+opts=''
+
+if pgrep -f 'emacs.*--daemon'; then
+        emacsclient ${opts:=-c} --socket-name $XDG_RUNTIME_DIR/emacs/server "$@"
 else
-    emacsclient -nw -c "$@"
+    emacs $opts "$@"
 fi
-# emacs -nw "$@"
