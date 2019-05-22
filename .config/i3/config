@@ -12,16 +12,17 @@
 # ipc_socket ~/.local/tmp/i3/socket
 
 set $mod Mod4
+set $term tilix
 
 # Needed for i3-gaps
-gaps inner 5
-gaps outer 5
-bindsym $mod+Shift+t            gaps inner current set 10; gaps outer current set 10
-bindsym $mod+y                  gaps inner current plus 5
-bindsym $mod+Shift+y            gaps inner current minus 5
-bindsym $mod+Shift+d            gaps inner current set 0; gaps outer current set 0
-bindsym $mod+z                  gaps outer current plus 5
-bindsym $mod+Shift+z            gaps outer current minus 5
+#gaps inner 5
+#gaps outer 5
+#bindsym $mod+Shift+t            gaps inner current set 10; gaps outer current set 10
+#bindsym $mod+y                  gaps inner current plus 5
+#bindsym $mod+Shift+y            gaps inner current minus 5
+#bindsym $mod+Shift+d            gaps inner current set 0; gaps outer current set 0
+#bindsym $mod+z                  gaps outer current plus 5
+#bindsym $mod+Shift+z            gaps outer current minus 5
 
 
 # font for window titles. ISO 10646 = Unicode
@@ -34,10 +35,10 @@ font pango:inconsolata medium 14px
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminator
+bindsym $mod+Return exec $term
 bindsym $mod+semicolon exec ST
-bindsym $mod+a exec "terminator -e 'alsamixer -c 2'"
-bindsym $mod+b exec "emacs"
+bindsym $mod+a exec $term -e 'alsamixer -c 0'
+bindsym $mod+b exec emacs
 
 # kill focused window
 bindsym $mod+Shift+Q kill
@@ -164,11 +165,12 @@ for_window [class=".*"] border none
 for_window [class="^Firefox$" instance="^Download$"] floating enable
 for_window [class="^Wicd-client.py$"] floating enable
 for_window [class="^Skype$"] floating enable
-for_window [class="XTerm"] floating enable, border none
-for_window [class="feh"] floating enable, border none
-for_window [class="Dunst"] floating enable, border none
-for_window [class="^qjackctl"] floating enable, border none
+for_window [class="XTerm"] floating enable
+for_window [class="feh"] floating enable
+for_window [class="Dunst"] floating enable
+for_window [class="^qjackctl"] floating enable
 for_window [class="^FLTK"] floating enable
+for_window [class="^(E|e)macs$"] fullscreen enable
 for_window [class="^Toplevel$" instance="^variations$"] floating enable
 
 # class                 border  backgr. text    indicator
@@ -180,5 +182,5 @@ client.urgent           #3a342f #900000 #ffffff #900000
 mouse_warping output
 workspace_layout tabbed
 
-# exec --no-startup-id vmware-user-suid-wrapper
-# exec echo “.config/i3/config: DESKTOP_AUTOSTART_ID $DESKTOP_AUTOSTART_ID, registering with org.gnome.SessionManager”
+#smart_gaps on
+#smart_gaps inverse_outer
