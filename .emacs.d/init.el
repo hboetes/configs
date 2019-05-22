@@ -314,6 +314,10 @@
   (setq tab-width 8)
   (setq indent-tabs-mode t) )
 
+(defun close-all-buffers ()
+  (interactive)
+  (mapc 'kill-buffer (buffer-list)))
+
 ;; Keybinds
 ;; Set a global goto line
 (global-set-key "\C-xg"       'goto-line)
@@ -391,6 +395,6 @@
 ;;   find ~/.emacs -name '*.elc' -delete
 (byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
 
-;(server-start)
+;;(server-start)
 ;; Incase you want to run a shell in emacs:
-;(zsh-shell)
+;;(zsh-shell)

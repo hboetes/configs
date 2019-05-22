@@ -18,7 +18,8 @@ path=(
     /{s,}bin
     /usr/{,local/}games
     /usr/X11R6/bin
-    /usr/syno/{s,}bin/
+    /usr/syno/{s,}bin
+    /opt/puppet/{s,}bin
     ~/.local/bin
 )
 
@@ -34,6 +35,7 @@ manpath=($(cleanpath $manpath))
 
 export path manpath
 
+# If your home is writable.
 if [[ -w ~ ]]; then
     export TMP=~/.local/tmp
     export TMPDIR=$TMP

@@ -44,7 +44,7 @@ if [[ "${TTY#/dev/ttyC}" != "$TTY" ]]; then
     return
 fi
 
-# Old zsh releases also don't dig it.
+# Old zsh releases don't dig it either.
 if [[ ${ZSH_VERSION%%.*} -lt 4 ]]; then
     local prompt="$USERHOST%~%# "
     return
