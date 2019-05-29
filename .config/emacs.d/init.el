@@ -37,6 +37,8 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "monofur for Powerline" :foundry "unci" :slant normal :weight normal :height 158 :width normal)))))
 
+(setq config-path "~/.config/emacs.d" "The main path under which all emacs config files can be found.")
+
 ;; Disable various bars
 (menu-bar-mode -1)
 ;; (if (display-graphic-p)
@@ -74,10 +76,9 @@
       initial-scratch-message "")
 (defun display-startup-echo-area-message () (message ""))
 
-(setq load-path (append load-path '("~/.emacs.d/lisp/")))
 
 ;;(icomplete-mode 1)
-(setq load-path (append load-path '("~/.emacs.d/icicles/")))
+(setq load-path (append load-path (list (expand-file-name "icicles" config-path))))
 (require 'icicles)
 (icy-mode 1)
 
@@ -372,7 +373,7 @@
 ;;   (load-theme (princ theme-of-the-day) t))
 ;; ;(load-random-theme)
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(add-to-list 'custom-theme-load-path (expand-file-name "themes" config-path))
 
 ; Theme for the toolbar:
 (require 'airline-themes)
@@ -392,8 +393,8 @@
 (add-hook 'term-mode-hook #'eterm-256color-mode)
 
 ;; Byte compile anything that needs compiling. If it doesn't, run:
-;;   find ~/.emacs -name '*.elc' -delete
-(byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
+;;   find ~/.config/emacs.d -name '*.elc' -delete
+(byte-recompile-directory (expand-file-name config-path) 0)
 
 ;;(server-start)
 ;; Incase you want to run a shell in emacs:
