@@ -24,7 +24,6 @@
  '(sentence-end-double-space t)
  '(show-paren-mode t)
  '(size-indication-mode t)
- '(tool-bar-mode nil)
  '(tramp-syntax 'simplified nil (tramp))
  '(transient-mark-mode 1)
  '(w3m-fill-column 80)
@@ -37,15 +36,15 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "monofur for Powerline" :foundry "unci" :slant normal :weight normal :height 158 :width normal)))))
 
-(setq config-path "~/.config/emacs.d" "The main path under which all emacs config files can be found.")
+(setq config-path "~/.config/emacs.d")
 
 ;; Disable various bars
 (menu-bar-mode -1)
-;; (if (display-graphic-p)
-;;     (progn
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-;;))
+(if (display-graphic-p)
+    (progn
+      (tool-bar-mode -1)
+      (scroll-bar-mode -1)
+      ))
 
 (require 'package)
 (unless package--initialized (package-initialize t))
