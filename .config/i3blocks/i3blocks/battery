@@ -13,7 +13,7 @@
 # (exit code 33) is set if there is less that 5% remaining.
 
 # Below this battery percentage I'd like to get notified.
-my $range = 30;
+my $range = 20;
 # Below this I start nagging
 my $nag = 15;
 # Below this I want my system to go to sleep.

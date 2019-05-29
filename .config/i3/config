@@ -39,6 +39,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+semicolon exec ST
 bindsym $mod+a exec $term -e 'alsamixer -c 0'
 bindsym $mod+b exec emacs
+bindsym $mod+Shift+m exec gnome-system-monitor
 
 # kill focused window
 bindsym $mod+Shift+Q kill
@@ -170,7 +171,9 @@ for_window [class="feh"] floating enable
 for_window [class="Dunst"] floating enable
 for_window [class="^qjackctl"] floating enable
 for_window [class="^FLTK"] floating enable
-for_window [class="^(E|e)macs$"] fullscreen enable
+for_window [class="^Gnome-system-monitor"] floating enable
+# For some reason emacs disobeys this.
+# for_window [class="^(E|e)macs$"] fullscreen enable
 for_window [class="^Toplevel$" instance="^variations$"] floating enable
 
 # class                 border  backgr. text    indicator
