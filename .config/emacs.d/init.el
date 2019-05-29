@@ -40,7 +40,7 @@
 
 ;; Disable various bars
 (menu-bar-mode -1)
-(if (display-graphic-p)
+(if (or (display-graphic-p)(daemonp))
     (progn
       (tool-bar-mode -1)
       (scroll-bar-mode -1)
