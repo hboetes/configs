@@ -1,11 +1,19 @@
 # If we're in the console, the "real" one we set these vars. Otherwise
 # stuff goes foobar on the zsh prompt etc.
+case $(uname) in
+    Linux)
+        export SSH_AUTH_SOCK="/run/user/$(id -u)/ssh-agent.socket"
+        ;;
+    OpenBSD)
+        export SSH_AUTH_SOCK="$HOME/.ssh/auth_socket"
+        ;;
+esac
+
 if [ "${TTY#/dev/ttyC}" != "$TTY" ]; then
     # export TERM=xterm
     export TMOUT=300
 elif [ -z "$TMUX" ]; then
     if ! pgrep -u $USER ssh-agent >& /dev/null; then
-        export SSH_AUTH_SOCK="$HOME/.ssh/auth_socket"
         rm -f $SSH_AUTH_SOCK
         ssh-agent -a $SSH_AUTH_SOCK > /dev/null 2>&1
     fi
