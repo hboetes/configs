@@ -9,7 +9,6 @@
  '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)
  '(line-number-mode 1)
- '(menu-bar-mode nil)
  '(mode-require-final-newline nil)
  '(mouse-autoselect-window t)
  '(package-archives
