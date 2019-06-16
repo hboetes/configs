@@ -2,23 +2,35 @@
 #
 # Copyright 2014 Pierre Mavro <deimos@deimos.fr>
 # Copyright 2014 Vivien Didelot <vivien@didelot.org>
-#
+# Copyright 2016-2019 Han Boetes <hboetes@gmail.com>
+
 # Licensed under the terms of the GNU GPL v3, or any later version.
 #
 # This script is meant to use with i3blocks. It parses the output of the "acpi"
-# command (often provided by a package of the same name) to read the status of
-# the battery, and eventually its remaining time (to full charge or discharge).
+# command — often provided by a package of the same name — read the status of
+# the battery, and eventually its remaining time, to full charge or discharge.
 #
-# The color will gradually change for a percentage below 85%, and the urgency
-# (exit code 33) is set if there is less that 5% remaining.
+# Since it is recommended to keep the battery charge between 80% and
+# 20%, and my BIOS already takes care I don't overcharge this script
+# starts notifying at 20% with the color green, gradually turning to
+# red at 10%, if the batter charge gets below 10% it will attempt to
+# suspend the laptop.
 
+# If you want you can let this script suspend your laptop: Install
+# sudo, pm-utils and use visudo to add a line like this:
+#
+# %sudo ALL=(ALL:ALL) NOPASSWD:/usr/sbin/pm-suspend.
+
+# SETTINGS
+#
 # Below this battery percentage I'd like to get notified.
 my $range = 20;
-# Below this I start nagging
+# Below this I start nagging with a red battery indicator.
 my $nag = 15;
 # Below this I want my system to go to sleep.
-my $sleep = 5;
+my $sleep = 10;
 
+# CODE
 use strict;
 use warnings;
 use utf8;
@@ -30,15 +42,10 @@ my $full_text;
 my $short_text;
 my $bat_number = $ENV{BLOCK_INSTANCE} || 0;
 my $rgb;
-my $exit = 0;
 
-# read the first line of the "acpi" command output
-# open (ACPI, "acpi -b | grep 'Battery $bat_number' |") or die;
 open (ACPI, "acpi -b|") or die;
 $acpi = <ACPI>;
 close(ACPI);
-# print $acpi;
-# $acpi = "Battery 0: Discharging, 39%, 03:02:26 remaining";
 
 # fail on unexpected output
 if ($acpi !~ /: (\w+), (\d+)%/) {
@@ -66,25 +73,25 @@ print "$full_text\n";
 print "$short_text\n";
 
 sub redAndGreen {
-    my ($range, $percent) = @_;
-    if ($percent > $range) {
-        return "";
+    my ($range, $percent, $sleep) = @_;
+    my $green = (($percent - $sleep) / ($range - $sleep)) * 255;
+    if ($green < 0) {
+        $green = 0;
     }
-    my $green = ($percent / $range) * 256;
-    my $red = ($range - $percent) / $range * 256;
-    $red = sprintf('%02x', $red);
+    my $red = 255 - $green;
     $green = sprintf('%02x', $green);
+    $red = sprintf('%02x', $red);
     return "#${red}${green}00";
 }
 
-$rgb = redAndGreen($range, $percent);
-print "$rgb\n";
 
 if ($status eq 'Discharging') {
-    if ($percent < $range) {
+    if ($percent <= $range) {
+        $rgb = redAndGreen($range, $percent, $sleep);
         system("notify-send -t 500 -h 'string:bgcolor:$rgb' -h 'string:fgcolor:#000000' 'battery at '$percent'%'");
     }
 
+    my $exit = 0;
     if ($percent < $nag) {
         $exit = 33
     };
