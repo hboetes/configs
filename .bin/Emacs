@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # in console mode [I appears
-opts=''
+# opts='-nw'
 
 case $(uname) in
     OpenBSD)
@@ -14,6 +14,7 @@ esac
 
 if pgrep -f 'emacs .*--daemon' >& /dev/null; then
     emacsclient ${opts:=-c} --socket-name $ESOCK -F "'(fullscreen . fullboth)" "$@"
+    # emacsclient ${opts:=-c} --socket-name $ESOCK "$@"
 else
     emacs $opts "$@"
 fi

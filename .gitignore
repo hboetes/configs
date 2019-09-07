@@ -5,14 +5,8 @@
 .mutt/aliases
 .config/i3/dmenu_progs
 .bin/zeiterfassung
-.config/emacs.d/.cache/
-.config/emacs.d/elpa/
-.config/emacs.d/eshell/
-.config/emacs.d/lisp/
-.config/emacs.d/image-dired/
-.config/emacs.d/places
-.config/emacs.d/themes/
-.config/emacs.d/tramp
+.config/emacs/**
+!.config/emacs/init.el
 .fonts/.uuid
 *.diff
 .config/mc/panels.ini
