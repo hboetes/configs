@@ -35,7 +35,6 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "monofur for Powerline" :foundry "unci" :slant normal :weight normal :height 158 :width normal)))))
 
-(setq config-path "~/.config/emacs.d")
 
 ;; Disable various bars
 (menu-bar-mode -1)
@@ -48,9 +47,13 @@
 (require 'package)
 (cond
  ((eql emacs-major-version 27)
-  (unless package--initialized (package-initialize t)))
- ((eql emacs-major-version 26)
-  (package-initialize)))
+  (progn
+    (unless package--initialized (package-initialize t))
+    (setq config-path "~/.config/emacs.d")))
+  ((eql emacs-major-version 26)
+  (progn
+    (package-initialize)
+    (setq config-path "~/emacs.d"))))
 
 (unless package-archive-contents
   (package-refresh-contents))
