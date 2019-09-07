@@ -78,11 +78,7 @@
       initial-scratch-message "")
 (defun display-startup-echo-area-message () (message ""))
 
-
 ;;(icomplete-mode 1)
-(setq load-path (append load-path (list (expand-file-name "icicles" config-path))))
-(require 'icicles)
-(icy-mode 1)
 
 ;; replace yes or no with y or n
 (fset 'yes-or-no-p 'y-or-n-p)
