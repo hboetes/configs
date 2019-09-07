@@ -50,7 +50,7 @@
  ((eql emacs-major-version 27)
   (unless package--initialized (package-initialize t)))
  ((eql emacs-major-version 26)
-  (package-initialize t)))
+  (package-initialize)))
 
 (unless package-archive-contents
   (package-refresh-contents))
