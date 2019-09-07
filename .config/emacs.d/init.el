@@ -53,7 +53,7 @@
   ((eql emacs-major-version 26)
   (progn
     (package-initialize)
-    (setq config-path "~/emacs.d"))))
+    (setq config-path "~/.emacs.d"))))
 
 (unless package-archive-contents
   (package-refresh-contents))
