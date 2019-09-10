@@ -60,9 +60,11 @@ apt-upgrade()
     fi
 
     sudo apt update
-    sudo $aptgetter upgrade
-    sudo $aptgetter dist-upgrade
-    sudo $aptgetter autoremove --purge
-    apt-removerc
-    echo "debfoster?"
+    if apt list --upgradeable 2>&1 | /bin/grep -q /; then
+        sudo $aptgetter upgrade
+        sudo $aptgetter dist-upgrade
+        sudo $aptgetter autoremove --purge
+        apt-removerc
+        echo "debfoster?"
+    fi
 }
