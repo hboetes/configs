@@ -38,17 +38,16 @@ floating_modifier $mod
 bindsym $mod+Return exec $term
 bindsym $mod+semicolon exec ST
 bindsym $mod+a exec $term -e 'alsamixer -c 0'
-bindsym $mod+b exec emacs
+bindsym $mod+b exec Emacs
 bindsym $mod+Shift+m exec gnome-system-monitor
 
 # kill focused window
 bindsym $mod+Shift+Q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec $(grep -v '^#' ~/.config/i3/dmenu_progs | rofi -dmenu -bg '#222222' -fg '#888888' -hlbg '#775528' -hlfg '#999999')
-bindsym $mod+c exec rofi -show run    -bg '#222222' -fg '#888888' -hlbg '#775528' -hlfg '#999999'
-bindsym $mod+g exec rofi -show ssh    -bg '#222222' -fg '#888888' -hlbg '#775528' -hlfg '#999999'
-bindsym $mod+m exec rofi -show window -bg '#222222' -fg '#888888' -hlbg '#775528' -hlfg '#999999'
+bindsym $mod+d exec $(grep -v '^#' ~/.config/i3/dmenu_progs | rofi -fake-transparency -dmenu)
+bindsym $mod+c exec rofi -fake-transparency -show run
+bindsym $mod+g exec rofi -fake-transparency -show ssh
+bindsym $mod+m exec rofi -fake-transparency -show window
 
 bindsym $mod+r exec pkill -USR1 redshift
 
@@ -162,7 +161,6 @@ workspace_auto_back_and_forth no
 
 hide_edge_borders smart
 for_window [class=".*"] border none
-# Make firefox download windows float.
 for_window [class="^Firefox$" instance="^Download$"] floating enable
 for_window [class="^Wicd-client.py$"] floating enable
 for_window [class="^Skype$"] floating enable
@@ -171,9 +169,8 @@ for_window [class="feh"] floating enable
 for_window [class="Dunst"] floating enable
 for_window [class="^qjackctl"] floating enable
 for_window [class="^FLTK"] floating enable
-for_window [class="^Gnome-system-monitor"] floating enable
-# For some reason emacs disobeys this.
-# for_window [class="^(E|e)macs$"] fullscreen enable
+for_window [class="^Gnome-system-monitor"] floating enable, floating_minimum_size 1000 x 500, floating_maximum_size 1000 x 500
+for_window [class="^(E|e)macs$"] floating enable
 for_window [class="^Toplevel$" instance="^variations$"] floating enable
 
 # class                 border  backgr. text    indicator
@@ -183,7 +180,7 @@ client.unfocused        #333333 #222222 #888888 #292d2e
 client.urgent           #3a342f #900000 #ffffff #900000
 
 mouse_warping output
-workspace_layout tabbed
+workspace_layout default
 
 #smart_gaps on
 #smart_gaps inverse_outer

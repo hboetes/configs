@@ -21,6 +21,7 @@ path=(
     /usr/syno/{s,}bin
     /opt/puppet/{s,}bin
     ~/.local/bin
+    ~/.cargo/bin
 )
 
 manpath=(
