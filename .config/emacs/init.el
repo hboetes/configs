@@ -399,3 +399,7 @@
 ;;(server-start)
 ;; Incase you want to run a shell in emacs:
 ;;(zsh-shell)
+
+;; set transparency
+(set-frame-parameter (selected-frame) 'alpha '(75 75))
+(add-to-list 'default-frame-alist '(alpha 75 75))
