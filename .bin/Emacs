@@ -1,20 +1,2 @@
-#!/usr/bin/env zsh
-
-# in console mode [I appears
-# opts='-nw'
-
-case $(uname) in
-    OpenBSD)
-        ESOCK=$TMPDIR/emacs$(id -u)/server
-        ;;
-    Linux)
-        ESOCK=$XDG_RUNTIME_DIR/emacs/server
-        ;;
-esac
-
-if pgrep -f 'emacs .*--daemon' >& /dev/null; then
-    emacsclient ${opts:=-c} --socket-name $ESOCK -F "'(fullscreen . fullboth)" "$@"
-    # emacsclient ${opts:=-c} --socket-name $ESOCK "$@"
-else
-    emacs $opts "$@"
-fi
+#!/bin/sh
+emacsclient -c "$@" -a '' &
