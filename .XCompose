@@ -1292,6 +1292,6 @@ include "%L"
 <Multi_key> <Multi_key> <f> <o> <r> <a> <l> <l>         : "∀"  U2200 # FOR ALL
 
 <Multi_key> <Multi_key> <dollar> <i> <n> <r>            : "₹"  U20B9 # INR
-<Multi_key> <R> <->                                     : "₹"  U20B9 # INR
+# <Multi_key> <R> <->                                     : "₹"  U20B9 # INR
 <Multi_key> <Multi_key> <dollar> <x> <b> <t>            : "฿" U0E3F # BITCOIN CURRENCY SIGN, ORIGINAL THAI CURRENCY SYMBOL BAHT
 <Multi_key> <Multi_key> <dollar> <b> <t> <c>            : "฿" U0E3F # BITCOIN CURRENCY SIGN, ORIGINAL THAI CURRENCY SYMBOL BAHT
