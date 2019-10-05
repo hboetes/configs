@@ -45,14 +45,13 @@
       ))
 
 (require 'package)
+(package-initialize)
 (cond
  ((eql emacs-major-version 27)
   (progn
-    (unless package--initialized (package-initialize t))
     (setq config-path "~/.config/emacs")))
   ((eql emacs-major-version 26)
   (progn
-    (package-initialize)
     (setq config-path "~/.emacs.d"))))
 
 (unless package-archive-contents
