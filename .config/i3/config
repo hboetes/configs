@@ -169,7 +169,7 @@ for_window [class="feh"] floating enable
 for_window [class="Dunst"] floating enable
 for_window [class="^qjackctl"] floating enable
 for_window [class="^FLTK"] floating enable
-for_window [class="^Gnome-system-monitor"] floating enable, floating_minimum_size 1000 x 500, floating_maximum_size 1000 x 500
+for_window [class="^Gnome-system-monitor"] floating enable
 for_window [class="^(E|e)macs$"] floating enable
 for_window [class="^Toplevel$" instance="^variations$"] floating enable
 
