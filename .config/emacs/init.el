@@ -403,3 +403,10 @@
 ;; set transparency
 (set-frame-parameter (selected-frame) 'alpha '(75 75))
 (add-to-list 'default-frame-alist '(alpha 75 75))
+
+(add-hook 'before-make-frame-hook
+          #'(lambda ()
+              (add-to-list 'default-frame-alist '(left   . 0))
+              (add-to-list 'default-frame-alist '(top    . 0))
+              (add-to-list 'default-frame-alist '(height . 42))
+              (add-to-list 'default-frame-alist '(width  . 144))))
