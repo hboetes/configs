@@ -1,3 +1,4 @@
+# This config file is intended for ksh on OpenBSD
 unset  HISTFILE
 umask  022
 ulimit -c 0
