@@ -38,13 +38,7 @@ colors
 
 local USERHOST="${USER}@${HOST}"
 
-# The real OpenBSD console doesn't dig fancy colors.
-if [[ "${TTY#/dev/ttyC}" != "$TTY" ]]; then
-    local prompt="$USERHOST%~%# "
-    return
-fi
-
-# Old zsh releases don't dig it either.
+# Old zsh releases don't dig a fancy prompt.
 if [[ ${ZSH_VERSION%%.*} -lt 4 ]]; then
     local prompt="$USERHOST%~%# "
     return
