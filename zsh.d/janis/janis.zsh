@@ -9,13 +9,6 @@ split()
     rm -f tmp/*00*pregap* || :
 }
 
-# alias penguinradio='mplayer -really-quiet http://81.173.3.20/listen.pls'
-# alias fro_radio='mplayer -really-quiet http://www.fro.at:8008/fro-128.ogg'
-
-# alias ldapvi='ldapvi --discover -D cn=manager,dc=axis-simulations,dc=at -h ldap://auth'
-
-
-
 xcontest()
 {
     gpsbabel -i garmin_fit -o igc -f $1 -F ~/flight.igc
