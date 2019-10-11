@@ -1,5 +1,12 @@
 #!/bin/sh
 export PATH="/home/han/.bin:/usr/local/sbin:/usr/local/bin:/sbin:/usr/sbin:/bin:/usr/bin:/usr/games:/mp3/bin"
+export TMP="$HOME/.local/tmp"
+export TMPDIR="$TMP"
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
+
+pkill pulse
+
 : > ~/.xsession-errors
 xset s off
 xset dpms 0 0 0
