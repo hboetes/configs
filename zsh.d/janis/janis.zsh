@@ -28,7 +28,6 @@ convertflight()
         echo "That's not a garmin file?!" >&2
         return 1
     fi
-    # gpsbabel -i garmin_fit -o igc -f $1 -F ${1%.fit}.igc
     gpsbabel -i garmin_fit -o gpx -f $1 -F ${1%.fit}.gpx
 }
 

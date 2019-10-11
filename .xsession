@@ -19,5 +19,14 @@ dbus-launch wicd-gtk -t &
 redshift-gtk -l 46.8471:15.5206 &
 diodon &
 syndaemon -d -i3 -t -R
-flameshot &
-exec dbus-launch i3 > ~/.local/log/i3.log
+# blueman-applet &
+compton &
+dunst &
+(
+    qjackctl -a ~/.config/rncbc.org/patchbay.xml -s &
+    sleep 6
+    pulseaudio -L module-jack-sink -D
+    flameshot &
+) &
+
+exec dbus-run-session /usr/local/bin/i3 > ~/.local/log/i3.log
