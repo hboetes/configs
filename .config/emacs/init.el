@@ -392,21 +392,18 @@
 
 (add-hook 'term-mode-hook #'eterm-256color-mode)
 
-;; Byte compile anything that needs compiling. If it doesn't, run:
-;;   find ~/.config/emacs.d -name '*.elc' -delete
-(byte-recompile-directory (expand-file-name config-path) 0)
-
-;;(server-start)
-;; Incase you want to run a shell in emacs:
-;;(zsh-shell)
-
 ;; set transparency
-(set-frame-parameter (selected-frame) 'alpha '(75 75))
-(add-to-list 'default-frame-alist '(alpha 75 75))
+(set-frame-parameter (selected-frame) 'alpha '(90 90))
+(add-to-list 'default-frame-alist '(alpha 90 90))
 
+;; Set the size of the floating window.
 (add-hook 'before-make-frame-hook
           #'(lambda ()
               (add-to-list 'default-frame-alist '(left   . 0))
               (add-to-list 'default-frame-alist '(top    . 0))
               (add-to-list 'default-frame-alist '(height . 42))
               (add-to-list 'default-frame-alist '(width  . 144))))
+
+;; Byte compile anything that needs compiling. If it doesn't, run:
+;;   find ~/.config/emacs.d -name '*.elc' -delete
+(byte-recompile-directory (expand-file-name config-path) 0)
