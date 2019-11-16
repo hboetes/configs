@@ -15,7 +15,7 @@
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(yaml-mode eterm-256color ample-theme airline-themes flycheck ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
+   '(smartparens yaml-mode eterm-256color ample-theme airline-themes flycheck ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
  '(safe-local-variable-values
    '((epa-file-cache-passphrase-for-symmetric-encryption . 1)
      (add-log-time-zone-rule . t)))
@@ -357,6 +357,12 @@
 (setq custom-safe-themes t)
 (load-theme 'ample t)
 
+;; (custom-theme-set-faces
+;;  'zenburn
+;;  '(font-lock-comment-face ((t (:foreground "#DFAF8F"))))
+;;  '(font-lock-comment-delimiter-face ((t (:foreground "#DFAF8F")))))
+
+
 ;; (defun load-random-theme ()
 ;;   "Load any random theme from the available ones."
 ;;   (interactive)
@@ -379,15 +385,16 @@
 (require 'airline-themes)
 (load-theme 'airline-understated t)
 
-(setq powerline-utf-8-separator-left        #xe0b0
-      powerline-utf-8-separator-right       #xe0b2
-      airline-utf-glyph-separator-left      #xe0b0
-      airline-utf-glyph-separator-right     #xe0b2
-      airline-utf-glyph-subseparator-left   #xe0b1
-      airline-utf-glyph-subseparator-right  #xe0b3
-      airline-utf-glyph-branch              #xe0a0
-      airline-utf-glyph-readonly            #xe0a2
-      airline-utf-glyph-linenumber          #xe0a1)
+(setq
+ powerline-utf-8-separator-left        #xe0b0
+ powerline-utf-8-separator-right       #xe0b2
+ airline-utf-glyph-separator-left      #xe0b0
+ airline-utf-glyph-separator-right     #xe0b2
+ airline-utf-glyph-subseparator-left   #xe0b1
+ airline-utf-glyph-subseparator-right  #xe0b3
+ airline-utf-glyph-branch              #xe0a0
+ airline-utf-glyph-readonly            #xe0a2
+ airline-utf-glyph-linenumber          #xe0a1)
 
 
 (add-hook 'term-mode-hook #'eterm-256color-mode)
@@ -407,3 +414,5 @@
 ;; Byte compile anything that needs compiling. If it doesn't, run:
 ;;   find ~/.config/emacs.d -name '*.elc' -delete
 (byte-recompile-directory (expand-file-name config-path) 0)
+
+(require 'smartparens-config)

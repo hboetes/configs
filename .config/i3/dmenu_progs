@@ -6,8 +6,8 @@ anydesk --tray
 scid
 butt
 pavucontrol
-thunderbird
 hyper
 tilix
 terminator
 alacritty
+transmission-gtk
