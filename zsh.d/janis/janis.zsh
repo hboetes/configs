@@ -55,3 +55,11 @@ mpv()
 alias ksync='rsync --rsync-path=/opt/bin/rsync'
 alias lgg6sync='TZ=UTC \rsync -vi -aP --modify-window=1 --no-p --no-g --delete-before --no-perms --no-times --size-only /mp3/misc/Android_music/ lgg6:mp3'
 alias flexget_upgrade='pip3 install --upgrade flexget'
+
+merge2mkv()
+{
+    local f="$1"
+    if [[ -e $f ]] && [[ -e ${f%.*}.srt ]]; then
+        mkvmerge "$f" "${f%.*}.srt" -o "merge2mkvtem.mkv" && rm "$f" "${f%.*}.srt" && mv "merge2mkvtem.mkv" "${f%.*}.mkv"
+    fi
+}
