@@ -47,7 +47,7 @@
 (require 'package)
 (package-initialize)
 (cond
- ((eql emacs-major-version 27)
+ ((>= emacs-major-version 27)
   (progn
     (setq config-path "~/.config/emacs")))
   ((eql emacs-major-version 26)
