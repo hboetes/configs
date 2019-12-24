@@ -12,7 +12,7 @@
 # ipc_socket ~/.local/tmp/i3/socket
 
 set $mod Mod4
-set $term alacritty
+set $term terminator
 
 # Needed for i3-gaps
 #gaps inner 5
