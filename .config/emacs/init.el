@@ -3,6 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(blink-cursor-mode nil)
  '(colon-double-space t)
  '(column-number-mode t)
  '(indent-tabs-mode nil)
@@ -15,7 +16,7 @@
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(smartparens yaml-mode eterm-256color ample-theme airline-themes flycheck ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
+   '(csv-mode smartparens yaml-mode eterm-256color ample-theme airline-themes flycheck ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
  '(safe-local-variable-values
    '((epa-file-cache-passphrase-for-symmetric-encryption . 1)
      (add-log-time-zone-rule . t)))
@@ -238,6 +239,7 @@
     (setq insert-directory-program "gls"))
 
 ;; Functions
+;; Mon Feb 24, 2020  7:34 PM
 (defun insert-date-at-this-point ()
   "Insert date at point."
   (interactive)
