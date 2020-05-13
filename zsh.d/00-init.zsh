@@ -53,6 +53,7 @@ export LANG=en_US.UTF-8
 export LC_TIME=en_GB.UTF-8
 export LC_COLLATE=C
 export LC_ALL
+export TZ=Europe/Vienna
 
 # Only set this variable if running in X
 [ "$XAUTHORITY" ] && export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'

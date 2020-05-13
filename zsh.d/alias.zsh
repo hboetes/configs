@@ -35,7 +35,9 @@ alias -g T='|tail'
 
 alias genpasswd='< /dev/urandom tr -dc "a-zA-Z0-9" | dd count=1 bs=12 2> /dev/null; echo'
 alias genpasswd2='< /dev/urandom tr -dc "[:graph:]" | dd count=1 bs=12 2> /dev/null; echo'
+alias genpin='< /dev/urandom tr -dc "0-9" | dd count=1 bs=4 2> /dev/null; echo'
 
 # To check which compiler was used to compile a binary.
 alias which_compiler='objdump --full-contents --section=.comment'
 alias mycli='LANG=C.UTF8 LC_ALL=C.UTF-8 mycli'
+alias xclip_image='xclip -selection clipboard -t image/png -i'
