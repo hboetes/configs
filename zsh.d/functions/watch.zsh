@@ -1,3 +1,5 @@
+# left=fooblalaaarbla; ((pad = $COLUMNS - ${#left})); printf "$left%${pad}s\n" 'FOOBAR'
+
 watch () {
     IN=2
     case $1 in
@@ -8,14 +10,13 @@ watch () {
     esac
     clear
     HN="$(hostname)"
-    HD="$(printf 'Every %.1f: ' $IN)"
     CM="$*"
-    # Where does that -2 come from?
-    ((PAD = COLUMNS - ${#HD} - ${#CM} - ${#DT} - 2))
+    LEFT="$(printf 'Every %.1f: %s' $IN $CM)"
+    ((PAD = COLUMNS - ${#LEFT}))
     while :
     do
         DT=$(date)
-        printf "$HD%s%${PAD}s: %s\n\n" "$CM" "$HN" "$DT"
+        printf "$LEFT%${PAD}s\n" "$HN $(date)"
         eval "$CM"
         sleep $IN
         clear
