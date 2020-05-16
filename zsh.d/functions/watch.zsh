@@ -1,5 +1,3 @@
-# left=fooblalaaarbla; ((pad = $COLUMNS - ${#left})); printf "$left%${pad}s\n" 'FOOBAR'
-
 watch () {
     IN=2
     case $1 in
