@@ -17,6 +17,6 @@ watch () {
         printf "$LEFT%${PAD}s\n" "$HN $(date)"
         eval "$CM"
         sleep $IN
-        clear
+        printf '\033c'
     done
 }
