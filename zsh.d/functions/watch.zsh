@@ -6,7 +6,7 @@ watch () {
             shift 2
             ;;
     esac
-    clear
+    printf '\033c'
     CM="$*"
     LEFT="$(printf 'Every %.1f: %s' $IN $CM)"
     ((PAD = COLUMNS - ${#LEFT}))
