@@ -13,7 +13,3 @@ alias mutt='mutt -y'
 if command -v dtpstree >& /dev/null; then
     alias pstree='dtpstree'
 fi
-
-if command -v gnuwatch >& /dev/null; then
-    alias watch='gnuwatch'
-fi
