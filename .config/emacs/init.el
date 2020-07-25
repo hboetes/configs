@@ -418,3 +418,6 @@
 (byte-recompile-directory (expand-file-name config-path) 0)
 
 (require 'smartparens-config)
+;; This makes text from an emacs console windows c&p able without trailing whitespace.
+;;(unless window-system (set-face-attribute 'default nil :background "unspecified-bg"))
+(unless window-system (custom-set-faces   '(default ((t (:background "unspecified-bg"))))))
