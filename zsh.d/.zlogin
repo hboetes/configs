@@ -14,6 +14,26 @@ if ! pgrep -u $USER ssh-agent >& /dev/null; then
     ssh-agent -a $SSH_AUTH_SOCK > /dev/null 2>&1
 fi
 
+if [[ $TTY == /dev/tty2 ]]; then
+    # XXX Put this in a sepperate file.
+    export PATH="/home/han/.bin:/usr/local/sbin:/usr/local/bin:/sbin:/usr/sbin:/bin:/usr/bin:/usr/games:/mp3/bin"
+    export TMP="$HOME/.local/tmp"
+    export TMPDIR="$TMP"
+    export XDG_RUNTIME_DIR=/run/user/$(id -u)
+    export XDG_CURRENT_DESKTOP=i3
+
+    sway &
+    sleep 3
+    systemctl --user start redshift-gtk
+    systemctl --user start emacs
+    diodon &
+    dunst &
+    qjackctl -a ~/.config/rncbc.org/patchbay.xml -s &
+    flameshot &
+    exit 0
+fi
+
+
 if [ "${TTY#/dev/ttyC}" != "$TTY" ]; then
     export TMOUT=300
 elif [ -z "$TMUX" ]; then

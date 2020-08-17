@@ -1,4 +1,4 @@
-uname -v | \grep -Eq ' (Debian|Ubuntu|PVE) ' || return
+test -f /etc/debian_version || return
 
 export DEBFULLNAME="Han Boetes"
 export DEBEMAIL="hboetes@gmail.com"
@@ -36,11 +36,11 @@ apt-upgrade()
     # Remove old unused kernels, except for the latest one and the running one.
     case $(uname -r) in
         *pve)
-            SS='pve-kernel-4.*pve'
+            SS='pve-kernel-5.*pve'
             SC=3
             ;;
         *)
-            SS='linux-image-4.*'
+            SS='linux-image-5.*'
             SC=4
             ;;
     esac

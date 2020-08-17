@@ -1,19 +1,39 @@
 [global_config]
-  borderless = True
   dbus = False
-  enabled_plugins = ""
   focus = mouse
-  suppress_multiple_term_dialog = True
+  handle_size = 5
+  borderless = True
+  extra_styling = False
   tab_position = left
+  enabled_plugins = ""
+  suppress_multiple_term_dialog = True
 [keybindings]
+  zoom_in = <Primary>equal
+  toggle_scrollbar = None
   broadcast_off = None
   edit_window_title = None
-  help = None
   layout_launcher = None
   next_profile = <Primary><Alt>Up
   previous_profile = <Primary><Alt>Down
-  toggle_scrollbar = None
-  zoom_in = <Primary>equal
+  help = None
+[profiles]
+  [[default]]
+    urgent_bell = True
+    icon_bell = False
+    background_color = "#2d2d2d"
+    background_darkness = 0.75
+    background_type = transparent
+    cursor_blink = False
+    cursor_color = "#d3d0c8"
+    font = monofur for Powerline 16
+    foreground_color = "#d3d0c8"
+    show_titlebar = False
+    scrollbar_position = hidden
+    scroll_on_keystroke = False
+    scrollback_infinite = True
+    palette = "#2d2d2d:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#d3d0c8:#747369:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#f2f0ec"
+    use_system_font = False
+    copy_on_selection = True
 [layouts]
   [[default]]
     [[[child1]]]
@@ -23,19 +43,3 @@
       parent = ""
       type = Window
 [plugins]
-[profiles]
-  [[default]]
-    background_darkness = 0.75
-    copy_on_selection = True
-    cursor_blink = False
-    font = monofur for Powerline 16
-    icon_bell = False
-    scroll_on_keystroke = False
-    scrollback_infinite = True
-    scrollbar_position = hidden
-    show_titlebar = False
-    use_system_font = False
-    background_color = "#2d2d2d"
-    cursor_color = "#d3d0c8"
-    foreground_color = "#d3d0c8"
-    palette = "#2d2d2d:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#d3d0c8:#747369:#f2777a:#99cc99:#ffcc66:#6699cc:#cc99cc:#66cccc:#f2f0ec"
