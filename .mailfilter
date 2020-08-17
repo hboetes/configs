@@ -26,6 +26,11 @@ if (/^From: tomtom@/)
         to $R/zspam
     }
 
+if (/^From: .*@paypal\./)
+    {
+        to $R/paypal
+    }
+
 
 # Sure, whatever
 if (/^From: @interfax.net/)

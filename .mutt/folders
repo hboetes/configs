@@ -14,6 +14,7 @@ mailboxes \
         +duplicates \
         +emacs-bugs \
         +mg \
+        +paypal \
         +posted \
         +postmaster \
         +root \
@@ -25,4 +26,4 @@ mailboxes \
 set record=$HOME/Mail/posted
 
 # except for messages to myself
-# fcc-hook ~than@mijncomputer\.nl$ /dev/null
+fcc-hook ~than@boetes.org\.nl$ /dev/null
