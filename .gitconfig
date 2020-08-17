@@ -1,10 +1,10 @@
 [user]
-	email = hboetes@gmail.com
-	name = Han Boetes
+        email = hboetes@gmail.com
+        name = Han Boetes
 [push]
-	default = simple
+        default = simple
 [color]
-	ui          = auto
+        ui          = auto
         branch      = auto
         diff        = auto
         log         = auto
@@ -12,8 +12,8 @@
         status      = auto
         pager       = true
 [gc]
-	autoDetach = false
+        autoDetach = false
 [pager]
-	log  = diff-highlight | less
-	show = diff-highlight | less
-	diff = diff-highlight | less
+        log  = diff-highlight | less
+        show = diff-highlight | less
+        diff = diff-highlight | less
