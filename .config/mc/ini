@@ -87,18 +87,18 @@ safe_overwrite=false
 filepos_max_saved_entries=1024
 
 [Layout]
-message_visible=0
-keybar_visible=1
-xterm_title=1
+message_visible=false
+keybar_visible=true
+xterm_title=true
 output_lines=0
-command_prompt=1
-menubar_visible=1
-free_space=1
-horizontal_split=1
-vertical_equal=1
+command_prompt=true
+menubar_visible=true
+free_space=true
+horizontal_split=true
+vertical_equal=true
 left_panel_size=87
-horizontal_equal=1
-top_panel_size=24
+horizontal_equal=true
+top_panel_size=21
 
 [Misc]
 timeformat_recent=%b %e %H:%M
