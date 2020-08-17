@@ -34,6 +34,7 @@ font pango:inconsolata medium 14px
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+
 # start a terminal
 bindsym $mod+Return exec $term
 bindsym $mod+semicolon exec ST
@@ -128,6 +129,8 @@ bindsym $mod+Shift+R restart
 bindsym $mod+Shift+E exit
 
 # bindsym $mod+shift+R mode "resize"
+bindsym $mod+Shift+s sticky toggle
+
 
 mode "resize" {
   bindsym Left   resize shrink width
@@ -155,11 +158,19 @@ bar {
                 inactive_workspace #333333 #222222 #888888
                 urgent_workspace   #2f343a #900000 #ffffff
         }
+        # Disable the scrollwheel in the menubar
+        bindsym button4 nop
+        bindsym button5 nop
 }
+
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 workspace_auto_back_and_forth no
 
 hide_edge_borders smart
+
+# xprop|grep WM_CLASS → WM_CLASS(STRING) = "irssi", "URxvt"
+# So always use the last word!
 for_window [class=".*"] border none
 for_window [class="^Firefox$" instance="^Download$"] floating enable
 for_window [class="^Wicd-client.py$"] floating enable
@@ -167,11 +178,20 @@ for_window [class="^Skype$"] floating enable
 for_window [class="XTerm"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="Dunst"] floating enable
-for_window [class="^qjackctl"] floating enable
+for_window [class="^linphone"] floating enable
+for_window [class="^QjackCtl"] floating enable border normal
 for_window [class="^FLTK"] floating enable
 for_window [class="^Gnome-system-monitor"] floating enable
 for_window [class="^(E|e)macs$"] floating enable
+for_window [class="^microsip.exe$"] floating enable
+for_window [class="^zoom$"] floating enable
+for_window [class="^Variety$"] floating enable
+for_window [class="^smplayer$"] floating enable
+for_window [class="^vlc$"] floating enable
 for_window [class="^Toplevel$" instance="^variations$"] floating enable
+
+assign [class="^Puddletag$"] 3
+
 
 # class                 border  backgr. text    indicator
 client.focused          #99784c #775528 #999999 #f49e2e
