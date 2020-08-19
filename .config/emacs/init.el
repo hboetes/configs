@@ -6,6 +6,7 @@
  '(blink-cursor-mode nil)
  '(colon-double-space t)
  '(column-number-mode t)
+ '(git-commit-summary-max-length 1023)
  '(indent-tabs-mode nil)
  '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)
