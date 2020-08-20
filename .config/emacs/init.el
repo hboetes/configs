@@ -40,11 +40,11 @@
 
 ;; Disable various bars
 (menu-bar-mode -1)
-(if (display-graphic-p)
-     (progn
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-))
+(if (fboundp 'scroll-bar-mode)
+    (progn
+      (tool-bar-mode -1)
+      (scroll-bar-mode -1)
+      ))
 
 (require 'package)
 (package-initialize)
@@ -52,7 +52,7 @@
  ((>= emacs-major-version 27)
   (progn
     (setq config-path "~/.config/emacs")))
-  ((eql emacs-major-version 26)
+ ((eql emacs-major-version 26)
   (progn
     (setq config-path "~/.emacs.d"))))
 
@@ -356,7 +356,7 @@
 (add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
 
 ;; Themes and stuff
-; Yes, all themes are safe.
+                                        ; Yes, all themes are safe.
 (setq custom-safe-themes t)
 (load-theme 'ample t)
 
@@ -384,7 +384,7 @@
 
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" config-path))
 
-; Theme for the toolbar:
+                                        ; Theme for the toolbar:
 (require 'airline-themes)
 (load-theme 'airline-understated t)
 
