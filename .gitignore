@@ -11,3 +11,4 @@
 *.diff
 .config/mc/panels.ini
 *.elc
+.bin/mp3val
