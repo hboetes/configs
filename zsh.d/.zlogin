@@ -1,6 +1,5 @@
 # If we're in the console, the "real" one we set these vars. Otherwise
 # stuff goes foobar on the zsh prompt etc.
-<<<<<<< Updated upstream
 case $(uname) in
     Linux)
         export SSH_AUTH_SOCK="/run/user/$(id -u)/ssh-agent.socket"
@@ -34,20 +33,9 @@ if [[ $TTY == /dev/tty2 ]]; then
     exit 0
 fi
 
-
-=======
-export SSH_AUTH_SOCK="$HOME/.ssh/auth_socket"
->>>>>>> Stashed changes
 if [ "${TTY#/dev/ttyC}" != "$TTY" ]; then
     export TMOUT=300
 elif [ -z "$TMUX" ]; then
-<<<<<<< Updated upstream
-=======
-    if ! pgrep -u $USER ssh-agent >& /dev/null; then
-        rm -f $SSH_AUTH_SOCK
-        ssh-agent -a $SSH_AUTH_SOCK > /dev/null 2>&1
-    fi
->>>>>>> Stashed changes
     # Don't join a tmux session if we're already in it or if none is running.
     if [[ $TERM != screen* ]] && tmux list-sessions > /dev/null 2>&1; then
         echo -n 'Joining the running tmux session in '
