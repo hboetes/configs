@@ -1,3 +1,4 @@
+# These are nice examples, but better make a copy and don't keep .ssh/config in git.
 Host *
   ControlMaster auto
   ControlPath ~/.ssh/%r@%h:%p

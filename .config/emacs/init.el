@@ -40,11 +40,11 @@
 
 ;; Disable various bars
 (menu-bar-mode -1)
-(if (fboundp 'scroll-bar-mode)
-    (progn
-      (tool-bar-mode -1)
-      (scroll-bar-mode -1)
-      ))
+(if (display-graphic-p)
+     (progn
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+))
 
 (require 'package)
 (package-initialize)
