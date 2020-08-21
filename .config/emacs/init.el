@@ -329,6 +329,7 @@
 ;; Fire up magit
 (global-set-key "\C-xy"       'magit-status)
 (global-set-key "\C-x\C-y"    'magit-status)
+(global-set-key "\C-x\M-y"    'magit-dispatch)
 ;; I want mouseyanks to be inserted at the cursor.
 (global-set-key [mouse-2]     'yank)
 ;; I type too fast.
