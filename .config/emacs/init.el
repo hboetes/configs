@@ -326,6 +326,9 @@
 ;; Set a global goto line
 (global-set-key "\C-xg"       'goto-line)
 (global-set-key "\C-x\C-g"    'goto-line)
+;; Fire up magit
+(global-set-key "\C-xy"       'magit-status)
+(global-set-key "\C-x\C-y"    'magit-status)
 ;; I want mouseyanks to be inserted at the cursor.
 (global-set-key [mouse-2]     'yank)
 ;; I type too fast.
