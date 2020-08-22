@@ -36,7 +36,8 @@ name2color()
 autoload -U colors
 colors
 
-local USERHOST="${USER}@${HOST}"
+local HOSTNAME=$(hostname -s)
+local USERHOST="${USER}@${HOSTNAME}"
 
 # Old zsh releases don't dig a fancy prompt.
 if [[ ${ZSH_VERSION%%.*} -lt 4 ]]; then
@@ -45,7 +46,7 @@ if [[ ${ZSH_VERSION%%.*} -lt 4 ]]; then
 fi
 
 local usercolor=$(name2color $USER)
-local hostcolor=$(name2color $HOST)
+local hostcolor=$(name2color $HOSTNAME)
 unfunction name2color
 
 prompt="$usercolor@$hostcolor %~ %(!|%{$fg[yellow]%}|%{$fg_bold[black]%})%(?..%{$fg[red]%})%#%{$fg_no_bold[default]%} "
