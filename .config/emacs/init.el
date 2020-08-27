@@ -420,7 +420,7 @@
 
 ;; Byte compile anything that needs compiling. If it doesn't, run:
 ;;   find ~/.config/emacs.d -name '*.elc' -delete
-(byte-recompile-directory (expand-file-name config-path) 0)
+;; (byte-recompile-directory (expand-file-name config-path) 0)
 
 (require 'smartparens-config)
 ;; This makes text from an emacs console windows c&p able without trailing whitespace.
