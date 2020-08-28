@@ -204,3 +204,5 @@ workspace_layout default
 
 #smart_gaps on
 #smart_gaps inverse_outer
+
+exec --no-startup-id xss-lock -- ~/.bin/lockmeup
