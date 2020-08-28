@@ -19,7 +19,7 @@ path=(
     /usr/{,local/}games
     /usr/X11R6/bin
     /usr/syno/{s,}bin
-    /opt/puppet/{s,}bin
+    /opt/puppetlabs/{s,}bin
     ~/.local/bin
     ~/.cargo/bin
 )
