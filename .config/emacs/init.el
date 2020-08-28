@@ -82,8 +82,6 @@
       initial-scratch-message "")
 (defun display-startup-echo-area-message () (message ""))
 
-;;(icomplete-mode 1)
-
 ;; replace yes or no with y or n
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -137,7 +135,6 @@
  indent-tabs-mode nil
  sentence-end-double-space nil
  term-mode-hook nil
- ;; isearch-allow-scroll t
  diff-switches "-u"
  vc-follow-symlinks 1)
 
@@ -282,15 +279,6 @@
   (goto-char (point-min))
   (while (search-forward "\r" nil t) (replace-match "")))
 
-;; (defun text-autoformat-region ()
-;;   "Call Text::Autoformat interactively on region"
-;;   (interactive)
-;;   (shell-command-on-region
-;;    (region-beginning) (region-end)
-;;    "perl -MText::Autoformat -e \"{autoformat{all=>1, renumber=>0, justify=>'full',
-;;    left=>0, right=>72};}\""
-;;    (current-buffer) t) )
-
 (defun recenter-to-first-line ()
   "Recenter to the first screenline."
   (interactive)
@@ -360,14 +348,14 @@
 (add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
 
 ;; Themes and stuff
-                                        ; Yes, all themes are safe.
+;; Yes, all themes are safe.
 (setq custom-safe-themes t)
 (load-theme 'zenburn t)
 
-;; (custom-theme-set-faces
-;;  'zenburn
-;;  '(font-lock-comment-face ((t (:foreground "#DFAF8F"))))
-;;  '(font-lock-comment-delimiter-face ((t (:foreground "#DFAF8F")))))
+(custom-theme-set-faces
+ 'zenburn
+ '(font-lock-comment-face ((t (:foreground "#DFAF8F"))))
+ '(font-lock-comment-delimiter-face ((t (:foreground "#DFAF8F")))))
 
 
 ;; (defun load-random-theme ()
@@ -388,7 +376,7 @@
 
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" config-path))
 
-                                        ; Theme for the toolbar:
+;; Theme for the toolbar:
 (require 'airline-themes)
 (load-theme 'airline-understated t)
 
