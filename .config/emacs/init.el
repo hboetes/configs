@@ -406,11 +406,7 @@
               (add-to-list 'default-frame-alist '(height . 42))
               (add-to-list 'default-frame-alist '(width  . 144))))
 
-;; Byte compile anything that needs compiling. If it doesn't, run:
-;;   find ~/.config/emacs.d -name '*.elc' -delete
-;; (byte-recompile-directory (expand-file-name config-path) 0)
-
 (require 'smartparens-config)
-;; This makes text from an emacs console windows c&p able without trailing whitespace.
-;;(unless window-system (set-face-attribute 'default nil :background "unspecified-bg"))
+;; This makes text from an emacs console windows c&p able without
+;; trailing whitespace.
 (unless window-system (custom-set-faces   '(default ((t (:background "unspecified-bg"))))))
