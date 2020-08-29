@@ -21,3 +21,5 @@ sourcepath \
     $ZDOTDIR/$(uname) \
     $ZDOTDIR/$(uname -n) \
     $ZDOTDIR/${USER}_$(uname -n)
+
+[[ -f ~/.zlocal ]] && source ~/.zlocal

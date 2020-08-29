@@ -1,4 +1,4 @@
-test -f /etc/debian_version || return
+[[ -d /etc/apt ]] || return
 
 export DEBFULLNAME="Han Boetes"
 export DEBEMAIL="hboetes@gmail.com"
@@ -68,3 +68,9 @@ apt-upgrade()
         echo "debfoster?"
     fi
 }
+
+if [ -f /var/run/reboot-required ]; then
+        cat << EOF
+^[[0;33mYour computer has been upgraded and a reboot is required. Please reboot at your convenience.^[[0m
+EOF
+fi
