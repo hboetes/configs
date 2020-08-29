@@ -67,7 +67,8 @@ unset WORDCHARS
 # Don't wanna know I got new mail :P
 unset mailpath MAILCHECK
 
-export GIT_AUTHOR_NAME="$(getent passwd $USER|awk -F : '{gsub(",",""); print $5}')"
-export GIT_AUTHOR_EMAIL="$USER@$DOMAIN"
+# If you don't like what is set here, I recommend you edit ~/.zlocal
+export GIT_AUTHOR_NAME="${GIT_AUTHOR_NAME:-$(getent passwd $USER|awk -F : '{print $5}')}"
+export GIT_AUTHOR_EMAIL="${GIT_AUTHOR_EMAIL:-$USER@DOMAIN}"
 export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
