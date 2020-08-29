@@ -1,46 +1,42 @@
 [user]
-        email = hboetes@gmail.com
-        name = Han Boetes
+email = hboetes@gmail.com
+name = Han Boetes
 
 [github]
-        user = Han Boetes
+user = Han Boetes
 
 [push]
-        default = simple
+default = simple
 
 [color]
-        ui          = auto
-        branch      = auto
-        diff        = auto
-        log         = auto
-        interactive = auto
-        status      = auto
-        pager       = true
-[gc]
-        autoDetach = false
+ui          = auto
+branch      = auto
+diff        = auto
+log         = auto
+interactive = auto
+status      = auto
+pager       = true
 
-# [pager]
-#         log  = diff-highlight | less
-#         show = diff-highlight | less
-#         diff = diff-highlight | less
+[gc]
+autoDetach = false
 
 [core]
-        pager = delta
+pager = delta
 
 [delta]
-        # features = side-by-side line-numbers decorations
-        whitespace-error-style = 22 reverse
-        # plus-color = "#012800"
-        # minus-color = "#340001"
-        syntax-theme = Monokai Extended
+# features = side-by-side line-numbers decorations
+whitespace-error-style = 22 reverse
+plus-color = "#012800"
+minus-color = "#340001"
+syntax-theme = Monokai Extended
 
-# [delta "decorations"]
-#         commit-decoration-style = bold yellow box ul
-#         file-style = bold yellow ul
-#         file-decoration-style = none
+[delta "decorations"]
+commit-decoration-style = bold yellow box ul
+file-style = bold yellow ul
+file-decoration-style = none
 
 [interactive]
-    diffFilter = delta --color-only
+diffFilter = delta --color-only
 
 [diff]
-    colorMoved = default
+colorMoved = default
