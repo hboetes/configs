@@ -410,3 +410,5 @@
 ;; This makes text from an emacs console windows c&p able without
 ;; trailing whitespace.
 (unless window-system (custom-set-faces   '(default ((t (:background "unspecified-bg"))))))
+
+(magit-delta-mode)
