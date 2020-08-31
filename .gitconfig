@@ -28,7 +28,7 @@ pager = delta
 whitespace-error-style = 22 reverse
 plus-color = "#012800"
 minus-color = "#340001"
-syntax-theme = Monokai Extended
+syntax-theme = zenburn
 
 [delta "decorations"]
 commit-decoration-style = bold yellow box ul

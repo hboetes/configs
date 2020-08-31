@@ -357,22 +357,22 @@
  '(font-lock-comment-face ((t (:foreground "#DFAF8F"))))
  '(font-lock-comment-delimiter-face ((t (:foreground "#DFAF8F")))))
 
+;; This function sets a random theme: You can trigger it with: m-x load-random-theme
+(defun load-random-theme ()
+  "Load any random theme from the available ones."
+  (interactive)
 
-;; (defun load-random-theme ()
-;;   "Load any random theme from the available ones."
-;;   (interactive)
+  ;; disable any previously set theme
+  (if (boundp 'theme-of-the-day)
+      (progn
+        (disable-theme theme-of-the-day)
+        (makunbound 'theme-of-the-day)))
 
-;;   ;; disable any previously set theme
-;;   (if (boundp 'theme-of-the-day)
-;;       (progn
-;;         (disable-theme theme-of-the-day)
-;;         (makunbound 'theme-of-the-day)))
-
-;;   (defvar themes-list (custom-available-themes))
-;;   (defvar theme-of-the-day (nth (random (length themes-list))
-;;                                 themes-list))
-;;   (load-theme (princ theme-of-the-day) t))
-;; ;(load-random-theme)
+  (defvar themes-list (custom-available-themes))
+  (defvar theme-of-the-day (nth (random (length themes-list))
+                                themes-list))
+  (load-theme (princ theme-of-the-day) t))
+;; (load-random-theme)
 
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" config-path))
 
@@ -406,9 +406,11 @@
               (add-to-list 'default-frame-alist '(height . 42))
               (add-to-list 'default-frame-alist '(width  . 144))))
 
+;;https://github.com/Fuco1/smartparens
 (require 'smartparens-config)
+
 ;; This makes text from an emacs console windows c&p able without
 ;; trailing whitespace.
 (unless window-system (custom-set-faces   '(default ((t (:background "unspecified-bg"))))))
-
+;; Always enable magit-delta-mode.
 (magit-delta-mode)
