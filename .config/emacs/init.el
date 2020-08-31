@@ -406,9 +406,12 @@
               (add-to-list 'default-frame-alist '(height . 42))
               (add-to-list 'default-frame-alist '(width  . 144))))
 
+;;https://github.com/Fuco1/smartparens
 (require 'smartparens-config)
+
 ;; This makes text from an emacs console windows c&p able without
 ;; trailing whitespace.
 (unless window-system (custom-set-faces   '(default ((t (:background "unspecified-bg"))))))
 
+;; Always enable magit-delta-mode.
 (magit-delta-mode)
