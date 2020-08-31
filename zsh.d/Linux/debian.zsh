@@ -70,7 +70,5 @@ apt-upgrade()
 }
 
 if [ -f /var/run/reboot-required ]; then
-        cat << EOF
-^[[0;33mYour computer has been upgraded and a reboot is required. Please reboot at your convenience.^[[0m
-EOF
+    echo "$fg[yellow]Your computer has been upgraded and a reboot is required. Please reboot at your convenience.$fg_no_bold[default]"
 fi
