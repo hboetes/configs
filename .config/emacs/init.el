@@ -357,22 +357,22 @@
  '(font-lock-comment-face ((t (:foreground "#DFAF8F"))))
  '(font-lock-comment-delimiter-face ((t (:foreground "#DFAF8F")))))
 
+;; This function sets a random theme: You can trigger it with: m-x load-random-theme
+(defun load-random-theme ()
+  "Load any random theme from the available ones."
+  (interactive)
 
-;; (defun load-random-theme ()
-;;   "Load any random theme from the available ones."
-;;   (interactive)
+  ;; disable any previously set theme
+  (if (boundp 'theme-of-the-day)
+      (progn
+        (disable-theme theme-of-the-day)
+        (makunbound 'theme-of-the-day)))
 
-;;   ;; disable any previously set theme
-;;   (if (boundp 'theme-of-the-day)
-;;       (progn
-;;         (disable-theme theme-of-the-day)
-;;         (makunbound 'theme-of-the-day)))
-
-;;   (defvar themes-list (custom-available-themes))
-;;   (defvar theme-of-the-day (nth (random (length themes-list))
-;;                                 themes-list))
-;;   (load-theme (princ theme-of-the-day) t))
-;; ;(load-random-theme)
+  (defvar themes-list (custom-available-themes))
+  (defvar theme-of-the-day (nth (random (length themes-list))
+                                themes-list))
+  (load-theme (princ theme-of-the-day) t))
+;; (load-random-theme)
 
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" config-path))
 
