@@ -378,7 +378,7 @@
 
 ;; Theme for the toolbar:
 (require 'airline-themes)
-(load-theme 'airline-understated t)
+(load-theme 'airline-ouo t)
 
 (setq
  powerline-utf-8-separator-left        #xe0b0
