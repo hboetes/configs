@@ -189,9 +189,6 @@
 (add-to-list 'auto-mode-alist '("/etc/rc*" . sh-mode))
 (add-to-list 'auto-mode-alist '("/var/tmp/rc*" . sh-mode))
 
-;; For cvs changelog files
-(add-to-list 'auto-mode-alist '("cvs*" . text-mode))
-
 ;; Enable `a' in dired-mode, to open files/dirs in the same buffer.
 (put 'dired-find-alternate-file 'disabled nil)
 
@@ -199,6 +196,7 @@
 (autoload 'dns-mode "dns-mode" "Major mode for viewing named zone files." t)
 (add-to-list 'auto-mode-alist '("/etc/bind/*" . dns-mode))
 (add-to-list 'auto-mode-alist '("/var/named/*" . dns-mode))
+(add-to-list 'auto-mode-alist '("/var/nsd/zones/*" . dns-mode))
 (add-to-list 'auto-mode-alist '("/var/tmp/boetes*.org" . dns-mode))
 
 ;; post for email-editing with mutt
