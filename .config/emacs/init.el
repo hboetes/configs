@@ -322,17 +322,16 @@
 (global-set-key [mouse-2]     'yank)
 ;; I type too fast.
 (global-set-key "\C-x\C-k"    'kill-buffer)
-;; terminal
 (global-set-key  [f3]         'term-with-zsh-as-shell)
 ;; replace c-x c-q with something more usefull
 (global-set-key  "\C-x\C-q"   'save-buffers-kill-emacs)
-(global-set-key  "\C-cr"   'delete-rectangle)
+(global-set-key  "\C-cr"      'delete-rectangle)
 ;; Set a global key for autoformat region
 (global-set-key (kbd "C-c k") 'text-autoformat-region)
 (global-set-key  [f9]         'select-until-end-of-line)
-(global-set-key "\C-c s" 'replace-string)
-(global-set-key "\C-c r" 'replace-regex)
-(global-set-key "\C-w" 'unix-werase-or-kill)
+(global-set-key "\C-c s"      'replace-string)
+(global-set-key "\C-c r"      'replace-regex)
+(global-set-key "\C-w"        'unix-werase-or-kill)
 (global-set-key (kbd "<C-right>")  'windmove-right)
 (global-set-key (kbd "<C-left>")   'windmove-left)
 (global-set-key (kbd "<C-up>")     'windmove-up)
