@@ -109,11 +109,6 @@
 ;; 8 space tabs are inserted when you press <TAB> in certain modes.
 (setq default-tab-stop-list 8)
 
-;; Toggle on ``Just-in-time'' lock mode to make it faster. New with
-;; emacs21
-(require 'jit-lock)
-(setq jit-lock-stealth-time 1)
-
 ;; nice mode for various config-files.
 (require 'generic-x)
 
