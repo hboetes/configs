@@ -1,11 +1,21 @@
-command -v colordiff >& /dev/null || return 0
+if isinst delta; then
+    diff()
+    {
+        delta $*
+        return 0
+    }
+    export BAT_PAGER=less
+    export GIT_PAGER=delta
+fi
+
+isinst colordiff || return 0
 diff()
 {
     /usr/bin/diff -u $* | colordiff
 }
 
-command -v diff-highlight >& /dev/null || return 0
+isinst diff-highlight || return 0
 diff()
 {
-    /usr/bin/diff -u $* | diff-highlight| colordiff
+    /usr/bin/diff -u $* | diff-highlight | colordiff
 }

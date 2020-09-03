@@ -1,4 +1,3 @@
-# -*- mode: sh -*-
 doit()
 {
     doithome=~/.doit
@@ -6,7 +5,7 @@ doit()
         mkdir $doithome
     fi
 
-    if command -v greadlink >& /dev/null; then
+    if isinst greadlink; then
         PWD_REAL=$(greadlink -f $PWD)
     else
         PWD_REAL=$(readlink -f $PWD)

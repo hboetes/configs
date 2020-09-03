@@ -3,8 +3,10 @@ if ! id -u |\grep -q '^0$'; then
     alias visudo='VISUAL=sudoedit EDITOR=sudoedit sudo visudo'
 fi
 
-alias rsync='rsync -a --info=progress2 --partial'
-alias vsync='rsync --modify-window=1 -rtv --delete --no-p --no-g'
+if isinst rsync; then
+    alias rsync='rsync -a --info=progress2 --partial'
+    alias vsync='rsync --modify-window=1 -rtv --delete --no-p --no-g'
+fi
 
 # My shells often last longer than the settings.
 alias r="rehash"
@@ -22,22 +24,22 @@ alias df='df -h | \grep -v \^tmpfs'
 alias cvsup='cvs -q up -PAd'
 alias c='cd; clear'
 
-command -v htop   > /dev/null && alias top='htop'
-command -v geeqie > /dev/null && alias gqview='geeqie'
-command -v wcalc  > /dev/null && alias calc='wcalc'
-command -v pwgen  > /dev/null && alias pwgen='pwgen -y 12 1'
+isinst htop   && alias top='htop'
+isinst geeqie && alias gqview='geeqie'
+isinst wcalc  && alias calc='wcalc'
+isinst pwgen  && alias pwgen='pwgen -y 12 1'
+# To check which compiler was used to compile a binary.
+isinst objdump && alias which_compiler='objdump --full-contents --section=.comment'
+isinst mycli   && alias mycli='LANG=C.UTF8 LC_ALL=C.UTF-8 mycli'
+isinst xclip   && alias xclip_image='xclip -selection clipboard -t image/png -i'
 
 # Global aliases
 alias -g L='|less'
 alias -g G='|grep'
 alias -g H='|head'
 alias -g T='|tail'
+alias -g S='|sort'
 
 alias genpasswd='< /dev/urandom tr -dc "a-zA-Z0-9" | dd count=1 bs=12 2> /dev/null; echo'
 alias genpasswd2='< /dev/urandom tr -dc "[:graph:]" | dd count=1 bs=12 2> /dev/null; echo'
 alias genpin='< /dev/urandom tr -dc "0-9" | dd count=1 bs=4 2> /dev/null; echo'
-
-# To check which compiler was used to compile a binary.
-alias which_compiler='objdump --full-contents --section=.comment'
-alias mycli='LANG=C.UTF8 LC_ALL=C.UTF-8 mycli'
-alias xclip_image='xclip -selection clipboard -t image/png -i'
