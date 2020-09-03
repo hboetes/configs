@@ -1,11 +1,11 @@
-if command -v gls > /dev/null; then
+if isinst gls; then
     alias ls='gls --color=auto --quoting-style=literal'
-elif command -v colorls > /dev/null; then
+elif isinst colorls; then
     alias ls='colorls -FG'
 fi
 
 alias mutt='mutt -y'
 
-if command -v dtpstree >& /dev/null; then
+if isinst dtpstree; then
     alias pstree='dtpstree'
 fi

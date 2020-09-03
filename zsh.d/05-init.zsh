@@ -54,10 +54,6 @@ export LC_TIME=en_GB.UTF-8
 export LC_COLLATE=C
 export LC_ALL
 export TZ=Europe/Vienna
-if command -v delta >& /dev/null; then
-    export BAT_PAGER=less
-    export GIT_PAGER=delta
-fi
 
 # Only set this variable if running in X
 [ "$XAUTHORITY" ] && export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'

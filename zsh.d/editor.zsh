@@ -5,7 +5,7 @@ if [ $UID -eq 0 ]; then
 fi
 
 for editor in $editors; do
-    if command -v $editor > /dev/null; then
+    if isinst $editor; then
         export EDITOR==$editor
         export VISUAL=$EDITOR
         export GIT_EDITOR=$EDITOR

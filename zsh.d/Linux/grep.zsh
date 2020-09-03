@@ -1,4 +1,4 @@
-if command -v ag > /dev/null; then
+if isinst ag; then
     alias ag="ACK_PAGER_COLOR='less -x4SRFX' ag --nonumbers --noaffinity"
     alias grep=ag
     function zgrep() {
@@ -8,7 +8,7 @@ if command -v ag > /dev/null; then
             zcat $i| ag $search
         done
     }
-elif command -v ack > /dev/null; then
+elif isinst ack; then
     alias ack='ACK_PAGER_COLOR="less -x4SRFX" ack'
     alias grep=ack
 fi
