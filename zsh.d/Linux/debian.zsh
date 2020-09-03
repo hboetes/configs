@@ -40,7 +40,7 @@ apt-upgrade()
             SC=3
             ;;
         *)
-            SS='linux-image-5.*'
+            SS='linux-image*5.*'
             SC=4
             ;;
     esac
