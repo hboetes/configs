@@ -87,7 +87,7 @@
 
 ;; Automatically invoke ``font-lock-mode'' for all major modes.
 ;; Set maximum syntax highlighting.
-(global-font-lock-mode 1)
+(setq global-font-lock-mode 1)
 ;; Set the highlighted regions when copying
 (setq transient-mark-mode 1)
 ;; Enable highlighting when searching
@@ -102,7 +102,7 @@
 (setq help-C-source-directory nil)
 
 ;; Automatic opening and saving of gzipped files.
-(auto-compression-mode 1)
+(setq auto-compression-mode 1)
 
 ;; 8 space tabs for display of literal <TAB> characters
 (setq tab-width 8)
