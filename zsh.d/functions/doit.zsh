@@ -5,7 +5,7 @@ doit()
         mkdir $doithome
     fi
 
-    if isinst greadlink; then
+    if isinpath greadlink; then
         PWD_REAL=$(greadlink -f $PWD)
     else
         PWD_REAL=$(readlink -f $PWD)

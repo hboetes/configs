@@ -1,4 +1,4 @@
-if isinst ag; then
+if isinpath ag; then
     alias ag="ACK_PAGER_COLOR='less -x4SRFX' ag --nonumbers --noaffinity"
     alias grep=ag
     function zgrep() {
@@ -8,7 +8,7 @@ if isinst ag; then
             zcat $i| ag $search
         done
     }
-elif isinst ack; then
+elif isinpath ack; then
     alias ack='ACK_PAGER_COLOR="less -x4SRFX" ack'
     alias grep=ack
 fi

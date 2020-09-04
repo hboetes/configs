@@ -3,7 +3,7 @@ if ! id -u |\grep -q '^0$'; then
     alias visudo='VISUAL=sudoedit EDITOR=sudoedit sudo visudo'
 fi
 
-if isinst rsync; then
+if isinpath rsync; then
     alias rsync='rsync -a --info=progress2 --partial'
     alias vsync='rsync --modify-window=1 -rtv --delete --no-p --no-g'
 fi
@@ -24,14 +24,14 @@ alias df='df -h | \grep -v \^tmpfs'
 alias cvsup='cvs -q up -PAd'
 alias c='cd; clear'
 
-isinst htop   && alias top='htop'
-isinst geeqie && alias gqview='geeqie'
-isinst wcalc  && alias calc='wcalc'
-isinst pwgen  && alias pwgen='pwgen -y 12 1'
+isinpath htop   && alias top='htop'
+isinpath geeqie && alias gqview='geeqie'
+isinpath wcalc  && alias calc='wcalc'
+isinpath pwgen  && alias pwgen='pwgen -y 12 1'
 # To check which compiler was used to compile a binary.
-isinst objdump && alias which_compiler='objdump --full-contents --section=.comment'
-isinst mycli   && alias mycli='LANG=C.UTF8 LC_ALL=C.UTF-8 mycli'
-isinst xclip   && alias xclip_image='xclip -selection clipboard -t image/png -i'
+isinpath objdump && alias which_compiler='objdump --full-contents --section=.comment'
+isinpath mycli   && alias mycli='LANG=C.UTF8 LC_ALL=C.UTF-8 mycli'
+isinpath xclip   && alias xclip_image='xclip -selection clipboard -t image/png -i'
 
 # Global aliases
 alias -g L='|less'

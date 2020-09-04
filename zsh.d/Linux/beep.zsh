@@ -1,7 +1,7 @@
 beep()
 {
     keep=$?
-    if ! isinst espeak; then
+    if ! isinpath espeak; then
         echo install espeak
         return $keep
     fi

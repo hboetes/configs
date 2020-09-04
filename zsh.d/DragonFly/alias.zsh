@@ -1,11 +1,11 @@
-if isinst gls; then
+if isinpath gls; then
     alias ls='gls --color=auto --quoting-style=literal'
-elif isinst colorls; then
+elif isinpath colorls; then
     alias ls='colorls -FG'
 fi
 
 alias mutt='mutt -y'
 
-if isinst dtpstree; then
+if isinpath dtpstree; then
     alias pstree='dtpstree'
 fi

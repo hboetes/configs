@@ -1,4 +1,4 @@
-if isinst delta; then
+if isinpath delta; then
     diff()
     {
         delta $*
@@ -8,13 +8,13 @@ if isinst delta; then
     export GIT_PAGER=delta
 fi
 
-isinst colordiff || return 0
+isinpath colordiff || return 0
 diff()
 {
     /usr/bin/diff -u $* | colordiff
 }
 
-isinst diff-highlight || return 0
+isinpath diff-highlight || return 0
 diff()
 {
     /usr/bin/diff -u $* | diff-highlight | colordiff

@@ -1,6 +1,6 @@
-if isinst /usr/local/bin/gls; then
+if isinpath /usr/local/bin/gls; then
     alias ls='/usr/local/bin/gls --color=auto'
 else
     alias ls='ls'
 fi
-isinst gtr && alias tr=gtr
+isinpath gtr && alias tr=gtr

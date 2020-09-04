@@ -6,6 +6,6 @@ if [[ $fqdn != $hostname ]]; then
 fi
 
 # I do this about 100 times so let's create a function for it.
-isinst() {
+isinpath() {
     command -v $1 >& /dev/null
 }

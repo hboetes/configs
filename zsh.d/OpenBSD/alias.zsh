@@ -1,6 +1,6 @@
-if isinst gls; then
+if isinpath gls; then
     alias ls='gls --color=auto --quoting-style=literal'
-elif isinst colorls; then
+elif isinpath colorls; then
     alias ls='colorls -FG'
 fi
 
@@ -8,8 +8,8 @@ local uname_r=$(uname -r)
 uname_r=${uname_r//./_}
 alias cvsup_stable="cvs -q up -rOPENBSD_$uname_r -Pd"
 
-isinst mutt && alias mutt='mutt -y'
+isinpath mutt && alias mutt='mutt -y'
 
-if isinst dtpstree; then
+if isinpath dtpstree; then
     alias pstree='dtpstree'
 fi

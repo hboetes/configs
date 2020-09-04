@@ -3,7 +3,7 @@
 export DEBFULLNAME="Han Boetes"
 export DEBEMAIL="hboetes@gmail.com"
 
-if isinst quilt; then
+if isinpath quilt; then
     alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
 fi
 
@@ -27,7 +27,7 @@ apt-removerc()
 
 apt-upgrade()
 {
-    if isinst apt-metalink; then
+    if isinpath apt-metalink; then
         local aptgetter=apt-metalink
     else
         local aptgetter=apt
