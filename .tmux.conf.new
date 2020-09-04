@@ -10,6 +10,7 @@ bind C-t send-prefix
 bind t send-prefix
 
 set -g default-terminal "screen-256color"
+set -ga terminal-overrides ",xterm-256color:Tc"
 
 # make sure window 0 is never created
 set -g base-index 1
