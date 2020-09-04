@@ -29,6 +29,7 @@ whitespace-error-style = 22 reverse
 plus-color = "#012800"
 minus-color = "#340001"
 syntax-theme = zenburn
+tabs = 8
 
 [delta "decorations"]
 commit-decoration-style = bold yellow box ul
