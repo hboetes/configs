@@ -339,7 +339,7 @@
 (add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
 (add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
 
-;; Themes and stuff
+;; Themes and stuff: m-x describe-face
 ;; Yes, all themes are safe.
 (setq custom-safe-themes t)
 (load-theme 'zenburn t)
