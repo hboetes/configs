@@ -205,4 +205,4 @@ workspace_layout default
 #smart_gaps on
 #smart_gaps inverse_outer
 
-exec --no-startup-id xss-lock -n /home/han/.bin/dim -- /home/han/.bin/lockmeup
+# exec --no-startup-id xss-lock -l -n /home/han/.bin/dim -- /home/han/.bin/lockmeup
