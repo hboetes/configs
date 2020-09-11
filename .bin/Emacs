@@ -1,2 +1,2 @@
 #!/bin/sh
-emacsclient -c "$@" -a ''
+TERM=xterm-24bit emacsclient -c "$@" -a ''
