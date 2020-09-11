@@ -6,7 +6,6 @@ if isinpath delta; then
     }
     export BAT_PAGER=less
     export GIT_PAGER=delta
-    export BAT_THEME=base16
 fi
 
 isinpath colordiff || return 0
