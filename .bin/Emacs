@@ -1,2 +1,3 @@
 #!/bin/sh
-TERM=xterm-24bit emacsclient -c "$@" -a ''
+# You can generate this terminal with tic -x -o ~/.terminfo ~/.configs/terminfo-24bit.src
+TERM=xterm-24bit emacsclient -nw "$@" -a ''
