@@ -347,7 +347,8 @@
 (custom-theme-set-faces
  'zenburn
  '(font-lock-comment-face ((t (:foreground "#DFAF8F"))))
- '(font-lock-comment-delimiter-face ((t (:foreground "#DFAF8F")))))
+ '(font-lock-comment-delimiter-face ((t (:foreground "#DFAF8F"))))
+ '(region ((t (:extend t :background "peru")))))
 
 ;; This function sets a random theme: You can trigger it with: m-x load-random-theme
 (defun load-random-theme ()
