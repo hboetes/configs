@@ -41,3 +41,5 @@ diffFilter = delta --color-only
 
 [diff]
 colorMoved = default
+[pull]
+	rebase = true
