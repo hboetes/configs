@@ -26,7 +26,7 @@ name2color()
     fi
     if [[ $TERM == *-256color ]]; then
         ((color = sum % 256))
-        sed -i "s|set-option -g status-fg .*|set-option -g status-fg colour$color|" ~/.tmux.local
+        [[ -e ~/.tmux.local ]] && sed -i "s|set-option -g status-fg .*|set-option -g status-fg colour$color|" ~/.tmux.local
         color="38;5;$color"
     else
         ((color = sum % 7 + 31))
