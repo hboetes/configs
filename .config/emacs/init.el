@@ -17,7 +17,7 @@
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(zenburn-theme magit-delta magit crontab-mode csv-mode smartparens yaml-mode eterm-256color airline-themes flycheck ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
+   '(autopair zenburn-theme magit-delta magit crontab-mode csv-mode smartparens yaml-mode eterm-256color airline-themes flycheck ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
  '(safe-local-variable-values
    '((epa-file-cache-passphrase-for-symmetric-encryption . 1)
      (add-log-time-zone-rule . t)))
@@ -407,3 +407,6 @@
 (unless window-system (custom-set-faces   '(default ((t (:background "unspecified-bg"))))))
 ;; Always enable magit-delta-mode.
 (magit-delta-mode)
+
+(require 'autopair)
+(autopair-global-mode)
