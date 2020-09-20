@@ -24,7 +24,7 @@
 # SETTINGS
 #
 # Below this battery percentage I'd like to get notified.
-my $range = 20;
+my $range = 30;
 # Below this I start nagging with a red battery indicator.
 my $nag = 15;
 # Below this I want my system to go to sleep.
