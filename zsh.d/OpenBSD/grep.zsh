@@ -1,4 +1,7 @@
-if isinpath ag; then
+if isinpath rg; then
+    alias grep=rg
+    alias zgrep='rg -z'
+elif isinpath ag; then
     alias ag='ACK_PAGER_COLOR="w3m" ag --nonumbers'
     alias grep=ag
     function zgrep() {
