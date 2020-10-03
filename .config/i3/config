@@ -92,7 +92,7 @@ bindsym $mod+x exec "sleep 1; xset dpms force suspend"
 bindsym $mod+Prior  exec "volume +"
 bindsym $mod+Next   exec "volume -"
 bindcode 232  exec "backlight -"
-bindcode 233   exec "backlight +"
+bindcode 233  exec "backlight +"
 
 # focus the child container
 #bindcode $mod+d focus child

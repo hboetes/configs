@@ -17,7 +17,7 @@
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(rust-mode autopair lsp-mode zenburn-theme magit-delta magit crontab-mode csv-mode smartparens yaml-mode eterm-256color airline-themes flycheck ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
+   '(rust-mode lsp-mode zenburn-theme magit-delta magit crontab-mode csv-mode yaml-mode eterm-256color airline-themes flycheck ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
  '(safe-local-variable-values
    '((epa-file-cache-passphrase-for-symmetric-encryption . 1)
      (add-log-time-zone-rule . t)))
@@ -350,6 +350,21 @@
  '(font-lock-comment-delimiter-face ((t (:foreground "#DFAF8F"))))
  '(region ((t (:extend t :background "peru")))))
 
+;; Theme for the toolbar:
+(require 'airline-themes)
+(load-theme 'airline-ouo t)
+
+(setq
+ powerline-utf-8-separator-left        #xe0b0
+ powerline-utf-8-separator-right       #xe0b2
+ airline-utf-glyph-separator-left      #xe0b0
+ airline-utf-glyph-separator-right     #xe0b2
+ airline-utf-glyph-subseparator-left   #xe0b1
+ airline-utf-glyph-subseparator-right  #xe0b3
+ airline-utf-glyph-branch              #xe0a0
+ airline-utf-glyph-readonly            #xe0a2
+ airline-utf-glyph-linenumber          #xe0a1)
+
 ;; This function sets a random theme: You can trigger it with: m-x load-random-theme
 (defun load-random-theme ()
   "Load any random theme from the available ones."
@@ -367,23 +382,6 @@
   (load-theme (princ theme-of-the-day) t))
 ;; (load-random-theme)
 
-(add-to-list 'custom-theme-load-path (expand-file-name "themes" config-path))
-
-;; Theme for the toolbar:
-(require 'airline-themes)
-(load-theme 'airline-ouo t)
-
-(setq
- powerline-utf-8-separator-left        #xe0b0
- powerline-utf-8-separator-right       #xe0b2
- airline-utf-glyph-separator-left      #xe0b0
- airline-utf-glyph-separator-right     #xe0b2
- airline-utf-glyph-subseparator-left   #xe0b1
- airline-utf-glyph-subseparator-right  #xe0b3
- airline-utf-glyph-branch              #xe0a0
- airline-utf-glyph-readonly            #xe0a2
- airline-utf-glyph-linenumber          #xe0a1)
-
 
 (add-hook 'term-mode-hook #'eterm-256color-mode)
 
@@ -399,16 +397,11 @@
               (add-to-list 'default-frame-alist '(height . 42))
               (add-to-list 'default-frame-alist '(width  . 144))))
 
-;;https://github.com/Fuco1/smartparens
-(require 'smartparens-config)
-
 ;; This makes text from an emacs console windows c&p able without
 ;; trailing whitespace.
 (unless window-system (custom-set-faces   '(default ((t (:background "unspecified-bg"))))))
+
 ;; Always enable magit-delta-mode.
 (magit-delta-mode)
-
-(require 'autopair)
-(autopair-global-mode)
 
 (require 'rust-mode)
