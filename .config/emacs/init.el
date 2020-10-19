@@ -342,13 +342,14 @@
 ;; Themes and stuff: m-x describe-face
 ;; Yes, all themes are safe.
 (setq custom-safe-themes t)
-(load-theme 'zenburn t)
+(load-theme 'modus-vivendi t)
 
-(custom-theme-set-faces
- 'zenburn
- '(font-lock-comment-face ((t (:foreground "#DFAF8F"))))
- '(font-lock-comment-delimiter-face ((t (:foreground "#DFAF8F"))))
- '(region ((t (:extend t :background "peru")))))
+;;(load-theme 'zenburn t)
+;; (custom-theme-set-faces
+;;  'zenburn
+;;  '(font-lock-comment-face ((t (:foreground "#DFAF8F"))))
+;;  '(font-lock-comment-delimiter-face ((t (:foreground "#DFAF8F"))))
+;;  '(region ((t (:extend t :background "peru")))))
 
 ;; Theme for the toolbar:
 (require 'airline-themes)
