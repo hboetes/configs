@@ -1,6 +1,6 @@
 if isinpath rg; then
-    alias grep=rg
-    alias zgrep='rg -z'
+    alias grep='rg -i'
+    alias zgrep='rg -iz'
 elif isinpath ag; then
     alias ag='ACK_PAGER_COLOR="w3m" ag --nonumbers'
     alias grep=ag
