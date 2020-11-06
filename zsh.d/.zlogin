@@ -33,7 +33,7 @@ if [[ $TTY == /dev/tty2 ]]; then
     exit 0
 fi
 
-if [ "${TTY#/dev/ttyC}" != "$TTY" ]; then
+if [[ $TTY == /dev/tty* ]]; then
     export TMOUT=300
 elif [ -z "$TMUX" ]; then
     # Don't join a tmux session if we're already in it or if none is running.
