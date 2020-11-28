@@ -97,7 +97,7 @@ if ($status eq 'Discharging') {
     };
 
     if ($percent < $sleep) {
-        system("/usr/bin/sudo /usr/sbin/pm-suspend");
+        system("systemctl suspend");
     }
 
     exit($exit);
