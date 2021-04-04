@@ -1,0 +1,43 @@
+[global_config]
+  dbus = False
+  focus = mouse
+  handle_size = 5
+  borderless = True
+  extra_styling = False
+  tab_position = left
+  enabled_plugins = ""
+  suppress_multiple_term_dialog = True
+[keybindings]
+  zoom_in = <Primary>equal
+  toggle_scrollbar = None
+  broadcast_off = None
+  edit_window_title = None
+  layout_launcher = None
+  next_profile = <Primary><Alt>Up
+  previous_profile = <Primary><Alt>Down
+  help = None
+[profiles]
+  [[default]]
+    urgent_bell = True
+    icon_bell = False
+    background_darkness = 0.9
+    background_type = transparent
+    cursor_blink = False
+    cursor_color = "#d3d0c8"
+    font = monofur for Powerline 16
+    show_titlebar = False
+    scrollbar_position = hidden
+    scroll_on_keystroke = False
+    scrollback_infinite = True
+    palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000ee:#cd00cd:#00cdcd:#e5e5e5:#7f7f7f:#ff0000:#00ff00:#ffff00:#5c5cff:#ff00ff:#00ffff:#ffffff"
+    use_system_font = False
+    copy_on_selection = True
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
