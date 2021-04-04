@@ -24,6 +24,8 @@ alias df='df -h | \grep -v \^tmpfs'
 alias cvsup='CVS_RSH=ssh cvs -q up -PAd'
 alias c='cd; clear'
 
+alias less='less -x4SRFX'
+
 isinpath htop   && alias top='htop'
 isinpath geeqie && alias gqview='geeqie'
 isinpath wcalc  && alias calc='wcalc'
@@ -32,8 +34,8 @@ isinpath pwgen  && alias pwgen='pwgen -y 12 1'
 isinpath objdump && alias which_compiler='objdump --full-contents --section=.comment'
 isinpath mycli   && alias mycli='LANG=C.UTF8 LC_ALL=C.UTF-8 mycli'
 isinpath xclip   && alias xclip_image='xclip -selection clipboard -t image/png -i'
-isinpath bat     && alias cat='bat --tabs=8 --wrap character'
-isinpath batcat  && alias cat='batcat --tabs=8 --wrap character'
+isinpath bat     && alias cat='bat --tabs=8 --wrap=never --paging=never'
+isinpath batcat  && alias cat='batcat --tabs=8 --wrap character --paging=never'
 isinpath speedtest-cli  && alias speedtest-cli='speedtest-cli --bytes'
 
 # Global aliases

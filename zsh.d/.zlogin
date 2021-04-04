@@ -14,7 +14,7 @@ if ! pgrep -u $USER ssh-agent >& /dev/null; then
     ssh-agent -a $SSH_AUTH_SOCK > /dev/null 2>&1
 fi
 
-if [[ $TTY == /dev/tty2 ]]; then
+if [[ $TTY == /dev/tty3 ]]; then
     # XXX Put this in a sepperate file.
     export PATH="/home/han/.bin:/usr/local/sbin:/usr/local/bin:/sbin:/usr/sbin:/bin:/usr/bin:/usr/games:/mp3/bin"
     export TMP="$HOME/.local/tmp"
@@ -22,13 +22,18 @@ if [[ $TTY == /dev/tty2 ]]; then
     export XDG_RUNTIME_DIR=/run/user/$(id -u)
     export XDG_CURRENT_DESKTOP=i3
 
-    /usr/bin/sway &
+    sway &
     sleep 3
-    systemctl --user start redshift-gtk &
-    systemctl --user start emacs &
-    diodon &
+    redshift -m wayland -l 46.8471:15.5206 &
+    wallpaper &
+    copyq &
+    (
+        sleep 3
+        flameshot
+    ) &
+    # nm-applet &
+    # blueman-applet &
     dunst &
-    flameshot &
     exit 0
 fi
 
