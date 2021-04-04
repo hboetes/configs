@@ -1,6 +1,3 @@
-# i3 config file (v4)
-#
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
 set $mod Mod4
 set $term terminator
 
@@ -39,6 +36,12 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# split in horizontal orientation
+bindsym $mod+h split v
+
+# split in vertical orientation
+bindsym $mod+v split h
+
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
 
@@ -53,14 +56,18 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
+# focus the parent container
+# bindsym $mod+a focus parent
+
 bindsym $mod+l exec "lockmeup"
 bindsym $mod+x exec "sleep 1; xset dpms force suspend"
 bindsym $mod+Prior  exec "volume +"
 bindsym $mod+Next   exec "volume -"
 bindcode 232  exec "backlight -"
-bindcode 233  exec "backlight +"
+bindcode 233   exec "backlight +"
 
-bindsym $mod+v exec "rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
+# focus the child container
+#bindcode $mod+d focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -109,8 +116,12 @@ mode "resize" {
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status-rust ~/.config/i3/i3status-rs.conf
+        # status_command ~/.bin/myi3status
+        # status_command i3status
+        # i3bar_command "/usr/bin/i3bar"
+        status_command i3blocks
         position top
+        # tray_padding 1
         colors {
                 background #000000
                 statusline #aaaaaa
@@ -124,29 +135,33 @@ bar {
         bindsym button5 nop
 }
 
-workspace_auto_back_and_forth no
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-hide_edge_borders smart
+workspace_auto_back_and_forth no
 
 # xprop|grep WM_CLASS → WM_CLASS(STRING) = "irssi", "URxvt"
 # So always use the last word!
-for_window [class=".*"] border none
-for_window [class="^Firefox$" instance="^Download$"] floating enable
-for_window [class="XTerm"] floating enable
-for_window [class="feh"] floating enable
-for_window [class="Dunst"] floating enable
-for_window [class="^linphone"] floating enable
-for_window [class="^QjackCtl"] floating enable border normal
-for_window [class="^FLTK"] floating enable
-for_window [class="^Gnome-system-monitor"] floating enable
-for_window [class="^(E|e)macs$"] floating enable
-for_window [class="^zoom$"] floating enable
-for_window [class="^vlc$"] floating enable
-for_window [class="^Blueman-manager$"] floating enable
-for_window [class="^Toplevel$" instance="^variations$"] floating enable
+default_border none
+for_window [instance="^Firefox$" instance="^Download$"] floating enable
+for_window [instance="^Wicd-client.py$"] floating enable
+for_window [instance="^Skype$"] floating enable
+for_window [instance="XTerm"] floating enable
+for_window [instance="feh"] floating enable
+for_window [instance="Dunst"] floating enable
+for_window [instance="^linphone"] floating enable
+for_window [instance="^QjackCtl"] floating enable border normal
+for_window [instance="^FLTK"] floating enable
+for_window [instance="^Gnome-system-monitor"] floating enable
+for_window [instance="^(E|e)macs$"] floating enable
+for_window [instance="^microsip.exe$"] floating enable
+for_window [instance="^zoom$"] floating enable
+for_window [instance="^Variety$"] floating enable
+for_window [instance="^smplayer$"] floating enable
+for_window [instance="^vlc$"] floating enable
+for_window [instance="^copyq$"] floating enable
+for_window [instance="^Toplevel$" instance="^variations$"] floating enable
 
-assign [class="^Puddletag$"] 3
-assign [class="^Vncviewer$"] 8
+assign [instance="^Puddletag$"] 3
 
 
 # class                 border  backgr. text    indicator
@@ -157,3 +172,26 @@ client.urgent           #3a342f #900000 #ffffff #900000
 
 mouse_warping output
 workspace_layout default
+
+# Enable border only when have more than one window
+default_border pixel 1
+default_floating_border pixel 1
+
+# gaps inner 5
+# gaps outer 5
+# hide_edge_borders both
+# bindsym $mod+Shift+t            gaps inner current set 10; gaps outer current set 10
+# bindsym $mod+y                  gaps inner current plus 5
+# bindsym $mod+Shift+y            gaps inner current minus 5
+# bindsym $mod+Shift+d            gaps inner current set 0; gaps outer current set 0
+# bindsym $mod+z                  gaps outer current plus 5
+# bindsym $mod+Shift+z            gaps outer current minus 5
+hide_edge_borders both
+
+input * {
+    xkb_layout  "us"
+    xkb_model   "pc105"
+    xkb_options "compose:rctrl,caps:none"
+}
+
+exec ~/.bin/wallpaper
