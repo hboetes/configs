@@ -20,16 +20,15 @@ macro browser Y "!echo 'fetching... ' ; getmail 2>&1 > /dev/null &\n " "Check fo
 # w3m is a console textbrowser, replace it with whatever you want
 
 # \e means escape; esc 3 marks a message as spam ; alt-3 will also
-# work most likely Pipe messages through maildrop so they end up
-# in the right folder. This is also a test to see if the sa-learn
-# has improved the spam-filtering.
-macro index \e3 "|sa-learn --spam\ns/zspam<return>\n"             "SPAM"
-macro index \e4 "|sa-learn --ham\n"             "NO SPAM"
-macro pager \e3 "|sa-learn --spam\ns/zspam<return>\n"             "SPAM"
-macro pager \e4 "|sa-learn --ham\n"             "NO SPAM"
-#macro pager \e2 "|spamassassin-report\n"      "Test Spammicity"
-#macro index \e2 "|spamassassin-report\n"      "Test Spammicity"
-
+# work most likely. Pipe messages through maildrop so they end up in
+# the right folder. This is also a test to see if the rspamc has
+# improved the spam-filtering.
+macro index \e3 "|rspamc -h /var/run/rspamd/controller_socket learn_spam\ns/zspam<return>\n"             "SPAM"
+macro index \e4 "|rspamc -h /var/run/rspamd/controller_socket learn_ham\n"             "NO SPAM"
+macro pager \e3 "|rspamc -h /var/run/rspamd/controller_socket learn_spam\ns/zspam<return>\n"             "SPAM"
+macro pager \e4 "|rspamc -h /var/run/rspamd/controller_socket learn_ham\n"             "NO SPAM"
+macro pager \e2 "|rspamc -h /var/run/rspamd/controller_socket\n"      "Test Spammicity"
+macro index \e2 "|rspamc -h /var/run/rspamd/controller_socket\n"      "Test Spammicity"
 
 #URLview macro's
 macro attach B ":set pipe_decode\n|urlview\n:unsetpipe_decode\n" "Call urlview to extract URLs out of a message"
