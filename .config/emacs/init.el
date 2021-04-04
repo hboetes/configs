@@ -14,7 +14,7 @@
  '(mode-require-final-newline nil)
  '(mouse-autoselect-window t)
  '(package-archives
-   '(("gnu" . "https://elpa.gnu.org/packages/")
+   '(("gelpa" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
    '(rust-mode lsp-mode zenburn-theme magit-delta magit crontab-mode csv-mode yaml-mode eterm-256color airline-themes flycheck ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
@@ -340,16 +340,26 @@
 (add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
 
 ;; Themes and stuff: m-x describe-face
-;; Yes, all themes are safe.
+;; Yes, all themes are safe. >:-(
 (setq custom-safe-themes t)
-(load-theme 'modus-vivendi t)
 
-;;(load-theme 'zenburn t)
-;; (custom-theme-set-faces
-;;  'zenburn
-;;  '(font-lock-comment-face ((t (:foreground "#DFAF8F"))))
-;;  '(font-lock-comment-delimiter-face ((t (:foreground "#DFAF8F"))))
-;;  '(region ((t (:extend t :background "peru")))))
+(cond
+ ((>= emacs-major-version 28)
+  (progn
+    (load-theme 'modus-vivendi t)
+    (setq ethan-wspace-face-customized t)
+    (custom-theme-set-faces
+     'modus-vivendi
+     '(ethan-wspace-face ((t (:background "black")))))
+    ))
+ ((<= emacs-major-version 27)
+  (progn
+    (load-theme 'zenburn t)
+    (custom-theme-set-faces
+     'zenburn
+     '(font-lock-comment-face ((t (:foreground "#DFAF8F"))))
+     '(font-lock-comment-delimiter-face ((t (:foreground "#DFAF8F"))))
+     '(region ((t (:extend t :background "peru"))))))))
 
 ;; Theme for the toolbar:
 (require 'airline-themes)
@@ -404,5 +414,3 @@
 
 ;; Always enable magit-delta-mode.
 (magit-delta-mode)
-
-(require 'rust-mode)
