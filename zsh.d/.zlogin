@@ -14,7 +14,9 @@ if ! pgrep -u $USER ssh-agent >& /dev/null; then
     ssh-agent -a $SSH_AUTH_SOCK > /dev/null 2>&1
 fi
 
-if [[ $TTY == /dev/tty3 ]]; then
+return
+
+if [[ $TTY == /dev/tty2 ]]; then
     # XXX Put this in a sepperate file.
     export PATH="/home/han/.bin:/usr/local/sbin:/usr/local/bin:/sbin:/usr/sbin:/bin:/usr/bin:/usr/games:/mp3/bin"
     export TMP="$HOME/.local/tmp"
