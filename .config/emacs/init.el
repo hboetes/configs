@@ -149,7 +149,7 @@
       tramp-auto-save-directory emacs-tmp-dir)
 
 ;; Spelling
-(setq-default ispell-program-name "aspell")
+(setq-default ispell-program-name "hunspell")
 ;; Most stuff I spellcheck is in German.
 (setq ispell-local-dictionary "deutsch")
 

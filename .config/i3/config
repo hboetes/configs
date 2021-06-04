@@ -110,6 +110,7 @@ mode "resize" {
 # finds out, if available)
 bar {
         status_command i3status-rust ~/.config/i3/i3status-rs.conf
+        font pango:monofur for Powerline, FontAwesome 10
         position top
         colors {
                 background #000000
@@ -123,6 +124,7 @@ bar {
         bindsym button4 nop
         bindsym button5 nop
 }
+
 
 workspace_auto_back_and_forth no
 

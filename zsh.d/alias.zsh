@@ -21,7 +21,7 @@ alias t='l -rt'
 alias s='l -rS'
 
 alias df='df -h | \grep -v \^tmpfs'
-alias cvsup='CVS_RSH=ssh cvs -q up -PAd'
+alias cvsup='cvs -q up -PAd'
 alias c='cd; clear'
 
 alias less='less -x4SRFX'
