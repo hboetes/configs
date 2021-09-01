@@ -1,9 +1,5 @@
-local fqdn=$(hostname)
 local hostname=$(hostname -s)
-if [[ $fqdn != $hostname ]]; then
-    DOMAIN=${fqdn#*.}
-    export DOMAIN
-fi
+local DOMAIN=$(hostname -d)
 
 # I do this about 100 times so let's create a function for it.
 isinpath() {

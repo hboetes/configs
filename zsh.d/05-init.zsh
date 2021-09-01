@@ -48,11 +48,11 @@ fi
 local HOST=$(LC_ALL=C uname -n)
 # export NULLCMD=:
 export PERL_BADLANG=0
-unset  LC_ALL
-export LANG=en_US.UTF-8
-export LC_TIME=en_GB.UTF-8
-export LC_COLLATE=C
-export LC_ALL
+#unset  LC_ALL
+#export LANG=en_US.UTF-8
+#export LC_TIME=en_GB.UTF-8
+#export LC_COLLATE=C
+#export LC_ALL
 export TZ=Europe/Vienna
 
 # Only set this variable if running in X
@@ -65,7 +65,7 @@ unset mailpath MAILCHECK
 
 # If you don't like what is set here, I recommend you edit ~/.zlocal
 export GIT_AUTHOR_NAME="${GIT_AUTHOR_NAME:-$(getent passwd $USER|awk -F : '{print $5}')}"
-export GIT_AUTHOR_EMAIL="${GIT_AUTHOR_EMAIL:-$USER@DOMAIN}"
+export GIT_AUTHOR_EMAIL="${GIT_AUTHOR_EMAIL:-$USER@$DOMAIN}"
 export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 

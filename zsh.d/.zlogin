@@ -28,7 +28,6 @@ if [[ $TTY == /dev/tty2 ]]; then
     sleep 3
     redshift -m wayland -l 46.8471:15.5206 &
     wallpaper &
-    copyq &
     (
         sleep 3
         flameshot
