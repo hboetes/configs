@@ -26,7 +26,7 @@ if (/^From: tomtom@/)
         to $R/zspam
     }
 
-if (/^From: .*@paypal\./)
+if (/^From: .*@paypal\./ || /paypal@mail.paypal.at/)
     {
         to $R/paypal
     }
