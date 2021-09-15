@@ -1,5 +1,6 @@
 local hostname=$(hostname -s)
-local DOMAIN=$(hostname -d)
+# hostname -d doesn't work on OpenBSD
+local DOMAIN=$(hostname|sed -e "s|^$(hostname -s)\.||")
 
 # I do this about 100 times so let's create a function for it.
 isinpath() {
