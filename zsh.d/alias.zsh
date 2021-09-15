@@ -36,7 +36,11 @@ isinpath mycli   && alias mycli='LANG=C.UTF8 LC_ALL=C.UTF-8 mycli'
 isinpath xclip   && alias xclip_image='xclip -selection clipboard -t image/png -i'
 isinpath bat     && alias cat='bat --tabs=8 --wrap=never --paging=never'
 isinpath batcat  && alias cat='batcat --tabs=8 --wrap character --paging=never'
-isinpath czkawka_gui    && alias hiccup='czkawka_gui'
+if isinpath czkawka_gui; then
+    alias hiccup='czkawka_gui'
+elif isinpath czkawka_cli; then
+    alias hiccup='czkawka_cli'
+fi
 isinpath speedtest-cli  && alias speedtest-cli='speedtest-cli --bytes'
 
 # Global aliases
