@@ -14,7 +14,7 @@ if ! pgrep -u $USER ssh-agent >& /dev/null; then
     ssh-agent -a $SSH_AUTH_SOCK > /dev/null 2>&1
 fi
 
-return
+#return
 
 if [[ $TTY == /dev/tty2 ]]; then
     # XXX Put this in a sepperate file.
