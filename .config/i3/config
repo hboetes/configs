@@ -25,8 +25,6 @@ bindsym $mod+c exec rofi -fake-transparency -show run
 bindsym $mod+g exec rofi -fake-transparency -show ssh
 bindsym $mod+m exec rofi -fake-transparency -show window
 
-bindsym $mod+r exec pkill -USR1 redshift
-
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -60,8 +58,6 @@ bindsym $mod+Next   exec "volume -"
 bindcode 232  exec "backlight -"
 bindcode 233  exec "backlight +"
 
-bindsym $mod+v exec "rofi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
-
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -93,7 +89,6 @@ bindsym $mod+Shift+R restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+E exit
 
-# bindsym $mod+shift+R mode "resize"
 bindsym $mod+Shift+s sticky toggle
 
 
@@ -160,17 +155,4 @@ client.urgent           #3a342f #900000 #ffffff #900000
 mouse_warping output
 workspace_layout default
 
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+P mode "$mode_system"
+bindsym $mod+p exec i3exit $(echo -e 'lock\nlogout\nsuspend\nreboot\nshutdown' | rofi -fake-transparency -dmenu)
