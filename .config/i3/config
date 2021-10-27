@@ -132,8 +132,6 @@ for_window [class="^Firefox$" instance="^Download$"] floating enable
 for_window [class="XTerm"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="Dunst"] floating enable
-for_window [class="^linphone"] floating enable
-for_window [class="^QjackCtl"] floating enable border normal
 for_window [class="^FLTK"] floating enable
 for_window [class="^Gnome-system-monitor"] floating enable
 for_window [class="^(E|e)macs$"] floating enable
@@ -155,4 +153,4 @@ client.urgent           #3a342f #900000 #ffffff #900000
 mouse_warping output
 workspace_layout default
 
-bindsym $mod+p exec i3exit $(echo -e 'lock\nlogout\nsuspend\nreboot\nshutdown' | rofi -fake-transparency -dmenu)
+bindsym $mod+p exec i3exit $(echo -e 'suspend\nlock\nlogout\nreboot\nshutdown' | rofi -fake-transparency -dmenu)
