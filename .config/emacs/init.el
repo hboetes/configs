@@ -29,7 +29,9 @@
  '(transient-mark-mode 1)
  '(w3m-fill-column 80)
  '(w3m-home-page "https://google.com")
- '(w3m-key-binding 'info))
+ '(w3m-key-binding 'info)
+ '(warning-suppress-log-types '((comp) (comp) (comp)))
+ '(warning-suppress-types '((comp) (comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -405,8 +407,8 @@
           #'(lambda ()
               (add-to-list 'default-frame-alist '(left   . 0))
               (add-to-list 'default-frame-alist '(top    . 0))
-              (add-to-list 'default-frame-alist '(height . 42))
-              (add-to-list 'default-frame-alist '(width  . 144))))
+              (add-to-list 'default-frame-alist '(height . 52))
+              (add-to-list 'default-frame-alist '(width  . 200))))
 
 ;; This makes text from an emacs console windows c&p able without
 ;; trailing whitespace.
@@ -425,7 +427,7 @@ See info node `(emacs) Terminal Coding'."
     (unless window-system
       (set-keyboard-coding-system 'utf-8))))
 
-;; Run now, for non-daemon Emacs...
+;; Run now, for non-daemon Emacs…
 (my-terminal-keyboard-coding-system)
-;; ...and later, for new frames / emacsclient
+;; …and later, for new frames/emacsclient
 (add-hook 'after-make-frame-functions 'my-terminal-keyboard-coding-system)
