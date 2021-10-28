@@ -1,10 +1,10 @@
+.config/systemd/user
 .w3m/history
 .yafc/bookmarks
 .yafc/history
 .w3m/w3m*
 .mutt/aliases
 .config/i3/dmenu_progs
-.bin/zeiterfassung
 .config/emacs/**
 !.config/emacs/init.el
 .fonts/.uuid
