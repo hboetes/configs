@@ -17,7 +17,7 @@
    '(("gelpa" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(rust-mode lsp-mode zenburn-theme magit-delta magit crontab-mode csv-mode yaml-mode eterm-256color airline-themes flycheck ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
+   '(auto-package-update rust-mode lsp-mode zenburn-theme magit-delta magit crontab-mode csv-mode yaml-mode eterm-256color airline-themes flycheck ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
  '(safe-local-variable-values
    '((epa-file-cache-passphrase-for-symmetric-encryption . 1)
      (add-log-time-zone-rule . t)))
@@ -29,9 +29,7 @@
  '(transient-mark-mode 1)
  '(w3m-fill-column 80)
  '(w3m-home-page "https://google.com")
- '(w3m-key-binding 'info)
- '(warning-suppress-log-types '((comp) (comp) (comp)))
- '(warning-suppress-types '((comp) (comp))))
+ '(w3m-key-binding 'info))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -66,6 +64,12 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+(setq
+ auto-package-update-interval 7
+ auto-package-update-hide-results t
+ auto-package-update-delete-old-versions t)
+
+
 (require 'ethan-wspace)
 (global-ethan-wspace-mode 1)
 
@@ -79,9 +83,10 @@
 ;; etc etc etc. In other words...
 ;;
 ;; SHUT UP!
-(setq inhibit-default-init 1
-      inhibit-startup-message 1
-      initial-scratch-message "")
+(setq
+ inhibit-default-init 1
+ inhibit-startup-message 1
+ initial-scratch-message "")
 (defun display-startup-echo-area-message () (message ""))
 
 ;; replace yes or no with y or n
