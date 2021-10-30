@@ -1,0 +1,3 @@
+#!/bin/sh
+tmux neww sudo -u _x11 sh -c 'x11vnc -xkb -noxrecord -noxfixes -noxdamage -display :0 -auth /etc/X11/xenodm/authdir/authfiles/A:* -usepw -noshm -loop -ncache 10 -ncache_cr -
+noncache'
