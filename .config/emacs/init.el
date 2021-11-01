@@ -29,7 +29,9 @@
  '(transient-mark-mode 1)
  '(w3m-fill-column 80)
  '(w3m-home-page "https://google.com")
- '(w3m-key-binding 'info))
+ '(w3m-key-binding 'info)
+ '(warning-suppress-log-types '((comp) (comp)))
+ '(warning-suppress-types '((comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
