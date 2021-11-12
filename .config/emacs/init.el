@@ -146,7 +146,7 @@
 (setq save-place-mode 1)
 
 ;; Save all tempfiles in $TMPDIR/emacs$UID/, the same dir as the emacs
-;; server uses. It's nice to have all mess in the same place.
+;; server uses. It's nice to have all the mess in the same place.
 (defconst emacs-tmp-dir
   (format "%s%s%s/" temporary-file-directory "emacs" (user-uid)))
 (setq
