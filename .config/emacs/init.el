@@ -39,6 +39,24 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "monofur for Powerline" :foundry "unci" :slant normal :weight normal :height 158 :width normal)))))
 
+;; Fix a few bug.
+(add-hook 'term-mode-hook #'eterm-256color-mode)
+
+;; This fixes UTF8 chars in emacsclient
+(defun my-terminal-keyboard-coding-system (&optional frame)
+  "Force the terminal `keyboard-coding-system' to be `utf-8'.
+
+Prevents terminal frames using a coding system based on the locale.
+See info node `(emacs) Terminal Coding'."
+  (with-selected-frame (or frame (selected-frame))
+    (unless window-system
+      (set-keyboard-coding-system 'utf-8))))
+
+;; Run now, for non-daemon Emacs…
+(my-terminal-keyboard-coding-system)
+;; …and later, for new frames/emacsclient
+(add-hook 'after-make-frame-functions 'my-terminal-keyboard-coding-system)
+
 
 ;; Disable various bars
 (menu-bar-mode -1)
@@ -82,7 +100,7 @@
 (setq backup-by-copying-when-linked t)
 
 ;; Don't read system-init files and don't show the splash-screen
-;; etc etc etc. In other words...
+;; etc etc etc. In other words…
 ;;
 ;; SHUT UP!
 (setq
@@ -403,8 +421,6 @@
 ;; (load-random-theme)
 
 
-(add-hook 'term-mode-hook #'eterm-256color-mode)
-
 ;; set transparency
 (set-frame-parameter (selected-frame) 'alpha '(90 90))
 (add-to-list 'default-frame-alist '(alpha 90 90))
@@ -423,18 +439,3 @@
 
 ;; Always enable magit-delta-mode.
 (magit-delta-mode)
-
-;; This fixes UTF8 chars in emacsclient
-(defun my-terminal-keyboard-coding-system (&optional frame)
-  "Force the terminal `keyboard-coding-system' to be `utf-8'.
-
-Prevents terminal frames using a coding system based on the locale.
-See info node `(emacs) Terminal Coding'."
-  (with-selected-frame (or frame (selected-frame))
-    (unless window-system
-      (set-keyboard-coding-system 'utf-8))))
-
-;; Run now, for non-daemon Emacs…
-(my-terminal-keyboard-coding-system)
-;; …and later, for new frames/emacsclient
-(add-hook 'after-make-frame-functions 'my-terminal-keyboard-coding-system)
