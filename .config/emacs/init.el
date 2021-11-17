@@ -164,7 +164,7 @@ See info node `(emacs) Terminal Coding'."
 (setq save-place-mode 1)
 
 ;; Save all tempfiles in $TMPDIR/emacs$UID/, the same dir as the emacs
-;; server uses. It's nice to have all mess in the same place.
+;; server uses. It's nice to have all the mess in the same place.
 (defconst emacs-tmp-dir
   (format "%s%s%s/" temporary-file-directory "emacs" (user-uid)))
 (setq
@@ -342,15 +342,14 @@ See info node `(emacs) Terminal Coding'."
 (global-set-key [mouse-2]     'yank)
 ;; I type too fast.
 (global-set-key "\C-x\C-k"    'kill-buffer)
-(global-set-key  [f3]         'term-with-zsh-as-shell)
 ;; replace c-x c-q with something more usefull
 (global-set-key  "\C-x\C-q"   'save-buffers-kill-emacs)
 (global-set-key  "\C-cr"      'delete-rectangle)
 ;; Set a global key for autoformat region
 (global-set-key (kbd "C-c k") 'text-autoformat-region)
 (global-set-key  [f9]         'select-until-end-of-line)
-(global-set-key "\C-c s"      'replace-string)
-(global-set-key "\C-c r"      'replace-regex)
+;;(global-set-key "\C-c s"      'replace-string)
+;;(global-set-key "\C-c r"      'replace-regex)
 (global-set-key "\C-w"        'unix-werase-or-kill)
 (global-set-key (kbd "<C-right>")  'windmove-right)
 (global-set-key (kbd "<C-left>")   'windmove-left)
@@ -372,13 +371,14 @@ See info node `(emacs) Terminal Coding'."
 
 (cond
  ((>= emacs-major-version 28)
-  (progn
-    (load-theme 'modus-vivendi t)
-    (setq ethan-wspace-face-customized t)
-    (custom-theme-set-faces
-     'modus-vivendi
-     '(ethan-wspace-face ((t (:background "black")))))
-    ))
+  ;; (progn
+  ;;   (load-theme 'modus-vivendi t)
+  ;;   (setq ethan-wspace-face-customized t)
+  ;;   (custom-theme-set-faces
+  ;;    'modus-vivendi
+  ;;    '(ethan-wspace-face ((t (:background "black")))))
+  ;;   ))
+  (load-theme 'deeper-blue t))
  ((<= emacs-major-version 27)
   (progn
     (load-theme 'zenburn t)
