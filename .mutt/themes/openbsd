@@ -2,7 +2,7 @@
 # -*-- Mutt Theme 'OpenBSD' --*-
 # By  Han Boetes
 # Absolutely NO copyright (c) 2001 (Do with it whatever you like)
-# I was inprired by this poster when creating this theme:
+# I was inspired by this poster when creating this theme:
 # http://www.openbsd.org/art/BSDPoster2.jpg
 # I bought that poster at hal2001
 #
@@ -15,6 +15,9 @@
 # blue    -   brightblue
 # green   -   brightgreen
 # black   -   brightblack
+
+# Or 256 colors, so royalblue is color63
+# https://www.ditig.com/256-colors-cheat-sheet
 
 
 color normal      cyan         default
@@ -41,7 +44,8 @@ color markers     brightblack  default
 color body        brightyellow default  "[^ <]*:\/\/[^ >]*" # for URLs
 color body        yellow default  "[A-Za-z0-9_\.\-]+@[A-Za-z0-9_\.\-]*[A-Za-z0-9_\.\-]+" # For email adresses
 
-color hdrdefault  brightblack         default
+# color hdrdefault           default
+color header color61 default ".*"
 #color header      brightcyan   default  "^date: *"
 #color header      brightcyan   default  "^from: *"
 #color header      brightcyan   default  "^subject: *"
@@ -61,12 +65,12 @@ color hdrdefault  brightblack         default
 color header white default "^Content-Type:"
 
 
-color index       white	       default "~N"   # New
+color index       white        default "~N"   # New
 color index       cyan         default "~O"   # Unread
-color index       yellow default "~g"   # gpg signed
+color index       yellow       default "~g"   # gpg signed
 color index       brightblue   default "~G"   # gpg encrypted
 color index       brightwhite  default "~F"   # Flagged
 color index       brightcyan   default "~T"   # Tagged
 color index       brightwhite  default "~f MAILER-DAEMON@*"
-color index	  green	       default "~h ^X-Mailer.*Microsoft"
+color index       green        default "~h ^X-Mailer.*Microsoft"
 color index       brightblack  default "~D"   # Deleted
