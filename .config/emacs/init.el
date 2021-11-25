@@ -39,10 +39,10 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "monofur for Powerline" :foundry "unci" :slant normal :weight normal :height 158 :width normal)))))
 
-;; Fix a few bug.
+;; Fix a few bugs.
 (add-hook 'term-mode-hook #'eterm-256color-mode)
 
-;; This fixes UTF8 chars in emacsclient
+;; This fixes UTF-8 chars in emacsclient
 (defun my-terminal-keyboard-coding-system (&optional frame)
   "Force the terminal `keyboard-coding-system' to be `utf-8'.
 
