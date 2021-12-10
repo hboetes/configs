@@ -2,7 +2,6 @@
   dbus = False
   focus = mouse
   window_state = maximise
-  borderless = True
   tab_position = left
   enabled_plugins = TerminalShot,
   suppress_multiple_term_dialog = True

@@ -17,7 +17,7 @@
    '(("gelpa" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(auto-package-update rust-mode lsp-mode zenburn-theme magit-delta magit crontab-mode csv-mode yaml-mode eterm-256color airline-themes flycheck ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
+   '(languagetool auto-package-update rust-mode lsp-mode zenburn-theme magit-delta magit crontab-mode csv-mode yaml-mode eterm-256color airline-themes flycheck ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
  '(safe-local-variable-values
    '((epa-file-cache-passphrase-for-symmetric-encryption . 1)
      (add-log-time-zone-rule . t)))
@@ -439,3 +439,24 @@ See info node `(emacs) Terminal Coding'."
 
 ;; Always enable magit-delta-mode.
 (magit-delta-mode)
+
+;; This fixes UTF8 chars in emacsclient
+(defun my-terminal-keyboard-coding-system (&optional frame)
+  "Force the terminal `keyboard-coding-system' to be `utf-8'.
+
+Prevents terminal frames using a coding system based on the locale.
+See info node `(emacs) Terminal Coding'."
+  (with-selected-frame (or frame (selected-frame))
+    (unless window-system
+      (set-keyboard-coding-system 'utf-8))))
+
+;; Run now, for non-daemon Emacs…
+(my-terminal-keyboard-coding-system)
+;; …and later, for new frames/emacsclient
+(add-hook 'after-make-frame-functions 'my-terminal-keyboard-coding-system)
+
+
+(setq languagetool-language-tool-jar
+      "/opt/LanguageTool-5.5/languagetool-commandline.jar")
+(setq languagetool-java-arguments '("-Dfile.encoding=UTF-8"))
+(setq languagetool-default-language "en-GB")

@@ -22,19 +22,10 @@ if [[ $TTY == /dev/tty2 ]]; then
     export TMP="$HOME/.local/tmp"
     export TMPDIR="$TMP"
     export XDG_RUNTIME_DIR=/run/user/$(id -u)
-    export XDG_CURRENT_DESKTOP=i3
+    export XDG_CURRENT_DESKTOP=sway
 
     sway &
-    sleep 3
-    redshift -m wayland -l 46.8471:15.5206 &
-    wallpaper &
-    (
-        sleep 3
-        flameshot
-    ) &
-    # nm-applet &
-    # blueman-applet &
-    dunst &
+    # Don't even think of joining a running tmux session, so bail out now.
     exit 0
 fi
 

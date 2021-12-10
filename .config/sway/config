@@ -116,10 +116,10 @@ mode "resize" {
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        # status_command ~/.bin/myi3status
-        # status_command i3status
-        # i3bar_command "/usr/bin/i3bar"
-        status_command i3blocks
+        status_command i3status-rust ~/.config/i3/i3status-rs.conf
+        font pango:monofur for Powerline, FontAwesome 10
+        position top
+
         position top
         # tray_padding 1
         colors {
@@ -143,13 +143,9 @@ workspace_auto_back_and_forth no
 # So always use the last word!
 default_border none
 for_window [instance="^Firefox$" instance="^Download$"] floating enable
-for_window [instance="^Wicd-client.py$"] floating enable
-for_window [instance="^Skype$"] floating enable
 for_window [instance="XTerm"] floating enable
 for_window [instance="feh"] floating enable
 for_window [instance="Dunst"] floating enable
-for_window [instance="^linphone"] floating enable
-for_window [instance="^QjackCtl"] floating enable border normal
 for_window [instance="^FLTK"] floating enable
 for_window [instance="^Gnome-system-monitor"] floating enable
 for_window [instance="^(E|e)macs$"] floating enable
@@ -158,10 +154,7 @@ for_window [instance="^zoom$"] floating enable
 for_window [instance="^Variety$"] floating enable
 for_window [instance="^smplayer$"] floating enable
 for_window [instance="^vlc$"] floating enable
-for_window [instance="^copyq$"] floating enable
 for_window [instance="^Toplevel$" instance="^variations$"] floating enable
-for_window [instance="^copyq$"] floating enable
-for_window [instance="^copyq$"] sticky enable
 
 assign [instance="^Puddletag$"] 3
 
@@ -190,18 +183,30 @@ default_floating_border pixel 1
 # bindsym $mod+Shift+z            gaps outer current minus 5
 hide_edge_borders both
 
+# swaymsg -t get_inputs
 input "1:1:AT_Translated_Set_2_keyboard" {
     xkb_layout  "us"
     xkb_model   "pc105"
-    xkb_options "compose:rctrl,caps:none"
+    xkb_options "compose:rctrl,caps:none,srvkeys:none"
 }
 
-input "1739:0:Synaptics_TM3163-002" {
+input "1739:52581:SYNA1202:00_06CB:CD65_Touchpad" {
     dwt enabled
     tap enabled
 }
 
-exec ~/.bin/wallpaper
-exec redshift -l 46.8471:15.5206
+exec swayidle -w \
+        timeout 600 'lockmeup' \
+        timeout 610 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"'
+
+
+exec flameshot
+exec nm-applet
+exec blueman-applet
+exec dunst
+exec wallpaper
+exec redshift-gtk -m wayland -l 46.8471:15.520
 exec mako
-exec copyq
+exec clipit
+# xss-lock -l -n /home/han/.bin/dim -- /home/han/.bin/lockmeup &
