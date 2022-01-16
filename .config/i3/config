@@ -154,4 +154,4 @@ client.urgent           #3a342f #900000 #ffffff #900000
 mouse_warping output
 workspace_layout default
 
-bindsym $mod+p exec i3exit $(echo -e 'suspend\nlock\nlogout\nreboot\nshutdown' | rofi -fake-transparency -dmenu)
+bindsym $mod+p exec i3exit $(echo -e 'suspend\nsuslock\nlock\nlogout\nreboot\nshutdown' | rofi -fake-transparency -dmenu)
