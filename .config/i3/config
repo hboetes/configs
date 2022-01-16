@@ -130,6 +130,7 @@ hide_edge_borders smart
 for_window [class=".*"] border none
 for_window [class="^Firefox$" instance="^Download$"] floating enable
 for_window [class="XTerm"] floating enable
+for_window [class="(f|F)lameshot"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="Dunst"] floating enable
 for_window [class="^FLTK"] floating enable
