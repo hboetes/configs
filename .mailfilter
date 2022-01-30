@@ -8,6 +8,11 @@ VERBOSE=9
 R='/home/han/Mail'
 TRASHCAN='/dev/null'
 
+# Mail from github.com
+if (/^From: .*@github.com/)
+    to $R/github.com
+
+
 # Mail from cronjobs
 if (/^From: root@boetes.org \(Cron Daemon\)/)
    {
@@ -53,9 +58,9 @@ if (/^X-Spam-Flag: YES/)
 if (/^From: FICS.*chess@freechess.org/)
     to $R/chess
 
-# Mail from fics chess-server
-if (/^From: .*@.*xing.com/)
-    to $R/xing
+# Mail from karriere.at
+if (/^From: .*@karriere.at/)
+    to $R/karriere.at
 
 # who cares? Do I look like I use windows?
 if (/^Subject:.*virus/ || /^From:.*virus/ )
@@ -130,4 +135,4 @@ if ($RETURNCODE == 0)
     to $R/duplicate
 
 # This line is for all the mail that passed the filter
-to $R/Maildir
+to $R/
