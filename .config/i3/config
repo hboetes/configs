@@ -91,6 +91,8 @@ bindsym $mod+Shift+E exit
 
 bindsym $mod+Shift+s sticky toggle
 
+# bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Tab exec rofi -show window -show-icons
 
 mode "resize" {
   bindsym Left   resize shrink width
