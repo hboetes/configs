@@ -25,6 +25,7 @@
     scroll_on_keystroke = False
     scrollback_infinite = True
     use_system_font = False
+    bold_is_bright = True
     copy_on_selection = True
     background_image = None
   [[3024 Day]]
