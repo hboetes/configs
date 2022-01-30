@@ -32,11 +32,11 @@ color status      blue         yellow
 color quoted      green        default
 color quoted1     yellow       default
 color quoted2     blue         default
-color quoted3     brightblack  default
-color quoted4     brightblack  default
-color quoted5     brightblack  default
+color quoted3     color239     default
+color quoted4     color239     default
+color quoted5     color239     default
 
-color signature   brightblack  default
+color signature   color239     default
 #color tilde       brightcyan   default
 color tree        green        default
 color markers     brightblack  default

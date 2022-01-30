@@ -2,28 +2,29 @@
 #### Mail folders
 
 set folder=$HOME/Mail   # This is the default folder set
-set spoolfile=+Maildir
+set spoolfile=+/
 set postponed=+postponed
 
 # Put all folders that can receive mail here. Now you can see if they contain
 # new mail
 
 mailboxes \
-        +Maildir \
+        +/ \
         +cc \
         +duplicates \
         +emacs-bugs \
         +mg \
         +paypal \
-        +posted \
+        +Sent \
         +postmaster \
         +root \
-        +xing \
+        +github.com \
+        +karriere.at \
         +zspam
 
 
 # I want to save all messages I compose in this folder
-set record=$HOME/Mail/posted
+set record=$HOME/Mail/Sent
 
 # except for messages to myself
-fcc-hook ~than@boetes.org\.nl$ /dev/null
+fcc-hook ~than@boetes\.org$ /dev/null
