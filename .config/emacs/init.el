@@ -17,7 +17,7 @@
    '(("gelpa" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(languagetool auto-package-update rust-mode lsp-mode zenburn-theme magit-delta magit crontab-mode csv-mode yaml-mode eterm-256color airline-themes flycheck ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
+   '(languagetool auto-package-update rust-mode lsp-mode zenburn-theme crontab-mode csv-mode yaml-mode eterm-256color airline-themes flycheck ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
  '(safe-local-variable-values
    '((epa-file-cache-passphrase-for-symmetric-encryption . 1)
      (add-log-time-zone-rule . t)))
