@@ -24,3 +24,6 @@ autoDetach = false
 colorMoved = default
 [pull]
 rebase = true
+
+[core]
+editor = "emacs"
