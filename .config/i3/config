@@ -157,3 +157,15 @@ mouse_warping output
 workspace_layout default
 
 bindsym $mod+p exec i3exit $(echo -e 'suspend\nsuslock\nlock\nlogout\nreboot\nshutdown' | rofi -fake-transparency -dmenu)
+
+
+exec --no-startup-id picom
+exec --no-startup-id nm-applet
+exec --no-startup-id redshift-gtk -l 46.8471:15.5206
+exec --no-startup-id clipit
+exec --no-startup-id xss-lock -l -n /home/han/.bin/dim -- /home/han/.bin/lockmeup
+exec --no-startup-id blueman-applet
+exec --no-startup-id dunst
+exec --no-startup-id flameshot
+exec --no-startup-id battery
+exec --no-startup-id wallpaper
