@@ -25,4 +25,5 @@ sourcepath \
 # Enable mortal users to set their own local settings. Sourced at the
 # very last.
 [[ -f ~/.zlocal ]] && source ~/.zlocal
+# True!
 :
