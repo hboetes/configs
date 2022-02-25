@@ -3,6 +3,7 @@
 case $(uname) in
     Linux)
         export SSH_AUTH_SOCK="/run/user/$(id -u)/ssh-agent.socket"
+        # export SSH_AUTH_SOCK="/run/user/$(id -u)/keyring/ssh"
         ;;
     *)
         export SSH_AUTH_SOCK="$HOME/.ssh/auth_socket"
@@ -23,8 +24,8 @@ if [[ $TTY == /dev/tty2 ]]; then
     export TMPDIR="$TMP"
     export XDG_RUNTIME_DIR=/run/user/$(id -u)
     export XDG_CURRENT_DESKTOP=sway
-
-    sway &
+    gnome-keyring-daemon --start --components=pkcs11,secrets -d
+    XDG_SESSION_TYPE=wayland exec dbus-run-session sway
     # Don't even think of joining a running tmux session, so bail out now.
     exit 0
 fi
