@@ -1,3 +1,9 @@
+This file does nothing.
+
+check env with: systemctl --user show-environment
+set env with:   systemctl --user set-environment TZ=Europe/Vienna
+
+
 export PATH="/home/han/.bin:/usr/local/sbin:/usr/local/bin:/sbin:/usr/sbin:/bin:/usr/bin:/mp3/bin"
 export TMP="$HOME/.local/tmp"
 export TMPDIR="$TMP"
@@ -6,4 +12,4 @@ export XDG_CURRENT_DESKTOP=sway
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 export TZ='Europe/Vienna'
 export MOZ_ENABLE_WAYLAND=1
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets)
