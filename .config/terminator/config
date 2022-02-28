@@ -3,8 +3,13 @@
   focus = mouse
   window_state = maximise
   tab_position = left
-  enabled_plugins = TerminalShot,
+  broadcast_default = all
+  use_custom_url_handler = True
+  custom_url_handler = /home/han/.bin/terminator_url_handler
+  enabled_plugins = ,
   suppress_multiple_term_dialog = True
+  putty_paste_style_source_clipboard = True
+  smart_copy = False
 [keybindings]
   zoom_in = <Primary>equal
   broadcast_off = None
