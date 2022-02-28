@@ -140,7 +140,8 @@ for_window [instance="^FLTK"] floating enable
 for_window [instance="^(E|e)macs$"] floating enable
 for_window [instance="^zoom$"] floating enable
 for_window [instance="^smplayer$"] floating enable
-for_window [instance="^vlc$"] floating enable
+for_window [app_id="^clipster$"] floating enable
+for_window [instance="^Terminator Preferences$"] floating enable # no worky :-(
 for_window [instance="^Toplevel$" instance="^variations$"] floating enable
 
 assign [instance="^Puddletag$"] 3
@@ -199,6 +200,8 @@ bindsym $mod+Print       exec swayshot display upload
 bindsym $mod+Mod1+Print  exec swayshot window  upload
 bindsym $mod+Shift+Print exec swayshot region  upload
 
+bindsym  $mod+question exec sway-prop
+
 
 bindsym $mod+p exec i3exit $(echo -e 'suspend\nsuslock\nlock\nlogout\nreboot\nshutdown' | rofi -fake-transparency -dmenu)
 
@@ -208,10 +211,13 @@ exec swayidle -w \
         resume 'swaymsg "output * dpms on"'
 
 # C&P stuff
-bindsym $mod+y       exec cliphist list | rofi -dmenu | cliphist decode | tee >(wl-copy -p) | wl-copy
-bindsym $mod+Shift+y exec rm -f ~/.cache/cliphist/db
-exec wl-paste    --watch cliphist store
-exec wl-paste -p --watch cliphist store
+# bindsym $mod+y       exec cliphist list | rofi -dmenu | cliphist decode | tee >(wl-copy -p) | wl-copy
+# bindsym $mod+Shift+y exec rm -f ~/.cache/cliphist/db
+# exec wl-paste    --watch cliphist store
+# exec wl-paste -p --watch cliphist store
+exec clipster -d
+bindsym $mod+Shift+y exec clipster --erase-entire-board
+bindsym $mod+y       exec clipster -s
 
 exec gnome-keyring-daemon --start --components=pkcs11,secrets
 exec nm-applet --indicator
