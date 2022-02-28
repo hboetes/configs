@@ -29,7 +29,7 @@ folder-hook . \
         set index_format="%3C %Z %[%b %d %H:%M] - %-22.22L (%3l) %s" ;\
         set weed=yes ;\
         my_hdr From: Han Boetes <han@boetes.org>> ;\
-	set signature=~/.signature'
+        set signature=~/.signature'
 
 folder-hook Maildir \
         'my_hdr From: Han Boetes <han@boetes.org>'
@@ -132,8 +132,13 @@ folder-hook root \
         score ~A 10 ;\
         score ~R -5 ;\
         score ~f"root\@" -5 ;\
-        score ~f"monit\@" -5 ;\
-	score ~f"Cron" -5'
+        score ~f"Cron" -5'
+
+folder-hook github.com \
+        'set score ;\
+        score ~A 10 ;\
+        score ~R -5 ;\
+        score ~f"\@github.com" -5'
 
 folder-hook postmaster \
         set score ;\
