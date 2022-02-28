@@ -344,10 +344,6 @@ See info node `(emacs) Terminal Coding'."
 ;; Set a global goto line
 (global-set-key "\C-xg"       'goto-line)
 (global-set-key "\C-x\C-g"    'goto-line)
-;; Fire up magit
-(global-set-key "\C-xy"       'magit-status)
-(global-set-key "\C-x\C-y"    'magit-status)
-(global-set-key "\C-x\M-y"    'magit-dispatch)
 ;; I want mouseyanks to be inserted at the cursor.
 (global-set-key [mouse-2]     'yank)
 ;; I type too fast.
@@ -446,12 +442,3 @@ See info node `(emacs) Terminal Coding'."
 ;; This makes text from an emacs console windows c&p able without
 ;; trailing whitespace.
 (unless window-system (custom-set-faces   '(default ((t (:background "unspecified-bg"))))))
-
-;; Always enable magit-delta-mode.
-(magit-delta-mode)
-
-
-(setq languagetool-language-tool-jar
-      "/opt/LanguageTool-5.5/languagetool-commandline.jar")
-(setq languagetool-java-arguments '("-Dfile.encoding=UTF-8"))
-(setq languagetool-default-language "en-GB")
