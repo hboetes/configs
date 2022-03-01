@@ -22,6 +22,7 @@ path=(
     /usr/syno/{s,}bin
     /opt/puppetlabs/{s,}bin
     ~/.local/bin
+    /music/.bin
 )
 
 manpath=(
