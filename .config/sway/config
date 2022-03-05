@@ -133,11 +133,11 @@ workspace_auto_back_and_forth no
 # So always use the last word!
 default_border none
 for_window [instance="^Firefox$" instance="^Download$"] floating enable
-for_window [instance="^Firefox$"] gaps inner current set 0; gaps outer current set 0
+for_window [app_id="^firefox$"] gaps inner current set 0; gaps outer current set 0
 for_window [instance="XTerm"] floating enable
 for_window [instance="feh"] floating enable
 for_window [instance="^FLTK"] floating enable
-for_window [instance="^(E|e)macs$"] floating enable
+# for_window [instance="^(E|e)macs$"] floating enable
 for_window [instance="^zoom$"] floating enable
 for_window [instance="^smplayer$"] floating enable
 for_window [app_id="^clipster$"] floating enable
@@ -202,27 +202,24 @@ bindsym $mod+Shift+Print exec swayshot region  upload
 
 bindsym  $mod+question exec sway-prop
 
+exec wl-paste    -t text --watch clipman store
+exec wl-paste -p -t text --watch clipman store
+bindsym $mod+y           exec clipman --primary pick --tool rofi
+bindsym $mod+Shift+y     exec clipman clear -a
 
-bindsym $mod+p exec i3exit $(echo -e 'suspend\nsuslock\nlock\nlogout\nreboot\nshutdown' | rofi -fake-transparency -dmenu)
+
+bindsym $mod+p exec i3exit $(echo -e 'suspend\nsuslock\nlock\nlogout\nreboot\nshutdown' | rofi -dmenu)
 
 exec swayidle -w \
         timeout 600 'lockmeup' \
         timeout 610 'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"'
 
-# C&P stuff
-# bindsym $mod+y       exec cliphist list | rofi -dmenu | cliphist decode | tee >(wl-copy -p) | wl-copy
-# bindsym $mod+Shift+y exec rm -f ~/.cache/cliphist/db
-# exec wl-paste    --watch cliphist store
-# exec wl-paste -p --watch cliphist store
-exec clipster -d
-bindsym $mod+Shift+y exec clipster --erase-entire-board
-bindsym $mod+y       exec clipster -s
 
 exec gnome-keyring-daemon --start --components=pkcs11,secrets
 exec nm-applet --indicator
 exec blueman-applet
-exec wallpaper
 exec redshift-gtk -m wayland -l 46.8471:15.520
 exec mako -c ~/.config/sway/mako.conf
 exec battery
+exec wallpaper
