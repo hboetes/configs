@@ -432,12 +432,12 @@ See info node `(emacs) Terminal Coding'."
 (add-to-list 'default-frame-alist '(alpha 90 90))
 
 ;; Set the size of the floating window.
-(add-hook 'before-make-frame-hook
-          #'(lambda ()
-              (add-to-list 'default-frame-alist '(left   . 0))
-              (add-to-list 'default-frame-alist '(top    . 0))
-              (add-to-list 'default-frame-alist '(height . 52))
-              (add-to-list 'default-frame-alist '(width  . 200))))
+;; (add-hook 'before-make-frame-hook
+;;           #'(lambda ()
+;;               (add-to-list 'default-frame-alist '(left   . 0))
+;;               (add-to-list 'default-frame-alist '(top    . 0))
+;;               (add-to-list 'default-frame-alist '(height . 52))
+;;               (add-to-list 'default-frame-alist '(width  . 200))))
 
 ;; This makes text from an emacs console windows c&p able without
 ;; trailing whitespace.
