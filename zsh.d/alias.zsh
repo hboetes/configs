@@ -56,3 +56,5 @@ alias genpasswd2='< /dev/urandom tr -dc "[:graph:]" | dd count=1 bs=12 2> /dev/n
 alias genpin='< /dev/urandom tr -dc "0-9" | dd count=1 bs=4 2> /dev/null; echo'
 isinpath dig  && alias whatsmyip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias finddeadlinks='find . -type l ! -exec test -e {} \; -print'
+
+isinpath atril && alias evince='echo use atril instead'
