@@ -12,7 +12,7 @@ esac
 
 if ! pgrep -u $USER ssh-agent >& /dev/null; then
     rm -f $SSH_AUTH_SOCK
-    ssh-agent -a $SSH_AUTH_SOCK > /dev/null 2>&1
+    ssh-agent -a $SSH_AUTH_SOCK >& /dev/null
 fi
 
 #return
@@ -31,7 +31,7 @@ if [[ $TTY == /dev/tty2 ]]; then
 fi
 
 # Don't join a tmux session if we're already in it or if none is running.
-if [[ -z $TMUX ]] && [[ -n $TERM ]] && tmux list-sessions > /dev/null 2>&1; then
+if [[ -z $TMUX ]] && [[ -n $TERM ]] && tmux list-sessions >& /dev/null; then
     echo -n 'Joining the running tmux session in '
     for ((i = 30; i >= 0; i--)); do
         if ((($i % 10) == 0)); then
