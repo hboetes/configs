@@ -59,7 +59,7 @@ if (/^From: FICS.*chess@freechess.org/)
     to $R/chess
 
 # Mail from karriere.at
-if (/^From: .*@karriere.at/)
+if (/^From: .*@.*karriere.at/)
     to $R/karriere.at
 
 # who cares? Do I look like I use windows?
