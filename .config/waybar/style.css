@@ -104,7 +104,7 @@ window#waybar.chromium {
 }
 
 #battery.charging, #battery.plugged {
-    /* color: #ffffff; */
+    color: #448844;
     /* background-color: #26A65B; */
 }
 
@@ -165,11 +165,13 @@ label:focus {
 }
 
 #temperature {
+    color: #448844;
     /* background-color: #f0932b; */
 }
 
 #temperature.critical {
     background-color: #eb4d4b;
+    color: #ffffff;
 }
 
 #tray {
