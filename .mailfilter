@@ -31,6 +31,12 @@ if (/^From: tomtom@/)
         to $R/zspam
     }
 
+# Can't unsubscribe without them wanting to know all my private data.
+if (/^From:.*@litebit.eu/)
+    {
+        to $R/zspam
+    }
+
 if (/^From: .*@paypal\./ || /paypal@mail.paypal.at/)
     {
         to $R/paypal
