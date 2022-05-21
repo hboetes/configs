@@ -2,7 +2,7 @@
 {
     "layer": "bottom", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 10, // Waybar height (to be removed for auto height)
+    "height": 24, // Waybar height (to be removed for auto height)
     "spacing": 12, // Gaps between modules (4px)
     // Set the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode"],
@@ -61,22 +61,20 @@
         "format-icons": ["", "", "", "", ""]
     },
     "network#1": {
-        "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "interface": "wlp2*",
+        "format-wifi": "{essid} {signalStrength}% ",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "format-linked": "{ifname} No IP",
+        "format-disconnected": "Down ⚠",
+        "format-alt": " ↑{bandwidthUpBits} ↓{bandwidthDownBits}"
     },
     "network#2": {
-        "interface": "tap*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "interface": "tap*",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "format-linked": "{ifname} No IP",
+        "format-disconnected": "Down ⚠",
+        "format-alt": "🔐 ↑{bandwidthUpBits} ↓{bandwidthUpBits}",
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
