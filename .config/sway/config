@@ -153,9 +153,9 @@ hide_edge_borders both
 
 # swaymsg -t get_inputs
 input "1:1:AT_Translated_Set_2_keyboard" {
-    xkb_layout  "us"
-    xkb_model   "pc105"
-    xkb_options "compose:rctrl,caps:none,srvkeys:none"
+    xkb_layout  us,de
+    xkb_model   pc105
+    xkb_options compose:rctrl,caps:none,srvkeys:none
 }
 
 input "1739:52581:SYNA1202:00_06CB:CD65_Touchpad" {
