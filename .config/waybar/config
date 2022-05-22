@@ -27,9 +27,12 @@
     },
     "clock": {
         "interval": 1,
-        "format": "{:%H:%M:%S}",
-        "tooltip-format": "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>",
-        "format-alt": "{:%a %e %b %Y}"
+        "format": "{:%H:%M:%S %a %e %b %Y}",
+        "calendar-weeks-pos": "left",
+        "format-calendar-weeks": "<span color='#888888'><b>{}</b></span>",
+        // "format-calendar-weeks": "{}", //brøken, :%V won't work
+        "tooltip-format": "<big><u>{:%B %Y}</u></big>\n\n<tt>{calendar}</tt>",
+        "today-format": "<span color='#ff6699'><b>{}</b></span>",
     },
     "cpu": {
         "interval": 2,
