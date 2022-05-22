@@ -1,7 +1,5 @@
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    /* font-family: FontAwesome, monofur for Powerline, sans-serif; */
-    font-family: FontAwesome, monofur for Powerline, sans-serif;
+    font-family: FontAwesome, monofur for Powerline;
     font-size: 14px;
 }
 
@@ -81,7 +79,7 @@ window#waybar.chromium {
 #idle_inhibitor,
 #window,
 #workspaces {
-    margin: 0 4px;
+    margin: 0 2px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -99,13 +97,11 @@ window#waybar.chromium {
 }
 
 #battery {
-    /* background-color: #64727d; */
-    /* color: #000000; */
+    color: #99dd99;
 }
 
 #battery.charging, #battery.plugged {
-    color: #448844;
-    /* background-color: #26A65B; */
+    color: #99dd99;
 }
 
 @keyframes blink {
@@ -130,7 +126,7 @@ label:focus {
 }
 
 #cpu {
-        color: #448844;
+        color: #99dd99;
 }
 
 #cpu.critical {
@@ -139,7 +135,7 @@ label:focus {
 }
 
 #memory {
-        color: #448844;
+        color: #99dd99;
 }
 
 #memory.critical {
@@ -174,7 +170,7 @@ label:focus {
 }
 
 #temperature {
-    color: #448844;
+    color: #99dd99;
     /* background-color: #f0932b; */
 }
 

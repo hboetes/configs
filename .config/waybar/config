@@ -7,7 +7,7 @@
     // Set the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode"],
     //"modules-center": ["sway/window"],
-    "modules-right": ["pulseaudio", "network#1", "network#2", "cpu", "memory", "temperature", "battery", "backlight", "tray", "clock"],
+    "modules-right": ["pulseaudio", "disk", "network#1", "network#2", "network#3", "network#4", "cpu", "memory", "temperature", "battery", "backlight", "tray", "clock"],
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
@@ -20,6 +20,11 @@
     "tray": {
         "spacing": 7
     },
+    "disk": {
+        "interval": 30,
+        "format": " {percentage_used}%",
+        "path": "/"
+    },
     "clock": {
         "interval": 1,
         "format": "{:%H:%M:%S}",
@@ -31,7 +36,7 @@
         "tooltip": true
     },
     "memory": {
-        "format": "{}% "
+        "format": "{}% "
     },
     "temperature": {
         // "thermal-zone": 2,
@@ -61,20 +66,36 @@
         "format-icons": ["", "", "", "", ""]
     },
     "network#1": {
-        "interface": "wlp2*",
-        "format-wifi": "{essid} {signalStrength}% ",
+        "interface": "enp1s0f1",
+        "format-ethernet": " ↑{bandwidthUpBits} ↓{bandwidthUpBits}",
+        "format-alt": " {ipaddr}/{cidr}",
         "tooltip-format": "{ifname} via {gwaddr}",
         "format-linked": "{ifname} No IP",
-        "format-disconnected": "Down ⚠",
-        "format-alt": " ↑{bandwidthUpBits} ↓{bandwidthDownBits}"
+        "format-disconnected": " ⚠",
     },
     "network#2": {
-        "interface": "tap*",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr}",
+        "interface": "wlp2s0",
+        "format-wifi": " ↑{bandwidthUpBits} ↓{bandwidthDownBits}",
+        "format-alt": " {essid} {signalStrength}%",
+        "tooltip-format": " {gwaddr}",
+        "format-linked": " No IP",
+        "format-disconnected": " ⚠",
+    },
+    "network#3": {
+        "interface": "tap0",
+        "format-ethernet": " ↑{bandwidthUpBits} ↓{bandwidthUpBits}",
+        "format-alt": " {ipaddr}/{cidr}",
         "tooltip-format": "{ifname} via {gwaddr}",
         "format-linked": "{ifname} No IP",
-        "format-disconnected": "Down ⚠",
-        "format-alt": "🔐 ↑{bandwidthUpBits} ↓{bandwidthUpBits}",
+        "format-disconnected": "{ifname} ⚠",
+    },
+    "network#4": {
+        "interface": "wg0",
+        "format-ethernet": " ↑{bandwidthUpBits} ↓{bandwidthUpBits}",
+        "format-alt": " {ipaddr}/{cidr}",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "format-linked": "{ifname} No IP",
+        "format-disconnected": "{ifname} ⚠",
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
@@ -85,9 +106,9 @@
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
-            "headphone": "🎧",
+            "headphone": "",
             "hands-free": "",
-            "headset": "🎧",
+            "headset": "",
             "phone": "",
             "portable": "",
             "car": "",
