@@ -1,9 +1,23 @@
 #!/bin/zsh
 factor=10
 
+screenshot()
+{
+    if [[ -S $SWAYSOCK ]]; then
+        grim "$1"
+    else
+        scrot "$1"
+    fi
+}
+
+
 lockmeup()
 {
-    i3lock  -e -f -i "$1" &
+    if [[ -S $SWAYSOCK ]]; then
+        swaylock -F -e -i "$1"
+    else
+        i3lock  -n -e -f -i "$1"
+    fi
 }
 
 mogrifyss()
@@ -13,7 +27,7 @@ mogrifyss()
     ((fup = 100*factor))
 
     # Take a screenshot
-    scrot $ss
+    screenshot $ss
 
     # Pixellate it $factor
     mogrify -scale $fdwn% -scale $fup% $ss
@@ -26,22 +40,27 @@ mogrifyss()
 
 safe()
 {
-    lockmeup ~/.config/i3/safe.png
+    lockmeup ~/.config/lockmeup/safe.png
 }
 
-flight()
+mordor()
 {
-    lockmeup ~/Wallpapers/1920x1080.png
+    lockmeup ~/.config/lockmeup/mordor.jpg
 }
+
+#xset +dpms
+#xset dpms 0 0 60
 
 case $(($RANDOM % 3)) in
     0)
-        mogrifyss
-        ;;
-    1)
         safe
         ;;
+    1)
+        mordor
+        ;;
     2)
-        flight
+        mogrifyss
         ;;
 esac
+
+# xset -dpms
