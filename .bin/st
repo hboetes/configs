@@ -1,0 +1,2 @@
+#!/bin/sh
+/bin/st -f 'monofur for powerline:size=16'
