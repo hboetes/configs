@@ -36,12 +36,16 @@ isinpath xclip   && alias xclip_image='xclip -selection clipboard -t image/png -
 isinpath bat     && alias cat='bat --tabs=8 --wrap=never --paging=never'
 isinpath batcat  && alias cat='batcat --tabs=8 --wrap character --paging=never'
 isinpath lazygit && alias lg='lazygit'
+isinpath speedtest-cli  && alias speedtest-cli='speedtest-cli --bytes'
+isinpath dig  && alias whatsmyip='dig +short myip.opendns.com @resolver1.opendns.com'
+isinpath ncdu && alias ncdu='ncdu --color dark'
+isinpath atril && alias evince='echo use atril instead'
+
 if isinpath czkawka_gui; then
     alias hiccup='czkawka_gui'
 elif isinpath czkawka_cli; then
     alias hiccup='czkawka_cli'
 fi
-isinpath speedtest-cli  && alias speedtest-cli='speedtest-cli --bytes'
 
 # Global aliases
 alias -g L='|less'
@@ -53,7 +57,4 @@ alias -g S='|sort'
 alias genpasswd='< /dev/urandom tr -dc "a-zA-Z0-9" | dd count=1 bs=12 2> /dev/null; echo'
 alias genpasswd2='< /dev/urandom tr -dc "[:graph:]" | dd count=1 bs=12 2> /dev/null; echo'
 alias genpin='< /dev/urandom tr -dc "0-9" | dd count=1 bs=4 2> /dev/null; echo'
-isinpath dig  && alias whatsmyip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias finddeadlinks='find . -type l ! -exec test -e {} \; -print'
-
-isinpath atril && alias evince='echo use atril instead'
