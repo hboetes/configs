@@ -9,7 +9,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec $term
-bindsym $mod+semicolon exec tilix
+bindsym $mod+semicolon exec st
 bindsym $mod+Shift+b exec $term -e 'alsamixer -c 0'
 bindsym $mod+b exec Emacs
 bindsym $mod+Shift+m exec gnome-system-monitor
@@ -201,6 +201,7 @@ exec gnome-keyring-daemon --start --components=pkcs11,secrets
 exec nm-applet --indicator
 exec blueman-applet
 exec redshift-gtk -m wayland -l 46.8471:15.520
-exec mako -c ~/.config/sway/mako.conf
+# exec mako -c ~/.config/sway/mako.conf
+exec dunst
 exec battery
 exec wallpaper
