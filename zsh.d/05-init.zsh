@@ -51,7 +51,7 @@ local HOST=$(LC_ALL=C uname -n)
 export PERL_BADLANG=0
 #unset  LC_ALL
 export LANG=en_US.UTF-8
-#export LC_TIME=en_GB.UTF-8
+export LC_TIME=en_GB.UTF-8
 #export LC_COLLATE=C
 #export LC_ALL
 export TZ=Europe/Vienna
