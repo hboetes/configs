@@ -1,4 +1,4 @@
-[[ $TERM != xterm-256color ]] && return
+[[ $TERM != *-256color ]] && return
 man() {
     (($COLUMNS > 80)) && COLUMNS=80
     COLUMNS=$COLUMNS \
