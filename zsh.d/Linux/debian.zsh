@@ -39,6 +39,11 @@ apt-upgrade()
             SS='pve-kernel-5.*pve'
             SC=3
             ;;
+        # Raspberry kernel
+        *v7l*)
+            SS='you cannot find this'
+            SC=3
+            ;;
         *)
             SS='linux-image*5.*'
             SC=4
