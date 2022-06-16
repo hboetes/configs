@@ -37,10 +37,12 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split v
+bindsym $mod+Shift+h split v
 
 # split in vertical orientation
-bindsym $mod+v split h
+bindsym $mod+Shift+v split h
+
+bindsym $mod+v exec pavucontrol
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
@@ -122,6 +124,7 @@ for_window [instance="feh"] floating enable
 for_window [instance="^FLTK"] floating enable
 for_window [instance="^zoom$"] floating enable
 for_window [app_id="^com.github.wwmm.easyeffects$"] floating enable
+for_window [app_id="^pavucontrol$"] floating enable
 for_window [instance="^Terminator Preferences$"] floating enable # no worky :-(
 for_window [instance="^Toplevel$" instance="^variations$"] floating enable
 
