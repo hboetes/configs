@@ -1,8 +1,8 @@
 set $mod Mod4
 set $term terminator
 
-font pango:inconsolata medium 14px
-
+font pango:inconsolata medium 0px
+titlebar_padding 1 1
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
@@ -116,7 +116,6 @@ workspace_auto_back_and_forth no
 
 # xprop|grep WM_CLASS → WM_CLASS(STRING) = "irssi", "URxvt"
 # So always use the last word!
-default_border none
 for_window [instance="^Firefox$" instance="^Download$"] floating enable
 for_window [title="^Firefox — Sharing Indicator$"] floating enable
 for_window [app_id="^firefox$"] gaps inner current set 0; gaps outer current set 0
@@ -143,8 +142,10 @@ mouse_warping output
 workspace_layout default
 
 # Enable border only when have more than one window
-default_border pixel 0
-default_floating_border pixel 0
+default_border pixel
+default_floating_border pixel
+#default_border none
+#default_floating_border none
 
 gaps inner 5
 gaps outer 5
@@ -152,7 +153,6 @@ hide_edge_borders both
 bindsym $mod+a                  gaps inner current set 0; gaps outer current set 0
 bindsym $mod+Shift+a            gaps inner current set 5; gaps outer current set 5
 
-hide_edge_borders both
 
 # swaymsg -t get_inputs
 input "1:1:AT_Translated_Set_2_keyboard" {
