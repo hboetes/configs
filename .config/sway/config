@@ -190,7 +190,7 @@ exec                     wl-paste    -t text --watch clipman store
 exec                     wl-paste -p -t text --watch clipman store
 bindsym $mod+y           exec clipman --primary pick --tool rofi
 bindsym $mod+Shift+y     exec clipman clear -a
-bindsym $mod+Mod1+y      exec clipman clear --tool rofi
+bindsym $mod+Mod1+y      exec clipman clear --primary -t rofi
 bindsym $mod+Ctrl+y      exec : | wl-copy -p
 
 bindsym $mod+p exec i3exit $(echo -e 'suspend\nsuslock\nlock\nlogout\nreboot\nshutdown' | rofi -dmenu)
