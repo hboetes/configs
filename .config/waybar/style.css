@@ -96,13 +96,13 @@ window#waybar.chromium {
     /* background-color: #64727D; */
 }
 
-#battery {
-    color: #99dd99;
-}
+/* #battery { */
+/*     color: #99dd99; */
+/* } */
 
-#battery.charging, #battery.plugged {
-    color: #99dd99;
-}
+/* #battery.charging, #battery.plugged { */
+/*     color: #99dd99; */
+/* } */
 
 @keyframes blink {
     to {
@@ -125,18 +125,18 @@ label:focus {
     background-color: #000000;
 }
 
-#cpu {
-        color: #99dd99;
-}
+/* #cpu { */
+/*         color: #99dd99; */
+/* } */
 
 #cpu.critical {
     background-color: #eb4d4b;
     color: #ffffff;
 }
 
-#memory {
-        color: #99dd99;
-}
+/* #memory { */
+/*         color: #99dd99; */
+/* } */
 
 #memory.critical {
     background-color: #eb4d4b;
@@ -169,10 +169,10 @@ label:focus {
     color: #2a5c45;
 }
 
-#temperature {
-    color: #99dd99;
-    /* background-color: #f0932b; */
-}
+/* #temperature { */
+/*     color: #99dd99; */
+/*     /\* background-color: #f0932b; *\/ */
+/* } */
 
 #temperature.critical {
     background-color: #eb4d4b;
