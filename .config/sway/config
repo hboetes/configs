@@ -9,7 +9,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec $term
-bindsym $mod+semicolon exec st
+bindsym $mod+semicolon exec foot
 bindsym $mod+Shift+b exec $term -e 'alsamixer -c 0'
 bindsym $mod+b exec Emacs
 bindsym $mod+Shift+m exec gnome-system-monitor
@@ -189,7 +189,7 @@ bindsym  $mod+question exec sway-prop
 exec                     wl-paste    -t text --watch clipman store
 exec                     wl-paste -p -t text --watch clipman store
 bindsym $mod+y           exec clipman --primary pick --tool rofi
-bindsym $mod+Shift+y     exec clipman clear -a
+bindsym $mod+Shift+y     exec clipman clear --primary -a
 bindsym $mod+Mod1+y      exec clipman clear --primary -t rofi
 bindsym $mod+Ctrl+y      exec : | wl-copy -p
 
@@ -204,7 +204,11 @@ exec gnome-keyring-daemon --start --components=pkcs11,secrets
 exec nm-applet --indicator
 exec blueman-applet
 exec redshift-gtk -m wayland -l 46.8471:15.520
-# exec mako -c ~/.config/sway/mako.conf
 exec dunst
 exec battery
 exec wallpaper
+
+mode passthrough {
+        bindsym $mod+Shift+p mode default
+}
+bindsym $mod+Shift+p mode passthrough
