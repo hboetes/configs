@@ -188,6 +188,8 @@ exec swayidle -w \
         resume 'swaymsg "output * dpms on"'
 
 exec dbus-update-activation-environment DISPLAY
+# https://wiki.archlinux.org/title/PipeWire
+systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec gnome-keyring-daemon --start --components=pkcs11,secrets
 exec nm-applet --indicator
 exec blueman-applet
@@ -196,6 +198,7 @@ exec dunst
 exec battery
 exec wallpaper
 
+# If you want to pass commands to a sway/i3 session in vnc etc.
 mode passthrough {
         bindsym $mod+Shift+p mode default
 }
