@@ -377,14 +377,14 @@ See info node `(emacs) Terminal Coding'."
 
 (cond
  ((>= emacs-major-version 28)
-  ;; (progn
-  ;;   (load-theme 'modus-vivendi t)
-  ;;   (setq ethan-wspace-face-customized t)
-  ;;   (custom-theme-set-faces
-  ;;    'modus-vivendi
-  ;;    '(ethan-wspace-face ((t (:background "black")))))
-  ;;   ))
-  (load-theme 'deeper-blue t))
+  (progn
+    (load-theme 'modus-vivendi t)
+    (setq ethan-wspace-face-customized t)
+    (custom-theme-set-faces
+     'modus-vivendi
+     '(ethan-wspace-face ((t (:background "black")))))
+    ))
+  ;; (load-theme 'deeper-blue t))
  ((<= emacs-major-version 27)
   (progn
     (load-theme 'zenburn t)
