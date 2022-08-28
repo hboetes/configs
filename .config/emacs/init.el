@@ -27,6 +27,7 @@
  '(size-indication-mode t)
  '(tramp-syntax 'simplified nil (tramp))
  '(transient-mark-mode 1)
+ '(visible-cursor nil)
  '(w3m-fill-column 80)
  '(w3m-home-page "https://google.com")
  '(w3m-key-binding 'info)
