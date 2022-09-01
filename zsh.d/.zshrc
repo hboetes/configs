@@ -20,6 +20,7 @@ sourcepath \
     $ZDOTDIR/functions \
     $ZDOTDIR/$(uname) \
     $ZDOTDIR/$(uname -n) \
+    $ZDOTDIR/$(uname -m) \
     $ZDOTDIR/${USER}_$(uname -n)
 
 # Enable mortal users to set their own local settings. Sourced at the
