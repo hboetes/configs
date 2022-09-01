@@ -17,18 +17,11 @@ fi
 
 #return
 
-# if [[ $TTY == /dev/tty2 ]]; then
-#     # XXX Put this in a sepperate file.
-#     export PATH="/home/han/.bin:/usr/local/sbin:/usr/local/bin:/sbin:/usr/sbin:/bin:/usr/bin:/usr/games:/music/bin"
-#     export TMP="$HOME/.local/tmp"
-#     export TMPDIR="$TMP"
-#     export XDG_RUNTIME_DIR=/run/user/$(id -u)
-#     export XDG_CURRENT_DESKTOP=sway
-#     gnome-keyring-daemon --start --components=pkcs11,secrets -d
-#     XDG_SESSION_TYPE=wayland exec dbus-run-session sway
-#     # Don't even think of joining a running tmux session, so bail out now.
-#     exit 0
-# fi
+if [[ $TTY == /dev/tty2 ]]; then
+    exec .wsession
+    # Don't even think of joining a running tmux session, so bail out now.
+    exit 0
+fi
 
 # Don't join a tmux session if we're already in it or if none is running.
 if [[ -z $TMUX ]] && [[ -n $TERM ]] && tmux list-sessions >& /dev/null; then

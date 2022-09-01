@@ -76,7 +76,7 @@
     },
     "network#1": {
         "interface": "enp1s0f1",
-        "format-ethernet": " ↑{bandwidthUpBits} ↓{bandwidthUpBits}",
+        "format-ethernet": " ↑{bandwidthUpBytes} ↓{bandwidthUpBytes}",
         "format-alt": " {ipaddr}/{cidr}",
         "tooltip-format": "{ifname} via {gwaddr}",
         "format-linked": "{ifname} No IP",
@@ -84,7 +84,7 @@
     },
     "network#2": {
         "interface": "wlp2s0",
-        "format-wifi": " ↑{bandwidthUpBits} ↓{bandwidthDownBits}",
+        "format-wifi": " ↑{bandwidthDownBytes:} ↓{bandwidthUpBytes:}",
         "format-alt": " {essid} {signalStrength}%",
         "tooltip-format": " via {gwaddr}",
         "format-linked": " No IP",
@@ -92,7 +92,7 @@
     },
     "network#3": {
         "interface": "tap0",
-        "format-ethernet": " ↑{bandwidthUpBits} ↓{bandwidthUpBits}",
+        "format-ethernet": " ↑{bandwidthUpBytes} ↓{bandwidthUpBytes}",
         "format-alt": " {ipaddr}/{cidr}",
         "tooltip-format": "{ifname} via {gwaddr}",
         "format-linked": "{ifname} No IP",
@@ -100,7 +100,7 @@
     },
     "network#4": {
         "interface": "wg0",
-        "format-ethernet": " ↑{bandwidthUpBits} ↓{bandwidthUpBits}",
+        "format-ethernet": " ↑{bandwidthUpBytes} ↓{bandwidthUpBytes}",
         "format-alt": " {ipaddr}/{cidr}",
         "tooltip-format": "{ifname} via {gwaddr}",
         "format-linked": "{ifname} No IP",

@@ -11,6 +11,7 @@
   smart_copy = False
 [keybindings]
   zoom_in = <Primary>equal
+  full_screen = ""
   broadcast_off = None
   edit_window_title = None
   layout_launcher = None
@@ -20,6 +21,7 @@
 [profiles]
   [[default]]
     icon_bell = False
+    background_darkness = 0.72
     background_type = transparent
     cursor_blink = False
     cursor_color = "#aaaaaa"

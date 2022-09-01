@@ -122,6 +122,8 @@ for_window [app_id="^firefox$"] gaps inner current set 0; gaps outer current set
 for_window [instance="feh"] floating enable
 for_window [instance="^FLTK"] floating enable
 for_window [instance="^zoom$"] floating enable
+for_window [instance="^blueman-manager$"] floating enable
+for_window [title="^Terminator Preferences$"] floating enable
 for_window [app_id="^com.github.wwmm.easyeffects$"] floating enable
 for_window [app_id="^pavucontrol$"] floating enable
 for_window [instance="^Terminator Preferences$"] floating enable # no worky :-(
@@ -166,40 +168,28 @@ input "1739:52581:SYNA1202:00_06CB:CD65_Touchpad" {
     tap enabled
 }
 
-# swayshot
-#
-# Print screen helper for sway: add keyboard shortcuts for screenshots:
-# * Print Scr for whole screen
-# * Alt + Print Scr for a focused window
-# * Shift + Print Scr for a selected region
-#
-# Save screenshots to $SWAYSHOT_SCREENSHOTS folder.
-# The default value is XDG_PICTURES_DIR, see
-# https://wiki.archlinux.org/index.php/XDG_user_directories
-
-bindsym Print            exec swayshot
-bindsym Mod1+Print       exec swayshot window
-bindsym Shift+Print      exec swayshot region
-bindsym $mod+Print       exec swayshot display upload
-bindsym $mod+Mod1+Print  exec swayshot window  upload
-bindsym $mod+Shift+Print exec swayshot region  upload
-
 bindsym  $mod+question exec sway-prop
 
 exec                     wl-paste    -t text --watch clipman store
 exec                     wl-paste -p -t text --watch clipman store
-bindsym $mod+y           exec clipman --primary pick --tool rofi
+bindsym $mod+y           exec clipman --primary pick --tool rofi || notify-send -t 1000 'clipboard is empty'
 bindsym $mod+Shift+y     exec clipman clear --primary -a
 bindsym $mod+Mod1+y      exec clipman clear --primary -t rofi
 bindsym $mod+Ctrl+y      exec : | wl-copy -p
 
-bindsym $mod+p exec i3exit $(echo -e 'suspend\nsuslock\nlock\nlogout\nreboot\nshutdown' | rofi -dmenu)
+bindsym $mod+p exec i3exit $(echo -e 'suslock\nsuspend\nlock\nlogout\nreboot\nshutdown' | rofi -dmenu)
+
+bindsym $mod+Print exec swayshot $(echo -e 'display\nwindow\nregion\ndisplay upload\nwindow upload\nregion upload' | rofi -dmenu)
+
 
 exec swayidle -w \
         timeout 600 'lockmeup' \
         timeout 610 'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"'
 
+exec dbus-update-activation-environment DISPLAY
+# https://wiki.archlinux.org/title/PipeWire
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec gnome-keyring-daemon --start --components=pkcs11,secrets
 exec nm-applet --indicator
 exec blueman-applet
@@ -208,6 +198,7 @@ exec dunst
 exec battery
 exec wallpaper
 
+# If you want to pass commands to a sway/i3 session in vnc etc.
 mode passthrough {
         bindsym $mod+Shift+p mode default
 }

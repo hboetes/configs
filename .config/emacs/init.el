@@ -17,7 +17,7 @@
    '(("gelpa" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(json-mode auto-package-update zenburn-theme eterm-256color airline-themes ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
+   '(0blayout json-mode auto-package-update zenburn-theme eterm-256color airline-themes ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
  '(safe-local-variable-values
    '((epa-file-cache-passphrase-for-symmetric-encryption . 1)
      (add-log-time-zone-rule . t)))
@@ -27,6 +27,7 @@
  '(size-indication-mode t)
  '(tramp-syntax 'simplified nil (tramp))
  '(transient-mark-mode 1)
+ '(visible-cursor nil)
  '(w3m-fill-column 80)
  '(w3m-home-page "https://google.com")
  '(w3m-key-binding 'info)
@@ -384,7 +385,7 @@ See info node `(emacs) Terminal Coding'."
      'modus-vivendi
      '(ethan-wspace-face ((t (:background "black")))))
     ))
-  ;;(load-theme 'deeper-blue t))
+ ;;(load-theme 'deeper-blue t))
  ((<= emacs-major-version 27)
   (progn
     (load-theme 'zenburn t)
