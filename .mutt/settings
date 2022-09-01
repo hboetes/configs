@@ -75,7 +75,7 @@ set quit=yes
 set postpone=no
 set delete=yes
 set move=no
-set sendmail=/usr/local/sbin/sendmail
+set sendmail=/usr/sbin/sendmail
 
 set sendmail_wait=-1    # send mail in the background
 set timeout=60          # Check for new mail every 60 seconds
