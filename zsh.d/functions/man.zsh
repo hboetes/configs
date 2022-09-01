@@ -1,8 +1,8 @@
-if isinpath w3mman; then
-    man() {
-        env COLUMNS=80 w3mman "$@"
-    }
-else
+# if isinpath w3mman; then
+#     man() {
+#         env COLUMNS=80 w3mman "$@"
+#     }
+# else
     man() {
         (($COLUMNS > 80)) && COLUMNS=80
         COLUMNS=$COLUMNS \
@@ -13,4 +13,4 @@ else
             GROFF_NO_SGR=1 \
             command man "$@"
     }
-fi
+# fi
