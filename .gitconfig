@@ -1,6 +1,6 @@
 [user]
-email = hboetes@gmail.com
-name = Han Boetes
+	email = hboetes@gmail.com
+	name = Han Boetes
 
 [github]
 user = hboetes
@@ -22,8 +22,8 @@ autoDetach = false
 
 [diff]
 colorMoved = default
-[pull]
-rebase = true
 
 [core]
 editor = "emacs"
+[pull]
+	rebase = false
