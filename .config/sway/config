@@ -38,7 +38,6 @@ bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+Shift+h split v
-
 # split in vertical orientation
 bindsym $mod+Shift+v split h
 
@@ -109,7 +108,7 @@ mode "resize" {
 
 # Start waybar to display a workspace bar
 bar {
-        swaybar_command waybar
+  swaybar_command waybar
 }
 
 workspace_auto_back_and_forth no
@@ -158,35 +157,34 @@ bindsym $mod+Shift+a            gaps inner current set 5; gaps outer current set
 
 # swaymsg -t get_inputs
 input "1:1:AT_Translated_Set_2_keyboard" {
-    xkb_layout  us,de
-    xkb_model   pc105
-    xkb_options compose:rctrl,caps:none,srvkeys:none
+  xkb_layout  us,de
+  xkb_model   pc105
+  xkb_options compose:rctrl,caps:none,srvkeys:none
 }
 
 input "1739:52581:SYNA1202:00_06CB:CD65_Touchpad" {
-    dwt enabled
-    tap enabled
+  dwt enabled
+  tap enabled
 }
 
-bindsym  $mod+question exec sway-prop
-
-exec                     wl-paste    -t text --watch clipman store
-exec                     wl-paste -p -t text --watch clipman store
+# Keybinds
 bindsym $mod+y           exec clipman --primary pick --tool rofi || notify-send -t 1000 'clipboard is empty'
 bindsym $mod+Shift+y     exec clipman clear --primary -a
 bindsym $mod+Mod1+y      exec clipman clear --primary -t rofi
 bindsym $mod+Ctrl+y      exec : | wl-copy -p
-
 bindsym $mod+p exec i3exit $(echo -e 'suslock\nsuspend\nlock\nlogout\nreboot\nshutdown' | rofi -dmenu)
-
 bindsym $mod+Print exec swayshot $(echo -e 'display\nwindow\nregion\ndisplay upload\nwindow upload\nregion upload' | rofi -dmenu)
+bindsym  $mod+question exec sway-prop
 
-
+# autolock etc.
 exec swayidle -w \
-        timeout 600 'lockmeup' \
-        timeout 610 'swaymsg "output * dpms off"' \
-        resume 'swaymsg "output * dpms on"'
+  timeout 600 'lockmeup' \
+  timeout 630 'swaymsg "output * dpms off"' \
+  resume 'swaymsg "output * dpms on"'
 
+# Start up programs
+exec wl-paste    -t text --watch clipman store
+exec wl-paste -p -t text --watch clipman store
 exec dbus-update-activation-environment DISPLAY
 # https://wiki.archlinux.org/title/PipeWire
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
@@ -200,6 +198,6 @@ exec wallpaper
 
 # If you want to pass commands to a sway/i3 session in vnc etc.
 mode passthrough {
-        bindsym $mod+Shift+p mode default
+  bindsym $mod+Shift+p mode default
 }
 bindsym $mod+Shift+p mode passthrough
