@@ -100,22 +100,31 @@ window#waybar.chromium {
 /*     color: #99dd99; */
 /* } */
 
-/* #battery.charging, #battery.plugged { */
-/*     color: #99dd99; */
-/* } */
+#battery.charging, #battery.plugged {
+    color: green;
+}
 
 @keyframes blink {
     to {
-        background-color: #ffffff;
-        color: #000000;
+        background-color: transparent;
     }
 }
 
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
+#battery.warning:not(.charging) {
+    background-color: orange;
+    border-radius: 20px;
     animation-name: blink;
-    animation-duration: 0.5s;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#battery.critical:not(.charging) {
+    background-color: red;
+    border-radius: 20px;
+    animation-name: blink;
+    animation-duration: 1s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
