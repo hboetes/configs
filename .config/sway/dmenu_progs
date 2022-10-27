@@ -1,10 +1,10 @@
 firefox
-chrome
+firefox_axis
+anydesk;flatpak run com.anydesk.Anydesk
 gqview
-anydesk
-scid
-butt
+nicotine;remmina -c .local/share/remmina/group_vnc_nicotine@framboos_framboos-boetes-org.remmina
 pavucontrol
-zoom
-transmission-gtk
-x2goclient
+remmina;remmina -i
+scid
+signal;flatpak run org.signal.Signal
+easyeffects

@@ -17,7 +17,7 @@ bindsym $mod+Shift+m exec gnome-system-monitor
 # kill focused window
 bindsym $mod+Shift+Q kill
 
-bindsym $mod+d exec $(grep -v '^#' ~/.config/i3/dmenu_progs | rofi -fake-transparency -dmenu)
+bindsym $mod+d exec $(~/.bin/dmenu)
 bindsym $mod+c exec rofi -fake-transparency -show run
 bindsym $mod+g exec rofi -fake-transparency -show ssh
 bindsym $mod+m exec rofi -fake-transparency -show window
