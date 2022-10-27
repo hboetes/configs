@@ -22,7 +22,6 @@
   [[default]]
     icon_bell = False
     background_darkness = 0.72
-    background_type = transparent
     cursor_blink = False
     cursor_color = "#aaaaaa"
     font = Monofur Nerd Font Mono 16
