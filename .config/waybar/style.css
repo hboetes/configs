@@ -101,7 +101,9 @@ window#waybar.chromium {
 /* } */
 
 #battery.charging, #battery.plugged {
-    color: green;
+    background-color: green;
+    border-radius: 7px 15px;
+    padding: 0px 10px;
 }
 
 @keyframes blink {
@@ -112,7 +114,8 @@ window#waybar.chromium {
 
 #battery.warning:not(.charging) {
     background-color: orange;
-    border-radius: 20px;
+    border-radius: 7px 15px;
+    padding: 0px 10px;
     animation-name: blink;
     animation-duration: 4s;
     animation-timing-function: linear;
@@ -122,7 +125,8 @@ window#waybar.chromium {
 
 #battery.critical:not(.charging) {
     background-color: red;
-    border-radius: 20px;
+    border-radius: 7px 15px;
+    padding: 0px 10px;
     animation-name: blink;
     animation-duration: 1s;
     animation-timing-function: linear;
