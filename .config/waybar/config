@@ -31,7 +31,7 @@
         "calendar-weeks-pos": "left",
         "format-calendar-weeks": "<span color='#888888'><b>{}</b></span>",
         "tooltip-format": "<big><u>{:%B %Y}</u></big>\n\n<tt>{calendar}</tt>",
-        "today-format": "<span color='#ff6699'><b>{}</b></span>",
+        "today-format": "<span bgcolor='#888888'><b>{}</b></span>",
     },
     "cpu": {
         "interval": 2,
