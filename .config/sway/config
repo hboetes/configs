@@ -1,7 +1,7 @@
 set $mod Mod4
 set $term terminator
 
-font pango:inconsolata medium 0px
+font pango:inconsolata medium 8px
 titlebar_padding 1 1
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -115,22 +115,21 @@ workspace_auto_back_and_forth no
 
 # xprop|grep WM_CLASS → WM_CLASS(STRING) = "irssi", "URxvt"
 # So always use the last word!
-for_window [instance="^Firefox$" instance="^Download$"] floating enable
+for_window [app_id="^Firefox$" instance="^Download$"] floating enable
 for_window [title="^Firefox — Sharing Indicator$"] floating enable
 for_window [app_id="^firefox$"] gaps inner current set 0; gaps outer current set 0
-for_window [instance="feh"] floating enable
-for_window [instance="^FLTK"] floating enable
-for_window [instance="^zoom$"] floating enable
-for_window [instance="^blueman-manager$"] floating enable
+for_window [app_id="feh"] floating enable
+for_window [app_id="^zoom$"] floating enable
+# for_window ["Bluetooth Devices"] floating enable
 for_window [title="^Terminator Preferences$"] floating enable
 for_window [app_id="^com.github.wwmm.easyeffects$"] floating enable
 for_window [app_id="^pavucontrol$"] floating enable
-for_window [instance="^Terminator Preferences$"] floating enable # no worky :-(
-for_window [instance="^Toplevel$" instance="^variations$"] floating enable
+for_window [app_id="^Terminator Preferences$"] floating enable # no worky :-(
+for_window [app_id="^Toplevel$" instance="^variations$"] floating enable
 
-assign [instance="^Puddletag$"] 3
-assign [class="^Vncviewer$"] 8
-for_window [class="^Vncviewer$"] gaps inner current set 0; gaps outer current set 0
+assign [app_id="^Puddletag$"] 3
+assign [app_id="^Vncviewer$"] 8
+for_window [app_id="^Vncviewer$"] gaps inner current set 0; gaps outer current set 0
 
 
 # class                 border  backgr. text    indicator
@@ -174,7 +173,7 @@ bindsym $mod+Mod1+y      exec clipman clear --primary -t rofi
 bindsym $mod+Ctrl+y      exec : | wl-copy -p
 bindsym $mod+p exec i3exit $(echo -e 'suslock\nsuspend\nlock\nlogout\nreboot\nshutdown' | rofi -dmenu)
 bindsym $mod+Print exec swayshot $(echo -e 'display\nwindow\nregion\ndisplay upload\nwindow upload\nregion upload' | rofi -dmenu)
-bindsym  $mod+question exec sway-prop
+bindsym $mod+question exec sway-prop
 
 # autolock etc.
 exec swayidle -w \
