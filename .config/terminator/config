@@ -482,7 +482,6 @@
     icon_bell = False
     background_color = "#2a211c"
     background_darkness = 0.66
-    background_type = transparent
     cursor_blink = False
     cursor_color = "#ffffff"
     font = Monofur Nerd Font Mono 16
