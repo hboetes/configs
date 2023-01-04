@@ -2,9 +2,11 @@ firefox
 firefox_axis
 anydesk;flatpak run com.anydesk.Anydesk
 gqview
-nicotine;remmina -c .local/share/remmina/group_vnc_nicotine@framboos_framboos-boetes-org.remmina
 pavucontrol
 remmina;remmina -i
 scid
+freetube
+zoom;flatpak run us.zoom.Zoom
 signal;flatpak run org.signal.Signal
+rustdesk;flatpak run org.rustdesk.rustdesk
 easyeffects
