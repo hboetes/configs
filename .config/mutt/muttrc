@@ -1,52 +1,51 @@
-# $Id: muttrc,v 1.11 2004/11/15 22:49:59 han Exp $
-# .muttrc
+# muttrc
 # This is the main switchboard from where other settings get loaded
 
 # Personal headers.
-source ~/.mutt/headers
+source ~/.config/mutt/headers
 
 # Mail folders.
-source ~/.mutt/folders
+source ~/.config/mutt/folders
 
 # Specific settings for folders.
-source ~/.mutt/folderhooks
+source ~/.config/mutt/folderhooks
 
 # Headers to ignore
 # Now set in folderhooks. But still a good example.
-# source ~/.mutt/ignoreheaders
+# source ~/.config/mutt/ignoreheaders
 
 # Settings
-source ~/.mutt/settings
+source ~/.config/mutt/settings
 
 # Formats
-source ~/.mutt/formats
+source ~/.config/mutt/formats
 
 # E-Mail Aliases
-source ~/.mutt/aliases
+source ~/.config/mutt/aliases
 
 # Colors/Themes
 # Uncomment one theme.
 
-#source ~/.mutt/themes/blah
-#source ~/.mutt/themes/default
-#source ~/.mutt/themes/trans-cyan
-#source ~/.mutt/themes/trans-yellow
-#source ~/.mutt/themes/trans-blue
-#source ~/.mutt/themes/trans-green
-#source ~/.mutt/themes/trans-red
-#source ~/.mutt/themes/rosenfeldstheme
-#source ~/.mutt/themes/tomastheme
-source ~/.mutt/themes/openbsd
-#source ~/.mutt/themes/ice
-#source ~/.mutt/themes/color
-#source ~/.mutt/themes/comidia
+#source ~/.config/mutt/themes/blah
+#source ~/.config/mutt/themes/default
+#source ~/.config/mutt/themes/trans-cyan
+#source ~/.config/mutt/themes/trans-yellow
+#source ~/.config/mutt/themes/trans-blue
+#source ~/.config/mutt/themes/trans-green
+#source ~/.config/mutt/themes/trans-red
+#source ~/.config/mutt/themes/rosenfeldstheme
+#source ~/.config/mutt/themes/tomastheme
+source ~/.config/mutt/themes/openbsd
+#source ~/.config/mutt/themes/ice
+#source ~/.config/mutt/themes/color
+#source ~/.config/mutt/themes/comidia
 
 
 # Keybindings & macros
-source ~/.mutt/keybindings
+source ~/.config/mutt/keybindings
 
 # New GnuPG stuff for Mutt 1.2+
-source ~/.mutt/gpg
+source ~/.config/mutt/gpg
 
 # Sendhooks. Configuration for special receivers.
-source ~/.mutt/sendhooks
+source ~/.config/mutt/sendhooks
