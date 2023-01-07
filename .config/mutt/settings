@@ -89,8 +89,8 @@ set alias_file=~/.mutt/aliases
 set mailcap_path=~/.mutt/mailcap
 
 auto_view text/html
-#alternative_order text/html text/plain text/enriched
-alternative_order text/plain text/enriched text
+# alternative_order text/html text/plain text/enriched
+alternative_order text/plain text/enriched text text/html
 
 set crypt_verify_sig=no
 set crypt_replyencrypt=no
@@ -104,6 +104,10 @@ unset markers
 # set display_filter='t-prot -acelmtS -Mmutt --spass -L$HOME/.mutt/mlfooters -A$HOME/.mutt/adfooters'
 #set display_filter='t-prot -cemt -Mmutt --pgp-short'
 set charset="utf-8"
+set send_charset="utf-8:iso-8859-2:iso-8859-1"
+set assumed_charset="utf-8:iso-8859-1:us-ascii"
+set config_charset="utf-8"
+set ascii_chars
 
 # charset-hook ^us-ascii$ utf-8
 # charset-hook ^iso-8859-1$ utf-8

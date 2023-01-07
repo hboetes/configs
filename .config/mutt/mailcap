@@ -36,22 +36,22 @@
 # using "audio/basic" as the type.
 
 #audio/basic; showaudio %s; compose=audiocompose %s;\
-#	edit=audiocompose %s; description="An audio fragment"
+#       edit=audiocompose %s; description="An audio fragment"
 audio/basic; compose=audiocompose %s;\
-	edit=audiocompose %s; description="An audio fragment"
+        edit=audiocompose %s; description="An audio fragment"
 #audio/basic; cat > /dev/audio
 #audio/ulaw; cat > /dev/audio
 #audio/adpcm4; /usr/local/lib/vbox/vboxplay %s 200
 #audio/x-wav; vplay %s
-#audio/x-aiff; playaiff %s; compose=recordaiff -t 60 %s;	\
-#	description="AIFF Audio"; x11-bitmap="/usr/lib/Zmail/bitmaps/sound.xbm"
+#audio/x-aiff; playaiff %s; compose=recordaiff -t 60 %s;        \
+#       description="AIFF Audio"; x11-bitmap="/usr/lib/Zmail/bitmaps/sound.xbm"
 #audio/mod; /usr/bin/tracker %s
 
 audio/x-vbox; vboxplay %s
 
-audio/x-pn-realaudio; 	realplayer %s; test=test "$DISPLAY" != ""
+audio/x-pn-realaudio;   realplayer %s; test=test "$DISPLAY" != ""
 audio/vnd.rn-realaudio; realplayer %s; test=test "$DISPLAY" != ""
-audio/x-pn-mp3; 	realplayer %s; test=test "$DISPLAY" != ""
+audio/x-pn-mp3;         realplayer %s; test=test "$DISPLAY" != ""
 
 audio/mpeg;    xmms %s; test=test "$DISPLAY" != ""
 audio/mpegurl; xmms %s; test=test "$DISPLAY" != ""
@@ -90,14 +90,14 @@ image/x-tiff; xv %s; test=test -n "$DISPLAY"
 
 # For receiving X11 window image dumps from older versions of Andrew messages
 image/x-xwd; showpicture %s; \
-	description="An X11 window image dump in X-XWD format"
+        description="An X11 window image dump in X-XWD format"
 
 #image/x-sgi; ipaste %s; compose=imgworks %s; description="SGI image"; \
-#	x11-bitmap="/usr/lib/Zmail/bitmaps/image.xbm"
+#       x11-bitmap="/usr/lib/Zmail/bitmaps/image.xbm"
 #image/x-bitmap; bitmap %s; description="X11 bitmap"; \
-#	x11-bitmap="/usr/lib/Zmail/bitmaps/bitmap.xbm"
+#       x11-bitmap="/usr/lib/Zmail/bitmaps/bitmap.xbm"
 #image/x-xpm1; olpixmap %s; description="OL pixmap"; \
-#	x11-bitmap="/usr/lib/Zmail/bitmaps/bitmap.xbm"
+#       x11-bitmap="/usr/lib/Zmail/bitmaps/bitmap.xbm"
 
 # The following sends all other image subtypes to showpicture.
 #image/*; showpicture -viewer xli %s; test=test -n "$DISPLAY"
@@ -114,8 +114,8 @@ image/*; image2ascii %s; copiousoutput
 # does not always exit with a valid exit status!
 # For sites with current (X11R5) pbm utilities
 #image/gif; showpicture %s; \
-#	compose="xwd -frame | xwdtopnm | ppmtogif > %s\; exit 0"; \
-#	description="An X11 window image dump in GIF format"
+#       compose="xwd -frame | xwdtopnm | ppmtogif > %s\; exit 0"; \
+#       description="An X11 window image dump in GIF format"
 image/tiff; edit=xpaint %s; test=test -n "$DISPLAY"
 image/x-portable-pixmap; edit=xpaint %s; test=test -n "$DISPLAY"
 image/gif; edit=xpaint %s; test=test -n "$DISPLAY"
@@ -130,19 +130,19 @@ image/x-windowdump; edit=xpaint %s; test=test -n "$DISPLAY"
 #
 
 message/partial; showpartial %s %{id} %{number} %{total} | less; \
-	needsterminal
+        needsterminal
 message/partial; showpartial %s %{id} %{number} %{total}; copiousoutput
 
 message/external-body; showexternal %s %{access-type} %{name} %{site} \
-	%{directory} %{mode} %{server}; \
-	needsterminal; composetyped = extcompose %s; \
-	description="A reference to data stored in an external location"
+        %{directory} %{mode} %{server}; \
+        needsterminal; composetyped = extcompose %s; \
+        description="A reference to data stored in an external location"
 message/external-body; ncftp %{site}:%{directory}/%{name}; \
-	test=test %{access-type} = anon-ftp
+        test=test %{access-type} = anon-ftp
 
 # You can alter the above entry to only use certain access-types by
 # adding a clause like the following before the "description=" line:
-#	test=test %{access-type}  = mail-server;  \
+#       test=test %{access-type}  = mail-server;  \
 
 # Von Norbert:
 #message/rfc822; xterm -e metamail %s
@@ -158,51 +158,53 @@ message/external-body; ncftp %{site}:%{directory}/%{name}; \
 # languages, and the ISO-8859-8 character set, which includes Hebrew
 # Note that the pipe to tr ensures that the "ISO" is case-insensitive.
 text/richtext; shownonascii iso-8859-8 -e richtext -p %s; \
-	test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`"  = iso-8859-8; \
-	copiousoutput
+        test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`"  = iso-8859-8; \
+        copiousoutput
 text/richtext; shownonascii iso-8859-1 -e richtext -p %s; \
-	test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`"  = iso-8859-1; \
-	copiousoutput
+        test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`"  = iso-8859-1; \
+        copiousoutput
 text/richtext; richtext %s; copiousoutput
 text/enriched; shownonascii iso-8859-8 -e richtext -e -p %s; \
-	test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`"  = iso-8859-8; \
-	copiousoutput
+        test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`"  = iso-8859-8; \
+        copiousoutput
 text/enriched; shownonascii iso-8859-1 -e richtext -e -p %s; \
-	test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`"  = iso-8859-1; \
-	copiousoutput
+        test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`"  = iso-8859-1; \
+        copiousoutput
 # If you have Andrew at your site, you MIGHT prefer to replace the
 # above line with the following one, but probably would not because
 # ez takes so long to start up.
 # text/richtext; richtoatk < %s | ezview - ; copiousoutput
 text/enriched; richtext -e %s; copiousoutput
 #text/plain; shownonascii iso-8859-8 %s; \
-#	test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`" = iso-8859-8; \
-#	copiousoutput
+#       test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`" = iso-8859-8; \
+#       copiousoutput
 #text/plain; shownonascii iso-8859-1 %s; \
-#	test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`" = iso-8859-1; \
-#	copiousoutput
+#       test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`" = iso-8859-1; \
+#       copiousoutput
 text/plain; shownonascii iso-8859-8 %s; \
-	test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`" \
-	= iso-8859-8 -a -n "$DISPLAY" ; \
-	copiousoutput
+        test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`" \
+        = iso-8859-8 -a -n "$DISPLAY" ; \
+        copiousoutput
 text/plain; shownonascii iso-8859-8 %s | more ; \
-	test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`" = iso-8859-8; \
-	needsterminal
+        test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`" = iso-8859-8; \
+        needsterminal
 #text/plain; shownonascii iso-8859-1 %s; \
-#	test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`" = \
-#	iso-8859-1 -a -n "$DISPLAY" ; \
-#	copiousoutput
+#       test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`" = \
+#       iso-8859-1 -a -n "$DISPLAY" ; \
+#       copiousoutput
 #text/plain; shownonascii iso-8859-1 %s | more ; \
-#	test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`" = iso-8859-1 ; \
-#	needsterminal
+#       test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`" = iso-8859-1 ; \
+#       needsterminal
 text/plain; cat %s; \
-	test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`" = iso-8859-1 ; \
-	copiousoutput
+        test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`" = iso-8859-1 ; \
+        copiousoutput
 
 
 # non-interactive, basically text converter:
-# text/html; w3m -I %{charset} -T text/html -dump; copiousoutput # does not print urls :-(
-text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s; nametemplate=%s.html; copiousoutput
+# text/html; w3m -I %{charset} -T text/html; copiousoutput;
+# text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s; nametemplate=%s.html; copiousoutput
+text/html; elinks -dump -dump-color-mode 1; copiousoutput;
+
 
 text/x-sgml; cat %s; copiousoutput
 text/x-chdr; cat %s; copiousoutput
@@ -215,7 +217,7 @@ text/english; cat %s; copiousoutput
 text/x-vcard; vcard-filter; copiousoutput
 
 text/comma-separated-values; gnumeric %s; test=test -n "$DISPLAY"; \
-	nametemplate=%s.csv
+        nametemplate=%s.csv
 
 
 #
@@ -246,7 +248,7 @@ video/*; xanim +Av70 +Sr +Zpe %s >/dev/null; test=test -n "$DISPLAY"
 # when sent to the printer...
 application/postscript; gv %s; test=test -n "$DISPLAY"
 #application/postscript; lpr %s \; echo SENT FILE TO PRINTER;\
-#	description="A Postscript File"
+#       description="A Postscript File"
 #application/postscript; ps2ascii %s | par 72; copiousoutput
 application/postscript; pstotext %s; copiousoutput
 application/postscript;; print=lpr %s
@@ -301,18 +303,18 @@ application/x-lotus-notes; lotusview %s; needsterminal
 application/x-lotus-notes; lotusview -B %s; copiousoutput
 
 application/pgp; pgp -f < %s | metamail; needsterminal; \
-	test=test %{encapsulation}=entity
+        test=test %{encapsulation}=entity
 application/pgp; pgp %s; needsterminal
 application/pgp; pgp +verbose=0 %s; \
-	test=test %{format} = keys-only; needsterminal
+        test=test %{format} = keys-only; needsterminal
 #application/pgp; pgp +verbose=0 -f; copiousoutput; needsterminal
 application/pgp-keys; pgp -f 2>/dev/null; copiousoutput
 application/x-pgp-public-key; pgp +verbose=0 %s; needsterminal
 application/x-pgp-message; pgp +verbose=0 -f; needsterminal; copiousoutput
 application/pgp-signature; cat %s; copiousoutput
 #application/pgp; pgp +verbose=0 %s -o %s.plain && \
-#	metamail -z %s.plain || rm -f %s.plain; \
-#	test=test %{format} = mime; needsterminal; copiousoutput
+#       metamail -z %s.plain || rm -f %s.plain; \
+#       test=test %{format} = mime; needsterminal; copiousoutput
 application/pkcs7-signature; strings %s; copiousoutput
 application/x-pkcs7-signature; strings %s; copiousoutput
 multipart/signed; cat %s; copiousoutput
@@ -323,15 +325,15 @@ application/msword; wv-ns %s; test=test -n "$DISPLAY"
 #application/msword; strings-locale; copiousoutput
 #application/msword; strings %s; copiousoutput
 #application/msword; lhalw --column 80 --to_stdout %s 2>/dev/null; \
-#	copiousoutput
+#       copiousoutput
 #application/msword; word2x-filter; copiousoutput
 #application/msword; catdoc %s; copiousoutput
 application/msword; antiword %s; copiousoutput
 application/ms-tnef; tnef2txt %s; copiousoutput
 application/excel; gnumeric %s; test=test -n "$DISPLAY"; \
-	nametemplate=%s.xls
+        nametemplate=%s.xls
 application/vnd.ms-excel; gnumeric %s; test=test -n "$DISPLAY"; \
-	nametemplate=%s.xls
+        nametemplate=%s.xls
 #application/excel; xlsview %s; test=test -n "$DISPLAY"
 #application/vnd.ms-excel; xlsview %s; test=test -n "$DISPLAY"
 application/excel; xls2csv %s | column -s, -t; copiousoutput
@@ -344,7 +346,7 @@ application/rtf; rtfreader %s; copiousoutput
 # a standard hex dump program.  You could use "od" if you do not have an
 # "hd".  Naive users may find the output from this entry confusing.)
 #application/octet-stream; hexdump; copiousoutput; \
-#	description="Hex dump of data"
+#       description="Hex dump of data"
 application/octet-stream; octet-filter %s; copiousoutput
 
 # The following should be commented out if you do NOT have safe-tcl
@@ -356,16 +358,16 @@ application/x-tcl; cat %s; copiousoutput
 # The following should be commented out if you do NOT have atomicmail
 # and should be uncommented if you DO have ATOMICMAIL
 #application/atomicmail; atomicmail %s; compose=surveyor.am -p %s; \
-#	description="An interactive ATOMICMAIL survey"
+#       description="An interactive ATOMICMAIL survey"
 # The following should be used instead if you have atomicmail but not TK.
 #application/atomicmail; atomicmail %s ; needsterminal
 #application/atomicmail; atomicmail %s; compose=surveyor.am -p %s; \
-#	description="An interactive ATOMICMAIL survey"; needsterminal
+#       description="An interactive ATOMICMAIL survey"; needsterminal
 
 # The following give rudimentary capabilities to read old andrew format
 # even to non-Andrew sites, since "ezview" comes with metamail.
 application/andrew-inset; ezview %s ; copiousoutput; edit=ez -d %s; \
-	compose="ez -d %s"; description="An Andrew inset/document"
+        compose="ez -d %s"; description="An Andrew inset/document"
 
 # The following is used for distributing metamail patches
 # It should probably be used only by those administering metamail at a site.
@@ -374,11 +376,11 @@ application/andrew-inset; ezview %s ; copiousoutput; edit=ez -d %s; \
 # You can also modify this line to get metamail patches from some trusted
 # server other than thumper, if there is one -- man patch-metamail for help.
 application/x-metamail-patch; \
-	cat > /dev/null \;patch-metamail source-tree-root %{patchnumber};\
-	needsterminal
+        cat > /dev/null \;patch-metamail source-tree-root %{patchnumber};\
+        needsterminal
 
 application/x-debian-package; dpkg --info %s\; dpkg --contents %s; \
-	copiousoutput
+        copiousoutput
 
 # The following is for support of MacMIME, especially those
 # the Columbia AppleTalk package (CAP) installed.
@@ -387,7 +389,7 @@ application/x-debian-package; dpkg --info %s\; dpkg --contents %s; \
 # If you don not have CAP, and have not changed rcvAppleSingle
 # or sndAppleSingle, you should comment out this line.
 application/applefile; rcvAppleSingle %s; compose="sndAppleSingle %s";\
-	description="An Apple Macintosh file in AppleSingle format"
+        description="An Apple Macintosh file in AppleSingle format"
 
 #
 # The following is for interoperability with Z-Mail version 3.0 and beyond.
@@ -396,35 +398,35 @@ application/applefile; rcvAppleSingle %s; compose="sndAppleSingle %s";\
 # For more info about Z-Mail, send email to info@z-code.com
 #
 #application/x-movie; movieplayer %s; compose=moviemaker %s; \
-#	description="Movie"; \
-#	x11-bitmap="/usr/lib/Zmail/bitmaps/movie.xbm"
+#       description="Movie"; \
+#       x11-bitmap="/usr/lib/Zmail/bitmaps/movie.xbm"
 #application/x-inventor; examine %s; description="Inventor file"; \
-#	x11-bitmap="/usr/lib/Zmail/bitmaps/inventor.xbm"
+#       x11-bitmap="/usr/lib/Zmail/bitmaps/inventor.xbm"
 #application/x-zm-fax; zfax %s; description="Z-Fax document"; \
-#	x11-bitmap="/usr/lib/Zmail/bitmaps/fax.xbm"
+#       x11-bitmap="/usr/lib/Zmail/bitmaps/fax.xbm"
 #application/x-showcase; showcase %s; compose=showcase %s; \
-#	description="Showcase document"; \
-#	x11-bitmap="/usr/lib/Zmail/bitmaps/showcase.xbm"
+#       description="Showcase document"; \
+#       x11-bitmap="/usr/lib/Zmail/bitmaps/showcase.xbm"
 #application/x-jot; jot %s; compose=jot %s; description="Jot document"; \
-#	x11-bitmap="/usr/lib/Zmail/bitmaps/jot.xbm"
+#       x11-bitmap="/usr/lib/Zmail/bitmaps/jot.xbm"
 #application/x-island-write; IslandWrite %s; compose=IslandWrite %s; \
-#	description="IslandWrite document"; \
-#	x11-bitmap="/usr/lib/Zmail/bitmaps/islwrite.xbm"
+#       description="IslandWrite document"; \
+#       x11-bitmap="/usr/lib/Zmail/bitmaps/islwrite.xbm"
 #application/x-island-draw; IslandDraw %s; compose=IslandDraw %s; \
-#	description="IslandDraw document"; \
-#	x11-bitmap="/usr/lib/Zmail/bitmaps/isldraw.xbm"
+#       description="IslandDraw document"; \
+#       x11-bitmap="/usr/lib/Zmail/bitmaps/isldraw.xbm"
 #application/x-island-paint; IslandPaint %s; compose=IslandPaint %s; \
-#	description="IslandPaint document"; \
-#	x11-bitmap="/usr/lib/Zmail/bitmaps/islpaint.xbm"
+#       description="IslandPaint document"; \
+#       x11-bitmap="/usr/lib/Zmail/bitmaps/islpaint.xbm"
 #application/x-wingz; Wingz %s; compose=Wingz %s; \
-#	description="Wingz document"; \
-#	x11-bitmap="/usr/lib/Zmail/bitmaps/wingz.xbm"
+#       description="Wingz document"; \
+#       x11-bitmap="/usr/lib/Zmail/bitmaps/wingz.xbm"
 #application/x-framemaker; maker -f %s; compose=maker -f %s; \
-#	description="FrameMaker document"; \
-#	x11-bitmap="/usr/lib/Zmail/bitmaps/frame.xbm"
+#       description="FrameMaker document"; \
+#       x11-bitmap="/usr/lib/Zmail/bitmaps/frame.xbm"
 #Another suggested way to use FrameMaker
 # application/x-framemaker; clclient -f %s \; sleep 60 ; \
-#	compose="getfilename FrameMaker %s"
+#       compose="getfilename FrameMaker %s"
 
 
 
@@ -434,9 +436,9 @@ application/applefile; rcvAppleSingle %s; compose="sndAppleSingle %s";\
 
 # Definitions for MIME security with PGP (RFC 2015):
 # multipart/encrypted; showencrypted %{boundary} %s; \
-# 	test=test %{protocol} = application/pgp-encrypted; needsterminal
+#       test=test %{protocol} = application/pgp-encrypted; needsterminal
 # multipart/signed; showsigned %{boundary} %s; \
-# 	test=test %{protocol} = application/pgp-signature; needsterminal
+#       test=test %{protocol} = application/pgp-signature; needsterminal
 
 
 #
