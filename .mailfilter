@@ -5,7 +5,7 @@
 logfile "$HOME/.Maildroplog"
 VERBOSE=9
 
-R='/home/han/Mail'
+R='/bigstorage/home/han/Mail'
 TRASHCAN='/dev/null'
 
 # Mail from github.com
@@ -42,6 +42,10 @@ if (/^From: .*@paypal\./ || /paypal@mail.paypal.at/)
         to $R/paypal
     }
 
+if (/^From: .*@amazon\.de/)
+    {
+        to $R/amazon
+    }
 
 # Sure, whatever
 if (/^From: @interfax.net/)
