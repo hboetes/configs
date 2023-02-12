@@ -18,9 +18,10 @@ bindsym $mod+Shift+m exec gnome-system-monitor
 bindsym $mod+Shift+Q kill
 
 bindsym $mod+d exec $(~/.bin/dmenu)
-bindsym $mod+c exec rofi -fake-transparency -show run
-bindsym $mod+g exec rofi -fake-transparency -show ssh
-bindsym $mod+m exec rofi -fake-transparency -show window
+bindsym $mod+Shift+d exec rofi -show drun -show-icons
+bindsym $mod+c       exec rofi -fake-transparency -show run
+bindsym $mod+g       exec rofi -fake-transparency -show ssh
+bindsym $mod+m       exec rofi -fake-transparency -show window
 
 bindsym $mod+r exec pkill -USR1 redshift
 
@@ -106,11 +107,6 @@ mode "resize" {
   bindsym Escape mode "default"
 }
 
-# Start waybar to display a workspace bar
-bar {
-  swaybar_command waybar
-}
-
 workspace_auto_back_and_forth no
 
 # xprop|grep WM_CLASS → WM_CLASS(STRING) = "irssi", "URxvt"
@@ -126,9 +122,9 @@ for_window [app_id="^com.github.wwmm.easyeffects$"] floating enable
 for_window [app_id="^pavucontrol$"] floating enable
 for_window [app_id="^Terminator Preferences$"] floating enable # no worky :-(
 for_window [app_id="^Toplevel$" instance="^variations$"] floating enable
-
+for_window [app_id="^org.remmina.Remmina$"] fullscreen enable
 assign [app_id="^Puddletag$"] 3
-assign [app_id="^Vncviewer$"] 8
+assign [app_id="^org.remmina.Remmina$"] 8
 for_window [app_id="^Vncviewer$"] gaps inner current set 0; gaps outer current set 0
 
 
@@ -150,18 +146,20 @@ default_floating_border pixel
 gaps inner 5
 gaps outer 5
 hide_edge_borders both
+smart_gaps on
+
 bindsym $mod+a                  gaps inner current set 0; gaps outer current set 0
 bindsym $mod+Shift+a            gaps inner current set 5; gaps outer current set 5
 
 
 # swaymsg -t get_inputs
-input "1:1:AT_Translated_Set_2_keyboard" {
-  xkb_layout  us,de
+input "1165:49409:ITE_Tech._Inc._ITE_Device(8910)_Keyboard" {
+  xkb_layout  eu,de,us
   xkb_model   pc105
   xkb_options compose:rctrl,caps:none,srvkeys:none
 }
 
-input "1739:52581:SYNA1202:00_06CB:CD65_Touchpad" {
+input "1267:12765:MSFT0001:00_04F3:31DD_Touchpad" {
   dwt enabled
   tap enabled
 }
@@ -171,32 +169,40 @@ bindsym $mod+y           exec clipman --primary pick --tool rofi || notify-send 
 bindsym $mod+Shift+y     exec clipman clear --primary -a
 bindsym $mod+Mod1+y      exec clipman clear --primary -t rofi
 bindsym $mod+Ctrl+y      exec : | wl-copy -p
-bindsym $mod+p exec i3exit $(echo -e 'suslock\nsuspend\nlock\nlogout\nreboot\nshutdown' | rofi -dmenu)
-bindsym $mod+Print exec swayshot $(echo -e 'display\nwindow\nregion\ndisplay upload\nwindow upload\nregion upload' | rofi -dmenu)
-bindsym $mod+question exec sway-prop
-
-# autolock etc.
-exec swayidle -w \
-  timeout 600 'lockmeup' \
-  timeout 630 'swaymsg "output * dpms off"' \
-  resume 'swaymsg "output * dpms on"'
-
-# Start up programs
-exec wl-paste    -t text --watch clipman store
-exec wl-paste -p -t text --watch clipman store
-exec dbus-update-activation-environment DISPLAY
-# https://wiki.archlinux.org/title/PipeWire
-exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-exec gnome-keyring-daemon --start --components=pkcs11,secrets
-exec nm-applet --indicator
-exec blueman-applet
-exec redshift-gtk -m wayland -l 46.8471:15.520
-exec dunst
-exec battery
-exec wallpaper
+bindsym $mod+p           exec i3exit   $(echo -e 'suslock\nsuspend\nlock\nlogout\nreboot\nshutdown' | rofi -dmenu)
+bindsym $mod+Print       exec swayshot $(echo -e 'display\nwindow\nregion\ndisplay upload\nwindow upload\nregion upload' | rofi -dmenu)
+bindsym $mod+question    exec sway-prop
 
 # If you want to pass commands to a sway/i3 session in vnc etc.
 mode passthrough {
   bindsym $mod+Shift+p mode default
 }
 bindsym $mod+Shift+p mode passthrough
+
+# exec terminator -e "journalctl --user -f"
+# exec terminator -e htop
+# Start waybar to display a workspace bar
+bar {
+ swaybar_command waybar
+}
+
+# autolock etc.
+exec swayidle -w \
+  timeout 1800 'lockmeup' \
+  timeout 1830 'swaymsg "output * dpms off"' \
+  resume 'swaymsg "output * dpms on"' \
+  before-sleep 'lockmeup'
+
+# Start up programs
+# https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start
+exec gnome-keyring-daemon --replace --components=pkcs11,secrets
+exec systemctl --user import-environment # WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec wl-paste    -t text --watch clipman store
+exec wl-paste -p -t text --watch clipman store
+exec nm-applet --indicator
+exec blueman-applet
+# exec redshift-gtk -m wayland -l 46.8:15.5
+exec wlsunset -l 46.8 -L 15.5
+exec dunst
+exec wallpaper
