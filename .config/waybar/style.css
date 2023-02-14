@@ -100,22 +100,42 @@ window#waybar.chromium {
 /*     color: #99dd99; */
 /* } */
 
-/* #battery.charging, #battery.plugged { */
-/*     color: #99dd99; */
-/* } */
+#battery.charging, #battery.plugged {
+    background-color: green;
+    border-radius: 7px 15px;
+    padding: 0px 10px;
+    border-radius: 7px 15px;
+    padding: 0px 10px;
+    animation-name: blink;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
 
 @keyframes blink {
     to {
-        background-color: #ffffff;
-        color: #000000;
+        background-color: transparent;
     }
 }
 
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
+#battery.warning:not(.charging) {
+    background-color: orange;
+    border-radius: 7px 15px;
+    padding: 0px 10px;
     animation-name: blink;
-    animation-duration: 0.5s;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#battery.critical:not(.charging) {
+    background-color: red;
+    border-radius: 7px 15px;
+    padding: 0px 10px;
+    animation-name: blink;
+    animation-duration: 1s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -130,8 +150,15 @@ label:focus {
 /* } */
 
 #cpu.critical {
-    background-color: #eb4d4b;
     color: #ffffff;
+    background-color: red;
+    border-radius: 7px 15px;
+    padding: 0px 10px;
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 /* #memory { */
@@ -139,8 +166,15 @@ label:focus {
 /* } */
 
 #memory.critical {
-    background-color: #eb4d4b;
     color: #ffffff;
+    background-color: red;
+    border-radius: 7px 15px;
+    padding: 0px 10px;
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 #disk {
@@ -175,8 +209,15 @@ label:focus {
 /* } */
 
 #temperature.critical {
-    background-color: #eb4d4b;
     color: #ffffff;
+    background-color: red;
+    border-radius: 7px 15px;
+    padding: 0px 10px;
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 #tray {
@@ -189,7 +230,14 @@ label:focus {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+    background-color: red;
+    border-radius: 7px 15px;
+    padding: 0px 10px;
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 #language {

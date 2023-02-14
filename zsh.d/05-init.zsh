@@ -55,6 +55,8 @@ export LC_TIME=en_GB.UTF-8
 #export LC_COLLATE=C
 #export LC_ALL
 export TZ=Europe/Vienna
+# See this thread: https://www.zsh.org/mla/workers/2022/msg00814.html
+export RSYNC_OLD_ARGS=1
 
 # Only set this variable if running in X
 [ "$XAUTHORITY" ] && export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=lcd'

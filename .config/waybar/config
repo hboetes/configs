@@ -1,5 +1,5 @@
 // -*- mode: json -*-
-{
+    {
     "layer": "bottom", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 24, // Waybar height (to be removed for auto height)
@@ -7,7 +7,7 @@
     // Set the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode"],
     //"modules-center": ["sway/window"],
-    "modules-right": ["pulseaudio", "disk", "network#1", "network#2", "network#3", "cpu", "memory", "temperature", "battery", "backlight", "sway/language", "tray", "clock"],
+    "modules-right": ["idle_inhibitor", "pulseaudio", "disk", "network#1", "network#2", "network#3", "cpu", "memory", "temperature", "battery", "backlight", "sway/language", "tray", "clock"],
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
@@ -30,11 +30,8 @@
         "format": "{:%H:%M:%S %a %e %b %Y}",
         "calendar-weeks-pos": "left",
         "format-calendar-weeks": "<span color='#888888'><b>{}</b></span>",
-        // "format-calendar-weeks": "{}",
-        "format-calendar-weeks": "{:%V}",
         "tooltip-format": "<big><u>{:%B %Y}</u></big>\n\n<tt>{calendar}</tt>",
-        //"tooltip-format": "<tt>{calendar}</tt>",
-        "today-format": "<span color='#ff6699'><b>{}</b></span>",
+        "today-format": "<span bgcolor='#888888'><b>{}</b></span>",
     },
     "cpu": {
         "interval": 2,
@@ -75,7 +72,7 @@
         "format-icons": ["", "", "", "", ""]
     },
     "network#1": {
-        "interface": "enp1s0f1",
+        "interface": "eno1",
         "format-ethernet": " ↑{bandwidthUpBytes} ↓{bandwidthUpBytes}",
         "format-alt": " {ipaddr}/{cidr}",
         "tooltip-format": "{ifname} via {gwaddr}",
@@ -83,7 +80,7 @@
         "format-disconnected": " ⚠",
     },
     "network#2": {
-        "interface": "wlp2s0",
+        "interface": "wlp4s0",
         "format-wifi": " ↑{bandwidthDownBytes:} ↓{bandwidthUpBytes:}",
         "format-alt": " {essid} {signalStrength}%",
         "tooltip-format": " via {gwaddr}",
@@ -98,14 +95,6 @@
         "format-linked": "{ifname} No IP",
         "format-disconnected": "{ifname} ⚠",
     },
-    // "network#4": {
-    //     "interface": "wg0",
-    //     "format-ethernet": " ↑{bandwidthUpBytes} ↓{bandwidthUpBytes}",
-    //     "format-alt": " {ipaddr}/{cidr}",
-    //     "tooltip-format": "{ifname} via {gwaddr}",
-    //     "format-linked": "{ifname} No IP",
-    //     "format-disconnected": "{ifname} ⚠",
-    // },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
@@ -125,15 +114,14 @@
         },
         "on-click": "pavucontrol"
     },
-    // "keyboard-state": {
-        //     "numlock": true,
-        //     "capslock": true,
-        //     "format": "{name} {icon}",
-        //     "format-icons": {
-            //         "locked": "",
-            //         "unlocked": ""
-            //     }
-        // },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "timeout": 180
+    },
     "sway/language": {
         "format": "{short} {variant}",
         "on-click": "swaymsg input type:keyboard xkb_switch_layout next",

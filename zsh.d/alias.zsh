@@ -40,6 +40,7 @@ isinpath speedtest-cli  && alias speedtest-cli='speedtest-cli --bytes'
 isinpath dig  && alias whatsmyip='dig +short myip.opendns.com @resolver1.opendns.com'
 isinpath ncdu && alias ncdu='ncdu --color dark'
 isinpath atril && alias evince='echo use atril instead'
+isinpath prename && alias rename='prename'
 
 if isinpath czkawka_gui; then
     alias hiccup='czkawka_gui'
