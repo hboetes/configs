@@ -118,3 +118,6 @@ bind index \er read-thread
 # bind pager \e<up> previous-mbox
 # bind index \e<space> open-mbox
 # bind pager \e<space> open-mbox
+
+macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"

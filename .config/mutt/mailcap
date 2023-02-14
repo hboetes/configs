@@ -203,8 +203,11 @@ text/plain; cat %s; \
 # non-interactive, basically text converter:
 # text/html; w3m -I %{charset} -T text/html; copiousoutput;
 # text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s; nametemplate=%s.html; copiousoutput
-text/html; elinks -dump -dump-color-mode 1; copiousoutput;
+# text/html; elinks -dump -dump-color-mode 1; copiousoutput;
+# text/html; elinks -default-mime-type text/html -dump -dump-color-mode 1 -dump-charset UTF-8 %s;copiousoutput
+text/html; htmlviewer %s; copiousoutput
 
+error
 
 text/x-sgml; cat %s; copiousoutput
 text/x-chdr; cat %s; copiousoutput
