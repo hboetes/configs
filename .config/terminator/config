@@ -1,7 +1,8 @@
 [global_config]
   dbus = False
   focus = mouse
-  window_state = maximise
+  borderless = True
+  extra_styling = False
   tab_position = left
   broadcast_default = off
   custom_url_handler = /home/han/.bin/terminator_url_handler
