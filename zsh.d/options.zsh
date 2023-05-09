@@ -10,3 +10,28 @@ setopt \
 unsetopt bgnice autoparamslash cdablevars
 
 setopt noautoremoveslash
+
+# Enable completion
+autoload -Uz compinit && compinit
+
+# Group completions by type
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' format '%B%d%b'
+
+# Disable multios
+setopt NO_MULTIOS
+
+# Disable flow control
+setopt NO_FLOW_CONTROL
+
+# Enable completion
+autoload -Uz compinit && compinit
+
+# Group completions by type
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' format '%B%d%b'
+
+SAVEHIST=500
+
+# Recognize comments on the command line
+setopt INTERACTIVE_COMMENTS

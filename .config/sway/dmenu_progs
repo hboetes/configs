@@ -3,12 +3,12 @@ firefox_axis
 anydesk;flatpak run com.anydesk.Anydesk
 gqview
 pavucontrol
-remmina;remmina -i
+# remmina;remmina -i
 scid
-zoom;flatpak run us.zoom.Zoom
+emacs
+# zoom;flatpak run us.zoom.Zoom
 signal;flatpak run org.signal.Signal
-rustdesk;flatpak run org.rustdesk.rustdesk
-easyeffects
+# rustdesk;flatpak run org.rustdesk.rustdesk
 thunderbird
 nicotine;remmina -c /home/han/.local/share/remmina/group_vnc_nicotine@framboos_framboos-boetes-org.remmina
-freetube
+freetube;/opt/FreeTube/freetube
