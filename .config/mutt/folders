@@ -11,8 +11,6 @@ set postponed=+postponed
 mailboxes \
         +/ \
         +cc \
-        +duplicates \
-        +emacs-bugs \
         +mg \
         +paypal \
         +Sent \
@@ -20,8 +18,12 @@ mailboxes \
         +root \
         +github.com \
         +karriere.at \
+        +amazon \
+        +strava \
+        +sourcehut \
+        +bandcamp \
+        +airtribune \
         +zspam
-
 
 # I want to save all messages I compose in this folder
 set record=$HOME/Mail/Sent

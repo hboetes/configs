@@ -23,12 +23,12 @@ macro browser Y "!echo 'fetching... ' ; getmail 2>&1 > /dev/null &\n " "Check fo
 # work most likely. Pipe messages through maildrop so they end up in
 # the right folder. This is also a test to see if the rspamc has
 # improved the spam-filtering.
-macro index \e3 "|rspamc -h /var/run/rspamd/controller_socket learn_spam\ns/zspam<return>\n"             "SPAM"
-macro index \e4 "|rspamc -h /var/run/rspamd/controller_socket learn_ham\n"             "NO SPAM"
-macro pager \e3 "|rspamc -h /var/run/rspamd/controller_socket learn_spam\ns/zspam<return>\n"             "SPAM"
-macro pager \e4 "|rspamc -h /var/run/rspamd/controller_socket learn_ham\n"             "NO SPAM"
-macro pager \e2 "|rspamc -h /var/run/rspamd/controller_socket\n"      "Test Spammicity"
-macro index \e2 "|rspamc -h /var/run/rspamd/controller_socket\n"      "Test Spammicity"
+macro index \e3 "|rspamc -h /var/run/rspamd/controller_socket learn_spam;anykey\ns/zspam<return>\n"             "SPAM"
+macro index \e4 "|rspamc -h /var/run/rspamd/controller_socket learn_ham;anykey\n"             "NO SPAM"
+macro pager \e3 "|rspamc -h /var/run/rspamd/controller_socket learn_spam;anykey\ns/zspam<return>\n"             "SPAM"
+macro pager \e4 "|rspamc -h /var/run/rspamd/controller_socket learn_ham;anykey\n"             "NO SPAM"
+macro pager \e2 "|rspamc -h /var/run/rspamd/controller_socket; anykey\n"      "Test Spammicity"
+macro index \e2 "|rspamc -h /var/run/rspamd/controller_socket; anykey\n"      "Test Spammicity"
 
 #URLview macro's
 macro attach B ":set pipe_decode\n|urlview\n:unsetpipe_decode\n" "Call urlview to extract URLs out of a message"
@@ -118,3 +118,6 @@ bind index \er read-thread
 # bind pager \e<up> previous-mbox
 # bind index \e<space> open-mbox
 # bind pager \e<space> open-mbox
+
+macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"

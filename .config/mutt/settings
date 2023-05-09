@@ -22,12 +22,7 @@ set ascii_chars         # This is for the thread markers
 unset beep              # shut up!
 unset mark_old          # Makes me feel guilty I did not yet read that msg
 set reverse_alias       # If there is an alias ... show that.
-#set wrapmargin="48"
-#set wraplength="80"
-# set smileys="((:|\\(|;|=)(-|=|-'|%)(\\)|:|\\=))"
-
-# set quote_regexp="^([ \t]*[|>:%}#])+" # This is default.
-set quote_regexp="^([ \t]*[>])+"        # But I hate that.
+set quote_regexp="^([ \t]*[>])+"
 
 
 # Moving around
@@ -58,7 +53,7 @@ unset sig_dashes # My signature contains the dashes.
 #   http://homepages.ihug.co.nz/~trmusson/sgrotum.html
 
 # set editor='sgrotum; editorwrapper +12'
-set editor='~/.mutt/mutt_editor'
+set editor='~/.config/mutt/mutt_editor'
 
 set envelope_from
 set hidden_host
@@ -80,30 +75,32 @@ set sendmail=/usr/sbin/sendmail
 set sendmail_wait=-1    # send mail in the background
 set timeout=60          # Check for new mail every 60 seconds
 
-set ispell="aspell -e -c"
+#set ispell="aspell -e -c"
 
 # The e-mail adressbook
-set alias_file=~/.mutt/aliases
+set alias_file=~/.config/mutt/aliases
 
 # The mime settings
-set mailcap_path=~/.mutt/mailcap
+set mailcap_path=~/.config/mutt/mailcap
 
 auto_view text/html
-#alternative_order text/html text/plain text/enriched
-alternative_order text/plain text/enriched text
+# set implicit_autoview=yes
+# alternative_order text/html text/plain text/enriched
+alternative_order text/html text/plain text/enriched text
 
 set crypt_verify_sig=no
 set crypt_replyencrypt=no
 # set mbox_pane_width=20
 
 set smart_wrap
-set wrapmargin=10
 unset markers
 # set tilde
 
-# set display_filter='t-prot -acelmtS -Mmutt --spass -L$HOME/.mutt/mlfooters -A$HOME/.mutt/adfooters'
-#set display_filter='t-prot -cemt -Mmutt --pgp-short'
 set charset="utf-8"
+set send_charset="utf-8"
+set assumed_charset="utf-8"
+set config_charset="utf-8"
+set ascii_chars
 
 # charset-hook ^us-ascii$ utf-8
 # charset-hook ^iso-8859-1$ utf-8

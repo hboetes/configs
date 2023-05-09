@@ -1,7 +1,8 @@
 [global_config]
   dbus = False
   focus = mouse
-  window_state = maximise
+  borderless = True
+  extra_styling = False
   tab_position = left
   broadcast_default = off
   enabled_plugins = ,
