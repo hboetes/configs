@@ -50,4 +50,30 @@ local usercolor=$(name2color $USER)
 local hostcolor=$(name2color $HOSTNAME)
 unfunction name2color
 
-prompt="$usercolor@$hostcolor %~ %(!|%{$fg[yellow]%}|%{$fg_bold[black]%})%(?..%{$fg[red]%})%#%{$fg_no_bold[default]%} "
+# Enable substitution in the prompt.
+setopt prompt_subst
+
+# Everything needed to get branch status information.
+autoload -Uz add-zsh-hook
+autoload -Uz vcs_info
+
+add-zsh-hook precmd vcs_info
+
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' formats " %F{cyan}%c%u<%b>%f"
+zstyle ':vcs_info:*' actionformats " %F{cyan}%c%u<%b>%f %a"
+zstyle ':vcs_info:*' stagedstr "%F{green}"
+zstyle ':vcs_info:*' unstagedstr "%F{red}"
+zstyle ':vcs_info:*' check-for-changes true
+
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+
++vi-git-untracked() {
+  if git --no-optional-locks status --porcelain 2> /dev/null | /usr/bin/grep -q "^??"; then
+    hook_com[staged]+="%F{red}"
+  fi
+}
+
+setopt prompt_subst
+
+prompt="$usercolor@$hostcolor %~ %(!|%{$fg[yellow]%}|%{$fg_bold[black]%})%(?..%{$fg[red]%})%#%{$fg_no_bold[default]%} "'$vcs_info_msg_0_ '
