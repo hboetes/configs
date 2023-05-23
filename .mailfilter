@@ -69,6 +69,13 @@ if (/^From: .*@.*karriere.at/)
     to $R/karriere.at
 
 # who cares? Do I look like I use windows?
+if (/^From:.*noreply@bandcamp.com/)
+    {
+        log '====> Marketing.'
+        to $R/marketing
+    }
+
+# who cares? Do I look like I use windows?
 if (/^Subject:.*virus/ || /^From:.*virus/ )
     {
         log '====> Message contained the word "virus" in the subject or from.'
