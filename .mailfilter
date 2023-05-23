@@ -5,7 +5,7 @@
 logfile "$HOME/.Maildroplog"
 VERBOSE=9
 
-R='/home/han/Mail'
+R='/bigstorage/home/han/Mail'
 TRASHCAN='/dev/null'
 
 # Mail from github.com
@@ -31,6 +31,16 @@ if (/^From: tomtom@/)
         to $R/zspam
     }
 
+if (/^From outgoing@sr\.ht/)
+    {
+        to $R/sourcehut
+    }
+
+if (/^From: Airtribune <robot@airtribune\.com>/)
+    {
+        to $R/airtribune
+    }
+
 # Can't unsubscribe without them wanting to know all my private data.
 if (/^From:.*@litebit.eu/)
     {
@@ -42,6 +52,10 @@ if (/^From: .*@paypal\./ || /paypal@mail.paypal.at/)
         to $R/paypal
     }
 
+if (/^From: .*@amazon\.(de|com)/)
+    {
+        to $R/amazon
+    }
 
 # Sure, whatever
 if (/^From: @interfax.net/)
@@ -56,9 +70,11 @@ if (/^From: @online.net/)
     }
 
 if (/^X-Spam-Flag: YES/)
-    {
-        to $R/zspam
-    }
+   to $R/zspam
+
+if (/^From:.*strava.com/)
+   to $R/strava
+
 
 # Mail from fics chess-server
 if (/^From: FICS.*chess@freechess.org/)

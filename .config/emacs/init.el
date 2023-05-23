@@ -17,7 +17,7 @@
    '(("gelpa" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(nftables-mode 0blayout json-mode auto-package-update zenburn-theme eterm-256color airline-themes ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
+   '(catppuccin-theme ini-mode nftables-mode 0blayout json-mode auto-package-update eterm-256color airline-themes ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
  '(safe-local-variable-values
    '((epa-file-cache-passphrase-for-symmetric-encryption . 1)
      (add-log-time-zone-rule . t)))
@@ -25,7 +25,6 @@
  '(sentence-end-double-space t)
  '(show-paren-mode t)
  '(size-indication-mode t)
- '(tramp-syntax 'simplified nil (tramp))
  '(transient-mark-mode 1)
  '(visible-cursor nil)
  '(w3m-fill-column 80)
@@ -147,12 +146,6 @@ See info node `(emacs) Terminal Coding'."
 ;; 8 space tabs are inserted when you press <TAB> in certain modes.
 (setq default-tab-stop-list 8)
 
-;; nice mode for various config-files.
-(require 'generic-x)
-
-;; Lets keep things readable
-(setq fill-column 72)
-
 ;; sh indent settings
 (setq sh-indent-comment t
       sh-learn-basic-offset t)
@@ -181,10 +174,8 @@ See info node `(emacs) Terminal Coding'."
 (setq
  backup-directory-alist `((".*" . , emacs-tmp-dir))
  auto-save-file-name-transforms `((".*" , emacs-tmp-dir t))
- auto-save-list-file-prefix emacs-tmp-dir)
-
-(setq tramp-default-method "sshx"
-      tramp-auto-save-directory emacs-tmp-dir)
+ auto-save-list-file-prefix emacs-tmp-dir
+ tramp-auto-save-directory emacs-tmp-dir)
 
 ;; Spelling
 (setq-default ispell-program-name "hunspell")
@@ -258,7 +249,7 @@ See info node `(emacs) Terminal Coding'."
 (add-to-list 'auto-mode-alist '("Pkgfile"    . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.doit"    . sh-mode))
 
-;; no tabs by default. modes that really need tabs should enable
+;; No tabs by default. modes that really need tabs should enable
 ;; indent-tabs-mode explicitly. makefile-mode already does that, for
 ;; example.
 (setq-default indent-tabs-mode nil)
@@ -355,8 +346,6 @@ See info node `(emacs) Terminal Coding'."
 ;; Set a global key for autoformat region
 (global-set-key (kbd "C-c k") 'text-autoformat-region)
 (global-set-key  [f9]         'select-until-end-of-line)
-;;(global-set-key "\C-c s"      'replace-string)
-;;(global-set-key "\C-c r"      'replace-regex)
 (global-set-key "\C-w"        'unix-werase-or-kill)
 (global-set-key (kbd "<C-right>")  'windmove-right)
 (global-set-key (kbd "<C-left>")   'windmove-left)
@@ -372,74 +361,31 @@ See info node `(emacs) Terminal Coding'."
 (add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
 (add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
 
+
+
 ;; Themes and stuff: m-x describe-face
 ;; Yes, all themes are safe. >:-(
 (setq custom-safe-themes t)
 
-(cond
- ((>= emacs-major-version 28)
-  (progn
-    (load-theme 'modus-vivendi t)
-    (setq ethan-wspace-face-customized t)
-    (custom-theme-set-faces
-     'modus-vivendi
-     '(ethan-wspace-face ((t (:background "black")))))
-    ))
- ;;(load-theme 'deeper-blue t))
- ((<= emacs-major-version 27)
-  (progn
-    (load-theme 'zenburn t)
-    (custom-theme-set-faces
-     'zenburn
-     '(font-lock-comment-face ((t (:foreground "#DFAF8F"))))
-     '(font-lock-comment-delimiter-face ((t (:foreground "#DFAF8F"))))
-     '(region ((t (:extend t :background "peru"))))))))
 
 ;; Theme for the toolbar:
 (require 'airline-themes)
-(load-theme 'airline-ouo t)
-
-(setq
- powerline-utf-8-separator-left        #xe0b0
- powerline-utf-8-separator-right       #xe0b2
- airline-utf-glyph-separator-left      #xe0b0
- airline-utf-glyph-separator-right     #xe0b2
- airline-utf-glyph-subseparator-left   #xe0b1
- airline-utf-glyph-subseparator-right  #xe0b3
- airline-utf-glyph-branch              #xe0a0
- airline-utf-glyph-readonly            #xe0a2
- airline-utf-glyph-linenumber          #xe0a1)
-
-;; This function sets a random theme: You can trigger it with: m-x load-random-theme
-(defun load-random-theme ()
-  "Load any random theme from the available ones."
-  (interactive)
-
-  ;; disable any previously set theme
-  (if (boundp 'theme-of-the-day)
-      (progn
-        (disable-theme theme-of-the-day)
-        (makunbound 'theme-of-the-day)))
-
-  (defvar themes-list (custom-available-themes))
-  (defvar theme-of-the-day (nth (random (length themes-list))
-                                themes-list))
-  (load-theme (princ theme-of-the-day) t))
-;; (load-random-theme)
-
-
-;; set transparency
-(set-frame-parameter (selected-frame) 'alpha '(90 90))
-(add-to-list 'default-frame-alist '(alpha 90 90))
-
-;; Set the size of the floating window.
-;; (add-hook 'before-make-frame-hook
-;;           #'(lambda ()
-;;               (add-to-list 'default-frame-alist '(left   . 0))
-;;               (add-to-list 'default-frame-alist '(top    . 0))
-;;               (add-to-list 'default-frame-alist '(height . 52))
-;;               (add-to-list 'default-frame-alist '(width  . 200))))
+(load-theme 'airline-base16_atelier_cave t)
+(load-theme 'catppuccin t)
 
 ;; This makes text from an emacs console windows c&p able without
 ;; trailing whitespace.
 (unless window-system (custom-set-faces   '(default ((t (:background "unspecified-bg"))))))
+
+
+;; Automaticall load the right language: https://oylenshpeegul.gitlab.io/blog/posts/20230206/
+(cond
+ ((>= emacs-major-version 29)
+  (progn
+    (require 'eglot)
+    (add-hook 'go-mode-hook 'eglot-ensure)
+    ;; For current frame
+    (set-frame-parameter nil 'alpha-background 90)
+    ;; For all new frames henceforth
+    (add-to-list 'default-frame-alist '(alpha-background . 90))
+    )))
