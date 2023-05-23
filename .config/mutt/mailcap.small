@@ -1,0 +1,5 @@
+#
+text/html;	lynx -dump %s; copiousoutput; nametemplate=%s.html
+#text/html;	/usr/bin/lynx -dump -force_html %s; copiousoutput; nametemplate=%s.html
+# Rule to view rtf files. Replace w3m with the (text)browser of your choice
+#application/rtf; rthc --use-stdout %s 2>/dev/null | w3m -T text/html -dump; copiousoutput

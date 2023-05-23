@@ -1,0 +1,54 @@
+# muttrc
+# This is the main switchboard from where other settings get loaded
+
+# Don't want this in github.
+source ~/.config/mutt/private
+
+# Personal headers.
+source ~/.config/mutt/headers
+
+# Mail folders.
+source ~/.config/mutt/folders
+
+# Specific settings for folders.
+source ~/.config/mutt/folderhooks
+
+# Headers to ignore
+# Now set in folderhooks. But still a good example.
+# source ~/.config/mutt/ignoreheaders
+
+# Settings
+source ~/.config/mutt/settings
+
+# Formats
+source ~/.config/mutt/formats
+
+# E-Mail Aliases
+source ~/.config/mutt/aliases
+
+# Colors/Themes
+# Uncomment one theme.
+
+#source ~/.config/mutt/themes/blah
+#source ~/.config/mutt/themes/default
+#source ~/.config/mutt/themes/trans-cyan
+#source ~/.config/mutt/themes/trans-yellow
+#source ~/.config/mutt/themes/trans-blue
+#source ~/.config/mutt/themes/trans-green
+#source ~/.config/mutt/themes/trans-red
+#source ~/.config/mutt/themes/rosenfeldstheme
+#source ~/.config/mutt/themes/tomastheme
+source ~/.config/mutt/themes/openbsd
+#source ~/.config/mutt/themes/ice
+#source ~/.config/mutt/themes/color
+#source ~/.config/mutt/themes/comidia
+
+
+# Keybindings & macros
+source ~/.config/mutt/keybindings
+
+# New GnuPG stuff for Mutt 1.2+
+source ~/.config/mutt/gpg
+
+# Sendhooks. Configuration for special receivers.
+source ~/.config/mutt/sendhooks

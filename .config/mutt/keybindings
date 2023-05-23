@@ -1,0 +1,123 @@
+# $Id: keybindings,v 1.30 2006/12/17 06:33:18 han Exp $
+#
+# These are my keybindings. They are based on what I am used to use with
+# tin. Tin is newsreader and making it all 100% compatible is
+# impossible. I think that this config file will work _much_ to fast for
+# lots off people. There are no confirmations and nearly all browsing
+# can be done with the arrow keys.
+
+# On the mutt site you can find other examples or just uncomment this
+# file from $HOME/.muttrc
+
+#Some real macros
+macro index S <tag-prefix><save-message>? "Save tagged messages"
+
+macro index   Y "!echo 'fetching... ' ; getmail 2>&1 > /dev/null &\n " "Check for new mail via fetchmail"
+macro pager   Y "!echo 'fetching... ' ; getmail 2>&1 > /dev/null &\n " "Check for new mail via fetchmail"
+macro browser Y "!echo 'fetching... ' ; getmail 2>&1 > /dev/null &\n " "Check for new mail via fetchmail"
+
+# Show documentation when pressing F1
+# w3m is a console textbrowser, replace it with whatever you want
+
+# \e means escape; esc 3 marks a message as spam ; alt-3 will also
+# work most likely. Pipe messages through maildrop so they end up in
+# the right folder. This is also a test to see if the rspamc has
+# improved the spam-filtering.
+macro index \e3 "|rspamc -h /var/run/rspamd/controller_socket learn_spam;anykey\ns/zspam<return>\n"             "SPAM"
+macro index \e4 "|rspamc -h /var/run/rspamd/controller_socket learn_ham;anykey\n"             "NO SPAM"
+macro pager \e3 "|rspamc -h /var/run/rspamd/controller_socket learn_spam;anykey\ns/zspam<return>\n"             "SPAM"
+macro pager \e4 "|rspamc -h /var/run/rspamd/controller_socket learn_ham;anykey\n"             "NO SPAM"
+macro pager \e2 "|rspamc -h /var/run/rspamd/controller_socket; anykey\n"      "Test Spammicity"
+macro index \e2 "|rspamc -h /var/run/rspamd/controller_socket; anykey\n"      "Test Spammicity"
+
+#URLview macro's
+macro attach B ":set pipe_decode\n|urlview\n:unsetpipe_decode\n" "Call urlview to extract URLs out of a message"
+macro pager B  ":set pipe_decode\n|urlview\n:unsetpipe_decode\n" "Call urlview to extract URLs out of a message"
+macro index B  ":set pipe_decode\n|urlview\n:unsetpipe_decode\n" "Call urlview to extract URLs out of a message"
+
+# Get me out off here
+macro index Q   ":set quit=yes\nqy"  "Quit mutt without asking"
+macro browser Q ":set quit=yes\nqqy" "Quit mutt without asking"
+
+# Moves
+bind index <up> previous-entry
+bind index <down> next-entry
+macro index <right> <display-message>
+# macro index <left> <sync-mailbox><change-folder>? "Go to the folder menu"
+macro index <left> <sync-mailbox><change-folder>? # <toggle-mailboxes>
+
+bind index - previous-page
+bind index <space> next-page
+
+macro pager   <left>     <exit>
+macro pager   <right>    <noop>
+macro pager   <up>       <previous-line>
+macro pager   <down>     <next-line>
+
+macro pager   <pageup>   <previous-entry>
+macro pager   <pagedown> <next-entry>
+
+macro index   <tab>      <next-unread><enter>
+
+macro browser <space>    <check-new>
+
+macro browser <right>    <select-entry>
+macro browser <left>     <home><return> "Goto previous folder"
+
+macro index n c<return><display-message>
+macro pager n c<return><display-message>
+
+#views
+bind index $ sort-mailbox
+bind index P collapse-all
+bind index L limit
+
+#commands
+bind index x sync-mailbox
+macro pager x <sync-mailbox>q
+bind index l list-reply
+
+macro index Z <limit>~N<return>
+macro index z <limit>all<return>
+
+bind pager l list-reply
+bind pager \n noop
+bind pager P noop # I don't have a printer. Save the trees :P
+
+bind compose <space> send-message
+
+# If I would bind these the d button wouldn't work anymore.
+macro index <delete> d
+macro pager <delete> d
+
+macro pager s <save-message>?
+macro index s <save-message>?
+
+# From http://www.spinnaker.de/mutt/keybind
+macro index A "!$EDITOR ~/.mutt/aliases\n:source ~/.mutt/aliases\n" "Edit aliases file and reload it"
+macro pager A "!$EDITOR ~/.mutt/aliases\n:source ~/.mutt/aliases\n" "Edit aliases file and reload it"
+
+# I don't have a printer. Poor trees. :'(
+bind index p noop
+bind pager p noop
+
+macro index M "T \n;WN^t \n" "Mark all messages read"
+macro pager M "T \n;WN^t \n" "Mark all messages read"
+
+bind index \cr search-opposite
+bind index \cs search
+bind pager \cr search-opposite
+bind pager \cs search
+
+bind pager \er read-thread
+bind index \er read-thread
+
+# bind index \e<down> next-mbox
+# bind pager \e<down> next-mbox
+# bind index \e<up> previous-mbox
+# bind pager \e<up> previous-mbox
+# bind index \e<space> open-mbox
+# bind pager \e<space> open-mbox
+
+macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
