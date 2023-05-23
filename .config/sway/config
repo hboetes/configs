@@ -1,7 +1,7 @@
 set $mod Mod4
 set $term terminator
 
-font pango:inconsolata medium 8px
+font pango:monofur for powerline bold 12px
 titlebar_padding 1 1
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -9,7 +9,8 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec $term
-bindsym $mod+semicolon exec foot
+bindsym $mod+Shift+Return exec terminator --title floaters
+# bindsym $mod+semicolon exec foot
 bindsym $mod+Shift+b exec $term -e 'alsamixer -c 0'
 bindsym $mod+b exec Emacs
 bindsym $mod+Shift+m exec gnome-system-monitor
@@ -91,10 +92,10 @@ bindsym $mod+Shift+0 move workspace 10
 
 # reload The configuration file
 bindsym $mod+Shift+C reload
-bindsym $mod+Shift+R restart
+# bindsym $mod+Shift+R restart
 bindsym $mod+Shift+E exec sway_exit
 
-# bindsym $mod+shift+R mode "resize"
+bindsym $mod+shift+R mode "resize"
 bindsym $mod+Shift+s sticky toggle
 
 
@@ -120,12 +121,13 @@ for_window [app_id="^zoom$"] floating enable
 for_window [title="^Terminator Preferences$"] floating enable
 for_window [app_id="^com.github.wwmm.easyeffects$"] floating enable
 for_window [app_id="^pavucontrol$"] floating enable
-for_window [app_id="^Terminator Preferences$"] floating enable # no worky :-(
+for_window [app_id="^Terminator Preferences$"] floating enable
 for_window [app_id="^Toplevel$" instance="^variations$"] floating enable
 for_window [app_id="^org.remmina.Remmina$"] fullscreen enable
 assign [app_id="^Puddletag$"] 3
 assign [app_id="^org.remmina.Remmina$"] 8
 for_window [app_id="^Vncviewer$"] gaps inner current set 0; gaps outer current set 0
+for_window [title="^floaters$"] floating enable, resize set 800 640
 
 
 # class                 border  backgr. text    indicator
@@ -179,30 +181,36 @@ mode passthrough {
 }
 bindsym $mod+Shift+p mode passthrough
 
-# exec terminator -e "journalctl --user -f"
-# exec terminator -e htop
-# Start waybar to display a workspace bar
+# Start bar to display a workspace bar
 bar {
- swaybar_command waybar
+  swaybar_command swaybar
+  status_command ~/.config/sway/status_command
+  position top
+  # diable vertical scrolling
+  bindsym button4 nop
+  bindsym button5 nop
+  # diable horizontal scrolling
+  bindsym button6 nop
+  bindsym button7 nop
 }
 
 # autolock etc.
 exec swayidle -w \
-  timeout 1800 'lockmeup' \
+  timeout 1800 'swaylock -f' \
   timeout 1830 'swaymsg "output * dpms off"' \
   resume 'swaymsg "output * dpms on"' \
-  before-sleep 'lockmeup'
+  before-sleep 'swaylock -f'
 
 # Start up programs
 # https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start
-exec gnome-keyring-daemon --replace --components=pkcs11,secrets
-exec systemctl --user import-environment # WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+# exec gnome-keyring-daemon --replace --components=pkcs11,secrets
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP; dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_TYPE DBUS_SESSION_BUS_ADDRESS XAUTHORITY
 exec wl-paste    -t text --watch clipman store
 exec wl-paste -p -t text --watch clipman store
 exec nm-applet --indicator
 exec blueman-applet
-# exec redshift-gtk -m wayland -l 46.8:15.5
+# exec redshift-gtk -m wayland -l 46.8:15.5 -t 6500:4000
 exec wlsunset -l 46.8 -L 15.5
-exec dunst
+exec swaync
 exec wallpaper
+exec rfkill block bluetooth; rfkill unblock bluetooth

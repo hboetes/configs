@@ -1,0 +1,37 @@
+#!/bin/zsh
+
+while sleep $(( ( 1000000000 - $epochtime[2] + 10000000) / 1000000000. )); do
+
+    date_formatted=$(date "+%a %F %H:%M:%S")
+
+    # Returns the battery status: "Full", "Discharging", or "Charging".
+    battery_status=$(< /sys/class/power_supply/BAT0/status)
+    cap=$(</sys/class/power_supply/BAT0/capacity)
+
+    if [[ $cap -lt 30 ]]; then
+        bsicon='🪫'
+    else
+        bsicon='🔋'
+    fi
+
+    if ip r show 10.10.60.0/24|grep -q .; then
+        vpn='🔐'
+    fi
+
+    case $battery_status in
+        'Not charging')
+            bs='🔌'
+            ;;
+        'Discharging')
+            bs=$cap'% '$bsicon
+            ;;
+        'Charging')
+            bs=$cap'% ⚡'
+            ;;
+    esac
+
+
+    # Emojis and characters for the status bar
+    # 💎 💻 💡 🔌 ⚡ 📁 ↑ 🐧 🪫
+    echo $vpn $bs $date_formatted
+done
