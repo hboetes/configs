@@ -5,7 +5,7 @@
 logfile "$HOME/.Maildroplog"
 VERBOSE=9
 
-R='/bigstorage/home/han/Mail'
+R='/home/han/Mail'
 TRASHCAN='/dev/null'
 
 # Mail from github.com
