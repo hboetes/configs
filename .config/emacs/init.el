@@ -378,3 +378,8 @@ See info node `(emacs) Terminal Coding'."
     ;; For all new frames henceforth
     (add-to-list 'default-frame-alist '(alpha-background . 90))
     )))
+
+;; filetypes with default mode
+(add-to-list 'auto-mode-alist '("fonts.conf" . xml-mode))
+(add-to-list 'auto-mode-alist '("Pkgfile"    . sh-mode))
+(add-to-list 'auto-mode-alist '("\\.doit"    . sh-mode))
