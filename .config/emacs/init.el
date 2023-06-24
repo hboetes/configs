@@ -17,7 +17,7 @@
    '(("gelpa" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(tree-sitter-indent tree-sitter-langs tree-sitter lua-mode meson-mode catppuccin-theme ini-mode nftables-mode 0blayout json-mode auto-package-update eterm-256color airline-themes ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
+   '(creamsody-theme tree-sitter-indent tree-sitter-langs tree-sitter lua-mode meson-mode catppuccin-theme ini-mode nftables-mode 0blayout json-mode auto-package-update eterm-256color airline-themes ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
  '(safe-local-variable-values
    '((epa-file-cache-passphrase-for-symmetric-encryption . 1)
      (add-log-time-zone-rule . t)))
@@ -357,15 +357,17 @@ See info node `(emacs) Terminal Coding'."
 
 ;; Theme for the toolbar:
 (require 'airline-themes)
-(load-theme 'airline-base16_atelier_cave t)
-(load-theme 'catppuccin t)
+(load-theme 'airline-base16_woodland t)
+(load-theme 'creamsody-dark t)
+;(load-theme 'modus-vivendi t)
+;(load-theme 'catppuccin t)
 
 ;; This makes text from an emacs console windows c&p able without
 ;; trailing whitespace.
 (unless window-system (custom-set-faces   '(default ((t (:background "unspecified-bg"))))))
 
 
-;; Automaticall load the right language: https://oylenshpeegul.gitlab.io/blog/posts/20230206/
+;; Automatically load the right language: https://oylenshpeegul.gitlab.io/blog/posts/20230206/
 (cond
  ((>= emacs-major-version 29)
   (progn
