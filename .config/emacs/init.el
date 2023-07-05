@@ -17,7 +17,7 @@
    '(("gelpa" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(catppuccin-theme ini-mode nftables-mode 0blayout json-mode auto-package-update eterm-256color airline-themes ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
+   '(creamsody-theme tree-sitter-indent tree-sitter-langs tree-sitter lua-mode meson-mode catppuccin-theme ini-mode nftables-mode 0blayout json-mode auto-package-update eterm-256color airline-themes ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
  '(safe-local-variable-values
    '((epa-file-cache-passphrase-for-symmetric-encryption . 1)
      (add-log-time-zone-rule . t)))
@@ -99,6 +99,9 @@ See info node `(emacs) Terminal Coding'."
  auto-package-update-hide-results t
  auto-package-update-delete-old-versions t)
 
+(require 'tree-sitter)
+(require 'tree-sitter-langs)
+(require 'tree-sitter-indent)
 
 (require 'ethan-wspace)
 (global-ethan-wspace-mode 1)
@@ -209,10 +212,6 @@ See info node `(emacs) Terminal Coding'."
  user-full-name "Han Boetes"
  user-mail-address "han@boetes.org")
 
-;; For initscripts
-(add-to-list 'auto-mode-alist '("/etc/rc*" . sh-mode))
-(add-to-list 'auto-mode-alist '("/var/tmp/rc*" . sh-mode))
-
 ;; Enable `a' in dired-mode, to open files/dirs in the same buffer.
 (put 'dired-find-alternate-file 'disabled nil)
 
@@ -243,11 +242,6 @@ See info node `(emacs) Terminal Coding'."
 ;; Html helpermode
 (autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
 (setq auto-mode-alist (cons '("\\.html$" . html-helper-mode) auto-mode-alist))
-
-;; filetypes with default mode
-(add-to-list 'auto-mode-alist '("fonts.conf" . xml-mode))
-(add-to-list 'auto-mode-alist '("Pkgfile"    . sh-mode))
-(add-to-list 'auto-mode-alist '("\\.doit"    . sh-mode))
 
 ;; No tabs by default. modes that really need tabs should enable
 ;; indent-tabs-mode explicitly. makefile-mode already does that, for
@@ -354,13 +348,6 @@ See info node `(emacs) Terminal Coding'."
 
 (global-set-key [insertchar]       'do-nothing)
 
-(autoload 'apache-mode "apache-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
-(add-to-list 'auto-mode-alist '("httpd\\.conf\\'"  . apache-mode))
-(add-to-list 'auto-mode-alist '("srm\\.conf\\'"    . apache-mode))
-(add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
-(add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
-
 
 
 ;; Themes and stuff: m-x describe-face
@@ -370,15 +357,17 @@ See info node `(emacs) Terminal Coding'."
 
 ;; Theme for the toolbar:
 (require 'airline-themes)
-(load-theme 'airline-base16_atelier_cave t)
-(load-theme 'catppuccin t)
+(load-theme 'airline-base16_woodland t)
+(load-theme 'creamsody-dark t)
+;(load-theme 'modus-vivendi t)
+;(load-theme 'catppuccin t)
 
 ;; This makes text from an emacs console windows c&p able without
 ;; trailing whitespace.
 (unless window-system (custom-set-faces   '(default ((t (:background "unspecified-bg"))))))
 
 
-;; Automaticall load the right language: https://oylenshpeegul.gitlab.io/blog/posts/20230206/
+;; Automatically load the right language: https://oylenshpeegul.gitlab.io/blog/posts/20230206/
 (cond
  ((>= emacs-major-version 29)
   (progn
@@ -389,3 +378,8 @@ See info node `(emacs) Terminal Coding'."
     ;; For all new frames henceforth
     (add-to-list 'default-frame-alist '(alpha-background . 90))
     )))
+
+;; filetypes with default mode
+(add-to-list 'auto-mode-alist '("fonts.conf" . xml-mode))
+(add-to-list 'auto-mode-alist '("Pkgfile"    . sh-mode))
+(add-to-list 'auto-mode-alist '("\\.doit"    . sh-mode))
