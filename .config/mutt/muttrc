@@ -52,3 +52,5 @@ source ~/.config/mutt/gpg
 
 # Sendhooks. Configuration for special receivers.
 source ~/.config/mutt/sendhooks
+
+source ~/.config/mutt/sidebar
