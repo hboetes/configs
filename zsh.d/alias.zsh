@@ -54,6 +54,7 @@ alias -g G='|grep'
 alias -g H='|head'
 alias -g T='|tail'
 alias -g S='|sort'
+alias -g I='|sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n'
 
 alias genpasswd='< /dev/urandom tr -dc "a-zA-Z0-9" | dd count=1 bs=12 2> /dev/null; echo'
 alias genpasswd2='< /dev/urandom tr -dc "[:graph:]" | dd count=1 bs=12 2> /dev/null; echo'

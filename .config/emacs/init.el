@@ -358,6 +358,7 @@ See info node `(emacs) Terminal Coding'."
 ;; Theme for the toolbar:
 (require 'airline-themes)
 (load-theme 'airline-base16_woodland t)
+(load-theme 'creamsody t)
 (load-theme 'creamsody-dark t)
 ;(load-theme 'modus-vivendi t)
 ;(load-theme 'catppuccin t)

@@ -69,7 +69,7 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 
 +vi-git-untracked() {
-  if git --no-optional-locks status --porcelain 2> /dev/null | /usr/bin/grep -q "^??"; then
+  if git --no-optional-locks status --porcelain 2> /dev/null | \grep -q "^??"; then
     hook_com[staged]+="%F{red}"
   fi
 }
