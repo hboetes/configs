@@ -1,14 +1,16 @@
 firefox
-firefox_axis
+firefox axis;firefox --profile /home/han/.mozilla/firefox/4hmwehdp.default-release
 anydesk;flatpak run com.anydesk.Anydesk
 gqview
 pavucontrol
 # remmina;remmina -i
 scid
 emacs
-# zoom;flatpak run us.zoom.Zoom
+nm-connection-editor
 signal;flatpak run org.signal.Signal
-# rustdesk;flatpak run org.rustdesk.rustdesk
-thunderbird
+telegram;flatpak run org.telegram.desktop
+transmission-gtk
+thunderbird;thunderbird --profile /home/han/.thunderbird/ebjfmdi6.default-beta
+thunderbird axis;thunderbird --profile /home/han/.thunderbird/5xg5xgmx.Axis
 nicotine;remmina -c /home/han/.local/share/remmina/group_vnc_nicotine@framboos_framboos-boetes-org.remmina
 freetube;/opt/FreeTube/freetube
