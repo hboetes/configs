@@ -14,7 +14,7 @@ bindsym $mod+Return exec $term
 # bindsym $mod+semicolon exec foot
 bindsym $mod+Shift+b exec $term -e 'alsamixer -c 0'
 bindsym $mod+b exec Emacs
-bindsym $mod+Shift+m exec gnome-system-monitor
+# bindsym $mod+Shift+m exec gnome-system-monitor
 
 # kill focused window
 bindsym $mod+Shift+Q kill
@@ -24,7 +24,7 @@ bindsym $mod+Shift+d exec rofi -show drun -show-icons
 bindsym $mod+c       exec rofi -fake-transparency -show run
 bindsym $mod+g       exec rofi -fake-transparency -show ssh
 bindsym $mod+m       exec rofi -fake-transparency -show window
-
+bindsym $mod+shift+m exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 bindsym $mod+r exec pkill -USR1 redshift
 
 # alternatively, you can use the cursor keys:
@@ -60,6 +60,7 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
+bindsym $mod+h exec makoctl restore
 bindsym $mod+l exec "lockmeup"
 bindsym $mod+x exec "shhttt"
 bindsym $mod+Prior  exec "volume +"
@@ -161,6 +162,7 @@ input "1165:49409:ITE_Tech._Inc._ITE_Device(8910)_Keyboard" {
   xkb_model   pc105
   xkb_options compose:rctrl,caps:none,srvkeys:none
 }
+bindsym $mod+k input type:keyboard xkb_switch_layout next
 
 input "1267:12765:MSFT0001:00_04F3:31DD_Touchpad" {
   dwt enabled

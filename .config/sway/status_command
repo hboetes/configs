@@ -13,6 +13,13 @@ while sleep $pauze; do
         vpn='🔐'
     fi
 
+    mic=$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@)
+    if [[ $mic == *MUTED* ]]; then
+        micon='🔇'
+    else
+        micon='📢'
+    fi
+
     case $battery_status in
         'Not charging')
             bs='🔌'
@@ -45,5 +52,5 @@ while sleep $pauze; do
 
     # Emojis and characters for the status bar
     # 💎 💻 💡 🔌 ⚡ 📁 ↑ 🐧 🪫
-    echo $vpn $bs $date_formatted
+    echo $micon $vpn $bs $date_formatted
 done

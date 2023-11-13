@@ -37,7 +37,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "monofur for Powerline" :foundry "unci" :slant normal :weight normal :height 158 :width normal)))))
+ '(default ((t (:family "monofur for Powerline" :foundry "unci" :slant normal :weight normal :height 158 :width normal))))
+ '(ethan-wspace-face ((t (:background "darkslategray")))))
 
 ;; Fix a few bugs.
 (add-hook 'term-mode-hook #'eterm-256color-mode)
@@ -222,7 +223,7 @@ See info node `(emacs) Terminal Coding'."
 (add-to-list 'auto-mode-alist '("/var/nsd/zones/*" . dns-mode))
 (add-to-list 'auto-mode-alist '("/var/tmp/boetes*.org" . dns-mode))
 
-;; post for email-editing with mutt
+;; Post for email-editing with mutt
 (autoload 'post-mode "post.el" "Mode for editing
       email-messages" t)
 (add-to-list 'auto-mode-alist '("\\mutt-" . post-mode))
@@ -353,6 +354,11 @@ See info node `(emacs) Terminal Coding'."
 ;; Themes and stuff: m-x describe-face
 ;; Yes, all themes are safe. >:-(
 (setq custom-safe-themes t)
+
+(require 'ansi-color)
+(defun display-ansi-colors ()
+  (interactive)
+  (ansi-color-apply-on-region (point-min) (point-max)))
 
 
 ;; Theme for the toolbar:

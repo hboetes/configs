@@ -9,7 +9,6 @@
   suppress_multiple_term_dialog = True
   putty_paste_style_source_clipboard = True
   smart_copy = False
-  use_system_font = False
 [keybindings]
   zoom_in = <Primary>equal
   full_screen = ""
@@ -29,6 +28,7 @@
     scrollbar_position = hidden
     scroll_on_keystroke = False
     scrollback_infinite = True
+    use_system_font = False
     bold_is_bright = True
     copy_on_selection = True
   [[3024 Day]]
@@ -490,6 +490,7 @@
     scroll_on_keystroke = False
     scrollback_infinite = True
     palette = "#000000:#cc0000:#1a921c:#f0e53a:#0066ff:#c5656b:#06989a:#d3d7cf:#555753:#ef2929:#9aff87:#fffb5c:#43a8ed:#ff818a:#34e2e2:#eeeeec"
+    use_system_font = False
     copy_on_selection = True
   [[Fideloper]]
     icon_bell = False
@@ -1901,7 +1902,7 @@
       position = 0:0
       maximised = True
       fullscreen = False
-      size = 1920, 1061
+      size = 900, 400
       title = /bin/zsh
       last_active_term = 02dd3f4c-6fb1-4376-b5c0-40fe0830679a
       last_active_window = True
@@ -1919,7 +1920,7 @@
       position = 0:0
       maximised = True
       fullscreen = False
-      size = 1920, 1061
+      size = 900, 400
       title = /bin/zsh
       last_active_term = 02dd3f4c-6fb1-4376-b5c0-40fe0830679a
       last_active_window = True
