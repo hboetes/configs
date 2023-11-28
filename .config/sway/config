@@ -14,7 +14,7 @@ bindsym $mod+Return exec $term
 # bindsym $mod+semicolon exec foot
 bindsym $mod+Shift+b exec $term -e 'alsamixer -c 0'
 bindsym $mod+b exec Emacs
-bindsym $mod+Shift+m exec gnome-system-monitor
+# bindsym $mod+Shift+m exec gnome-system-monitor
 
 # kill focused window
 bindsym $mod+Shift+Q kill
@@ -24,7 +24,7 @@ bindsym $mod+Shift+d exec rofi -show drun -show-icons
 bindsym $mod+c       exec rofi -fake-transparency -show run
 bindsym $mod+g       exec rofi -fake-transparency -show ssh
 bindsym $mod+m       exec rofi -fake-transparency -show window
-
+bindsym $mod+shift+m exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 bindsym $mod+r exec pkill -USR1 redshift
 
 # alternatively, you can use the cursor keys:
@@ -60,6 +60,7 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
+bindsym $mod+h exec makoctl restore
 bindsym $mod+l exec "lockmeup"
 bindsym $mod+x exec "shhttt"
 bindsym $mod+Prior  exec "volume +"
@@ -131,11 +132,13 @@ for_window [app_id="^Vncviewer$"] gaps inner current set 0; gaps outer current s
 for_window [title="^floaters$"] floating enable, resize set 800 640
 
 
+
 # class                 border  backgr. text    indicator
 client.focused          #99784c #775528 #999999 #f49e2e
 client.focused_inactive #333333 #6a675f #ffffff #484e50
 client.unfocused        #333333 #222222 #888888 #292d2e
 client.urgent           #3a342f #900000 #ffffff #900000
+
 
 mouse_warping output
 workspace_layout default
@@ -161,6 +164,7 @@ input "1165:49409:ITE_Tech._Inc._ITE_Device(8910)_Keyboard" {
   xkb_model   pc105
   xkb_options compose:rctrl,caps:none,srvkeys:none
 }
+bindsym $mod+k input type:keyboard xkb_switch_layout next
 
 input "1267:12765:MSFT0001:00_04F3:31DD_Touchpad" {
   dwt enabled
@@ -193,9 +197,18 @@ bar {
   # diable horizontal scrolling
   bindsym button6 nop
   bindsym button7 nop
+
+  colors {
+    background #000000
+    statusline #aaaaaa
+    focused_workspace  #99784c #775528 #999999
+    active_workspace   #333333 #6a675f #ffffff
+    inactive_workspace #333333 #222222 #888888
+    urgent_workspace   #2f343a #900000 #ffffff
+  }
 }
 
-# autolock etc.
+# Autolock etc.
 exec swayidle -w \
   timeout 1800 'swaylock -f' \
   timeout 1830 'swaymsg "output * dpms off"' \
@@ -214,3 +227,4 @@ exec wlsunset -l 46.8 -L 15.5
 exec mako
 exec wallpaper
 exec rfkill block bluetooth; rfkill unblock bluetooth
+exec flameshot
