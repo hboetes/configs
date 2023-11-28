@@ -132,11 +132,13 @@ for_window [app_id="^Vncviewer$"] gaps inner current set 0; gaps outer current s
 for_window [title="^floaters$"] floating enable, resize set 800 640
 
 
+
 # class                 border  backgr. text    indicator
 client.focused          #99784c #775528 #999999 #f49e2e
 client.focused_inactive #333333 #6a675f #ffffff #484e50
 client.unfocused        #333333 #222222 #888888 #292d2e
 client.urgent           #3a342f #900000 #ffffff #900000
+
 
 mouse_warping output
 workspace_layout default
@@ -195,9 +197,18 @@ bar {
   # diable horizontal scrolling
   bindsym button6 nop
   bindsym button7 nop
+
+  colors {
+    background #000000
+    statusline #aaaaaa
+    focused_workspace  #99784c #775528 #999999
+    active_workspace   #333333 #6a675f #ffffff
+    inactive_workspace #333333 #222222 #888888
+    urgent_workspace   #2f343a #900000 #ffffff
+  }
 }
 
-# autolock etc.
+# Autolock etc.
 exec swayidle -w \
   timeout 1800 'swaylock -f' \
   timeout 1830 'swaymsg "output * dpms off"' \
@@ -216,3 +227,4 @@ exec wlsunset -l 46.8 -L 15.5
 exec mako
 exec wallpaper
 exec rfkill block bluetooth; rfkill unblock bluetooth
+exec flameshot

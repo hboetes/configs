@@ -1,6 +1,8 @@
 #!/bin/zsh
-pauze=$(( ( 1000000000 - $epochtime[2] + 10000000) / 1000000000. ))
 
+# This clever hack — kudos to the guys in #zsh — make sure this script is started at every second.
+# pauze=$(( ( 1000000000 - $epochtime[2] + 10000000) / 1000000000. ))
+pauze=0.98999999999999999
 while sleep $pauze; do
 
     date_formatted=$(date "+%a %F %H:%M:%S")
@@ -19,6 +21,8 @@ while sleep $pauze; do
     else
         micon='📢'
     fi
+
+    df=$(df --output=avail -h "/home"|tail -n1)
 
     case $battery_status in
         'Not charging')
@@ -52,5 +56,5 @@ while sleep $pauze; do
 
     # Emojis and characters for the status bar
     # 💎 💻 💡 🔌 ⚡ 📁 ↑ 🐧 🪫
-    echo $micon $vpn $bs $date_formatted
+    echo $df $micon $vpn $bs $date_formatted
 done
