@@ -11,7 +11,7 @@ cleanpath()
 
 # Paths
 path=(
-    ~/.bin
+    ~/.local/bin
     ~/.cargo/bin
     /usr/local/{s,}bin
     /opt/{s,}bin
