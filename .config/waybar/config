@@ -1,0 +1,67 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 17,
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-right": ["pulseaudio", "cpu", "memory", "disk", "battery", "clock", "network", "tray"],
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+    },
+    "sway/mode": {
+        "format": "{}"
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        "format": "{:%a %F %H:%M:%S}"
+    },
+    "cpu": {
+        "format": "{usage}%🧠",
+        "on-click": "terminator -e htop",
+    },
+    "memory": {
+        "format": "{}%📝",
+        "tooltip-format": "{used}% of {total}% total.",
+        "on-click": "terminator -e htop",
+    },
+    "disk": {
+    "interval": 30,
+    "format": "{percentage_free}%💾",
+    "path": "/"
+    },
+    "battery": {
+        "bat": "BAT0",
+        "states": {
+            "good": 60,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "pulseaudio": {
+        "scroll-step": 1,
+        "format": "{volume}% {icon}🔈",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "network": {
+        "interface": "tap0",
+        "format": "🔐",
+        "format-disconnected": "",
+    }
+}
