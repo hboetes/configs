@@ -21,9 +21,10 @@ bindsym $mod+Shift+Q kill
 
 bindsym $mod+d exec $(~/.bin/dmenu)
 bindsym $mod+Shift+d exec rofi -show drun -show-icons
-bindsym $mod+c       exec rofi -fake-transparency -show run
+bindsym $mod+n       exec rofi -fake-transparency -show run
 bindsym $mod+g       exec rofi -fake-transparency -show ssh
 bindsym $mod+m       exec rofi -fake-transparency -show window
+bindsym $mod+c       exec gnome-calendar
 bindsym $mod+shift+m exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 bindsym $mod+r exec pkill -USR1 redshift
 
@@ -100,6 +101,11 @@ bindsym $mod+Shift+E exec sway_exit
 bindsym $mod+shift+R mode "resize"
 bindsym $mod+Shift+s sticky toggle
 
+# Move the currently focused window to the scratchpad
+bindsym $mod+minus move scratchpad
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+equal scratchpad show
 
 mode "resize" {
   bindsym Left   resize shrink width
@@ -112,12 +118,13 @@ mode "resize" {
 
 workspace_auto_back_and_forth no
 
-# xprop|grep WM_CLASS → WM_CLASS(STRING) = "irssi", "URxvt"
+# $mod+? and search for app_id
 # So always use the last word!
 for_window [app_id="^Firefox$" instance="^Download$"] floating enable
 for_window [title="^Firefox — Sharing Indicator$"] floating enable
 for_window [app_id="^firefox$"] gaps inner current set 0; gaps outer current set 0
 for_window [app_id="feh"] floating enable
+for_window [app_id="org.gnome.Calendar"] floating enable
 for_window [app_id="^zoom$"] floating enable
 # for_window ["Bluetooth Devices"] floating enable
 for_window [title="^Terminator Preferences$"] floating enable
@@ -144,13 +151,13 @@ mouse_warping output
 workspace_layout default
 
 # Enable border only when have more than one window
-default_border pixel
-default_floating_border pixel
-#default_border none
-#default_floating_border none
+#default_border pixel
+#default_floating_border pixel
+default_border none
+default_floating_border none
 
-gaps inner 5
-gaps outer 5
+gaps inner 10
+gaps outer 10
 hide_edge_borders both
 smart_gaps on
 
@@ -188,7 +195,8 @@ bindsym $mod+Shift+p mode passthrough
 
 # Start bar to display a workspace bar
 bar {
-  swaybar_command swaybar
+  # swaybar_command swaybar
+  swaybar_command waybar
   status_command ~/.config/sway/status_command
   position top
   # diable vertical scrolling
@@ -197,6 +205,7 @@ bar {
   # diable horizontal scrolling
   bindsym button6 nop
   bindsym button7 nop
+  icon_theme Adwaita
 
   colors {
     background #000000
