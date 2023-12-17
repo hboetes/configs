@@ -120,32 +120,29 @@ workspace_auto_back_and_forth no
 
 # $mod+? and search for app_id
 # So always use the last word!
-for_window [app_id="^Firefox$" instance="^Download$"] floating enable
-for_window [title="^Firefox — Sharing Indicator$"] floating enable
-for_window [app_id="^firefox$"] gaps inner current set 0; gaps outer current set 0
-for_window [app_id="feh"] floating enable
-for_window [app_id="org.gnome.Calendar"] floating enable
-for_window [app_id="^zoom$"] floating enable
-# for_window ["Bluetooth Devices"] floating enable
-for_window [title="^Terminator Preferences$"] floating enable
-for_window [app_id="^com.github.wwmm.easyeffects$"] floating enable
-for_window [app_id="^pavucontrol$"] floating enable
-for_window [app_id="^Terminator Preferences$"] floating enable
-for_window [app_id="^Toplevel$" instance="^variations$"] floating enable
-for_window [app_id="^org.remmina.Remmina$"] fullscreen enable
+# Automatically move puddletag to window 3
 assign [app_id="^Puddletag$"] 3
 assign [app_id="^org.remmina.Remmina$"] 8
-for_window [app_id="^Vncviewer$"] gaps inner current set 0; gaps outer current set 0
+
+for_window [app_id="^Firefox$" instance="^Download$"] floating enable
+for_window [app_id="^Terminator Preferences$"] floating enable
+for_window [app_id="^Toplevel$" instance="^variations$"] floating enable
+for_window [app_id="^firefox$"] gaps inner current set 0; gaps outer current set 0
+for_window [app_id="^org.remmina.Remmina$"] fullscreen enable
+for_window [app_id="^pavucontrol$"] floating enable
+for_window [app_id="^transmission-gtk$"] floating enable
+for_window [app_id="^zoom$"] floating enable
+for_window [app_id="feh"] floating enable
+for_window [app_id="org.gnome.Calendar"] floating enable
+for_window [title="^Firefox — Sharing Indicator$"] floating enable
+for_window [title="^Terminator Preferences$"] floating enable
 for_window [title="^floaters$"] floating enable, resize set 800 640
-
-
 
 # class                 border  backgr. text    indicator
 client.focused          #99784c #775528 #999999 #f49e2e
 client.focused_inactive #333333 #6a675f #ffffff #484e50
 client.unfocused        #333333 #222222 #888888 #292d2e
 client.urgent           #3a342f #900000 #ffffff #900000
-
 
 mouse_warping output
 workspace_layout default
@@ -227,7 +224,9 @@ exec swayidle -w \
 # Start up programs
 # https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start
 # exec gnome-keyring-daemon --replace --components=pkcs11,secrets
-exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP; dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP XDG_SESSION_TYPE DBUS_SESSION_BUS_ADDRESS XAUTHORITY
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP; \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK \
+     XDG_CURRENT_DESKTOP XDG_SESSION_TYPE DBUS_SESSION_BUS_ADDRESS XAUTHORITY
 exec wl-paste    -t text --watch clipman store
 exec wl-paste -p -t text --watch clipman store
 exec nm-applet --indicator
