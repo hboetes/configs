@@ -1,3 +1,5 @@
 //@theme "/usr/local/share/rofi/themes/gruvbox-dark.rasi"
 //@theme "/usr/local/share/rofi/themes/iggy.rasi"
-@theme "/usr/local/share/rofi/themes/Arc-Dark.rasi"
+//@theme "/usr/local/share/rofi/themes/Arc-Dark.rasi"
+
+@theme "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"
