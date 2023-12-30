@@ -16,7 +16,7 @@
     },
     "clock": {
         "interval": 1,
-        "format": "{:%a %F %H:%M:%S}",
+        "format": "{:%c}",
         "tooltip-format": "<tt><span size='9pt' font='Monofur for powerline'>{calendar}</span></tt>",
         "calendar": {
             "mode"          : "year",
