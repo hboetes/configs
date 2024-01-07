@@ -196,27 +196,30 @@ bindsym $mod+Shift+p mode passthrough
 
 # Start bar to display a workspace bar
 bar {
-  # swaybar_command swaybar
   swaybar_command waybar
-  status_command ~/.config/sway/status_command
-  position top
-  # diable vertical scrolling
-  bindsym button4 nop
-  bindsym button5 nop
-  # diable horizontal scrolling
-  bindsym button6 nop
-  bindsym button7 nop
-  icon_theme Adwaita
-
-  colors {
-    background #000000
-    statusline #aaaaaa
-    focused_workspace  #99784c #775528 #999999
-    active_workspace   #333333 #6a675f #ffffff
-    inactive_workspace #333333 #222222 #888888
-    urgent_workspace   #2f343a #900000 #ffffff
-  }
 }
+
+# bar {
+#   swaybar_command swaybar
+#   status_command ~/.config/sway/status_command
+#   position top
+#   # diable vertical scrolling
+#   bindsym button4 nop
+#   bindsym button5 nop
+#   # diable horizontal scrolling
+#   bindsym button6 nop
+#   bindsym button7 nop
+#   icon_theme Adwaita
+
+#   colors {
+#     background #000000
+#     statusline #aaaaaa
+#     focused_workspace  #99784c #775528 #999999
+#     active_workspace   #333333 #6a675f #ffffff
+#     inactive_workspace #333333 #222222 #888888
+#     urgent_workspace   #2f343a #900000 #ffffff
+#   }
+# }
 
 # Autolock etc.
 exec swayidle -w \
