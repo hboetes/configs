@@ -163,6 +163,8 @@ smart_gaps on
 bindsym $mod+a                  gaps inner current set 0; gaps outer current set 0
 bindsym $mod+Shift+a            gaps inner current set 5; gaps outer current set 5
 
+# Hide mouse cursor after 2 seconds.
+seat seat0 hide_cursor 2000
 
 # swaymsg -t get_inputs
 input "1165:49409:ITE_Tech._Inc._ITE_Device(8910)_Keyboard" {
