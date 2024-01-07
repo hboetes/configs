@@ -232,7 +232,7 @@ exec swayidle -w \
 # https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start
 # exec gnome-keyring-daemon --replace --components=pkcs11,secrets
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP; \
-     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK LC_TIME \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK \
      XDG_CURRENT_DESKTOP XDG_SESSION_TYPE DBUS_SESSION_BUS_ADDRESS XAUTHORITY
 exec wl-paste    -t text --watch clipman store
 exec wl-paste -p -t text --watch clipman store
