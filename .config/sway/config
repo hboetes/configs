@@ -112,7 +112,6 @@ mode "resize" {
   bindsym Right  resize grow   width
   bindsym Up     resize shrink height
   bindsym Down   resize grow   height
-
   bindsym Escape mode "default"
 }
 
@@ -124,21 +123,31 @@ workspace_auto_back_and_forth no
 assign [app_id="^Puddletag$"] 3
 assign [app_id="^org.remmina.Remmina$"] 8
 
-for_window [app_id="^Firefox$" instance="^Download$"] floating enable
-for_window [app_id="^Terminator Preferences$"] floating enable
-for_window [app_id="^Toplevel$" instance="^variations$"] floating enable
-for_window [app_id="^firefox$"] gaps inner current set 0; gaps outer current set 0
-for_window [app_id="^org.remmina.Remmina$"] fullscreen enable
-for_window [app_id="^pavucontrol$"] floating enable
-for_window [app_id="^transmission-gtk$"] floating enable
-for_window [app_id="^zoom$"] floating enable
-for_window [app_id="feh"] floating enable
-for_window [title="AnyDesk"] floating enable
-for_window [title="anydesk"] floating enable
-for_window [app_id="org.gnome.Calendar"] floating enable
-for_window [title="^Firefox — Sharing Indicator$"] floating enable
-for_window [title="^Terminator Preferences$"] floating enable
-for_window [title="^floaters$"] floating enable, resize set 800 640
+for_window {
+  [app_id="^Firefox$" instance="^Download$"] floating enable
+  [app_id="^Terminator Preferences$"] floating enable
+  [app_id="^Toplevel$" instance="^variations$"] floating enable
+  [app_id="^firefox$"] gaps inner current set 0; gaps outer current set 0
+  [app_id="^org.remmina.Remmina$"] fullscreen enable
+  [app_id="^pavucontrol$"] floating enable
+  [app_id="^transmission-gtk$"] floating enable
+  [app_id="^zoom$"] floating enable
+  [app_id="feh"] floating enable
+  [app_id="org.gnome.Calendar"] floating enable
+  [app_id="ulauncher"] floating enable, border none
+  [title="(?:Open|Save) (?:File|Folder|As)"] floating enable, resize set width 1030 height 710
+  [title="Popup"] floating enable, resize set width 480 height 180
+  [title="AnyDesk"] floating enable
+  [title="^Firefox — Sharing Indicator$"] floating enable
+  [title="^Terminator Preferences$"] floating enable
+  [title="^floaters$"] floating enable, resize set 800 640
+  [title="anydesk"] floating enable
+  [window_role="bubble"] floating enable
+  [window_role="dialog"] floating enable
+  [window_role="pop-up"] floating enable
+  [window_type="dialog"] floating enable
+}
+
 
 # class                 border  backgr. text    indicator
 client.focused          #99784c #775528 #999999 #f49e2e
@@ -168,15 +177,15 @@ seat seat0 hide_cursor 2000
 
 # swaymsg -t get_inputs
 input "1165:49409:ITE_Tech._Inc._ITE_Device(8910)_Keyboard" {
-  xkb_layout  eu,de,us
-  xkb_model   pc105
-  xkb_options compose:rctrl,caps:none,srvkeys:none
+xkb_layout  eu,de,us
+xkb_model   pc105
+xkb_options compose:rctrl,caps:none,srvkeys:none
 }
 bindsym $mod+k input type:keyboard xkb_switch_layout next
 
 input "1267:12765:MSFT0001:00_04F3:31DD_Touchpad" {
-  dwt enabled
-  tap enabled
+dwt enabled
+tap enabled
 }
 
 # Keybinds
@@ -190,13 +199,13 @@ bindsym $mod+question    exec sway-prop
 
 # If you want to pass commands to a sway/i3 session in vnc etc.
 mode passthrough {
-  bindsym $mod+Shift+p mode default
+bindsym $mod+Shift+p mode default
 }
 bindsym $mod+Shift+p mode passthrough
 
 # Start bar to display a workspace bar
 bar {
-  swaybar_command waybar
+swaybar_command waybar
 }
 
 # bar {
@@ -223,17 +232,17 @@ bar {
 
 # Autolock etc.
 exec swayidle -w \
-  timeout 1800 'swaylock -f' \
-  timeout 1830 'swaymsg "output * dpms off"' \
-  resume 'swaymsg "output * dpms on"' \
-  before-sleep 'swaylock -f'
+timeout 1800 'swaylock -f' \
+timeout 1830 'swaymsg "output * dpms off"' \
+resume 'swaymsg "output * dpms on"' \
+before-sleep 'swaylock -f'
 
 # Start up programs
 # https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start
 # exec gnome-keyring-daemon --replace --components=pkcs11,secrets
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP; \
-     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK \
-     XDG_CURRENT_DESKTOP XDG_SESSION_TYPE DBUS_SESSION_BUS_ADDRESS XAUTHORITY
+dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK \
+XDG_CURRENT_DESKTOP XDG_SESSION_TYPE DBUS_SESSION_BUS_ADDRESS XAUTHORITY
 exec wl-paste    -t text --watch clipman store
 exec wl-paste -p -t text --watch clipman store
 exec nm-applet --indicator
@@ -242,4 +251,4 @@ exec wlsunset -l 46.8 -L 15.5
 exec mako
 exec wallpaper
 exec rfkill block bluetooth; rfkill unblock bluetooth
-exec flameshot
+exec sleep 5; flameshot
