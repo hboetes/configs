@@ -57,13 +57,14 @@ window#waybar {
 
 @keyframes blink {
     to {
-        background-color: white;
+        background-color: orange;
         color: black;
+        border-radius: 20px;
     }
 }
 
 #battery.warning:not(.charging) {
-    color: white;
+    color: orange;
     animation-name: blink;
     animation-duration: 2s;
     animation-timing-function: linear;
