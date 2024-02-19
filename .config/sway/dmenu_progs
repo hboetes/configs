@@ -5,7 +5,7 @@ gqview
 pavucontrol
 # remmina;remmina -i
 scid
-emacs
+emacs;emacs -bg black
 nm-connection-editor
 signal;flatpak run org.signal.Signal
 telegram;flatpak run org.telegram.desktop
