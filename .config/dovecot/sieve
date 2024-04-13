@@ -1,0 +1,65 @@
+require ["fileinto", "envelope", "regex"];
+
+if address :is :localpart "from" "MAILER-DAEMON"
+{
+    fileinto "postmaster";
+}
+
+if header :contains "X-Spam-Flag" "YES" {
+    fileinto "zspam";
+}
+
+if address :is :domain "from" "github.com"
+{
+    fileinto "github.com";
+}
+
+if address :is :localpart ["from", "to"] "root"
+{
+    fileinto "root";
+}
+
+if address :is :localpart "from" "j.difool"
+{
+    fileinto "difool";
+}
+
+if address :is "from" "robot@airtribune.com"
+{
+    fileinto "airtribune";
+}
+
+if address :regex :domain "from" "amazon.(de|com)"
+{
+    fileinto "amazon";
+}
+
+if address :regex :domain "from" "paypal.(at|com)"
+{
+    fileinto "paypal";
+}
+
+if address :is :domain "from" "sr.ht"
+{
+    fileinto "sourcehut";
+}
+
+if address :is :domain "from" "strava.com"
+{
+    fileinto "strava";
+}
+
+if address :is :domain "from" "karriere.at"
+{
+    fileinto "karriere.at";
+}
+
+if address :is :domain "from" ["bandcamp.com", "chelseawolfe.com"]
+{
+    fileinto "marketing";
+}
+
+if exists "list-unsubscribe"
+{
+    fileinto "marketing";
+}
