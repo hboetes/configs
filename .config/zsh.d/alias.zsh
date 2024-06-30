@@ -25,7 +25,7 @@ alias c='cd; clear'
 
 alias less='less -x4SRFX'
 
-isinpath htop   && alias top='htop'
+isinpath btop   && alias top='btop'
 isinpath geeqie && alias gqview='geeqie'
 isinpath wcalc  && alias calc='wcalc'
 isinpath pwgen  && alias pwgen='pwgen -y 12 1'
