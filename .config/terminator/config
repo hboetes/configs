@@ -6,7 +6,6 @@
   tab_position = left
   broadcast_default = off
   enabled_plugins = ,
-  suppress_multiple_term_dialog = True
   putty_paste_style_source_clipboard = True
   smart_copy = False
 [keybindings]
@@ -20,6 +19,7 @@
   help = None
 [profiles]
   [[default]]
+    audible_bell = True
     icon_bell = False
     background_darkness = 0.72
     cursor_blink = False
@@ -170,6 +170,7 @@
     scroll_on_keystroke = False
     scrollback_infinite = True
     palette = "#000000:#de3e35:#3f953a:#d2b67c:#2f5af3:#950095:#3f953a:#bbbbbb:#000000:#de3e35:#3f953a:#d2b67c:#2f5af3:#a00095:#3f953a:#ffffff"
+    use_system_font = False
     copy_on_selection = True
   [[BirdsOfParadise]]
     icon_bell = False
@@ -407,6 +408,7 @@
     scroll_on_keystroke = False
     scrollback_infinite = True
     palette = "#3a3d43:#be3f48:#879a3b:#c5a635:#4f76a1:#855c8d:#578fa4:#b9bcba:#888987:#fb001f:#0f722f:#c47033:#186de3:#fb0067:#2e706d:#fdffb9"
+    use_system_font = False
     copy_on_selection = True
   [[Dracula]]
     icon_bell = False
