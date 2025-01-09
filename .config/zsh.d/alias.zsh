@@ -40,6 +40,7 @@ isinpath speedtest-cli  && alias speedtest-cli='speedtest-cli --bytes'
 isinpath dig  && alias whatsmyip='dig +short myip.opendns.com @resolver1.opendns.com'
 isinpath ncdu && alias ncdu='ncdu --color dark'
 isinpath atril && alias evince='echo use atril instead'
+isinpath okular && alias atril='echo use okular instead'
 isinpath prename && alias rename='prename'
 
 if isinpath czkawka_gui; then
@@ -56,7 +57,11 @@ alias -g T='|tail'
 alias -g S='|sort'
 alias -g I='|sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n'
 
-alias genpasswd='< /dev/urandom tr -dc "a-zA-Z0-9" | dd count=1 bs=12 2> /dev/null; echo'
-alias genpasswd2='< /dev/urandom tr -dc "[:graph:]" | dd count=1 bs=12 2> /dev/null; echo'
+if isinpath bw; then
+    alias genpasswd='bw generate -pc --includeNumber'
+else
+    alias genpasswd='< /dev/urandom tr -dc "a-zA-Z0-9" | dd count=1 bs=12 2> /dev/null; echo'
+    alias genpasswd2='< /dev/urandom tr -dc "[:graph:]" | dd count=1 bs=12 2> /dev/null; echo'
+fi
 alias genpin='< /dev/urandom tr -dc "0-9" | dd count=1 bs=4 2> /dev/null; echo'
 alias finddeadlinks='find . -type l ! -exec test -e {} \; -print'
