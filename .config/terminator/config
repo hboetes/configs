@@ -19,7 +19,6 @@
   help = None
 [profiles]
   [[default]]
-    audible_bell = True
     icon_bell = False
     background_darkness = 0.72
     cursor_blink = False
@@ -1913,23 +1912,5 @@
       parent = child0
       order = 0
       profile = Espresso Libre
-      uuid = 02dd3f4c-6fb1-4376-b5c0-40fe0830679a
-  [[nice]]
-    [[[child0]]]
-      type = Window
-      parent = ""
-      order = 0
-      position = 0:0
-      maximised = True
-      fullscreen = False
-      size = 900, 400
-      title = /bin/zsh
-      last_active_term = 02dd3f4c-6fb1-4376-b5c0-40fe0830679a
-      last_active_window = True
-    [[[terminal1]]]
-      type = Terminal
-      parent = child0
-      order = 0
-      profile = Dracula
       uuid = 02dd3f4c-6fb1-4376-b5c0-40fe0830679a
 [plugins]
