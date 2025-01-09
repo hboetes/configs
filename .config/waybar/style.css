@@ -22,7 +22,16 @@ window#waybar {
     border-width: 1px;
 }
 
-#workspaces button.focused {
+/* sway */
+/* #workspaces button.focused { */
+/*     background-color: #775528; */
+/*     border-color: #99784c; */
+/*     color: #999999; */
+/*     border-width: 1px; */
+/* } */
+
+/* hyprland */
+#workspaces button.active {
     background-color: #775528;
     border-color: #99784c;
     color: #999999;

@@ -2,16 +2,14 @@
     "layer": "top",
     "position": "top",
     "height": 17,
-    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-left": ["hyprland/workspaces", "hyprland/submap"],
     "modules-right": ["pulseaudio", "cpu", "memory", "disk", "battery", "clock", "network", "tray"],
     "hyprland/workspaces": {
-         "format": "{icon}",
-    },
-    "sway/workspaces": {
+        "format": "{icon}",
         "disable-scroll": true,
         "all-outputs": false,
     },
-    "sway/mode": {
+    "hyprland/submap": {
         "format": "{}"
     },
     "tray": {
