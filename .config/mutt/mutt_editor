@@ -7,5 +7,5 @@ sgrotum
 # perl can do the same though.
 # perl -pi -e 's/>>/> >/g;s/>>/> >/g;s/>([^ ])/> $1/;s/> $/>/' $@
 
-/home/han/.bin/Emacs "$@"
+/home/han/.local/bin/Emacs "$@"
 # mg "$@"

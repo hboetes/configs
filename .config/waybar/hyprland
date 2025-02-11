@@ -2,13 +2,14 @@
     "layer": "top",
     "position": "top",
     "height": 17,
-    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-left": ["hyprland/workspaces", "hyprland/submap"],
     "modules-right": ["pulseaudio", "cpu", "memory", "disk", "battery", "clock", "network", "tray"],
-    "sway/workspaces": {
+    "hyprland/workspaces": {
+        "format": "{icon}",
         "disable-scroll": true,
         "all-outputs": false,
     },
-    "sway/mode": {
+    "hyprland/submap": {
         "format": "{}"
     },
     "tray": {
@@ -35,16 +36,18 @@
     },
     "cpu": {
         "format": "{usage}%🧠",
+        "interval": 5,
         "on-click": "terminator -e htop",
     },
     "memory": {
         "format": "{}%📝",
+        "interval": 10,
         "tooltip-format": "{used}% of {total}% total.",
         "on-click": "terminator -e htop",
     },
     "disk": {
-    "interval": 30,
-    "format": "{percentage_free}%💾",
+    "interval": 60,
+    "format": "{percentage_used}%💾",
     "path": "/"
     },
     "battery": {
@@ -57,7 +60,8 @@
         "format": "{capacity}% {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": ["", "", "", "", ""],
+        "interval": 10,
     },
     "pulseaudio": {
         "scroll-step": 1,

@@ -12,6 +12,7 @@ if header :contains "X-Spam-Flag" "YES" {
 if address :is :domain "from" "github.com"
 {
     fileinto "github.com";
+    stop;
 }
 
 if address :is :localpart ["from", "to"] "root"

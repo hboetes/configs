@@ -14,14 +14,9 @@ path=(
     ~/.local/bin
     ~/.cargo/bin
     /usr/local/{s,}bin
-    /opt/{s,}bin
     /usr/{s,}bin
     /{s,}bin
-    /usr/{,local/}games
-    /usr/X11R6/bin
-    /usr/syno/{s,}bin
     /opt/puppetlabs/{s,}bin
-    ~/.local/bin
     # ~/music/.bin
 )
 

@@ -6,7 +6,7 @@
 # instead, we manually add any error the shellcheck step finds in the file to
 # the above line ...
 
-isinpath atuin ||  return
+isinpath atuin || return
 
 # Source this in your ~/.zshrc
 autoload -U add-zsh-hook

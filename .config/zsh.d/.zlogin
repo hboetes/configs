@@ -17,11 +17,11 @@ fi
 
 #return
 
-if [[ $TTY == /dev/tty2 ]]; then
-    exec .wsession
-    # Don't even think of joining a running tmux session, so bail out now.
-    exit 0
-fi
+#if [[ $TTY == /dev/tty2 ]]; then
+#    exec .wsession
+#    # Don't even think of joining a running tmux session, so bail out now.
+#    exit 0
+#fi
 
 # Don't join a tmux session if we're already in it or if none is running.
 # if [[ -z $TMUX ]] && [[ -n $TERM ]] && tmux list-sessions >& /dev/null; then
