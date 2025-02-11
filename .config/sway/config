@@ -28,9 +28,12 @@ hide_edge_borders both
 smart_gaps on
 
 # Start bar to display a workspace bar
-bar {
-    swaybar_command waybar
-}
+# bug: https://github.com/swaywm/sway/issues/5724
+# bar {
+#     swaybar_command waybar
+# }
+# Workaround
+exec_always --no-startup-id pkill waybar; waybar -c ~/.config/waybar/sway
 
 
 #
@@ -38,13 +41,17 @@ bar {
 #
 
 # swaymsg -t get_inputs
-input "1165:49409:ITE_Tech._Inc._ITE_Device(8910)_Keyboard" {
+input "1:1:AT_Translated_Set_2_keyboard" {
     xkb_layout  eu,us,de
     xkb_model   pc105
-    xkb_options compose:rctrl,caps:none,srvkeys:none
+    xkb_options compose:rctrl,srvkeys:none,caps:none
+
+# xkb_options compose:rctrl
+    # xkb_options altwin:swap_lalt_lwin,caps:swapescape
+    # xkb_options custom:swap_win_caps
 }
 
-input "1267:12765:ELAN06FA:00_04F3:31DD_Touchpad" {
+input "1267:12811:ELAN0688:00_04F3:320B_Touchpad" {
     dwt enabled
     tap enabled
 }
@@ -67,23 +74,24 @@ client.urgent           #3a342f #900000 #ffffff #900000
 # $mod+? and search for app_id
 # So always use the last word!
 # Automatically move puddletag to window 3
-assign [app_id="^Puddletag$"] 3
+# assign [app_id="^Puddletag$"] 3
 assign [app_id="^org.remmina.Remmina$"] 8
+assign [app_id="^freetube$"] 2
+assign [app_id="^thunderbird$"] 3
 
 for_window {
     [app_id="^Firefox$" instance="^Download$"] floating enable
     [app_id="^Terminator Preferences$"] floating enable
     [app_id="^Toplevel$" instance="^variations$"] floating enable
     [app_id="^firefox$"] gaps inner current set 0; gaps outer current set 0
-    [app_id="^org.remmina.Remmina$"] fullscreen enable
+    # [app_id="^org.remmina.Remmina$"] fullscreen enable
     [app_id="^pavucontrol$"] floating enable
-    [app_id="^transmission-gtk$"] floating enable
+    [app_id="ransmission"] floating enable, resize set width 800 height 600
     [app_id="^zoom$"] floating enable
     [app_id="feh"] floating enable
     [app_id="sublime-music"] floating enable
     [app_id="org.gnome.Calendar"] floating enable
     [app_id="ulauncher"] floating enable, border none
-    [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
     [title="(?:Open|Save) (?:File|Folder|As)"] floating enable, resize set width 1030 height 710
     [title="AnyDesk"] floating enable
     [title="Bitwarden"] floating enable, border none
@@ -96,6 +104,7 @@ for_window {
     [window_role="dialog"] floating enable
     [window_role="pop-up"] floating enable
     [window_type="dialog"] floating enable
+    # [floating] resize set width 50 ppt height 50 ppt
 }
 
 #
@@ -177,10 +186,10 @@ bindsym $mod+shift+R mode   resize
 bindsym $mod+Shift+s sticky toggle
 
 # Move the currently focused window to the scratchpad
-bindsym $mod+minus move scratchpad
+# bindsym $mod+minus move scratchpad
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+equal scratchpad show
+# bindsym $mod+equal scratchpad show
 
 mode "resize" {
     bindsym Left   resize shrink width
@@ -213,6 +222,8 @@ bindsym $mod+b exec Emacs
 
 bindsym $mod+h      exec makoctl restore
 bindsym $mod+l      exec $lbin/lockmeup
+# Sound nice, but it doesn't do anything.
+# bindswitch --reload --locked lid:on exec $lbin/lockmeup
 bindsym $mod+x      exec $lbin/shhttt
 bindsym $mod+Prior  exec $lbin/volume +
 bindsym $mod+Next   exec $lbin/volume -
@@ -224,7 +235,7 @@ bindcode 233        exec $lbin/backlight +
 #
 
 bindsym $mod+y           exec clipman --primary pick --tool rofi || notify-send -t 1000 'clipboard is empty'
-bindsym $mod+Shift+y     exec clipman clear --primary -a
+bindsym $mod+Shift+y     exec $lbin/clipboard_clear
 bindsym $mod+Mod1+y      exec clipman clear --primary -t rofi
 bindsym $mod+Ctrl+y      exec : | wl-copy -p
 bindsym $mod+p           exec $lbin/i3exit   $(echo -e 'suslock\nsuspend\nlock\nlogout\nreboot\nshutdown' | rofi -dmenu)
@@ -242,12 +253,14 @@ exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
+
+
 # Autolock etc.
 exec swayidle -w \
-     timeout 1800 'swaylock -f' \
+     timeout 1800 $lbin/lockmeup \
      timeout 1830 'swaymsg "output * dpms off"' \
      resume 'swaymsg "output * dpms on"' \
-     before-sleep 'swaylock -f'
+     before-sleep $lbin/lockmeup
 
 exec wallpaper
 exec wl-paste -t UTF8_STRING --watch clipman store
@@ -257,6 +270,10 @@ exec sleep 5; rfkill block bluetooth; rfkill unblock bluetooth
 exec blueman-applet
 exec wlsunset -l 46.8 -L 15.5
 exec mako
-exec seahorse
+# exec seahorse
 exec $lbin/battery_notifications
 exec $term
+
+#set $menu bemenu
+#set $clipboard cliphist list | $menu --no-exec -p "copy" | cliphist decode | wl-copy
+#set $clipboard-del cliphist list | $menu --no-exec -p "delete" | cliphist delete && pkill -RTMIN+9 waybar#set $clipboard-del-all "rm -f ~/.cache/cliphist/db; pkill -RTMIN+9 waybar

@@ -22,7 +22,7 @@
     icon_bell = False
     background_darkness = 0.72
     cursor_blink = False
-    font = Monofur Nerd Font Mono 16
+    font = Monofur Nerd Font Mono 13
     show_titlebar = False
     scrollbar_position = hidden
     scroll_on_keystroke = False
