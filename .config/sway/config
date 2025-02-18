@@ -29,11 +29,10 @@ smart_gaps on
 
 # Start bar to display a workspace bar
 # bug: https://github.com/swaywm/sway/issues/5724
-# bar {
-#     swaybar_command waybar
-# }
-# Workaround
-exec_always --no-startup-id pkill waybar; waybar -c ~/.config/waybar/sway
+# So WAYBAR is a script that does the right thing.
+bar {
+    swaybar_command WAYBAR
+}
 
 
 #
