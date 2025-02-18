@@ -40,6 +40,9 @@
  '(default ((t (:family "monofur for Powerline" :foundry "unci" :slant normal :weight normal :height 158 :width normal))))
  '(ethan-wspace-face ((t (:background "darkslategray")))))
 
+;;  for the wrong emacs versions
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
 ;; Fix a few bugs.
 (add-hook 'term-mode-hook #'eterm-256color-mode)
 
@@ -94,6 +97,8 @@ See info node `(emacs) Terminal Coding'."
 (dolist (package package-selected-packages)
   (unless (package-installed-p package)
     (package-install package)))
+
+(setq tramp-default-method "sshx")
 
 (setq
  auto-package-update-interval 7
@@ -390,3 +395,5 @@ See info node `(emacs) Terminal Coding'."
 (add-to-list 'auto-mode-alist '("fonts.conf" . xml-mode))
 (add-to-list 'auto-mode-alist '("Pkgfile"    . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.doit"    . sh-mode))
+
+(customize-set-variable 'tramp-syntax 'simplified)
