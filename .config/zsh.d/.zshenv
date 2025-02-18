@@ -1,5 +1,5 @@
 if [[ -e ~/.zshenv ]]; then
-    export ZDOTDIR=~/.configs/zsh.d
+    export ZDOTDIR=~/.config/zsh.d
 elif [[ -d /etc/zsh/zsh.d ]]; then
     export ZDOTDIR=/etc/zsh/zsh.d
 else
