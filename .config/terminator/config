@@ -6,7 +6,6 @@
   tab_position = left
   broadcast_default = off
   enabled_plugins = ,
-  suppress_multiple_term_dialog = True
   putty_paste_style_source_clipboard = True
   smart_copy = False
 [keybindings]
@@ -23,7 +22,7 @@
     icon_bell = False
     background_darkness = 0.72
     cursor_blink = False
-    font = Monofur Nerd Font Mono 16
+    font = Monofur Nerd Font Mono 13
     show_titlebar = False
     scrollbar_position = hidden
     scroll_on_keystroke = False
@@ -170,6 +169,7 @@
     scroll_on_keystroke = False
     scrollback_infinite = True
     palette = "#000000:#de3e35:#3f953a:#d2b67c:#2f5af3:#950095:#3f953a:#bbbbbb:#000000:#de3e35:#3f953a:#d2b67c:#2f5af3:#a00095:#3f953a:#ffffff"
+    use_system_font = False
     copy_on_selection = True
   [[BirdsOfParadise]]
     icon_bell = False
@@ -407,6 +407,7 @@
     scroll_on_keystroke = False
     scrollback_infinite = True
     palette = "#3a3d43:#be3f48:#879a3b:#c5a635:#4f76a1:#855c8d:#578fa4:#b9bcba:#888987:#fb001f:#0f722f:#c47033:#186de3:#fb0067:#2e706d:#fdffb9"
+    use_system_font = False
     copy_on_selection = True
   [[Dracula]]
     icon_bell = False
@@ -1911,23 +1912,5 @@
       parent = child0
       order = 0
       profile = Espresso Libre
-      uuid = 02dd3f4c-6fb1-4376-b5c0-40fe0830679a
-  [[nice]]
-    [[[child0]]]
-      type = Window
-      parent = ""
-      order = 0
-      position = 0:0
-      maximised = True
-      fullscreen = False
-      size = 900, 400
-      title = /bin/zsh
-      last_active_term = 02dd3f4c-6fb1-4376-b5c0-40fe0830679a
-      last_active_window = True
-    [[[terminal1]]]
-      type = Terminal
-      parent = child0
-      order = 0
-      profile = Dracula
       uuid = 02dd3f4c-6fb1-4376-b5c0-40fe0830679a
 [plugins]

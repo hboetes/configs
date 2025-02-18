@@ -1,4 +1,4 @@
-export HISTDIR=~/.history
+export HISTDIR=~/.local/share/zsh_history
 [[ ! -d ${HISTDIR} ]] && mkdir -m700 ${HISTDIR}
 export HISTSIZE=5000
 export HISTFILE=${HISTDIR}/$HOST

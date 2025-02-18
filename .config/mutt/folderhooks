@@ -140,6 +140,12 @@ folder-hook github.com \
         score ~R -5 ;\
         score ~f"\@github.com" -5'
 
+folder-hook difool \
+        'set score ;\
+        score ~A 10 ;\
+        score ~R -5 ;\
+        score ~f"\@github.com" -5'
+
 folder-hook postmaster \
         set score ;\
         set score_threshold_delete=0
