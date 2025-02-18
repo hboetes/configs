@@ -1,0 +1,14 @@
+#!/bin/zsh
+export PATH="$HOME/.bin:/usr/local/sbin:/usr/local/bin:/sbin:/usr/sbin:/bin:/usr/bin:/usr/games:/music/bin"
+export TMP="$HOME/.local/tmp"
+export TMPDIR="$TMP"
+
+# Session
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+gnome-keyring-daemon --start --components=pkcs11,secrets -d
+
+mkdir -m 700 -p $HOME/.local/log/
+exec startx
