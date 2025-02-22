@@ -10,7 +10,7 @@
         "all-outputs": false,
     },
     "hyprland/submap": {
-        "format": "{}"
+        "format": "<span color='#aa1414'><i><b>{}</b></i></span>",
     },
     "tray": {
         "spacing": 10
