@@ -17,7 +17,12 @@
    '(("gelpa" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(creamsody-theme tree-sitter-indent tree-sitter-langs tree-sitter lua-mode meson-mode catppuccin-theme ini-mode nftables-mode 0blayout json-mode auto-package-update eterm-256color airline-themes ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
+   '(0blayout airline-themes async auto-package-update catppuccin-theme
+              creamsody-theme eterm-256color ethan-wspace fish-mode
+              gruvbox-theme ini-mode json-mode lua-mode markdown-mode
+              meson-mode nftables-mode nginx-mode pager puppet-mode
+              qml-mode smart-mode-line smart-mode-line-powerline-theme
+              tree-sitter tree-sitter-indent tree-sitter-langs))
  '(safe-local-variable-values
    '((epa-file-cache-passphrase-for-symmetric-encryption . 1)
      (add-log-time-zone-rule . t)))
@@ -39,9 +44,6 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "monofur for Powerline" :foundry "unci" :slant normal :weight normal :height 158 :width normal))))
  '(ethan-wspace-face ((t (:background "darkslategray")))))
-
-;;  for the wrong emacs versions
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 ;; Fix a few bugs.
 (add-hook 'term-mode-hook #'eterm-256color-mode)
@@ -98,16 +100,10 @@ See info node `(emacs) Terminal Coding'."
   (unless (package-installed-p package)
     (package-install package)))
 
-(setq tramp-default-method "sshx")
-
 (setq
  auto-package-update-interval 7
  auto-package-update-hide-results t
  auto-package-update-delete-old-versions t)
-
-(require 'tree-sitter)
-(require 'tree-sitter-langs)
-(require 'tree-sitter-indent)
 
 (require 'ethan-wspace)
 (global-ethan-wspace-mode 1)
@@ -213,11 +209,6 @@ See info node `(emacs) Terminal Coding'."
   (occur "[^[:ascii:]]"))
 
 
-;; Mail stuff
-(setq
- user-full-name "Han Boetes"
- user-mail-address "han@boetes.org")
-
 ;; Enable `a' in dired-mode, to open files/dirs in the same buffer.
 (put 'dired-find-alternate-file 'disabled nil)
 
@@ -290,6 +281,10 @@ See info node `(emacs) Terminal Coding'."
   (interactive)
   (copy-region-as-kill (point) (line-end-position)) )
 
+;; Mail stuff
+(setq
+ user-full-name "Han Boetes"
+ user-mail-address "han@boetes.org")
 (defun insert-email ()
   "Insert the users email address"
   (interactive)
@@ -368,10 +363,12 @@ See info node `(emacs) Terminal Coding'."
 
 ;; Theme for the toolbar:
 (require 'airline-themes)
-(load-theme 'airline-base16_woodland t)
-(load-theme 'creamsody t)
-(load-theme 'creamsody-dark t)
-;(load-theme 'modus-vivendi t)
+;;(load-theme 'airline-base16_woodland t)
+(load-theme 'airline-base16_black_metal_venom t)
+;;(load-theme 'creamsody t)
+;;(load-theme 'creamsody-dark t)
+;; (load-theme 'kanagawa t)
+(load-theme 'modus-vivendi t)
 ;(load-theme 'catppuccin t)
 
 ;; This makes text from an emacs console windows c&p able without
@@ -396,4 +393,45 @@ See info node `(emacs) Terminal Coding'."
 (add-to-list 'auto-mode-alist '("Pkgfile"    . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.doit"    . sh-mode))
 
-(customize-set-variable 'tramp-syntax 'simplified)
+;; tree-sitter stuff
+(require 'tree-sitter)
+(require 'tree-sitter-langs)
+(require 'tree-sitter-indent)
+
+(setq treesit-language-source-alist
+      '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+        (cmake "https://github.com/uyha/tree-sitter-cmake")
+        (css "https://github.com/tree-sitter/tree-sitter-css")
+        (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+        (go "https://github.com/tree-sitter/tree-sitter-go")
+        (html "https://github.com/tree-sitter/tree-sitter-html")
+        (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+        (json "https://github.com/tree-sitter/tree-sitter-json")
+        (make "https://github.com/alemuller/tree-sitter-make")
+        (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+        (python "https://github.com/tree-sitter/tree-sitter-python")
+        (toml "https://github.com/tree-sitter/tree-sitter-toml")
+        (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+
+(defun process-files-indent-untabify-recursive (directory)
+  "Process all files in DIRECTORY and its subdirectories by running indent-region and untabify."
+  (interactive "DDirectory: ")
+  (let ((files (directory-files directory t)))
+    (dolist (file files)
+      (cond
+       ;; Skip . and ..
+       ((string-match "\\.$" file) nil)
+       ;; Recurse into directories
+       ((file-directory-p file)
+        (process-files-indent-untabify-recursive file))
+       ;; Process regular files
+       ((file-regular-p file)
+        (with-current-buffer (find-file-noselect file)
+          (message "Processing %s" file)
+          ;; Run indent-region
+          (indent-region (point-min) (point-max))
+          ;; Run untabify on the entire buffer
+          (untabify (point-min) (point-max))
+          ;; Save and close
+          (save-buffer)
+          (kill-buffer)))))))
