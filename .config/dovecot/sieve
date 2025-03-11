@@ -15,6 +15,11 @@ if address :is :domain "from" "github.com"
     stop;
 }
 
+if address :domain :contains "from" "binance.com" {
+  discard;
+  stop;
+}
+
 if address :is :localpart ["from", "to"] "root"
 {
     fileinto "root";
