@@ -6,31 +6,26 @@
  '(blink-cursor-mode nil)
  '(colon-double-space t)
  '(column-number-mode t)
- '(git-commit-summary-max-length 1023)
+ '(fill-column 80)
  '(indent-tabs-mode nil)
  '(indicate-buffer-boundaries 'left)
  '(indicate-empty-lines t)
- '(line-number-mode 1)
+ '(menu-bar-mode nil)
  '(mode-require-final-newline nil)
  '(mouse-autoselect-window t)
  '(package-archives
    '(("gelpa" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(0blayout airline-themes async auto-package-update catppuccin-theme
-              creamsody-theme eterm-256color ethan-wspace fish-mode
-              gruvbox-theme ini-mode json-mode lua-mode markdown-mode
-              meson-mode nftables-mode nginx-mode pager puppet-mode
-              qml-mode smart-mode-line smart-mode-line-powerline-theme
-              tree-sitter tree-sitter-indent tree-sitter-langs))
+   '(0x0 systemd catppuccin-theme ini-mode nftables-mode 0blayout json-mode auto-package-update eterm-256color airline-themes ethan-wspace smart-mode-line-powerline-theme smart-mode-line puppet-mode pager nginx-mode async))
  '(safe-local-variable-values
    '((epa-file-cache-passphrase-for-symmetric-encryption . 1)
      (add-log-time-zone-rule . t)))
  '(send-mail-function 'sendmail-send-it)
  '(sentence-end-double-space t)
- '(show-paren-mode t)
  '(size-indication-mode t)
- '(transient-mark-mode 1)
+ '(tool-bar-mode nil)
+ '(tramp-syntax 'simplified nil (tramp))
  '(visible-cursor nil)
  '(w3m-fill-column 80)
  '(w3m-home-page "https://google.com")
@@ -42,8 +37,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "monofur for Powerline" :foundry "unci" :slant normal :weight normal :height 158 :width normal))))
- '(ethan-wspace-face ((t (:background "darkslategray")))))
+ '(default ((t (:family "monofur for Powerline" :foundry "unci" :slant normal :weight regular :height 151 :width normal)))))
 
 ;; Fix a few bugs.
 (add-hook 'term-mode-hook #'eterm-256color-mode)
@@ -90,6 +84,7 @@ See info node `(emacs) Terminal Coding'."
     (setq config-path "~/.config/emacs")))
  ((eql emacs-major-version 26)
   (progn
+    (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
     (setq config-path "~/.emacs.d"))))
 
 (unless package-archive-contents
@@ -104,6 +99,7 @@ See info node `(emacs) Terminal Coding'."
  auto-package-update-interval 7
  auto-package-update-hide-results t
  auto-package-update-delete-old-versions t)
+
 
 (require 'ethan-wspace)
 (global-ethan-wspace-mode 1)
@@ -151,6 +147,12 @@ See info node `(emacs) Terminal Coding'."
 ;; 8 space tabs are inserted when you press <TAB> in certain modes.
 (setq default-tab-stop-list 8)
 
+;; nice mode for various config-files.
+(require 'generic-x)
+
+;; Lets keep things readable
+(setq fill-column 72)
+
 ;; sh indent settings
 (setq sh-indent-comment t
       sh-learn-basic-offset t)
@@ -179,8 +181,10 @@ See info node `(emacs) Terminal Coding'."
 (setq
  backup-directory-alist `((".*" . , emacs-tmp-dir))
  auto-save-file-name-transforms `((".*" , emacs-tmp-dir t))
- auto-save-list-file-prefix emacs-tmp-dir
- tramp-auto-save-directory emacs-tmp-dir)
+ auto-save-list-file-prefix emacs-tmp-dir)
+
+(setq tramp-default-method "sshx"
+      tramp-auto-save-directory emacs-tmp-dir)
 
 ;; Spelling
 (setq-default ispell-program-name "hunspell")
@@ -209,6 +213,15 @@ See info node `(emacs) Terminal Coding'."
   (occur "[^[:ascii:]]"))
 
 
+;; Mail stuff
+(setq
+ user-full-name "Han Boetes"
+ user-mail-address "han@boetes.org")
+
+;; For initscripts
+(add-to-list 'auto-mode-alist '("/etc/rc*" . sh-mode))
+(add-to-list 'auto-mode-alist '("/var/tmp/rc*" . sh-mode))
+
 ;; Enable `a' in dired-mode, to open files/dirs in the same buffer.
 (put 'dired-find-alternate-file 'disabled nil)
 
@@ -219,7 +232,7 @@ See info node `(emacs) Terminal Coding'."
 (add-to-list 'auto-mode-alist '("/var/nsd/zones/*" . dns-mode))
 (add-to-list 'auto-mode-alist '("/var/tmp/boetes*.org" . dns-mode))
 
-;; Post for email-editing with mutt
+;; post for email-editing with mutt
 (autoload 'post-mode "post.el" "Mode for editing
       email-messages" t)
 (add-to-list 'auto-mode-alist '("\\mutt-" . post-mode))
@@ -240,7 +253,12 @@ See info node `(emacs) Terminal Coding'."
 (autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
 (setq auto-mode-alist (cons '("\\.html$" . html-helper-mode) auto-mode-alist))
 
-;; No tabs by default. modes that really need tabs should enable
+;; filetypes with default mode
+(add-to-list 'auto-mode-alist '("fonts.conf" . xml-mode))
+(add-to-list 'auto-mode-alist '("Pkgfile"    . sh-mode))
+(add-to-list 'auto-mode-alist '("\\.doit"    . sh-mode))
+
+;; no tabs by default. modes that really need tabs should enable
 ;; indent-tabs-mode explicitly. makefile-mode already does that, for
 ;; example.
 (setq-default indent-tabs-mode nil)
@@ -281,10 +299,6 @@ See info node `(emacs) Terminal Coding'."
   (interactive)
   (copy-region-as-kill (point) (line-end-position)) )
 
-;; Mail stuff
-(setq
- user-full-name "Han Boetes"
- user-mail-address "han@boetes.org")
 (defun insert-email ()
   "Insert the users email address"
   (interactive)
@@ -341,6 +355,8 @@ See info node `(emacs) Terminal Coding'."
 ;; Set a global key for autoformat region
 (global-set-key (kbd "C-c k") 'text-autoformat-region)
 (global-set-key  [f9]         'select-until-end-of-line)
+;;(global-set-key "\C-c s"      'replace-string)
+;;(global-set-key "\C-c r"      'replace-regex)
 (global-set-key "\C-w"        'unix-werase-or-kill)
 (global-set-key (kbd "<C-right>")  'windmove-right)
 (global-set-key (kbd "<C-left>")   'windmove-left)
@@ -349,34 +365,82 @@ See info node `(emacs) Terminal Coding'."
 
 (global-set-key [insertchar]       'do-nothing)
 
+(autoload 'apache-mode "apache-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.htaccess\\'"   . apache-mode))
+(add-to-list 'auto-mode-alist '("httpd\\.conf\\'"  . apache-mode))
+(add-to-list 'auto-mode-alist '("srm\\.conf\\'"    . apache-mode))
+(add-to-list 'auto-mode-alist '("access\\.conf\\'" . apache-mode))
+(add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
+
 
 
 ;; Themes and stuff: m-x describe-face
 ;; Yes, all themes are safe. >:-(
 (setq custom-safe-themes t)
 
-(require 'ansi-color)
-(defun display-ansi-colors ()
-  (interactive)
-  (ansi-color-apply-on-region (point-min) (point-max)))
+;; (cond
+;;  ((>= emacs-major-version 28)
+;;   (progn
+;;     ;(load-theme 'modus-vivendi t)
+;;     (load-theme 'dracula t)
+;;     (setq ethan-wspace-face-customized t)
+;;     (custom-theme-set-faces
+;;      'modus-vivendi
+;;      '(ethan-wspace-face ((t (:background "black")))))
+;;     ))
+;;  ;;(load-theme 'deeper-blue t))
+;;  ((<= emacs-major-version 27)
+;;   (progn
+;;     (load-theme 'zenburn t)
+;;     (custom-theme-set-faces
+;;      'zenburn
+;;      '(font-lock-comment-face ((t (:foreground "#DFAF8F"))))
+;;      '(font-lock-comment-delimiter-face ((t (:foreground "#DFAF8F"))))
+;;      '(region ((t (:extend t :background "peru"))))))))
 
 
 ;; Theme for the toolbar:
 (require 'airline-themes)
-;;(load-theme 'airline-base16_woodland t)
-(load-theme 'airline-base16_black_metal_venom t)
-;;(load-theme 'creamsody t)
-;;(load-theme 'creamsody-dark t)
-;; (load-theme 'kanagawa t)
-(load-theme 'modus-vivendi t)
-;(load-theme 'catppuccin t)
+;; (load-theme 'airline-ouo t)
+(setq airline-utf-glyph-linenumber #x2550)
+(load-theme 'airline-base16_atelier_cave t)
+(load-theme 'catppuccin t)
+
+
+;; (setq
+;;  powerline-utf-8-separator-left        #xe0b0
+;;  powerline-utf-8-separator-right       #xe0b2
+;;  airline-utf-glyph-separator-left      #xe0b0
+;;  airline-utf-glyph-separator-right     #xe0b2
+;;  airline-utf-glyph-subseparator-left   #xe0b1
+;;  airline-utf-glyph-subseparator-right  #xe0b3
+;;  airline-utf-glyph-branch              #xe0a0
+;;  airline-utf-glyph-readonly            #xe0a2
+;;  airline-utf-glyph-linenumber          #xe0a1)
+
+;; ;; This function sets a random theme: You can trigger it with: m-x load-random-theme
+;; (defun load-random-theme ()
+;;   "Load any random theme from the available ones."
+;;   (interactive)
+
+;;   ;; disable any previously set theme
+;;   (if (boundp 'theme-of-the-day)
+;;       (progn
+;;         (disable-theme theme-of-the-day)
+;;         (makunbound 'theme-of-the-day)))
+
+;;   (defvar themes-list (custom-available-themes))
+;;   (defvar theme-of-the-day (nth (random (length themes-list))
+;;                                 themes-list))
+;;   (load-theme (princ theme-of-the-day) t))
+;; ;; (load-random-theme)
 
 ;; This makes text from an emacs console windows c&p able without
 ;; trailing whitespace.
 (unless window-system (custom-set-faces   '(default ((t (:background "unspecified-bg"))))))
 
 
-;; Automatically load the right language: https://oylenshpeegul.gitlab.io/blog/posts/20230206/
+;; Automaticall load the right language: https://oylenshpeegul.gitlab.io/blog/posts/20230206/
 (cond
  ((>= emacs-major-version 29)
   (progn
@@ -388,15 +452,25 @@ See info node `(emacs) Terminal Coding'."
     (add-to-list 'default-frame-alist '(alpha-background . 90))
     )))
 
+
+;; ;; set transparency
+;; (set-frame-parameter (selected-frame) 'alpha '(90 90))
+;; (add-to-list 'default-frame-alist '(alpha 90 90))
+
+;; Set the size of the floating window.
+;; (add-hook 'before-make-frame-hook
+;;           #'(lambda ()
+;;               (add-to-list 'default-frame-alist '(left   . 0))
+;;               (add-to-list 'default-frame-alist '(top    . 0))
+;;               (add-to-list 'default-frame-alist '(height . 52))
+;;               (add-to-list 'default-frame-alist '(width  . 200))))
+
+
+
 ;; filetypes with default mode
 (add-to-list 'auto-mode-alist '("fonts.conf" . xml-mode))
 (add-to-list 'auto-mode-alist '("Pkgfile"    . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.doit"    . sh-mode))
-
-;; tree-sitter stuff
-(require 'tree-sitter)
-(require 'tree-sitter-langs)
-(require 'tree-sitter-indent)
 
 (setq treesit-language-source-alist
       '((bash "https://github.com/tree-sitter/tree-sitter-bash")
@@ -412,26 +486,3 @@ See info node `(emacs) Terminal Coding'."
         (python "https://github.com/tree-sitter/tree-sitter-python")
         (toml "https://github.com/tree-sitter/tree-sitter-toml")
         (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
-
-(defun process-files-indent-untabify-recursive (directory)
-  "Process all files in DIRECTORY and its subdirectories by running indent-region and untabify."
-  (interactive "DDirectory: ")
-  (let ((files (directory-files directory t)))
-    (dolist (file files)
-      (cond
-       ;; Skip . and ..
-       ((string-match "\\.$" file) nil)
-       ;; Recurse into directories
-       ((file-directory-p file)
-        (process-files-indent-untabify-recursive file))
-       ;; Process regular files
-       ((file-regular-p file)
-        (with-current-buffer (find-file-noselect file)
-          (message "Processing %s" file)
-          ;; Run indent-region
-          (indent-region (point-min) (point-max))
-          ;; Run untabify on the entire buffer
-          (untabify (point-min) (point-max))
-          ;; Save and close
-          (save-buffer)
-          (kill-buffer)))))))

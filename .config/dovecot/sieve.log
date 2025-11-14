@@ -1,0 +1,62 @@
+sieve: info: started log at 2025-09-23 22:15:21 +0200.
+error: msgid=<20250923201520.B96027F287E2@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:21 +0200.
+error: msgid=<20250923201520.EEA9F7F287E3@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:21 +0200.
+error: msgid=<20250923201521.20BC77F287E6@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:21 +0200.
+error: msgid=<20250923201521.4A9367F287E7@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:21 +0200.
+error: msgid=<20250923201521.5FD0E7F287EA@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:21 +0200.
+error: msgid=<20250923201521.8EF327F287EB@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:21 +0200.
+error: msgid=<20250923201521.B0CA87F287EE@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:22 +0200.
+error: msgid=<20250923201521.DC7A07F287F1@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:22 +0200.
+error: msgid=<20250923201521.EEE787F287F2@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:22 +0200.
+error: msgid=<20250923201522.0DA367F287F4@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:22 +0200.
+error: msgid=<20250923201522.2663C7F287F5@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:22 +0200.
+error: msgid=<20250923201522.3C4117F287FA@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:22 +0200.
+error: msgid=<20250923201522.50C287F287FB@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:22 +0200.
+error: msgid=<20250923201522.7743B7F287FC@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:22 +0200.
+error: msgid=<20250923201522.8B9F47F28800@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:22 +0200.
+error: msgid=<20250923201522.A3F2A7F28801@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:22 +0200.
+error: msgid=<20250923201522.B66F17F28802@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:23 +0200.
+error: msgid=<20250923201522.CC6BE7F28806@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:23 +0200.
+error: msgid=<20250923201522.F3E717F28807@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:23 +0200.
+error: msgid=<20250923201523.279787F2880B@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:23 +0200.
+error: msgid=<20250923201523.3BA9C7F2880C@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:23 +0200.
+error: msgid=<20250923201523.4FF417F2880F@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:23 +0200.
+error: msgid=<20250923201523.61E4C7F28810@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:23 +0200.
+error: msgid=<20250923201523.76A4E7F28811@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:23 +0200.
+error: msgid=<20250923201523.8A0097F28816@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:23 +0200.
+error: msgid=<20250923201523.9BD9E7F28817@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:23 +0200.
+error: msgid=<20250923201523.B04947F28818@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:23 +0200.
+error: msgid=<20250923201523.C360A7F28819@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-09-23 22:15:24 +0200.
+error: msgid=<20250923201523.D915D7F2881D@framboos.boetes.org>: fileinto action: failed to store into mailbox 'nextcloud': Mailbox doesn't exist: nextcloud.
+sieve: info: started log at 2025-10-11 09:31:03 +0200.
+error: msgid=<68ea07aca0ea5_1a2b2920f43268450@active-shoryuken-notification-prod-6d5bcc798f-kfzz9.mail>: fileinto action: failed to store into mailbox 'strava': Mailbox doesn't exist: strava.
+sieve: info: started log at 2025-10-11 11:51:00 +0200.
+error: msgid=<68ea287a8a66e_195db0b50765884@active-shoryuken-notification-prod-6d5bcc798f-zf752.mail>: fileinto action: failed to store into mailbox 'strava': Mailbox doesn't exist: strava.
