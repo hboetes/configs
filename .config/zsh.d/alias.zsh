@@ -65,3 +65,5 @@ else
 fi
 alias genpin='< /dev/urandom tr -dc "0-9" | dd count=1 bs=4 2> /dev/null; echo'
 alias finddeadlinks='find . -type l ! -exec test -e {} \; -print'
+
+alias dmesg='dmesg --reltime --human'
