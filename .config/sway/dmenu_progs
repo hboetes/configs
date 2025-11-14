@@ -13,6 +13,7 @@ telegram;flatpak run org.telegram.desktop
 rustdesk
 transmission-gtk
 thunderbird;thunderbird --profile /home/han/.thunderbird/ebjfmdi6.default-beta
-thunderbird axis;thunderbird --profile /home/han/.thunderbird/atdoqq6i.axis/
+# thunderbird axis;thunderbird --profile /home/han/.thunderbird/atdoqq6i.axis/
+outlook
 nicotine;remmina -c /home/han/.local/share/remmina/group_vnc_nicotine@framboos_framboos-boetes-org.remmina
 freetube;/opt/FreeTube/freetube

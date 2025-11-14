@@ -8,3 +8,4 @@ fi
 # Prevent loading /etc/zshrc etc.
 unsetopt GLOBAL_RCS
 [[ -e ~/.zlocal ]] && source ~/.zlocal
+. "$HOME/.cargo/env"
