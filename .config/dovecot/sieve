@@ -11,10 +11,11 @@ if header :contains "X-Spam-Flag" "YES" {
 
 if address :is :domain "from" "github.com"
 {
-    fileinto "github.com";
+    fileinto "github";
     stop;
 }
 
+# Impossible to delete the account
 if address :domain :contains "from" "binance.com" {
   discard;
   stop;
@@ -33,6 +34,11 @@ if address :is :localpart "from" "j.difool"
 if address :is "from" "robot@airtribune.com"
 {
     fileinto "airtribune";
+}
+
+if address :is "from" "nextcloud@boetes.org"
+{
+    fileinto "nextcloud";
 }
 
 if address :regex :domain "from" "amazon.(de|com)"
@@ -57,7 +63,7 @@ if address :is :domain "from" "strava.com"
 
 if address :is :domain "from" "karriere.at"
 {
-    fileinto "karriere.at";
+    fileinto "karriere";
 }
 
 if address :is :domain "from" ["bandcamp.com", "chelseawolfe.com"]
