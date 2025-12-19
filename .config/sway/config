@@ -5,6 +5,9 @@ set $mod Mod4
 set $term terminator
 set $lbin ~/.local/bin
 
+# Hide the mouse cursor after 3000 miliseconds.
+seat seat0 hide_cursor 3000
+seat seat0 xcursor_theme Adwaita 36
 
 #
 # SETTINGS
@@ -27,14 +30,6 @@ gaps outer 10
 hide_edge_borders both
 smart_gaps on
 
-# Start bar to display a workspace bar
-# bug: https://github.com/swaywm/sway/issues/5724
-# So WAYBAR is a script that does the right thing.
-bar {
-    swaybar_command WAYBAR
-}
-
-
 #
 # INPUT HARDWARE
 #
@@ -44,10 +39,6 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     xkb_layout  eu,us,de
     xkb_model   pc105
     xkb_options compose:rctrl,srvkeys:none,caps:none
-
-# xkb_options compose:rctrl
-    # xkb_options altwin:swap_lalt_lwin,caps:swapescape
-    # xkb_options custom:swap_win_caps
 }
 
 input "1267:12811:ELAN0688:00_04F3:320B_Touchpad" {
@@ -83,7 +74,6 @@ for_window {
     [app_id="^Terminator Preferences$"] floating enable
     [app_id="^Toplevel$" instance="^variations$"] floating enable
     [app_id="^firefox$"] gaps inner current set 0; gaps outer current set 0
-    # [app_id="^org.remmina.Remmina$"] fullscreen enable
     [app_id="^pavucontrol$"] floating enable
     [app_id="ransmission"] floating enable, resize set width 800 height 600
     [app_id="^zoom$"] floating enable
@@ -176,6 +166,18 @@ bindsym $mod+Shift+8 move workspace 8
 bindsym $mod+Shift+9 move workspace 9
 bindsym $mod+Shift+0 move workspace 10
 
+# move focused container to workspace
+bindsym $mod+Ctrl+1 move workspace 1; workspace 1
+bindsym $mod+Ctrl+2 move workspace 2; workspace 2
+bindsym $mod+Ctrl+3 move workspace 3; workspace 3
+bindsym $mod+Ctrl+4 move workspace 4; workspace 4
+bindsym $mod+Ctrl+5 move workspace 5; workspace 5
+bindsym $mod+Ctrl+6 move workspace 6; workspace 6
+bindsym $mod+Ctrl+7 move workspace 7; workspace 7
+bindsym $mod+Ctrl+8 move workspace 8; workspace 8
+bindsym $mod+Ctrl+9 move workspace 9; workspace 9
+bindsym $mod+Ctrl+0 move workspace 10; workspace 10
+
 # reload The configuration file
 bindsym $mod+Shift+C reload
 # bindsym $mod+Shift+R restart
@@ -221,26 +223,31 @@ bindsym $mod+b exec Emacs
 
 bindsym $mod+h      exec makoctl restore
 bindsym $mod+l      exec $lbin/lockmeup
+bindsym $mod+Shift+l      exec /usr/local/bin/lockmeup_now
 # Sound nice, but it doesn't do anything.
 # bindswitch --reload --locked lid:on exec $lbin/lockmeup
 bindsym $mod+x      exec $lbin/shhttt
 bindsym $mod+Prior  exec $lbin/volume +
 bindsym $mod+Next   exec $lbin/volume -
-bindcode 232        exec $lbin/backlight -
-bindcode 233        exec $lbin/backlight +
+bindcode 232        exec brightnessctl set 3%-
+bindcode 233        exec brightnessctl set 3%+
 
 #
-# APPLICATION STARTUP KEYBINDS
+# Copy and paste setup.
 #
+
+exec wl-paste -t UTF8_STRING --watch clipman store
+exec wl-paste -t UTF8_STRING -pw wl-copy
 
 bindsym $mod+y           exec clipman --primary pick --tool rofi || notify-send -t 1000 'clipboard is empty'
-bindsym $mod+Shift+y     exec $lbin/clipboard_clear
+bindsym $mod+Shift+y     exec $lbin/clipboard_clear && notify-send -t 1000 'clipboard has been emptied'
 bindsym $mod+Mod1+y      exec clipman clear --primary -t rofi
 bindsym $mod+Ctrl+y      exec : | wl-copy -p
+
+
 bindsym $mod+p           exec $lbin/i3exit   $(echo -e 'suslock\nsuspend\nlock\nlogout\nreboot\nshutdown' | rofi -dmenu)
 bindsym $mod+Print       exec $lbin/swayshot $(echo -e 'display\nwindow\nregion\ndisplay upload\nwindow upload\nregion upload' | rofi -dmenu)
 bindsym $mod+question    exec $lbin/sway-prop
-
 
 #
 # START UP PROGRAMS
@@ -252,8 +259,6 @@ exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
-
-
 # Autolock etc.
 exec swayidle -w \
      timeout 1800 $lbin/lockmeup \
@@ -262,17 +267,10 @@ exec swayidle -w \
      before-sleep $lbin/lockmeup
 
 exec wallpaper
-exec wl-paste -t UTF8_STRING --watch clipman store
-exec wl-paste -t UTF8_STRING -pw wl-copy
-exec nm-applet --indicator
-exec sleep 5; rfkill block bluetooth; rfkill unblock bluetooth
-exec blueman-applet
-exec wlsunset -l 46.8 -L 15.5
-exec mako
-# exec seahorse
+# exec nm-applet --indicator
+# exec sleep 5; rfkill block bluetooth; rfkill unblock bluetooth
+# exec blueman-applet
+# exec wlsunset -l 46.8 -L 15.5 -t 2000
+# exec mako
 exec $lbin/battery_notifications
-exec $term
-
-#set $menu bemenu
-#set $clipboard cliphist list | $menu --no-exec -p "copy" | cliphist decode | wl-copy
-#set $clipboard-del cliphist list | $menu --no-exec -p "delete" | cliphist delete && pkill -RTMIN+9 waybar#set $clipboard-del-all "rm -f ~/.cache/cliphist/db; pkill -RTMIN+9 waybar
+exec quickshell -c noctalia-shell
