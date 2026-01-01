@@ -3,7 +3,6 @@
 #
 set $mod Mod4
 set $term terminator
-set $lbin ~/.local/bin
 
 # Hide the mouse cursor after 3000 miliseconds.
 seat seat0 hide_cursor 3000
@@ -202,13 +201,13 @@ mode "resize" {
 
 bindsym $mod+a                  gaps inner current set 0; gaps outer current set 0
 bindsym $mod+Shift+a            gaps inner current set 5; gaps outer current set 5
-bindsym $mod+k input type:keyboard xkb_switch_layout next
+bindsym $mod+k                  input type:keyboard xkb_switch_layout next
 
 #
 # APPLICATION MENU KEYBINDS
 #
 
-bindsym $mod+d exec $($lbin/dmenu)
+bindsym $mod+d       exec mydmenu
 bindsym $mod+Shift+d exec rofi -show drun -show-icons
 bindsym $mod+n       exec rofi -fake-transparency -show run
 bindsym $mod+g       exec rofi -fake-transparency -show ssh
@@ -217,20 +216,20 @@ bindsym $mod+shift+m exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
 # Use wev instead of xev
 # start a terminal
-bindsym $mod+Return exec $term
-bindsym $mod+Shift+b exec $term -e 'alsamixer -c 0'
-bindsym $mod+b exec Emacs
+bindsym $mod+Return   exec $term
+bindsym $mod+Shift+b  exec $term -e 'alsamixer -c 0'
+bindsym $mod+b        exec emacs
 
-bindsym $mod+h      exec makoctl restore
-bindsym $mod+l      exec $lbin/lockmeup
-bindsym $mod+Shift+l      exec /usr/local/bin/lockmeup_now
+bindsym $mod+h        exec makoctl restore
+bindsym $mod+l        exec lockmeup
+bindsym $mod+Shift+l  exec /usr/local/bin/lockmeup_now
 # Sound nice, but it doesn't do anything.
-# bindswitch --reload --locked lid:on exec $lbin/lockmeup
-bindsym $mod+x      exec $lbin/shhttt
-bindsym $mod+Prior  exec $lbin/volume +
-bindsym $mod+Next   exec $lbin/volume -
-bindcode 232        exec brightnessctl set 3%-
-bindcode 233        exec brightnessctl set 3%+
+# bindswitch --reload --locked lid:on exec lockmeup
+bindsym $mod+x        exec shhttt
+bindsym $mod+Prior    exec volume +
+bindsym $mod+Next     exec volume -
+bindcode 232          exec brightnessctl set 3%-
+bindcode 233          exec brightnessctl set 3%+
 
 #
 # Copy and paste setup.
@@ -239,15 +238,14 @@ bindcode 233        exec brightnessctl set 3%+
 exec wl-paste -t UTF8_STRING --watch clipman store
 exec wl-paste -t UTF8_STRING -pw wl-copy
 
-bindsym $mod+y           exec clipman --primary pick --tool rofi || notify-send -t 1000 'clipboard is empty'
-bindsym $mod+Shift+y     exec $lbin/clipboard_clear && notify-send -t 1000 'clipboard has been emptied'
-bindsym $mod+Mod1+y      exec clipman clear --primary -t rofi
-bindsym $mod+Ctrl+y      exec : | wl-copy -p
+bindsym $mod+y           exec clipboard fetch
+bindsym $mod+Shift+y     exec clipboard clearall
+bindsym $mod+Ctrl+y      exec clipboard clearone
 
 
-bindsym $mod+p           exec $lbin/i3exit   $(echo -e 'suslock\nsuspend\nlock\nlogout\nreboot\nshutdown' | rofi -dmenu)
-bindsym $mod+Print       exec $lbin/swayshot $(echo -e 'display\nwindow\nregion\ndisplay upload\nwindow upload\nregion upload' | rofi -dmenu)
-bindsym $mod+question    exec $lbin/sway-prop
+bindsym $mod+p           exec wayexit
+bindsym $mod+Print       exec wayshot
+bindsym $mod+question    exec sway-prop
 
 #
 # START UP PROGRAMS
@@ -256,21 +254,10 @@ bindsym $mod+question    exec $lbin/sway-prop
 
 # Tell dbus about these vars:
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec hash dbus-update-activation-environment 2>/dev/null && \
-     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 # Autolock etc.
-exec swayidle -w \
-     timeout 1800 $lbin/lockmeup \
-     timeout 1830 'swaymsg "output * dpms off"' \
-     resume 'swaymsg "output * dpms on"' \
-     before-sleep $lbin/lockmeup
-
+exec idle
 exec wallpaper
-# exec nm-applet --indicator
-# exec sleep 5; rfkill block bluetooth; rfkill unblock bluetooth
-# exec blueman-applet
-# exec wlsunset -l 46.8 -L 15.5 -t 2000
-# exec mako
-exec $lbin/battery_notifications
+exec battery_notifications
 exec quickshell -c noctalia-shell
