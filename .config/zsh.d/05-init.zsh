@@ -4,9 +4,23 @@
 autoload -U is-at-least
 
 # Too bad I have to put this function over here.
+# cleanpath()
+# {
+#     print "$^@"(N)
+# }
+
 cleanpath()
 {
-    print "$^@"(N)
+    local -a seen
+    local item realitem
+
+    for item in "$^@"(N); do
+        realitem=${item:A}
+        if [[ ! ${seen[(I)$realitem]} -gt 0 ]]; then
+            seen+=$realitem
+            print $realitem
+        fi
+    done
 }
 
 # Paths
